@@ -1,0 +1,22 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.news.notice.view");
+CNOA.news.notice.view.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.news.notice.view.id      = "{$GLOBALS['id']}";
+CNOA.news.notice.view.fromaction   = "{$GLOBALS['fromaction']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_news_news", "app/news/scripts/cnoa.news.js", function(){
+		CNOA_news_notice_view = new CNOA_news_notice_viewClass();
+		Ext.getCmp(CNOA.news.notice.view.parentID).add(CNOA_news_notice_view.mainPanel);
+		Ext.getCmp(CNOA.news.notice.view.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+// echo loadJavascript(array("./app/news/scripts/notice_view.js"));
+?>

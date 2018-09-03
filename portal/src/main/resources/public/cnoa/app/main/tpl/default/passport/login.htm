@@ -1,0 +1,52 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+{$GLOBALS['CNOA_CONFIG']}
+
+var CNOA_LOGIN_EXPIRE = {$GLOBALS['CNOA_LOGIN_EXPIRE']};
+var CNOA_LOGIN_DLOGIN = {$GLOBALS['CNOA_LOGIN_DLOGIN']};
+var CNOA_LOGIN_USERNAME = "{$GLOBALS['USERNAME']}";
+</script>
+
+<body>
+<style>
+body{background:#FFF url(./resources/images/bg_main_body.jpg) left top repeat-x fixed}
+.my-icon(background: url(./resources/images/icons/lock.gif) 0 6px no-repeat !important;}
+.lk a{color:red}
+.lk a,.lk a:link{color:#1C5784}
+.x-window-plain .x-window-body {border-width: 0px;}
+</style>
+
+<div class="ext-el-mask-msg x-mask-loading" id="cnoa-x-mask-loading-msg"><div>载入中,请稍候..</div></div>
+<script language="JavaScript">var CNOAXMask = document.getElementById("cnoa-x-mask-loading-msg");CNOAXMask.style.left = document.body.clientWidth/2-80+"px";CNOAXMask.style.top = document.documentElement.clientHeight/2-30+"px"; </script>
+
+CNOA;
+if($GLOBALS['from'] == "default"){
+	echo "<script type='text/javascript' src='./app/main/scripts/passport_index.js?v={$GLOBALS['CNOA_VERSION']}'></script>";
+}else{
+	echo "<script type='text/javascript' src='./app/main/scripts/{$GLOBALS['CNOA_LOGINPAGE']}?v={$GLOBALS['CNOA_VERSION']}'></script>";
+}
+##echo loadJavascript("./app/main/scripts/passport_index.js");
+print <<<CNOA
+
+<!-- <div style="position:absolute;right:5px;bottom:5px;color:#555555;text-align:right;font-family:Verdana, Geneva, sans-serif;font-size:11px;" class="lk">Copyright &copy; 2012 CNOA<br />Powered by <a href="http://www.cnoa.cn/" target="_blank">协众OA</a> [<a href="http://www.cnoa.cn/" target="_blank">www.cnoa.cn</a>]</div>
+<div class="clear"></div> -->
+
+<div style="position:absolute;right:5px;bottom:5px;color:#555555;text-align:right;font-family:Verdana, Geneva, sans-serif;font-size:11px;" class="lk">点此下载安装：<a href="http://www.cnoa.cn/download/s/messager" target="_blank" style="color:#FF3300">OA小秘书</a></div>
+<div style="position:absolute;left:5px;bottom:5px;color:#DDDDDD;text-align:right;font-family:Verdana, Geneva, sans-serif;font-size:11px;" class="lk"><a href="http://www.cnoa.cn" target="_blank" style="color:#DDDDDD">Copyright &copy; 2011 CNOA</a></div>
+<div class="clear"></div>
+
+
+
+<div style="display:none;">
+<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+ codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,0,0"
+ WIDTH="0" HEIGHT="0" id="flash_detection" ALIGN="">
+ <PARAM NAME=movie VALUE="resources/flash_AS_detection.swf"> <PARAM NAME=quality VALUE=high> <PARAM NAME=bgcolor VALUE=#FFFFFF> <EMBED src="resources/flash_AS_detection.swf" quality=high bgcolor=#FFFFFF  WIDTH="0" HEIGHT="0" NAME="flash_detection" ALIGN=""
+ TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></EMBED>
+</OBJECT>
+</div>
+
+CNOA;
+?>

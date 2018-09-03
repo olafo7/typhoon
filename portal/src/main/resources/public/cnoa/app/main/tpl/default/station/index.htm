@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.station");
+CNOA.main.station.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_main_station", "app/main/scripts/cnoa.station.js", function(){
+		CNOA_main_station_index = new CNOA_main_station_indexClass();
+		Ext.getCmp(CNOA.main.station.parentID).add(CNOA_main_station_index.mainPanel);
+		Ext.getCmp(CNOA.main.station.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/main/scripts/station_index.js"));
+?>

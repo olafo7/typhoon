@@ -1,0 +1,315 @@
+body,h1, h2, h3, h4, h5,p,ul,li{
+	font-family:"NotoSans CJK","Microsoft YaHei","Proxima Nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+  padding: 0;
+	margin: 0;
+	border: 0;
+}
+#header {
+	position:relative;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 52px;
+	line-height: 52px;
+	padding: 0;
+	font-size: 18px;
+	text-align: center;
+	font-weight: bold;	
+	/*background-image: -webkit-linear-gradient(top,#1e93e4,#1676b9 3%,#11598c);*/
+	background-color: #3871B8;
+	color: #fff;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+}
+#header .btn-home-ico,#header .btn-back-ico{
+	position: absolute;
+	left: 0px;
+	top: 6px;
+	font-size: large;
+	border: 1px solid #3871B8;
+	background-color: #3871B8;
+	/*background-image: -webkit-linear-gradient(top,#1985d0,#1468a2 3%,#0e4b75);*/
+}
+#header .btn-add-ico{
+	position: absolute;
+	right: 0px;
+    top: 7px;
+	border: 1px solid #3871B8;
+	background-color: #3871B8;
+	font-size: large;
+	/*background-image: -webkit-linear-gradient(top,#1985d0,#1468a2 3%,#0e4b75);*/
+}
+#header a:hover,#header a:link,#header a:visited,#header a:active{
+	color:#fff;
+	text-decoration:none;
+}
+/*.myDropdownMenu{
+	opacity: 0.78;
+  font-size: 16px;
+	background-color: #000;
+}*/
+#wrapper{
+	position:absolute; 
+	z-index:1;
+	top:75px; 
+	bottom:0px; 
+	left:0;
+	width:100%;
+	background:#fff;
+	overflow:hidden;
+}
+/*#scroller {
+	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 100%;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}*/
+.tab-label{
+	margin-top: 10px;
+	height: 30px;
+	width: 100%;
+	background-color: #e7e3e6;
+}
+#wrapper img{
+	margin: 0 auto;
+	display: block;
+}
+#myTabs{
+	background:#eee;
+	border-radius:0px;
+}
+#myTabs > li{
+	width:33.333333%;
+	text-align:center;
+}
+#myTabs > li a{
+	color: #090909;
+	padding:6px 15px;
+}
+#myTabs > li a:hover{
+	background: #eee;
+	border: #eee solid 1px;
+}
+#myTabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #1468a2;
+    cursor: default;
+    border-color: #eee;
+    border-bottom: #459ae9 solid 4px;
+    background: #eee;
+    border-image: none;
+    border-radius: 0px;
+    border-width: 1px 0px 4px;
+    margin-right: 0px;
+}
+#myTabContent {
+	position: absolute;
+	bottom: 1px;
+	left: 0;
+	right: 0;
+}
+#myTabContent .panel {
+  margin-bottom: -2px;
+  border-radius: 0px;
+}
+#myTabContent .panel:first-child{
+	border-top: 0px;
+}
+#myTabContent .panel-heading {
+  font-weight: 300;
+  padding: 0px;
+  text-align: -webkit-match-parent;
+  border-top: #eee solid 1px;
+  border-radius: 0px;
+}
+#myTabContent .No{
+	position: absolute;
+	left: 12px;;
+	top: 13px;
+}
+#myTabContent .No .btn{
+	height: 26px;
+	width: 26px;
+	padding: 0px;
+}
+#myTabContent .panel-heading .title {
+	display: block;
+	height: 50px;
+	position: relative;
+}
+#myTabContent .icon {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 29px auto;
+	left: 0;
+	margin-left: 11px;
+	top: 0;
+	width: 30px;
+}
+#myTabContent .name-box {
+	margin: 0px 50px 0px 50px;
+	position: relative;
+	display: block;
+	height: 50px;
+}
+#myTabContent .icon, #myTabContent .enter, #myTabContent .prev, #myTabContent .next {
+	color: #1f8ed6;
+	display: block;
+	height: 50px;
+	line-height: 50px;
+}
+#myTabContent .dir-box{
+	line-height: 36px;
+}
+#myTabContent .name {
+	font-size: 1.1em;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	text-overflow: ellipsis;
+	top: 8px;
+	white-space: nowrap;
+	width: 100%;
+}
+#myTabContent .nameR{
+	font-size: 1.1em;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	text-overflow: ellipsis;
+	top: 16px;
+	white-space: nowrap;
+	width: 100%;
+}
+#myTabContent .enter {
+	/*background: url(http://p1.qhimg.com/t014eef11c06f19d6e6.png) center center no-repeat;*/
+	background-size: 25px auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 50px;
+	color:#d2d2d2;
+	-webkit-tap-highlight-color: transparent;
+}
+#myTabContent .glyphicon {
+  padding: 0px 10px 0px 10px;
+  font-size: 22px;
+  color: #5bc0de;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 10000;
+}
+#myTabContent .infos {
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  left: 0;
+  top: 28px;
+  color: #a8a8a8;
+  font-size: 0.8em;
+}
+#myTabContent .infos span:nth-of-type(2) {
+  margin-left: 8px;
+  color:#FF7F00;
+}
+#myTabContent .panel-body{
+	padding:0px;
+	display: none;
+	text-align: center;
+	background: #e5ebf1;
+	opacity: 0.7;
+}
+#myTabContent .table thead tr th{
+	border:none;
+}
+#myTabContent .table{
+	margin-bottom: 0px;
+}
+#myTabContent .panel-body th{
+	padding-left: 12px;
+	white-space:nowrap;
+}
+#myTabContent .restTab{
+	color:#FF7F00;
+}
+.arrange{
+	color:#46b8da;
+}
+
+
+/**
+ *底部菜单
+**/
+#jingle_popup .btn{
+	width: 100%;
+	padding: 8px 12px;
+	margin-top: 8px;
+}
+#jingle_popup {
+	background-color: #eef3f3;
+	color: #222;
+	-webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.6);
+}
+#jingle_popup {
+	display: none;
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 98;
+	min-height: 50px;
+}
+#jingle_popup_mask {
+	display: none;
+	position: absolute;
+	z-index: 90;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	opacity: 0;
+}
+#jingle_popup_mask {
+	background-color: #222;
+}
+#jingle_popup{
+	bottom:0px;
+	left:0px;
+	right:0px;
+	display:none;
+}
+#jingle_popup_mask{
+	opacity:0.3;
+	display:none;
+}
+.actionsheet {
+	display: -webkit-box;
+	display: box;
+	-webkit-box-orient: vertical;
+	box-orient: vertical;
+	padding: 10px;
+}
+.actionsheet > button {
+	-webkit-box-flex: 1;
+	box-flex: 1;
+	margin-top: 8px;
+	display: block;
+	width: 100%;
+}

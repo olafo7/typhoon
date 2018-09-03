@@ -1,0 +1,18 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.common.index");
+CNOA.main.common.index.parentID = "{$GLOBALS['app']['parentid']}";
+</script>
+
+<script language="JavaScript">
+CNOA.main.common.index.DestTopAppList = '{$GLOBALS['appList']}';
+</script>
+
+
+CNOA;
+echo loadJavascript(array("{$GLOBALS['URL_FILE']}/webcache/common_index.js"));
+
+?>

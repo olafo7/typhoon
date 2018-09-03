@@ -1,0 +1,21 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.hr.person.manageIndex");
+CNOA.hr.person.manageIndex.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("hr_person_file", "app/hr/scripts/cnoa.person.js", function(){
+		CNOA_hr_person_manageIndex = new CNOA_hr_person_manageIndexClass();
+		Ext.getCmp(CNOA.hr.person.manageIndex.parentID).add(CNOA_hr_person_manageIndex.mainPanel);
+		Ext.getCmp(CNOA.hr.person.manageIndex.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/hr/scripts/person_manage.js"));
+?>

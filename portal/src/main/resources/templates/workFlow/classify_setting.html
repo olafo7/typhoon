@@ -1,0 +1,12 @@
+<script>
+    Ext.namespace("CNOA.wf.set.sort");
+    CNOA.wf.set.sort.parentID = "docs-CNOA_MENU_WF_SET_SORT";
+
+    Ext.onReady(function() {
+        loadScripts("sm_wf_flow", "cnoa/app/wf/scripts/cnoa.wf.js", function(){
+            CNOA_wf_set_sort = new CNOA_wf_set_sortClass();
+            Ext.getCmp(CNOA.wf.set.sort.parentID).add(CNOA_wf_set_sort.mainPanel);
+            Ext.getCmp(CNOA.wf.set.sort.parentID).doLayout();
+        });
+    });
+</script>

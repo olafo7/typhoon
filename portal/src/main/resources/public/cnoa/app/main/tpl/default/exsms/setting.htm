@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.exsms.setting");
+CNOA.main.exsms.setting.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_main_exsms", "app/main/scripts/cnoa.exsms.js", function(){
+		CNOA_main_exsms_setting = new CNOA_main_exsms_settingClass();
+		Ext.getCmp(CNOA.main.exsms.setting.parentID).add(CNOA_main_exsms_setting.mainPanel);
+		Ext.getCmp(CNOA.main.exsms.setting.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript("./app/main/scripts/exsms_setting.js");
+?>

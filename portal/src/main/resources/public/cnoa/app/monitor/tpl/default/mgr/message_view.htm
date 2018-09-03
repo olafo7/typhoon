@@ -1,0 +1,27 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.monitor.mgr.messageView");
+CNOA.monitor.mgr.messageView.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.monitor.mgr.messageView.id       = {$GLOBALS['id']};
+CNOA.monitor.mgr.messageView.uid	  = {$GLOBALS['uid']};
+CNOA.monitor.mgr.messageView.folder   = "{$GLOBALS['folder']}";
+CNOA.monitor.mgr.messageView.smstype  = "{$GLOBALS['smstype']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_monitor_mgr", "app/monitor/scripts/cnoa.monitor.js", function(){
+		CNOA_monitor_mgr_messageView = new CNOA_monitor_mgr_messageViewClass();
+		Ext.getCmp(CNOA.monitor.mgr.messageView.parentID).add(CNOA_monitor_mgr_messageView.mainPanel);
+		Ext.getCmp(CNOA.monitor.mgr.messageView.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/communication/scripts/message_view.js"));
+
+?>

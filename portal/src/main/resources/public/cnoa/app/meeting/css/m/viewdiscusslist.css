@@ -1,0 +1,187 @@
+body,h1, h2, h3, h4, h5,p,ul,li{
+    font-family:"NotoSans CJK","Microsoft YaHei","Proxima Nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+ul {
+    text-decoration: none; 
+    list-style-type: none;
+}
+
+a,a:hover,a:link,a:visited {
+    list-style-type: none;
+    text-decoration: none; 
+}
+
+/*header styles*/
+#header {
+	position: fixed;
+	width: 100%;
+	height: 52px;
+	text-align: center;
+	line-height: 52px;
+	background-color: #4A78BB;
+	color: #FFFFFF;
+	z-index: 1;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#add {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 53px;
+    height: 52px;
+    background-color: #4A78BB;
+    border: none; 
+}
+
+#btnBack {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-size: 1.2em;
+    padding: 15px;
+}
+
+/*wrapper styles*/
+#wrapper {
+    position:absolute; 
+    z-index:1;
+    top:108px;; 
+    bottom:0px; 
+    left:0;
+    width:100%;
+    background:#fff;
+    overflow:auto;
+}
+
+/*pullup styles*/
+#scroller {
+    position:relative;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    float:left;
+    width:100%;
+    padding:0;
+}
+
+#scroller .stop-label {
+  background: #fafafa;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #eee;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  color: #888;
+  display: none;
+}
+
+/*f_control styles*/
+#f_control{
+  position: absolute;
+  top: 52px;
+  z-index: 2;
+  width: 100%;
+  height: 56px;
+  padding: 8px 0px;
+  margin: 0px;
+  background: #eee;
+}
+
+#f_control .col-xs-12 {
+    padding: 0px 10px;
+}
+
+.search {
+    height: 36px;
+    border-radius: 18px;
+}
+
+#f_control .form-group {
+    margin-bottom: 8px;
+}
+
+
+.post {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding: 0px 30px 10px 30px;
+}
+.post div {
+    width: 100%;
+    margin-top: 5px;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.title {
+    font-size: 25px;
+}
+
+/*jconfirm styles*/
+.jconfirm .jconfirm-box div.content {
+    text-align: center;
+    padding: 30px 15px 30px;
+}
+
+/**
+ * 下拉样式 Pull down styles
+ */
+#pullDown, #pullUp {
+    background:#fafafa;
+    height:50px;
+    line-height:50px;
+    font-weight:bold;
+    font-size:14px;
+    color:#888;
+    border-top: #eee solid 1px;
+}
+#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+    display:block; float:left;
+    width:40px; height:40px;
+    margin-left:30%;
+    background:url(../../../../../../resources/images/m/ico/pull-icon@2x.png) 0 0 no-repeat;
+    -webkit-background-size:40px 80px; background-size:40px 80px;
+    -webkit-transition-property:-webkit-transform;
+    -webkit-transition-duration:250ms;  
+}
+#pullDown .pullDownIcon {
+    -webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUp .pullUpIcon  {
+    -webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullDown.flip .pullDownIcon {
+    -webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullUp.flip .pullUpIcon {
+    -webkit-transform:rotate(0deg) translateZ(0);
+}
+
+#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+    background-position:0 100%;
+    -webkit-transform:rotate(0deg) translateZ(0);
+    -webkit-transition-duration:0ms;
+
+    -webkit-animation-name:loading;
+    -webkit-animation-duration:2s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes loading {
+    from { -webkit-transform:rotate(0deg) translateZ(0); }
+    to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+

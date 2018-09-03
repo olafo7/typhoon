@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="app/user/css/m/diary/diary.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="scripts/jquery/prettify.js"></script>
+<script src="scripts/jquery/custom.js"></script>
+<script src="app/user/scripts/m/diary/summary.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+</head>
+
+<body>
+<div id="header">
+	<span>添加/修改总结</span>
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack">返回</span>
+</div>
+<div id="wrapper">
+	<div class="container">
+		<textarea class="form-control add-control" rows="6" id="summary" placeholder="总结内容"></textarea>
+		<button type="botton" id="btn_addsummary" class="btn btn-m btn-primary btn-block btn-save">确认保存</button>
+	</div>
+</div>
+</body>
+<script>
+var myScroll;
+function loaded(){
+	myScroll = new iScroll('wrapper', {
+	scrollbarClass: 'myScrollbar',
+	wheelAction: 'scroll'
+});
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+}
+window.onload = loaded;
+</script>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>协众OA - 流程设计器</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="/cnoa/extjs/3.4.0/resources/css/ext-all.css">
+    <link rel="stylesheet" type="text/css" href="/cnoa/theme/ExtJS/style.css">
+    <link rel="stylesheet" type="text/css" href="/cnoa/scripts/wfDesigner/css/grapheditor.css" />
+
+    <script type="text/javascript" src="/cnoa/scripts/extjs.3.4.0.js"></script>
+    <script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="/cnoa/file/language/cn.js"></script>
+    <script type="text/javascript">
+        <!--
+        function lang(code){
+            try{
+                var t = CNOA.lang[code];
+            }catch(e){
+                return;
+            }
+            if(!CNOA.lang[code]){
+                cdump("未设置的语言：" + "lang('"+code+"')");
+                return "[未有此语言:"+code+"]";
+            }
+
+            if(arguments.length>1){
+                //var args = [];
+                //for (var i=1; i<arguments.length; i++){
+                //	args.push(arguments[i]);
+                //}
+                var args = Ext.toArray(arguments, 1);
+                return CNOA.lang[code].replace(/\{(\d+)\}/g, function(m, i){
+                    return args[i];
+                });
+            }else{
+                return CNOA.lang[code];
+            }
+        }
+        //-->
+    </script>
+    <!--<script type="text/javascript" src="/cnoa/scripts/mxgraph/mxclient.php?r=<?=$r?>"></script>-->
+    <script type="text/javascript" src="/cnoa/scripts/mxgraph/mxclient.1.8.0.5.webkit.js"></script>
+    <script type="text/javascript" src="/cnoa/scripts/wfDesigner/designPanel.js"></script>
+    <script type="text/javascript" src="/cnoa/scripts/wfDesigner/init.js"></script>
+
+    <style>
+        text{font-size:13px;}
+    </style>
+
+    <script language="JavaScript">
+        Ext.BLANK_IMAGE_URL = '/cnoa/extjs/3.4.0/resources/images/default/s.gif';
+    </script>
+    <script type="text/javascript">
+        //mxClient.basePath = "/cnoa/scripts/wfDesigner/";
+        //mxClient.basePath = "../mxgraph/";
+        mxClient.basePath = "../../cnoa/scripts/mxgraph/";
+        // Enables guides
+        mxGraphHandler.prototype.guidesEnabled = true;
+
+        //mxEditor.prototype.dblClickAction = function;
+
+        //让节点不可修改
+        mxGraph.prototype.cellsEditable = false;
+
+        //让连接线鼠标样式变成手势
+        mxConstants.CURSOR_MOVABLE_EDGE = "pointer";
+
+        //只能单选节点
+        mxGraphSelectionModel.prototype.singleSelection = true;
+
+        //让连接线不可拖动两头(直线 | 斜角)
+        mxEdgeHandler.prototype.mouseDown = function(sender, me) {
+            //增加如下三行
+            try{
+                if((me.state.cell.style == 'straight') || (me.state.cell.style == 'entity') || (me.state.cell.style == 'edgeStyle=entityRelationEdgeStyle')){
+                    return;
+                }
+            }catch(e){}
+
+            var handle = null; {
+                handle = this.getHandleForEvent(me);
+            }
+            if (handle != null && !me.isConsumed() && this.graph.isEnabled() && !this.graph.isForceMarqueeEvent(me.getEvent())) {
+                if (this.removeEnabled && this.isRemovePointEvent(me.getEvent())) {
+                    this.removePoint(this.state, handle);
+                } else if (handle != mxEvent.LABEL_HANDLE || this.graph.isLabelMovable(me.getCell())) {
+                    this.start(me.getX(), me.getY(), handle);
+                }
+                me.consume();
+            }
+        };
+
+        //处理节点单击事件
+        mxSelectionCellsHandler.prototype.mouseDown = function(sender, me) {
+            if (this.graph.isEnabled() && this.isEnabled()) {
+                var args = [sender, me];
+                this.handlers.visit(function(key, handler) {
+                    handler.mouseDown.apply(handler, args);
+                });
+            }
+            try{
+                var cell = me.state.cell;
+                var nodeTypes = ['startNode', 'node', 'cNode', 'bNode', 'childNode', 'bcNode'];
+                if(jQuery.inArray(cell.nodeType, nodeTypes)!=-1){
+                    try{
+                        parent.CNOA_wf_set_flow_design_main.nodeClick(cell);
+                    }catch(e){try{parent.cdump(e1);}catch(e1){}}
+                }
+            }catch (e){}
+        };
+
+        //处理双击事件
+        mxGraph.prototype.dblClick = function(evt, cell) {
+            var mxe = new mxEventObject(mxEvent.DOUBLE_CLICK, 'event', evt, 'cell', cell);
+            this.fireEvent(mxe);
+            if (this.isEnabled() && !mxEvent.isConsumed(evt) && !mxe.isConsumed() && cell != null && this.isCellEditable(cell)) {
+                this.startEditingAtCell(cell, evt);
+            }
+            try{
+                var nodeTypes = ['startNode', 'node', 'cNode', 'bNode', 'childNode', 'bcNode'];
+                if(jQuery.inArray(cell.nodeType, nodeTypes)!=-1){
+                    try{
+                        mainPanel.setNode();
+                    }catch(e){}
+                }
+            }catch (e){}
+
+            try{
+                if(cell.edge == true){
+                    try{
+                        mainPanel.setLineLabel(cell);
+                    }catch(e){}
+                }
+            }catch (e){}
+        };
+
+        //让连接线不可拖动两头(直角转弯线[横线/竖线])
+        mxElbowEdgeHandler.prototype.createBends = function() {
+            var bends = [];
+            var bend = this.createHandleShape(0);
+            this.initBend(bend);
+            //bend.node.style.cursor = mxConstants.CURSOR_BEND_HANDLE;
+            //mxEvent.redirectMouseEvents(bend.node, this.graph, this.state);
+            bends.push(bend);
+            if (mxClient.IS_TOUCH) {
+                //bend.node.setAttribute('pointer-events', 'none');
+            }
+            bends.push(this.createVirtualBend());
+            this.points.push(new mxPoint(0, 0));
+            bend = this.createHandleShape(2);
+            this.initBend(bend);
+            //bend.node.style.cursor = mxConstants.CURSOR_BEND_HANDLE;
+            //mxEvent.redirectMouseEvents(bend.node, this.graph, this.state);
+            bends.push(bend);
+            if (mxClient.IS_TOUCH) {
+                //bend.node.setAttribute('pointer-events', 'none');
+            }
+            return bends;
+        };
+
+        //让连接线不可拖动
+        mxGraphHandler.prototype.mouseDown = function(sender, me) {
+            if (!me.isConsumed() && this.isEnabled() && this.graph.isEnabled() && !this.graph.isForceMarqueeEvent(me.getEvent()) && me.getState() != null) {
+                var cell = me.getCell();
+                this.cell = null;
+                this.delayedSelection = this.graph.isCellSelected(cell);
+                if (this.isSelectEnabled() && !this.delayedSelection) {
+                    this.graph.selectCellForEvent(cell, me.getEvent());
+                }
+                if (this.isMoveEnabled()) {
+                    //让线条不可移动
+                    if (graph.getModel().isEdge(me.getCell())) {
+                        return ;
+                    }
+                    var model = this.graph.model;
+                    var geo = model.getGeometry(cell);
+                    if (this.graph.isCellMovable(cell) && ((!model.isEdge(cell) || this.graph.getSelectionCount() > 1 || (geo.points != null && geo.points.length > 0) || model.getTerminal(cell, true) == null || model.getTerminal(cell, false) == null) || this.graph.allowDanglingEdges || (this.graph.isCloneEvent(me.getEvent()) && this.graph.isCellsCloneable()))) {
+                        this.start(cell, me.getX(), me.getY());
+                    }
+                    this.cellWasClicked = true;
+                    if ((!false && !true) || me.getSource().nodeName != 'SELECT') {
+                        me.consume();
+                    } else if (false && me.getSource().nodeName == 'SELECT') {
+                        this.cellWasClicked = false;
+                        this.first = null;
+                    }
+                }
+            }
+        };
+
+        // Alt disables guides
+        mxGuide.prototype.isEnabledForEvent = function(evt){
+            return !mxEvent.isAltDown(evt);
+        };
+
+        // Enables snapping waypoints to terminals
+        mxEdgeHandler.prototype.snapToTerminals = true;
+
+        mxUtils.alert = function(message){
+            //Ext.example.msg(message, '', '');
+        };
+    </script>
+
+</head>
+<body onload="main();">
+
+
+</body>
+</html>

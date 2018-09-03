@@ -1,0 +1,14 @@
+<script language="JavaScript">
+    Ext.namespace("CNOA.main.message");
+    CNOA.main.message.parentID = "docs-CNOA_MENU_SYSTEM_MESSAGE";
+
+    Ext.onReady(function() {
+        loadScripts("sm_main_message", "cnoa/app/main/scripts/cnoa.message.js", function(){
+        //记录左边树被选中的状态
+            Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
+            CNOA_main_message_list = new CNOA_main_message_listClass();
+            Ext.getCmp(CNOA.main.message.parentID).add(CNOA_main_message_list.mainPanel);
+            Ext.getCmp(CNOA.main.message.parentID).doLayout();
+        });
+    });
+</script>

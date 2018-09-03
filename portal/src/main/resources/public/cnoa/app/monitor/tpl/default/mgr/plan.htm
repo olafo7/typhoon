@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.monitor.mgr.plan");
+CNOA.monitor.mgr.plan.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_monitor_mgr", "app/monitor/scripts/cnoa.monitor.js", function(){
+		CNOA_monitor_mgr_plan = new CNOA_monitor_mgr_planClass();
+		Ext.getCmp(CNOA.monitor.mgr.plan.parentID).add(CNOA_monitor_mgr_plan.mainPanel);
+		Ext.getCmp(CNOA.monitor.mgr.plan.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/monitor/scripts/plan_mgr.js"));
+?>

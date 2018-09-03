@@ -1,0 +1,239 @@
+<?php
+$data = $GLOBALS['meeting']['mgr']['list'];
+$data['markdetail'] = nl2br($data['markdetail']);
+$data['descripts']  = nl2br($data['descripts']);
+$data['attach'] = str_replace(array("javascript:ajaxDownload", "openOfficeForView"), array("javascript:top.ajaxDownload", "top.openOfficeForView"), $data['attach']);
+
+
+print <<<CNOA
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="scripts/cnoa/viewAttach.js"></script>
+<script type="text/javascript">
+function ajaxDownload(url){
+	try{
+		document.body.removeChild(document.getElementById("cnoa_iframe_download"));
+	}catch(e){}
+	try{
+		var f = document.createElement("iframe");
+			f.id = 'cnoa_iframe_download';
+			f.style.width = "0px";
+			f.style.height = "0px";
+			f.style.display = "none";
+			//f.src = url + "&r=" + Math.random();
+			f.src = url;
+			document.body.appendChild(f);
+	}catch(e){alert(e);}
+}
+
+function previewAllExcel(url){
+	var Ext = top.Ext;
+	var ID_iframe = Ext.id();
+	var box = Ext.getBody().getBox();
+	
+	var win = new Ext.Window({
+		width: box.width - 100,
+		height: box.height - 100,
+		autoScroll: false,
+		modal: true,
+		resizable: true,
+		html : '<div style="width:100%;height:100%;"><iframe scrolling=auto frameborder=0 width=100% height=100% id="'+ID_iframe+'"></iframe></div>',
+		title: "预览Excel表单",
+		maximizable : true,
+		listeners: {
+			show : function(win){
+				Ext.getDom(ID_iframe).contentWindow.location.href = url+'&r='+Math.random();
+			},
+			close : function(){
+				try{Ext.getDom(ID_iframe).src = "";}catch(e){}
+			}
+		},
+		buttons: [
+			{
+				text : "关闭",
+				handler : function(){
+					win.close();
+				}
+			}
+		]
+	}).show();
+}
+</script>
+</head>
+<body class="bodycolor" topmargin="5">
+
+<table class="TableBlock" width="650" align="center" style="word-break: break-all;">
+
+  <tr>
+
+    <td nowrap class="TableHeader" colspan="6"><b>&nbsp;会议室基本信息</b></td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align='left' width='120'  class='TableContent'>会议名称：</td>
+
+   	<td class='TableData' width='180'  >{$data['name']}</td>  
+
+    <td nowrap align='left' width='120' class='TableContent'>会议主题：</td>
+
+    <td class='TableData' width='180' >{$data['title']}</td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align='left' width='120'  class='TableContent'>会议类型：</td>
+
+   	<td class='TableData' width='180'  >{$data['type']}</td>  
+
+    <td nowrap align='left' width='120' class='TableContent'>会议室计划人数：</td>
+
+    <td class='TableData' width='180' >{$data['plan']}</td>          
+   
+  </tr>
+
+  <tr>
+
+  	<td nowrap align='left' width='120'  class='TableContent'>会议室名称：</td>
+
+   	<td class='TableData' width='180'  >{$data['meetingroomName']}</td>  
+
+    <td nowrap align='left' width='120' class='TableContent'>容纳人数：</td>
+
+    <td class='TableData' width='180' >{$data['contain']}</td>          
+   
+  </tr>
+
+  <tr>
+
+  	<td nowrap align='left' width='120'  class='TableContent'>会议开始时间：</td>
+
+   	<td class='TableData' width='180'  >{$data['stime']}</td>  
+
+    <td nowrap align='left' width='120' class='TableContent'>会议结束时间：</td>
+
+    <td class='TableData' width='180' >{$data['etime']}</td>          
+   
+  </tr>
+
+  <tr>
+
+  	<td nowrap align='left' width='120'  class='TableContent'>会议室管理人：</td>
+
+   	<td class='TableData' width='180'  >{$data['mgrman']}</td>
+
+  	<td nowrap align='left' width='120'  class='TableContent'>会议纪要人：</td>
+
+   	<td class='TableData' width='180'  >{$data['markname']}</td>         
+   
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>会议地址：</td>
+
+    <td class='TableData' colspan='3' >{$data['address']}</td>    
+         
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>会议出席人：</td>
+
+    <td class='TableData' colspan='3' >{$data['attend']}</td>    
+         
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>会议其他出席人：</td>
+
+    <td class='TableData' colspan='3' >{$data['otherattend']}</td>    
+         
+  </tr>
+  
+  <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>会议查看人：</td>
+
+    <td class='TableData' colspan='3' >{$data['viewer']}</td>    
+         
+  </tr>
+
+  <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>已确定参加人员：</td>
+
+    <td class='TableData' colspan='3' >{$data['attendee']}</td>    
+         
+  </tr>
+
+  <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>已确定不参加人员：</td>
+
+    <td class='TableData' colspan='3' >{$data['notattendee']}</td>    
+         
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent' >会议室设备：</td>
+
+    <td class='TableData' colspan='3' >{$data['equipment']}</td>
+         
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent' >会议描述：</td>
+
+    <td class='TableData' colspan='3'>{$data['descripts']}</td>
+         
+  </tr>
+  
+   <tr>
+
+    <td nowrap align='left' width='120' class='TableContent' >会议纪要：</td>
+
+    <td class='TableData' colspan='3'>{$data['markdetail']}</td>
+         
+  </tr>
+  
+   <tr>
+
+    <td nowrap align='left' width='120' class='TableContent' >会议纪要附件：</td>
+
+    <td class='TableData' colspan='3'>{$data['markattach']}</td>
+         
+  </tr>
+    
+  <tr>
+  
+    <td nowrap align='left' width='120' class='TableContent'>附件：</td>
+
+    <td class='TableData' colspan='3' >{$data['attach']}</td>
+
+  </tr>
+  
+</table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

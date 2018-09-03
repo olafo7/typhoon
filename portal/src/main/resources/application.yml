@@ -1,0 +1,87 @@
+debug: false
+server:
+  tomcat.uri-encoding: UTF-8
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cnoa_oa?useSSL=false
+    username: root
+    password: rootroot
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,log4j
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  thymeleaf:
+    enabled: true
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    content.type: text/html
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 3600
+    pool:
+      max-active: 8
+      max-idle: 8
+      min-idle: 0
+      max-wait: -1
+  server:
+    port: 8087
+    acceptorThreadCount: 4
+    minSpareThreads: 50
+    maxSpareThreads: 50
+    maxThreads: 1000
+    maxConnections: 10000
+    connectionTimeout: 10000
+    protocol: org.apache.coyote.http11.Http11Nio2Protocol
+    redirectPort: 443
+    compression: on
+    MaxFileSize: 300MB
+    MaxRequestSize: 500MB
+mybatis:
+  type.aliases.package: org.chencc.model
+  configuration:
+    map-underscore-to-camel-case: true
+mapper:
+  not.empty: false
+  identity: MYSQL
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count\=countSql
+#sudo ../bin/redis-server ./redis.conf
+#若想停止redis  进入bin目录 命令：redis-cli shutdown

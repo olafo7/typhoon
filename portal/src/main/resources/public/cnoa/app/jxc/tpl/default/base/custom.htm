@@ -1,0 +1,21 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.jxc.base.custom");
+CNOA.jxc.base.custom.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	CNOA_jxc_base_custom = new CNOA_custom_field_panel('index.php?app=jxc&func=base&action=custom').mainPanel;
+	Ext.getCmp(CNOA.jxc.base.custom.parentID).add(CNOA_jxc_base_custom);
+	Ext.getCmp(CNOA.jxc.base.custom.parentID).doLayout();
+});
+</script>
+
+
+CNOA;
+###echo loadJavascript(array("./app/jxc/scripts/jxc_base_custom.js"));
+
+?>

@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.flow.flow.user_viewcommonflow");
+CNOA.flow.flow.user_viewcommonflow.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.flow.flow.user_viewcommonflow.ulid = "{$GLOBALS['ulid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_flow_flow", "app/flow/scripts/cnoa.flow.js", function(){
+		CNOA_flow_flow_user_viewcommonflow = new CNOA_flow_flow_user_viewcommonflowClass();
+		Ext.getCmp(CNOA.flow.flow.user_viewcommonflow.parentID).add(CNOA_flow_flow_user_viewcommonflow.mainPanel);
+		Ext.getCmp(CNOA.flow.flow.user_viewcommonflow.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/flow/scripts/flow_user_viewcommonflow.js"));
+?>

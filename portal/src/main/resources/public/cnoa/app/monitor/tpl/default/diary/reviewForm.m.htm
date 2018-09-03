@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="app/wf/css/m/use/userData.css">
+<link rel="stylesheet" type="text/css" href="resources/font/m/font-glyphs/font-glyphs.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/scale.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="scripts/jquery/iscroll5.js"></script>
+<script src="scripts/jquery/sweetalert.min.js"></script>
+<!-- 图片插件 -->
+<script src="resources/scripts/m/scale.js"></script>
+<!-- 在线浏览 -->
+<script src="resources/scripts/m/popwin.js"></script>
+<script src="scripts/jquery/iospopwin.js"></script>
+<script>
+var dynamicLoading = {
+  css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var link = document.createElement('link');
+      link.href = path+"?rnd="+Math.random();
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      head.appendChild(link);
+  },
+  js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.src = path+"?rnd="+Math.random();
+      head.appendChild(script);
+  }
+}
+dynamicLoading.js("app/monitor/scripts/m/diary/reviewForm.js");
+dynamicLoading.css("app/monitor/css/m/diary/reviewForm.css");
+</script>
+</head>
+
+<body>
+<div id="header">
+  <span id="modSend">评阅日记</span>
+  <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack">返回</span>
+</div>
+<div class="content">
+
+  <div class="baseinfo">
+    <span class="user" data-uid=""></span>的工作日记
+    <span class="time"></span>
+  </div>
+
+  <div id="wrapper">
+      <div id="scroller">
+        <div class="dateContent">
+          <div class="todayPlan">
+            <span class="planword">今日计划</span> 
+            <div id="plancon" readonly="readonly">
+              <!-- <span class="word"></span>
+              <span class="right"></span> -->
+            </div>
+          </div>
+          <div class="test1">
+            <span class="planword">工作总结</span> 
+            <div id="summary" readonly="readonly"></div>
+          </div>
+          <div class="test2">
+            <span class="planword">总结补充</span> 
+            <div id="sum_supplement" readonly="readonly"></div>
+          </div>
+          <div class="test3">
+            <span class="planword">附&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;件</span> 
+            <div id="fs" readonly="readonly"></div>
+          </div>
+          <div class="test">
+            <span class="planword">日记补充</span> 
+            <div id="dia_supplement" readonly="readonly"></div>
+          </div>
+          <!-- 显示日记评阅信息 -->
+          <div class="reviewInfo">
+            <div class="ownInfo">
+              <span class="word1">关于本日记的领导批示</span>
+              <p class="auther">
+                <span class="name">作者:超级管理员</span>&nbsp;&nbsp;&nbsp;
+                <span class="time1">2016年06月04日(星期六)</span>
+              </p>
+            </div>
+            <div class="comm">
+              <!-- show data -->
+             
+            </div>
+          </div>
+          <div class="review_diary">
+            <textarea class="form-control review" rows="4"></textarea>
+            <button type="button" class="btn btn-primary submit">提交评论</button>
+          </div>
+          
+        </div>
+  </div>
+</div>
+<div id="loading_mask"></div>
+<div class="imgzoom_pack" style="display:none;">
+  <div class="imgzoom_x"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+  <div class="imgzoom_img">
+    <img src="">
+  </div>
+</div>
+</body>
+</html>
+  

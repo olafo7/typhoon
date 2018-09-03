@@ -1,0 +1,12 @@
+<?php
+$rand = rand(0, 9999999);
+
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.news.notice.print");
+CNOA.news.notice.print.id      = "{$GLOBALS['id']}";
+CNOA.news.notice.print.fromaction   = "{$GLOBALS['fromaction']}";
+</script>
+CNOA;
+echo loadJavascript(array("./app/news/scripts/get_print.js"));
+?>

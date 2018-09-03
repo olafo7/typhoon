@@ -1,0 +1,21 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.communication.email.settingFolder");
+CNOA.communication.email.settingFolder.parentID = "{$GLOBALS['app']['parentid']}";
+
+/*
+Ext.onReady(function() {
+	loadScripts("sm_communication_email", "app/communication/scripts/cnoa.email.js", function(){
+		CNOA_communication_email_setting = new CNOA_communication_email_settingFolderClass();
+		Ext.getCmp(CNOA.communication.email.settingFolderFolder.parentID).add(CNOA_communication_email_settingFolder.mainPanel);
+		Ext.getCmp(CNOA.communication.email.settingFolderFolder.parentID).doLayout();
+	});
+});
+*/
+</script>
+
+CNOA;
+echo loadJavascript(array("./app/communication/scripts/email_settingFolder.js"));
+?>

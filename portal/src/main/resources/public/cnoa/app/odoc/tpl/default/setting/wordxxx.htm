@@ -1,0 +1,18 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.odoc.setting.word");
+CNOA.odoc.setting.word.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_odoc_odoc", "app/odoc/scripts/cnoa.odoc.js", function(){
+		CNOA_odoc_setting_word = new CNOA_odoc_setting_wordClass();
+		Ext.getCmp(CNOA.odoc.setting.word.parentID).add(CNOA_odoc_setting_word.mainPanel);
+		Ext.getCmp(CNOA.odoc.setting.word.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+###echo loadJavascript(array("./app/odoc/scripts/setting_word.js"));
+?>

@@ -1,0 +1,179 @@
+<?php
+$data = $GLOBALS['adm']['car']['apply'];
+
+print <<<CNOA
+<html>
+<head>
+<title>车辆申请信息</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript'>
+	window.onload=function(){
+		window.focus();
+	}
+</script>
+</head>
+
+<body class="bodycolor" topmargin="5">
+
+<table border="0"  width="650" align="center" cellspacing="0" cellpadding="3" class="small">
+
+  <tr>
+
+    <td class="Big"><span class="big3">{$a}</span><br></td>
+
+  </tr>
+
+</table>
+
+<table class="TableBlock" width="650" align="center">
+
+  <tr>
+
+    <td nowrap class="TableHeader " colspan="6"><b>&nbsp;车辆申请信息</b></td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">车牌号：</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$data['carnumber']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">用车人名字：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['caruser']}</td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">预约司机：</td>
+
+    <td class="TableData" width="180">{$data['driver']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">目的地：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['destination']}</td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">申请部门：</td>
+
+    <td class="TableData" width="180" >{$data['department']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">里程（公里）：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['totalway']}</td>
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">预算开始时间：</td>
+
+    <td class="TableData" width="180">{$data['starttime']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">预算结束时间:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['endtime']}</td>       
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">实际开始时间：</td>
+
+    <td class="TableData" width="180">{$data['realstarttime']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">实际结束时间:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['realendtime']}</td>
+
+  </tr>
+  
+  <tr>
+  
+    <td nowrap align="left" width="120" class="TableContent">申请人：</td>
+
+    <td class="TableData" width="180">{$data['applyname']}</td>
+  
+    <td nowrap align="left" width="120" class="TableContent">调度员：</td>
+
+    <td class="TableData" width="180">{$data['transport']}</td>
+
+  </tr>
+  <tr>
+    <td nowrap align="left" width="120" class="TableContent">审批人：</td>
+
+    <td class="TableData" width="180">{$data['checkname']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent"></td>
+
+    <td class="TableData" width="180"></td>
+  </tr>
+
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">申请原因：</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$data['other']}</td>
+
+  </tr>
+  
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">申请流程说明：</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$data['notes']}</td>
+
+  </tr>
+  
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">备注：</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$data['other']}</td>
+
+  </tr>
+  
+  </tr>
+
+  <!-- <tr align="center" class="TableControl">
+
+    <td colspan="6">
+
+      <input type="button" value="关闭" class="BigButton" onClick="window.close();" title="关闭窗口">
+
+    </td>
+
+  </tr>  -->
+
+</table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

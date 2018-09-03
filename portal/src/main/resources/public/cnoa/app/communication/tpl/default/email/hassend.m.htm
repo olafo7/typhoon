@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/sweetalert.css">
+<!-- <link rel="stylesheet" type="text/css" href="resources/css/m/iosOverlay.css"> -->
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/sweetalert.min.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script>
+var dynamicLoading = {
+  css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var link = document.createElement('link');
+      link.href = path+"?rnd="+Math.random();
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      head.appendChild(link);
+  },
+  js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.src = path+"?rnd="+Math.random();
+      head.appendChild(script);
+  }
+}
+dynamicLoading.js("app/communication/scripts/m/hassend/hassend.js");
+dynamicLoading.css("app/communication/css/m/hassend/hassend.css");
+</script>
+</head>
+
+<body>
+<div id="header">
+  已发送
+  <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack">返回</span>
+</div>
+
+<div id="content">
+    <div id="hea-con">
+            <!--图标-->
+        <input type="search" class="input-medium search-query" id="search" placeholder="搜索">
+    </div>
+    <div class="line"></div>
+    <div class="checkall">
+      <input type="checkbox" id="all"><span class="allcss">全选邮件</span>
+    </div>
+    <!--info-->
+    <div id="wrapper">
+      <div id="scroller">
+        <div id="pullDown">
+            <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+        </div>
+
+        <div id="main"> 
+        </div>
+
+      <div id="pullUp">
+          <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+      </div>
+      <div class="stop-label">已加载完成，不要再滚动了...</div>
+    </div>
+</div>
+
+<!--footer-->
+<div id="footer">
+  <div class="check-foo">
+    <input type="checkbox" id="all">
+  </div>
+  <div class="button">
+    <button type="button" class="btn btn-default opt" id="forward">转发</button>
+    <button type="button" class="btn btn-default opt" id="delete">删除</button>
+  </div>
+</div>
+<!-- 模态框：显示已阅人员 -->
+<div class="modal" id="fenfaList" tabindex="-1" role="dialog">
+  <div class="modal-dialog my-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               <span style="float:left;">阅读人情况</span><span class='tip'>(红色表示已阅读人,灰色表示未阅读人)</span>
+            </h4>
+         </div>
+      <div class="fenfa-wrapper" id="fenfa-wrapper">
+        <div class="fenfa-scroller" id="fenfa-scroller">
+          <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                     <th>阅读人</th>
+                     <th>第一次阅读时间</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" 
+           data-dismiss="modal">关闭
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="scripts/jquery/iscroll.fun.js"></script>
+</html>
+  

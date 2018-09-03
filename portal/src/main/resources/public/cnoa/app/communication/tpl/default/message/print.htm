@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css" media=print>
+.noprint{display : none;}
+</style>
+</head>
+<body>
+<div align="right" style="padding-right: 30px;">
+<input class="noprint" type="button" style="height:32px;width:140px" value="打印预览" onclick="JavaScript:printf()"/>
+</div>
+<script language="javascript">
+	function printf(){
+		print();
+		if(Ext.isIE){
+			WebBrowser.ExecWB(7,1);
+		}
+	}
+</script>
+</br>
+
+	<div id="print">
+		<div align="center"><strong><?php echo $title ?></strong></div>
+	<div align="center" style="padding-top:5px">
+		 发送人:<a><?php echo $from_uid ?></a>&nbsp;&nbsp;
+		 发送时间:<a><?php echo $posttime ?></a><br>
+		 收件人:<a><?php echo $to_unames ?></a></div>
+	<div style="padding:5px 30px;fonsize:14px">
+		<?php echo $content ?>
+	</div>
+	</div>
+
+</body>
+</html>

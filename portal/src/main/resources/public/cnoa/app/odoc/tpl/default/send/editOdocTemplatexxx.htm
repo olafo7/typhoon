@@ -1,0 +1,29 @@
+<script type="text/javascript" src="/cnoa/scripts/cnoa.extra.js"></script>
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js"></script>
+
+<script language="javascript">
+<!--
+	Ext.ns("CNOA.odoc");
+	CNOA.odoc.id	= "<?=$GLOBALS['id']?>";
+	CNOA.odoc.truename	= "<?=$GLOBALS['CNOA_USERNAME']?>";
+//-->
+</script>
+<!-- 加载WORD红头文件 -->
+<script language=javascript event=NotifyCtrlReady for=CNOA_WEBOFFICE>
+var baseUrl = "index.php?app=odoc&func=send&action=apply";
+var baseURI = location.href.substr(0, location.href.indexOf('index.php'));
+try{
+	var webObj = document.getElementById("CNOA_WEBOFFICE");
+	//webObj.OptionFlag |= 128;
+	webObj.OptionFlag &= 0xff7f;
+	webObj.setCurrUserName("CNOA");
+	webObj.LoadOriginalFile(baseURI + baseUrl + "&task=loadTemplateFile&id="+CNOA.odoc.id, "doc");
+	webObj.ShowToolBar = false;
+}catch(e){}
+</script>
+
+<script type='text/javascript' src='./index.php?app=odoc&func=send&action=apply&task=getOdocFawenForm&id=<?=$GLOBALS['id']?>'></script>
+<script type="text/javascript" src="scripts/datePicker/datePicker.js"></script>
+<?php
+
+//echo loadJavascript(array("./app/odoc/scripts/send_editOdocTemplate.js"));

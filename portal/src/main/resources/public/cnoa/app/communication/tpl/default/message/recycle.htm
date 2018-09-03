@@ -1,0 +1,18 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.communication.message.index_recycle");
+CNOA.communication.message.index_recycle.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function(){
+	loadScripts("sm_communication_message", "app/communication/scripts/cnoa.message.js", function(){
+		CNOA_communication_message_index_recycle = new CNOA_communication_message_index_recycleClass();
+		Ext.getCmp(CNOA.communication.message.index_recycle.parentID).add(CNOA_communication_message_index_recycle.mainPanel);
+		Ext.getCmp(CNOA.communication.message.index_recycle.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+##echo loadJavascript(array("./app/communication/scripts/message_index_recycle.js"));
+?>

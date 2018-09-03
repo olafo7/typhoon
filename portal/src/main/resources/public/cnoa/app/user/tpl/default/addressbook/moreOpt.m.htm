@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/m/weixin/jweixin-1.1.0.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+		var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+		var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/user/scripts/m/addressbook/moreOpt.js");
+dynamicLoading.css("app/user/css/m/addressbook/moreOpt.css");
+</script>
+</head>
+
+<body>
+<div id="header">
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+</div>
+<ul id="wrapper" style="overflow-x: hidden; left: 0px;">
+    <li class="addMobile commonImg">添加手机号</li>
+    <!-- <li class="scan commonImg">扫一扫</li> -->
+    <li class="synNotes commonImg" style="display: none">同步手机通讯录</li>
+</ul>
+</body>
+</html>

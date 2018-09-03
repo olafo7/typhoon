@@ -1,0 +1,20 @@
+<?php
+#此文件已经废弃，程序中并未发现此文件的调用
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.set.flow");
+CNOA.wf.set.flow.parentID	= "{$GLOBALS['app']['parentid']}";
+CNOA.wf.set.flow.flowId		= "{$GLOBALS['app']['flowId']}";
+CNOA.wf.set.flow.flowType	= "{$GLOBALS['app']['flowType']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_set_flow_msoffice = new CNOA_wf_set_flow_msofficeClass();
+		Ext.getCmp(CNOA.wf.set.flow.parentID).add(CNOA_wf_set_flow_msoffice.mainPanel);
+		Ext.getCmp(CNOA.wf.set.flow.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+### echo loadJavascript(array("./app/wf/scripts/set_flow_step_msoffice.js"));
+?>

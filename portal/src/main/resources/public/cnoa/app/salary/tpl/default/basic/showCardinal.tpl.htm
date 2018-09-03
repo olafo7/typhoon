@@ -1,0 +1,53 @@
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js?v=v 3.0.39"></script>
+
+<style type="text/css">
+	.table-block{
+	   margin-top: 15px;
+	   border:1px #cccccc solid;
+	   line-height:20px;
+	   font-size:9pt;
+	   border-collapse:collapse;
+	}
+
+	.table-block td.table-content{
+	   background: #f2f2f2;
+	   border-bottom: 1px #cccccc solid;
+	   border-right: 1px #cccccc solid;
+	   height: 30px;
+	   padding-left:10px;
+	}
+</style>
+</head>
+<body>
+<table class="table-block" width="80%" align="center" id='submitTable'>
+	<tbody>
+		<tr>
+			<td class="table-content" >名称: <?php echo $result['name']; ?>
+		</tr>
+		<tr>
+			<td class="table-content" >适用部门: <?php echo $result['selectName']; ?>
+		</tr>
+		<tr>
+			<td class="table-content" >社会保险: <?php echo $result['isInsure'] ? '需要投保' : '不需要投保' ?>
+		</tr>
+		<tr>
+			<td class="table-content" >社保名称: <?php echo $result['sid'] ? $result['sid'] : '不需要投保' ?>
+		</tr>
+		<tr>
+			<td class="table-content" >公积金: <?php echo $result['isInsure'] ? '需要购买' : '不需要购买' ?>
+		</tr>
+		<tr>
+			<td class="table-content" >公积金名称: <?php echo $result['rid'] ? $result['rid'] : '不需要购买' ?>
+		</tr>
+		<tr>
+			<td class="table-content" >个人所得税: <?php echo $result['isNasui'] ? '需要缴税' : '不需要缴税' ?>
+		</tr>
+		<?php echo $showHtml ?>
+	</tbody>
+</table>
+</body>
+</html>

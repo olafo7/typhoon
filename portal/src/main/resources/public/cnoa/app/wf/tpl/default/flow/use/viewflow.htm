@@ -1,0 +1,27 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.use_viewflow");
+CNOA.wf.use_viewflow.parentID	= "{$GLOBALS['app']['parentid']}";
+CNOA.wf.use_viewflow.uFlowId	= "{$GLOBALS['app']['uFlowId']}";
+CNOA.wf.use_viewflow.flowId		= "{$GLOBALS['app']['flowId']}";
+CNOA.wf.use_viewflow.step		= "{$GLOBALS['app']['step']}";
+CNOA.wf.use_viewflow.readId		= "{$GLOBALS['app']['readId']}";
+
+CNOA.wf.use_viewflow.allowPrint	= "{$GLOBALS['app']['allowPrint']}";
+CNOA.wf.use_viewflow.flowType	= "{$GLOBALS['app']['flowType']}";
+CNOA.wf.use_viewflow.tplSort	= "{$GLOBALS['app']['tplSort']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_use_viewflow = new CNOA_wf_use_viewflowClass();
+		Ext.getCmp(CNOA.wf.use_viewflow.parentID).add(CNOA_wf_use_viewflow.mainPanel);
+		Ext.getCmp(CNOA.wf.use_viewflow.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+### echo loadJavascript(array("./app/wf/scripts/use_commonflow.js", "./app/wf/scripts/form_init.js", "./app/wf/scripts/use_viewflow.js"));
+?>

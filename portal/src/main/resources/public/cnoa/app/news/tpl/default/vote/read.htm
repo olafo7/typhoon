@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.news.vote.read");
+CNOA.news.vote.read.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_news_news", "app/news/scripts/cnoa.news.js", function(){
+		CNOA_news_vote_read = new CNOA_news_vote_readClass();
+		Ext.getCmp(CNOA.news.vote.read.parentID).add(CNOA_news_vote_read.mainPanel);
+		Ext.getCmp(CNOA.news.vote.read.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+// echo loadJavascript(array("./app/news/scripts/vote_read.js"));

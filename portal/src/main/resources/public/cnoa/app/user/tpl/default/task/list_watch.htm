@@ -1,0 +1,23 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.task.listWatch");
+CNOA.user.task.listWatch.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_task", "app/user/scripts/cnoa.task.js", function(){
+		CNOA_user_task_listWatch = new CNOA_user_task_listWatchClass();
+		Ext.getCmp(CNOA.user.task.listWatch.parentID).add(CNOA_user_task_listWatch.mainPanel);
+		Ext.getCmp(CNOA.user.task.listWatch.parentID).doLayout();
+		Ext.getCmp(CNOA.user.task.listWatch.parentID).on("activate", function(){
+			CNOA_user_task_listWatch.store.reload();
+		});
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/task_list_watch.js"));
+?>

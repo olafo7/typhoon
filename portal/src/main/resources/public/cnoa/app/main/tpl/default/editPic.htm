@@ -1,0 +1,139 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+<html>
+	<head>
+		<script type="text/javascript" src="scripts/jquery/1.4.2.min.js?v=V 3.0.0"></script>
+		<script src="scripts/jquery/jquery.jcrop.js?r={$rand}"></script>
+		<style rel="stylesheet" type="text/css" />
+			.jcrop-holder { text-align: left; }
+
+			.jcrop-vline, .jcrop-hline
+			{
+				font-size: 0px;
+				position: absolute;
+				background: white url('resources/images/icons/Jcrop.gif') top left repeat;
+			}
+			.jcrop-vline { height: 100%; width: 1px !important; }
+			.jcrop-hline { width: 100%; height: 1px !important; }
+			.jcrop-vline.right { right: 0px; }
+			.jcrop-hline.bottom { bottom: 0px; }
+			.jcrop-handle {
+				font-size: 1px;
+				width: 7px !important;
+				height: 7px !important;
+				border: 1px #eee solid;
+				background-color: #333;
+			}
+			
+			.jcrop-tracker { width: 100%; height: 100%; }
+			
+			.custom .jcrop-vline,
+			.custom .jcrop-hline
+			{
+				background: yellow;
+			}
+			.custom .jcrop-handle
+			{
+				border-color: black;
+				background-color: #C7BB00;
+				-moz-border-radius: 3px;
+				-webkit-border-radius: 3px;
+			}
+		</style>
+		<script language="Javascript">
+			var jcrop_api, imgWidth, imgHeight;
+			
+			function changeImage(src){
+				jcrop_api.setImage(src);
+				setTimeout(function(){
+					imgWidth 	= $("#editpic_preview").width();
+					imgHeight 	= $("#editpic_preview").height();
+					jcrop_api.animateTo([0,0,{$GLOBALS['editPic']['width']},{$GLOBALS['editPic']['height']}]);
+				},1000);
+			}
+			jQuery(function($){
+				var boundx, boundy, orderAttr;
+				//订餐图片自定义属性orderAttr,如果存在，则去除比例限制
+				if ($("#editpic_orderattr").attr('orderAttr') == "orderAttr") {
+					orderAttr = 0;
+				}else{
+					orderAttr = {$GLOBALS['editPic']['width']}/{$GLOBALS['editPic']['height']};
+				}
+				initJcrop();
+				
+				function initJcrop()
+				{
+					$('#editpic_target').Jcrop({
+						//onRelease: releaseCheck,
+						onChange: showPreview,
+						onSelect: showPreview,
+						aspectRatio: orderAttr
+					},
+					function(){
+						jcrop_api = this;
+						
+						jcrop_api.setOptions({ allowSelect: false, keySupport: false });
+						jcrop_api.focus();
+						var bounds = this.getBounds();
+						boundx = bounds[0];
+						boundy = bounds[1];
+					});
+				};
+
+				function showPreview(c){
+					if (parseInt(c.w) > 0){
+						if(imgWidth == undefined){
+							imgWidth 	= $("#editpic_target").width();
+						};
+
+						if(imgHeight == undefined){
+							imgHeight 	= $("#editpic_target").height();
+						}
+						var width		= {$GLOBALS['editPic']['width']}/c.w*imgWidth;
+						var height		= {$GLOBALS['editPic']['height']}/c.h*imgHeight;
+						var marginLeft	= '-' + {$GLOBALS['editPic']['width']}*c.x/c.w;
+						var marginTop	= '-' + {$GLOBALS['editPic']['height']}*c.y/c.h;;
+
+						$('#editpic_preview').css({
+							width:width,
+							height:height, 
+							marginLeft:marginLeft+'px', 
+							marginTop:marginTop+'px'
+						});
+						var totoal = c.w+","+c.h+","+c.x+","+c.y
+						$('#editpic_width').val(c.w+"px");
+						$('#editpic_height').val(c.h+"px");
+						$('#editpic_editsize').val(totoal);
+					}
+				};
+			});
+
+		</script>
+	</head>
+	<body>
+
+		<input type="hidden" id="editpic_editsize" name="editsize" />
+		<input type="hidden" id="editpic_editurl" name="editurl" />
+		<input type="hidden" id="editpic_orderattr" orderAttr="{$GLOBALS['editPic']['orderAttr']}" />
+
+		宽<input text="text" id="editpic_width" style="width:50px;" readonly="readonly" />
+		高<input text="text" id="editpic_height" style="width:50px;" readonly="readonly" />
+		<table>
+			<tr>
+				<td><img src="resources/images/cnoa/editpicbackground.jpg" id="editpic_target" alt="Flowers" /></td>
+				<td>
+					<div style="width:{$GLOBALS['editPic']['width']}px;height:{$GLOBALS['editPic']['height']}px;overflow:hidden;">
+						<img src="resources/images/cnoa/editpicbackground.jpg" id="editpic_preview" alt="Flowers" />
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+	</body>
+</html>
+CNOA;
+?>
+

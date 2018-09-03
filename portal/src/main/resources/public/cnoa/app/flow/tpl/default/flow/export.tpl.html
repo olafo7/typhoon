@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<style type="text/css">
+/* CSS Document */ 
+
+body {
+	font: normal 12px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+caption {
+	padding: 0 0 5px 0;
+	width: 700px;
+	font: italic 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-align: right;
+}
+.th {
+	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+	background: #CAE8EA no-repeat;
+}
+.td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+	font-size:12px;
+	padding: 6px 6px 6px 12px;
+}
+/*---------for IE 5.x bug*/ 
+html>body td {
+	font-size:12px;
+}
+body, td, th {
+	font-family: 宋体, Arial;
+	font-size: 12px;
+}
+</style>
+</head>
+<body<?php
+if($this->target == 'printer'){
+	echo ' onload="window.print();"';
+}
+?>>
+<table width="700" cellspacing="0" id="mytable">
+  <caption><?=$GLOBALS['FLOWDATA']['FlowInfo']['name']?> [<?=date("Y-m-d")?>]</caption>
+</table>
+<br />
+<?php
+if($GLOBALS['EXPORTCFG']['i'] == 1){
+?>
+<table width="700" cellspacing="0" id="mytable">
+  <tr>
+    <th class="th" colspan="4" style="border-left: 1px solid #C1DAD7;" scope="col">流程信息</th>
+  </tr>
+  <tr>
+    <td width="98" class="td row" style="border-left: 1px solid #C1DAD7;">流程编号</td>
+    <td width="247" class="td row">&nbsp;<?=$GLOBALS['FLOWDATA']['FlowInfo']['name']?></td>
+    <td width="98" class="td row"><?php echo lang('flowName');?></td>
+    <td width="247" class="td row">&nbsp;[<?=$GLOBALS['FLOWDATA']['FlowInfo']['flowname']?>]<?=$GLOBALS['FLOWDATA']['FlowInfo']['title']?></td>
+  </tr>
+  <tr>
+    <td width="98" class="td row" style="border-left: 1px solid #C1DAD7;">发起人</td>
+    <td width="247" class="td row">&nbsp;<?=$GLOBALS['FLOWDATA']['FlowInfo']['uname']?></td>
+    <td width="98" class="td row">发起日期</td>
+    <td width="247" class="td row">&nbsp;<?=$GLOBALS['FLOWDATA']['FlowInfo']['posttime']?></td>
+  </tr>
+  <tr>
+    <td width="98" class="td row" style="border-left: 1px solid #C1DAD7;">当前步骤</td>
+    <td width="247" class="td row">&nbsp;<?=$GLOBALS['FLOWDATA']['FlowInfo']['stepText']?></td>
+    <td width="98" class="td row">流程状态</td>
+    <td width="247" class="td row">&nbsp;<?=$GLOBALS['FLOWDATA']['FlowInfo']['statusText']?></td>
+  </tr>
+<?php
+if($GLOBALS['FLOWDATA']['FlowInfo']['flowtype'] == "0"){
+?>
+  <tr>
+    <td width="98" class="td row" style="border-left: 1px solid #C1DAD7;">申请事由</td>
+    <td width="247" class="td row">&nbsp;<?=$GLOBALS['FLOWDATA']['FlowInfo']['reason']?></td>
+    <td width="98" class="td row">特殊备注</td>
+    <td width="247" class="td row">&nbsp;<?=$GLOBALS['FLOWDATA']['FlowInfo']['about']?></td>
+  </tr>
+<?php
+}else{
+?>
+  <tr>
+    <td width="98" class="td row" style="border-left: 1px solid #C1DAD7;">申请事由</td>
+    <td width="247" class="td row" colspan="3">&nbsp;<?=$GLOBALS['FLOWDATA']['FlowInfo']['reason']?></td>
+  </tr>
+<?php
+}
+?>
+
+</table>
+<br />
+<?php
+}
+?>
+
+<?php
+if($GLOBALS['EXPORTCFG']['f'] == 1){
+?>
+<table width="700" cellspacing="0" id="mytable2">
+  <tr>
+    <th class="th" colspan="4" style="border-left: 1px solid #C1DAD7;" scope="col">工作表单</th>
+  </tr>
+  <tr>
+    <td class="td row" colspan="4" class="td row" style="border-left: 1px solid #C1DAD7;">&nbsp;
+    <?=$GLOBALS['FLOWDATA']['FlowForm']?>
+    </td>
+  </tr>
+</table>
+<br />
+<?php
+}
+?>
+
+<?php
+if($GLOBALS['EXPORTCFG']['p'] == 1){
+?>
+<table width="700" cellspacing="0" id="mytable3">
+  <tr>
+    <th class="th" colspan="5" style="border-left: 1px solid #C1DAD7;" scope="col">流程进度</th>
+  </tr>
+  <tr>
+    <td class="td row" style="border-left: 1px solid #C1DAD7;">步骤名称</td>
+    <td class="td row">状态</td>
+    <td class="td row">经办人/开始时间</td>
+    <td class="td row">持续时间</td>
+    <td class="td row">办理理由</td>
+  </tr>
+<?php
+!is_array($GLOBALS['FLOWDATA']['FlowProgress']) && $GLOBALS['FLOWDATA']['FlowProgress'] = array();
+foreach($GLOBALS['FLOWDATA']['FlowProgress'] AS $progressV){
+	if($progressV['nodetype'] == 'end'){
+?>
+  <tr>
+    <td width="103" class="td row" style="border-left: 1px solid #C1DAD7;">&nbsp;<?=$progressV['nodename']?></td>
+    <td width="85" class="td row">&nbsp;<?=$progressV['statusText']?></td>
+    <td width="158" class="td row">&nbsp;</td>
+    <td width="86" class="td row">&nbsp;</td>
+    <td width="256" class="td row">&nbsp;</td>
+  </tr>
+<?php
+    }else{
+?>
+  <tr>
+    <td class="td row" style="border-left: 1px solid #C1DAD7;">&nbsp;<?=$progressV['nodename']?></td>
+    <td class="td row">&nbsp;<?=$progressV['statusText']?></td>
+    <td class="td row">&nbsp;<?=$progressV['uname']?><br /><?=$progressV['stime']?></td>
+    <td class="td row">&nbsp;<?=$progressV['utime']?></td>
+    <td class="td row">&nbsp;<?=$progressV['say']?></td>
+  </tr>
+<?php
+
+    }
+}
+?>
+</table>
+<br />
+<?php
+}
+?>
+
+<?php
+if($GLOBALS['EXPORTCFG']['e'] == 1){
+?>
+<table width="700" cellspacing="0" id="mytable4">
+  <tr>
+    <th class="th" colspan="4" style="border-left: 1px solid #C1DAD7;" scope="col">流程事件</th>
+  </tr>
+  <tr>
+    <td width="103" class="td row" style="border-left: 1px solid #C1DAD7;">类型</td>
+    <td width="85" class="td row">步骤</td>
+    <td width="158" class="td row">办理理由</td>
+    <td class="td row">经办人/时间</td>
+  </tr>
+<?php
+foreach($GLOBALS['FLOWDATA']['FlowEvent'] AS $eventV){
+?>
+  <tr>
+    <td class="td row" style="border-left: 1px solid #C1DAD7;">&nbsp;<?=$eventV['typename']?></td>
+    <td class="td row">&nbsp;<?=$eventV['stepname']?></td>
+    <td class="td row">&nbsp;<?=$eventV['say']?></td>
+    <td class="td row">&nbsp;<?=$eventV['uname']?> / <?=$eventV['posttime']?></td>
+  </tr>
+<?php
+}
+?>
+</table>
+<br />
+<?php
+}
+?>
+
+<?php
+if($GLOBALS['EXPORTCFG']['r'] == 1){
+?>
+<table width="700" cellspacing="0" id="mytable5">
+  <tr>
+    <th class="th" colspan="5" style="border-left: 1px solid #C1DAD7;" scope="col">评阅记录</th>
+  </tr>
+  <tr>
+    <td width="83" class="td row" style="border-left: 1px solid #C1DAD7;">姓名</td>
+    <td width="126" class="td row">所属部门</td>
+    <td width="84" class="td row">已阅/未阅</td>
+    <td width="265" class="td row">评阅内容</td>
+    <td width="142" class="td row">评阅日期</td>
+  </tr>
+<?php
+foreach($GLOBALS['FLOWDATA']['FlowReader'] AS $readerV){
+?>
+  <tr>
+    <td class="td row" style="border-left: 1px solid #C1DAD7;">&nbsp;<?=$readerV['name']?></td>
+    <td class="td row">&nbsp;<?=$readerV['jid']?></td>
+    <td class="td row">&nbsp;<?php if($readerV['isread'] == 1){echo "已阅";}else{echo "未阅";} ?></td>
+    <td class="td row">&nbsp;<?=$readerV['say']?></td>
+    <td class="td row">&nbsp;<?=$readerV['posttime']?></td>
+  </tr>
+<?php
+}
+?>
+</table>
+<?php
+}
+?>
+</body>
+</html>

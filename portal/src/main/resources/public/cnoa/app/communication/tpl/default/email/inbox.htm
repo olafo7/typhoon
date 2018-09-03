@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.communication.email.index_inbox");
+CNOA.communication.email.index_inbox.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_communication_email", "app/communication/scripts/cnoa.email.js", function(){
+		CNOA_communication_email_index_inbox = new CNOA_communication_email_index_inboxClass();
+		Ext.getCmp(CNOA.communication.email.index_inbox.parentID).add(CNOA_communication_email_index_inbox.mainPanel);
+		Ext.getCmp(CNOA.communication.email.index_inbox.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+###echo loadJavascript(array("./app/communication/scripts/email_inbox.js"));
+?>

@@ -1,0 +1,23 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.jxc.base.storage");
+CNOA.jxc.base.storage.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_jxc_mgr", "app/jxc/scripts/cnoa.jxc.js", function(){
+		CNOA_jxc_base_storage = new CNOA_jxc_base_storageClass();
+		Ext.getCmp(CNOA.jxc.base.storage.parentID).add(CNOA_jxc_base_storage.mainPanel);
+		Ext.getCmp(CNOA.jxc.base.storage.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+###echo loadJavascript(array("./app/jxc/scripts/jxc_base_storage.js"));
+
+?>

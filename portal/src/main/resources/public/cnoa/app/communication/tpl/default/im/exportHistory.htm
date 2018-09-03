@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>聊天记录导出</title>
+</head>
+<body>
+<?php
+foreach($GLOBALS['data'] AS $key => $v1){
+?>
+<div>
+  <div>
+    <div style="font-size:26px">
+      日期: <?=$key?>
+    </div>
+  </div>
+<?php
+foreach($v1 AS $v2){
+?>
+  <div >
+    <div >
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+            <td>
+              <?=$v2['content']?>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<?php
+}
+?>
+</div>
+
+<?php
+}
+
+if(count($GLOBALS['data'])<1){
+	echo "和当前用户无聊天记录";
+}
+?>
+</body>
+</html>

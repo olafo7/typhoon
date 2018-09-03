@@ -1,0 +1,158 @@
+<?php
+$data = $GLOBALS['viewDetails'];
+
+print <<<CNOA
+<html>
+<head>
+<title>联系人信息</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript'>
+	function ajaxDownload(url){
+		try{
+			document.body.removeChild(document.getElementById("cnoa_iframe_download"));
+		}catch(e){}
+
+		var f = document.createElement("iframe");
+			f.id = 'cnoa_iframe_download';
+			f.style.width = "0px";
+			f.style.height = "0px";
+			f.style.display = "none";
+			f.src = url + "&r=" + Math.random();
+			document.body.appendChild(f);
+	}
+	window.onload=function(){
+		window.focus()
+	}
+</script>
+</head>
+
+<body class="bodycolor" topmargin="5">
+
+
+
+<table border="0"  width="650" align="center" cellspacing="0" cellpadding="3" class="small">
+
+  <tr>
+
+    <td class="Big"><span class="big3"> 通讯录信息</span><br></td>
+
+  </tr>
+
+</table>
+
+<table class="TableBlock" width="650" align="center">
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">姓名：</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$data['name']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">性别：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['sex']}</td>          
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">出生日期：</td>
+
+    <td class="TableData" width="180">{$data['birthday']}</td>  	
+
+    <td nowrap align="left" width="120" class="TableContent">所在群组：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['group']}</td>         
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">住宅电话：</td>
+
+    <td class="TableData" width="180" >{$data['phone']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">QQ：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['qq']}</td>             
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">手机：</td>
+
+    <td class="TableData" width="180">{$data['mobile']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">传真:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['fax']}</td>       
+
+  </tr>
+
+  <tr>
+  
+    <td nowrap align="left" width="120" class="TableContent">电子邮箱：</td>
+
+    <td class="TableData" width="180">{$data['email']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">家庭住址:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['houseaddr']}</td>   
+         
+  </tr>  
+  
+  <tr>
+  
+    <td nowrap align="left" width="120" class="TableContent">工作单位：</td>
+
+    <td class="TableData" width="180">{$data['company']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">职位:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['profession']}</td>   
+
+  </tr>   
+
+  <tr>
+  
+    <td nowrap align="left" width="120" class="TableContent">单位电话：</td>
+
+    <td class="TableData" width="180">{$data['comphone']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">单位邮编:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['comzipcode']}</td>                
+
+  </tr>                                    
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">单位地址：</td>
+
+    <td class="TableData" width="180">{$data['comaddr']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">备注:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['other']}</td>   
+	
+  </tr>
+
+  <!-- <tr align="center" class="TableControl">
+
+    <td colspan="6">
+
+      <input type="button" value="关闭" class="BigButton" onClick="window.close();" title="关闭窗口">
+
+    </td>
+
+  </tr>  -->                    
+
+</table>
+
+</body>
+
+</html>
+CNOA;
+?>

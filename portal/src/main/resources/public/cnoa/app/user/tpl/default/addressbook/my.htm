@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.addressbook.my");
+CNOA.user.addressbook.my.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_addressbook", "app/user/scripts/cnoa.addressbook.js", function(){
+		CNOA_user_addressbook_my = new CNOA_user_addressbook_myClass();
+		Ext.getCmp(CNOA.user.addressbook.my.parentID).add(CNOA_user_addressbook_my.mainPanel);
+		Ext.getCmp(CNOA.user.addressbook.my.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/addressbook_my.js"));
+?>

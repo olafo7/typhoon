@@ -1,0 +1,18 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.adm.car.sort");
+CNOA.adm.car.sort.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.adm.car.sort.from = "{$GLOBALS['app']['from']}";
+Ext.onReady(function() {
+	loadScripts("sm_adm_car", "app/adm/scripts/cnoa.car_manage.js", function(){
+		CNOA_adm_car_sort = new CNOA_adm_car_sortClass();
+		Ext.getCmp(CNOA.adm.car.sort.parentID).add(CNOA_adm_car_sort.mainPanel);
+		Ext.getCmp(CNOA.adm.car.sort.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+##echo loadJavascript("./app/adm/scripts/car_manage_sort.js");
+?>

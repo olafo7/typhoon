@@ -1,0 +1,187 @@
+<?php
+$data = $GLOBALS['project']['proj']['viewdetail']['task'];
+
+$color = 1;
+
+!is_array($data) && $data = array();
+foreach($data as $v){
+	if($color == 2){
+		$class = "style='background-color:#EBEFF9'";
+		$color = 1;
+	}else{
+		$class = "style='background-color:#F0FFF0'";
+		$color = 2;
+	}
+	
+	$task .= "<tr>
+
+  	<td nowrap align='left' width='120'  class='TableHeader'>任务名称：</td>
+
+   	<td class='TableData' width='180'  {$class}>{$v['title']}</td>  
+
+    <td nowrap align='left' width='120' class='TableContent'>审批状态：</td>
+
+    <td class='TableData' width='180' {$class}>{$v['status']}</td>          
+   
+
+  </tr> 
+  
+  <tr>
+
+  	<td nowrap align='left' width='120' class='TableContent'>任务序号：</td>
+
+    <td nowrap align='left' class='TableData' {$class} width='180'>{$v['number']}</td>  
+
+    <td nowrap align='left' width='120' class='TableContent'>里程碑：</td>
+
+    <td class='TableData' width='180' {$class}>{$v['milepost']}</td>          
+
+  </tr>    
+  
+  <tr>
+
+  	<td nowrap align='left' width='120' class='TableContent'>前置任务：</td>
+
+    <td nowrap align='left' class='TableData' {$class} width='180'>{$v['needtask']}</td>  
+
+    <td nowrap align='left' width='120' class='TableContent'>执行人：</td>
+
+    <td class='TableData' width='180' {$class}>{$v['execname']}</td>          
+
+  </tr> 
+  
+  <tr>
+
+  	<td nowrap align='left' width='120' class='TableContent'>计划开始/结束时间：</td>
+
+    <td nowrap align='left' class='TableData' {$class} width='180'>{$v['ptime']}</td>  
+
+    <td nowrap align='left' width='120' class='TableContent'>实际开始/结束时间：</td>
+
+    <td class='TableData' width='180' {$class}>{$v['ttime']}</td>          
+
+  </tr> 
+  
+  <tr>
+
+  	<td nowrap align='left' width='120' class='TableContent'>计划工时（天）：</td>
+
+    <td nowrap align='left' class='TableData' {$class} width='180'>{$v['pday']}</td>  
+
+    <td nowrap align='left' width='120' class='TableContent'>实际工时（天）：</td>
+
+    <td class='TableData' width='180'  {$class}>{$v['tday']}</td>          
+
+  </tr> 
+  
+  <tr>
+
+  	<td nowrap align='left' width='120' class='TableContent'>任务级别：</td>
+
+    <td nowrap align='left' class='TableData' width='180' {$class}>{$v['level']}</td>  
+
+  	<td nowrap align='left' width='120' class='TableContent'>任务进度：</td>
+
+    <td nowrap align='left' class='TableData' width='180' {$class}>{$v['progress']}%</td> 
+
+  </tr>     
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>任务描述：</td>
+
+    <td class='TableData' width='460' colspan='3' {$class}>{$v['content']}</td>    
+         
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>催促内容：</td>
+
+    <td class='TableData' width='460' colspan='3' {$class}>{$v['hurryopinion']}</td>    
+         
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent' >奖罚说明：</td>
+
+    <td class='TableData' width='460' colspan='3' {$class}>{$v['prizepunish']}</td>
+         
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent' >立项人审批意见：</td>
+
+    <td class='TableData' width='460' colspan='3' {$class}>{$v['checkopinion']}</td>
+         
+  </tr>
+  
+  <tr>
+  
+    <td nowrap align='left' width='120' class='TableContent'>附件：</td>
+
+    <td class='TableData' width='460' colspan='3' >{$v['attach']}</td>    
+
+  </tr>";
+  
+  if(!empty($v['children'])){
+  	foreach($v['children'] as $v1){
+		$task .= "
+			<tr>
+
+		  	<td nowrap align='left' width='120' class='TableContent'>进度：</td>
+		
+		    <td nowrap align='left' class='TableData'  colspan='3'  {$class} width='180'>{$v1['progress']}%</td>  
+		
+		  </tr> 
+		  
+		  <tr>
+		
+		  	<td nowrap align='left' width='120' class='TableContent'>进度日志：</td>
+		
+		    <td nowrap align='left' class='TableData' colspan='3' width='460' {$class}>{$v1['notes']}</td>
+		
+		  </tr> 
+		  
+		  <tr>
+		  
+		  	 <td nowrap align='left' width='120' class='TableContent'>进度批注：</td>
+		
+		    <td class='TableData' width='460' colspan='3' {$class}>{$v1['endorse']}</td> 
+			
+		  </tr>
+		";
+	}
+  }
+  
+}
+print <<<CNOA
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="bodycolor" topmargin="5">
+<table class="TableBlock" width="650" align="center">
+  
+    {$task}
+  
+  </table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

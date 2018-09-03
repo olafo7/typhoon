@@ -1,0 +1,21 @@
+<?php
+
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.assets.base.custom");
+CNOA.assets.base.custom.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+    loadScripts("sm_assets_assets", "app/assets/scripts/cnoa.assets.js", function(){
+        CNOA_assets_base_custom = new CNOA_assets_base_customClass();
+        Ext.getCmp(CNOA.assets.base.custom.parentID).add(CNOA_assets_base_custom.mainPanel);
+        Ext.getCmp(CNOA.assets.base.custom.parentID).doLayout();
+    })
+});
+
+</script>
+CNOA;
+
+##echo loadJavascript(array("./app/assets/scripts/base_custom.js"));
+?>

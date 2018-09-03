@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.hr.person.waiting");
+CNOA.hr.person.waiting.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("hr_person_file", "app/hr/scripts/cnoa.person.js", function(){
+		CNOA_hr_person_waiting = new CNOA_hr_person_waitingClass();
+		Ext.getCmp(CNOA.hr.person.waiting.parentID).add(CNOA_hr_person_waiting.mainPanel);
+		Ext.getCmp(CNOA.hr.person.waiting.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/hr/scripts/person_waiting.js"));
+?>

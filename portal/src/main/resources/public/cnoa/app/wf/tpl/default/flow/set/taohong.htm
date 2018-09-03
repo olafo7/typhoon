@@ -1,0 +1,18 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.set.taohong");
+CNOA.wf.set.taohong.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_set_taohong = new CNOA_wf_set_taohongClass();
+		Ext.getCmp(CNOA.wf.set.taohong.parentID).add(CNOA_wf_set_taohong.mainPanel);
+		Ext.getCmp(CNOA.wf.set.taohong.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+//echo loadJavascript(array("./app/wf/scripts/set_flow_taohong.js"));
+?>

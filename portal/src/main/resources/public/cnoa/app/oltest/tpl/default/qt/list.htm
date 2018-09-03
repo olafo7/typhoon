@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.oltest.qt.list");
+CNOA.oltest.qt.list.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+    loadScripts("sm_oltest_oltest", "app/oltest/scripts/cnoa.oltest.js", function(){
+    	CNOA_oltest_qt_list = new CNOA_oltest_qt_listClass();
+		Ext.getCmp(CNOA.oltest.qt.list.parentID).add(CNOA_oltest_qt_list.mainPanel);
+		Ext.getCmp(CNOA.oltest.qt.list.parentID).doLayout();
+    })
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/oltest/scripts/qt_list.js"));
+?>

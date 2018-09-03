@@ -1,0 +1,23 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.jxc.base.bindflow");
+CNOA.jxc.base.bindflow.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_jxc_mgr", "app/jxc/scripts/cnoa.jxc.js", function(){
+		CNOA_jxc_base_bindflow = new CNOA_jxc_base_bindflowClass();
+		Ext.getCmp(CNOA.jxc.base.bindflow.parentID).add(CNOA_jxc_base_bindflow.mainPanel);
+		Ext.getCmp(CNOA.jxc.base.bindflow.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+###echo loadJavascript(array("./app/jxc/scripts/jxc_base_bindflow.js"));
+
+?>

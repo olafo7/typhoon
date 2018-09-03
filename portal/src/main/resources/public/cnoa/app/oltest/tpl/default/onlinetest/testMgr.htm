@@ -1,0 +1,21 @@
+<?php
+
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.oltest.oltest.mgr");
+CNOA.oltest.oltest.mgr.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+    loadScripts("sm_oltest_oltest", "app/oltest/scripts/cnoa.oltest.js", function(){
+        CNOA_oltest_oltest_mgr = new CNOA_oltest_oltest_mgrClass();
+		Ext.getCmp(CNOA.oltest.oltest.mgr.parentID).add(CNOA_oltest_oltest_mgr.mainPanel);
+		Ext.getCmp(CNOA.oltest.oltest.mgr.parentID).doLayout();
+    });    
+});
+
+</script>
+CNOA;
+
+##echo loadJavascript(array("./app/oltest/scripts/oltest_mgr.js"));
+?>

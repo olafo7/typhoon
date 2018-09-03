@@ -1,0 +1,21 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.diary.index");
+CNOA.user.diary.index.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.user.diary.index.goDate = "{$GLOBALS['goDate']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_diary", "app/user/scripts/cnoa.diary.js", function(){
+		CNOA_user_diary_index = new CNOA_user_diary_indexClass();
+		Ext.getCmp(CNOA.user.diary.index.parentID).add(CNOA_user_diary_index.mainPanel);
+		Ext.getCmp(CNOA.user.diary.index.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/diary_index.js"));
+?>

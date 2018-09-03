@@ -1,0 +1,21 @@
+<!-- 通用流程查看界面 -->
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.flow.flow.user_showcommonflow");
+CNOA.flow.flow.user_showcommonflow.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.flow.flow.user_showcommonflow.ulid = "{$GLOBALS['ulid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_flow_flow", "app/flow/scripts/cnoa.flow.js", function(){
+		CNOA_flow_flow_user_showcommonflow = new CNOA_flow_flow_user_showcommonflowClass();
+		Ext.getCmp(CNOA.flow.flow.user_showcommonflow.parentID).add(CNOA_flow_flow_user_showcommonflow.mainPanel);
+		Ext.getCmp(CNOA.flow.flow.user_showcommonflow.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/flow/scripts/flow_user_showcommonflow.js"));
+?>

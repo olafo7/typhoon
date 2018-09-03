@@ -1,0 +1,16 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.adm.articles.registerManageIndex");
+CNOA.adm.articles.registerManageIndex.parentID = "{$GLOBALS['app']['parentid']}";
+Ext.onReady(function() {
+	loadScripts("sm_articles_manage", "app/adm/scripts/cnoa.articles_manage.js", function(){
+		CNOA_adm_articles_registerManageIndex = new CNOA_adm_articles_registerManageIndexClass();
+		Ext.getCmp(CNOA.adm.articles.registerManageIndex.parentID).add(CNOA_adm_articles_registerManageIndex.mainPanel);
+		Ext.getCmp(CNOA.adm.articles.registerManageIndex.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+?>

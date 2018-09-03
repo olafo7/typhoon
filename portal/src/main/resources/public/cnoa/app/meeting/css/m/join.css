@@ -1,0 +1,262 @@
+body,h1, h2, h3, h4, h5,p,ul,li{
+    font-family:"NotoSans CJK","Microsoft YaHei","Proxima Nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+ul {
+    text-decoration: none; 
+    list-style-type: none;
+}
+
+a,a:hover,a:link,a:visited {
+    list-style-type: none;
+    text-decoration: none; 
+}
+
+/*header styles*/
+#header {
+	position: fixed;
+	width: 100%;
+	height: 52px;
+	text-align: center;
+	line-height: 52px;
+	background-color: #4A78BB;
+	color: #FFFFFF;
+	z-index: 1;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#btnBack {
+    left: 0px;
+    position: fixed;
+    top: 0px;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+}
+
+/*navMeet styles*/
+.navMeet {
+    width: 100%;
+    position: relative;
+    top: 108px;
+    height: 46px;
+    border-bottom: 1px solid #ccc;
+}
+
+.navMeet li {
+    float: left;
+    height: 46px;
+    padding: 8px;
+    width: 33%;
+    line-height: 30px;
+    text-align: center;
+}
+
+/*wrapper styles*/
+#wrapper {
+    position:absolute; 
+    z-index:1;
+    top:154px;; 
+    bottom:0px; 
+    left:0;
+    width:100%;
+    background:#fff;
+    overflow:auto;
+}
+
+/*pullup styles*/
+#scroller {
+    position:relative;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    float:left;
+    width:100%;
+    padding:0;
+}
+
+#scroller .stop-label {
+  background: #fafafa;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #eee;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  color: #888;
+  display: none;
+}
+.btn {
+    display: inline-block;
+    padding: 0px 8px !important;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin-top: 3px;
+}
+/*f_control styles*/
+#f_control{
+  position: absolute;
+  top: 52px;
+  z-index: 2;
+  width: 100%;
+  height: 56px;
+  padding: 8px 0px;
+  margin: 0px;
+  background: #eee;
+}
+
+#f_control .col-xs-12 {
+    padding: 0px 10px;
+}
+
+.search {
+    height: 36px;
+    border-radius: 18px;
+}
+
+#f_control .form-group {
+    margin-bottom: 8px;
+}
+
+.markdetail{
+    color:black !important;
+}
+
+/*table styles*/
+table.imagetable {
+    font-family: verdana,arial,sans-serif;
+    width: 100%;
+    font-size:14px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #ccc;
+    border-collapse: collapse;
+}
+table.imagetable th {
+    border-width: 1px;
+    padding: 8px;
+    text-align: center;
+    border-style: solid;
+    border-color: #ccc;
+}
+table.imagetable .td1 {
+    border-width: 1px;
+    padding: 8px;
+    width: 32%;
+    border-style: solid;
+    border-color: #ccc;
+    text-align: center;
+
+}
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+    margin-top: 110px;
+}
+#reason{
+    margin-top: 5px;
+}
+.in{
+    margin-top: 0px;
+}
+table.imagetable .td2 {
+    border-width: 1px;
+    padding: 8px;
+    width: 52%;
+    border-style: solid;
+    border-color: #ccc;
+    text-align: center;
+
+}
+table.imagetable .td3 {
+    border-width: 1px;
+    padding: 8px;
+    width: 15%;
+    border-style: solid;
+    border-color: #ccc;
+    text-align: center;
+
+}
+#con_box tr td:first-of-type {
+    text-align: left;
+    max-width: 200px;
+}
+
+/*jconfirm styles*/
+.jconfirm .jconfirm-box div.content {
+    text-align: center;
+    padding: 30px 15px 30px;
+}
+
+/**
+ * 下拉样式 Pull down styles
+ */
+#pullDown, #pullUp {
+    background:#fafafa;
+    height:50px;
+    line-height:50px;
+    font-weight:bold;
+    font-size:14px;
+    color:#888;
+    border-top: #eee solid 1px;
+}
+#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+    display:block; float:left;
+    width:40px; height:40px;
+    margin-left:30%;
+    background:url(../../../../../../resources/images/m/ico/pull-icon@2x.png) 0 0 no-repeat;
+    -webkit-background-size:40px 80px; background-size:40px 80px;
+    -webkit-transition-property:-webkit-transform;
+    -webkit-transition-duration:250ms;  
+}
+#pullDown .pullDownIcon {
+    -webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUp .pullUpIcon  {
+    -webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullDown.flip .pullDownIcon {
+    -webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullUp.flip .pullUpIcon {
+    -webkit-transform:rotate(0deg) translateZ(0);
+}
+
+#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+    background-position:0 100%;
+    -webkit-transform:rotate(0deg) translateZ(0);
+    -webkit-transition-duration:0ms;
+
+    -webkit-animation-name:loading;
+    -webkit-animation-duration:2s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes loading {
+    from { -webkit-transform:rotate(0deg) translateZ(0); }
+    to { -webkit-transform:rotate(360deg) translateZ(0); }
+}

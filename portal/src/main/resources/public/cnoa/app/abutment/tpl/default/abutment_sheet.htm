@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.abutment.abutment.sheet");
+CNOA.abutment.abutment.sheet.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+    loadScripts("sm_abutment_abutment", "app/abutment/scripts/cnoa.abutment.js", function(){
+		CNOA_abutment_abutment_sheet = new CNOA_abutment_abutment_sheetClass();		
+		Ext.getCmp(CNOA.abutment.abutment.sheet.parentID).add(CNOA_abutment_abutment_sheet.mainPanel);
+		Ext.getCmp(CNOA.abutment.abutment.sheet.parentID).doLayout();
+    });    
+});
+</script>
+CNOA;
+
+#echo loadJavascript("./app/abutment/scripts/abutment_sheet.js");
+?>

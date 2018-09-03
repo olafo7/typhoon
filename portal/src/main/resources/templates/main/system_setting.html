@@ -1,0 +1,15 @@
+<script language="JavaScript">
+    Ext.namespace("CNOA.main.system.setting");
+    CNOA.main.system.setting.parentID = "docs-CNOA_MENU_SYSTEM_SETTING";
+    CNOA.main.system.setting.allowswitchuser = "1";
+    CNOA.main.system.setting.loginPage = "templates.login.2013v1.full.htm";
+
+    Ext.onReady(function() {
+        loadScripts("sm_main_system", "cnoa/app/main/scripts/cnoa.system.js", function(){
+            CNOA_main_system_setting = new CNOA_main_system_settingClass();
+
+            Ext.getCmp(CNOA.main.system.setting.parentID).add(CNOA_main_system_setting.mainPanel);
+            Ext.getCmp(CNOA.main.system.setting.parentID).doLayout();
+        });
+    });
+</script>

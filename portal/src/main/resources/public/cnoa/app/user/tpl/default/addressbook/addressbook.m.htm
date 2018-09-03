@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/iosOverlay.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/spin.min.js"></script>
+<script src="scripts/jquery/iosOverlay.js"></script>
+<script src="scripts/jquery/prettify.js"></script>
+<script src="scripts/jquery/jquery.mobile-1.3.2.min.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+		var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+		var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/user/scripts/m/addressbook/addressbook.js");
+dynamicLoading.css("app/user/css/m/addressbook/addressbook.css");
+</script>
+</head>
+
+<body>
+<div id="header">
+    <span>通讯录</span>
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+</div>
+<div class="row" id="f_control">
+    <div class="col-xs-12">
+        <div class="form-group">
+          <input type="search" class="form-control search" placeholder="搜索" id="search">
+        </div>
+    </div>
+    <ul id="myTabs" class="nav nav-tabs" role="tablist" data-tab="0" data-url="m.php?app=user&func=addressbook&action=default&task=getOftenCall">
+      <li role="presentation" data-id="struct">
+        <a href="#" id="struct" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">组织架构</a>
+      </li>
+      <li class="" role="presentation" data-id="my">
+        <a href="#" id="my" role="tab" data-toggle="tab" aria-expanded="true" aria-controls="profile">我的</a>
+      </li>
+      <li class="" role="presentation" data-id="dept">
+        <a href="#" id="dept" role="tab" data-toggle="tab" aria-expanded="true" aria-controls="profile">内部</a>
+      </li>
+      <li class="" role="presentation" data-id="outside">
+        <a href="#" id="outside" role="tab" data-toggle="tab" aria-expanded="true" aria-controls="profile">公共</a>
+      </li>
+    </ul>
+    <div id="oftenCall">经常呼叫联系人</div>
+</div>
+<div id="wrapper">
+    <div id="scroller">
+        <div class="row">
+            <div class="col-xs-12" id="addressbookList">
+                
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

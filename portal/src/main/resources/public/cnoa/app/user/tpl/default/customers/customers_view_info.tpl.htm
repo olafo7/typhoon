@@ -1,0 +1,42 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript'>
+	window.onload=function(){
+		window.focus()
+	}
+</script>
+</head>
+
+<body class="bodycolor" topmargin="5">
+<table class="TableBlock" width="650" align="center">
+  <tr>
+    <td nowrap class="TableHeader " colspan="6"><b>&nbsp;<?php echo $GLOBALS['title']; ?></b></td>
+  </tr>
+  <?php
+	foreach($GLOBALS['data'] as $v){
+  ?>
+  <tr>
+	<td nowrap align="left" width="120" class="TableContent"><?php echo $v['label']; ?></td>
+    <td colspan="3" align="left" nowrap class="TableData"><?php echo $v['value']; ?></td>    
+  </tr>
+  <?php
+	}
+  ?>
+</table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>

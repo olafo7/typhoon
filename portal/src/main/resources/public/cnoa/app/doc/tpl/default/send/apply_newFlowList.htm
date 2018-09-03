@@ -1,0 +1,22 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.doc.send.apply_newFlowList");
+CNOA.doc.send.apply_newFlowList.parentID = "{$GLOBALS['app']['parentid']}";
+
+/*
+Ext.onReady(function() {
+	loadScripts("sm_user_plan", "app/user/scripts/cnoa.plan.js", function(){
+		CNOA_user_plan_list_my = new CNOA_user_plan_list_myClass();
+		Ext.getCmp(CNOA.user.plan.list_my.parentID).add(CNOA_user_plan_list_my.mainPanel);
+		Ext.getCmp(CNOA.user.plan.list_my.parentID).doLayout();
+	});
+});
+*/
+</script>
+
+CNOA;
+echo loadJavascript("./app/doc/scripts/send_apply_newFlowList.js");
+?>

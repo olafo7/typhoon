@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.user.customers.binding");
+CNOA.user.customers.binding.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_customers", "app/user/scripts/cnoa.customers.js", function(){
+		CNOA_user_customers_binding = new CNOA_user_customers_bindingClass();
+		Ext.getCmp(CNOA.user.customers.binding.parentID).add(CNOA_user_customers_binding.mainPanel);
+		Ext.getCmp(CNOA.user.customers.binding.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+
+// echo loadJavascript(array("./app/user/scripts/customers_binding.js"));
+?>

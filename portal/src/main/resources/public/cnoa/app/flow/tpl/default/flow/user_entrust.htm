@@ -1,0 +1,42 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<!-- 
+<div style="margin:5px;">
+  <table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#C0C0C0">
+    <tr>
+      <td width="20%" height="24" bgcolor="#EFEFEF"><b>&nbsp;被委托人</b></td>
+      <td width="20%" height="24" bgcolor="#EFEFEF"><b>&nbsp;开始时间</b></td>
+      <td width="20%" bgcolor="#EFEFEF"><b>&nbsp;结束时间</b></td>
+      <td width="20%" bgcolor="#EFEFEF"><b>&nbsp;状态</b></td>
+      <td width="20%" height="24" bgcolor="#EFEFEF"><b>&nbsp;操作</b></td>
+    </tr>
+    <tr>
+      <td height="22" bgcolor="#FFFFFF">&nbsp;</td>
+      <td height="22" bgcolor="#FFFFFF">&nbsp;</td>
+      <td height="22" bgcolor="#FFFFFF">&nbsp;</td>
+      <td height="22" bgcolor="#FFFFFF">&nbsp;</td>
+      <td height="22" bgcolor="#FFFFFF">&nbsp;</td>
+    </tr>
+  </table>
+</div> -->
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.flow.flow.user_entrustflow");
+CNOA.flow.flow.user_entrustflow.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_flow_flow", "app/flow/scripts/cnoa.flow.js", function(){
+		CNOA_flow_flow_user_entrustflow = new CNOA_flow_flow_user_entrustflowClass();
+		Ext.getCmp(CNOA.flow.flow.user_entrustflow.parentID).add(CNOA_flow_flow_user_entrustflow.mainPanel);
+		Ext.getCmp(CNOA.flow.flow.user_entrustflow.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/flow/scripts/flow_user_entrustflow.js"));
+?>

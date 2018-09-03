@@ -1,0 +1,74 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<style>
+.x-form-file-wrap {
+    position: relative;
+    height: 22px;
+}
+.x-form-file-wrap .x-form-file {
+	position: absolute;
+	right: 0;
+	-moz-opacity: 0;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+    height: 22px;
+}
+.x-form-file-wrap .x-form-file-btn {
+	position: absolute;
+	right: 0;
+	z-index: 1;
+}
+.x-form-file-wrap .x-form-file-text {
+    position: absolute;
+    left: 0;
+    z-index: 3;
+    color: #777;
+}
+</style>
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.user.list");
+CNOA.main.user.parentID = "{$GLOBALS['app']['parentid']}";
+
+CNOA.permitController.main_user = new Array();
+
+CNOA;
+foreach($GLOBALS['permissionController'] AS $k=>$v){
+print <<<CNOA
+CNOA.permitController.main_user['{$k}'] = {$v};
+
+CNOA;
+}
+print <<<CNOA
+
+</script>
+
+<script language="JavaScript">
+//var CNOA_main_user_baseInfo_combobox_data_struct = {$GLOBALS['CNOA_main_user_add_combobox_data_struct']};
+//var CNOA_main_user_baseInfo_combobox_data_job = {$GLOBALS['CNOA_main_user_add_combobox_data_job']};
+//var CNOA_main_user_baseInfo_combobox_data_group = {$GLOBALS['CNOA_main_user_add_combobox_data_group']};
+
+//用户扩展字段
+var CNOA_main_user_baseInfo_getFormExtFields = function(){
+	return {$GLOBALS['CNOA_main_user_add_ext_data']};
+}
+
+
+Ext.onReady(function() {
+	loadScripts("sm_main_user", "app/main/scripts/cnoa.user.js", function(){
+		//记录左边树被选中的状态
+		Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
+		CNOA_main_user_list = new CNOA_main_user_listClass();
+		Ext.getCmp(CNOA.main.user.parentID).add(CNOA_main_user_list.mainPanel);
+		Ext.getCmp(CNOA.main.user.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/main/scripts/user_index.js","./app/main/scripts/user_info.js","./app/main/scripts/user_baseInfo.js"));
+
+?>

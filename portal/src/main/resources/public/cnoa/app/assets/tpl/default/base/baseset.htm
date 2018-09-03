@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.assets.base.baseSet");
+CNOA.assets.base.baseSet.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+    loadScripts("sm_assets_assets", "app/assets/scripts/cnoa.assets.js", function(){
+    	CNOA_assets_base_baseSet = new CNOA_assets_base_baseSetClass();
+        Ext.getCmp(CNOA.assets.base.baseSet.parentID).add(CNOA_assets_base_baseSet.mainPanel);
+        Ext.getCmp(CNOA.assets.base.baseSet.parentID).doLayout();
+    })
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/assets/scripts/base_baseSet.js"));
+?>

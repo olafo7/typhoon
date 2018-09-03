@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="app/user/css/m/diary/add_additional.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/common.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/date.js"></script>
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="scripts/jquery/iscroll5.js"></script>
+<script src="scripts/jquery/prettify.js"></script>
+<script src="scripts/jquery/custom.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="app/user/scripts/m/diary/add_edit_additional.js"></script>
+</head>
+ 	
+<div id="header">
+	补充日记
+  <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack">返回</span>
+</div>
+<div id="wrapper">
+	<div id="scroller">
+        <table class="table_form" width="90%" border="1">
+     	<tbody>
+        <tr>
+          <td class="input" colspan='2'>
+            <textarea name="myEditor" id="myEditor" class="myEditor" placeholder="日记补充内容"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="input" colspan='2'>
+            <div class="time"><span class="stime">*执行时间</span>
+              <input type="text" class="datetimepick-input kbtn" id="plantime" name="plantime" readonly>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="input" colspan='2'>
+            <span class="accpeople">选择验收人员</span>
+            <div class="modSend" id="modSend" data-checktype="false" data-toggle="modal" data-target="#userDataModal" readonly></div>
+          </td>
+        </tr>
+     </tbody>
+    </table>
+	<button type="botton" id="btn-additional" class="btn btn-m btn-primary btn-block btn-save">确认保存</button>
+	</div>
+</div>
+<div id="datePlugin"></div>
+<!--*/人员选择器模态框 *-->
+<div class="modal userDataModal" id="userDataModal" tabindex="-1" role="dialog" data-source="" data-checktype="" data-sid='1'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--*/选择器头部 *-->
+      <div class="modal-header">
+        <span class="glyphicon glyphicon-chevron-left glyphiconLeft" id="sback" data-fid="0" aria-hidden="true"></span>
+        <span class="dif">选择人员</span>
+        <span class="glyphicon glyphicon-remove glyphiconRight" id="sClose" aria-hidden="true" data-dismiss="modal" aria-label="Close"></span>
+        <div class="row search">
+          <div class="col-xs-12">
+            <input type="text" class="form-control input-m" id="search" placeholder="搜索">
+          </div>
+        </div>
+      </div>
+      <!--*/用户和部门 *-->
+      <div class="userDataWrapper" id="userDataWrapper">
+        <div class="userDataScroller" id="userDataScroller">
+          <div class="modal-body">
+            <ul class="list-group userDataGroup" id="userDataGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/存放待删除的用户 *-->
+      <div class="userWrapper" id="userWrapper">
+        <div class="userScroller" id="userScroller">
+          <div class="modal-body">
+            <ul class="list-group userGroup" id="userGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/待删除用户区域的操作按钮 *-->
+      <div class="opts-box">
+        <button type="button" class="btn btn-primary btn-sm opts" id="sFinish" aria-hidden="true" data-dismiss="modal" aria-label="Close" disabled>完成</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

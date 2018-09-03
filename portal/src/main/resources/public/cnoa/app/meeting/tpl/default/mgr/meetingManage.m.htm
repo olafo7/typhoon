@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/iscroll.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+        if(!path || path.length === 0){
+            throw new Error('路径必填!');
+        }
+        var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+        if(!path || path.length === 0){
+            throw new Error('路径必填!');
+        }
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.css("app/meeting/css/m/meetingManage.css");
+dynamicLoading.js("app/meeting/scripts/m/meetingManage.js");
+</script>
+</head>
+
+<body>
+<div id="header">
+    <span class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        会议管理
+      </a>
+    </span>
+    <button type="button" id="btnBack" class="btn btn-primary btn-back-ico" aria-label="Justify">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    </button>
+</div>
+<div id="wrapper" style="overflow: hidden;">
+    <img src="../../../../../resources/images/m/meeting/index1.png" hidefocus="true" usemap="#planetmap"/>
+    <map name="planetmap" id="planetmap">   
+      <area shape="rect" coords="0,53,88,151" onfocus="blur(this);" href ="m.php?app=meeting&func=mgr&action=join&task=loadPage&from=waiting" id="waiting"/>
+      <area shape="rect" coords="114,3,198,88" onfocus="blur(this);" href ="m.php?app=meeting&func=mgr&action=meeting&task=loadPage&from=list" id="list"/>
+      <area shape="rect" coords="213,58,297,143" onfocus="blur(this);" href ="m.php?app=meeting&func=mgr&action=join&&task=loadPage&from=meetingPassList" id="check"/>
+      <area shape="rect" coords="8,170,92,255" onfocus="blur(this);" href ="m.php?app=meeting&func=mgr&action=join&task=loadPage&from=pass" id="pass"/>
+      <area shape="rect" coords="113,228,197,313" onfocus="blur(this);" href ="m.php?app=meeting&func=mgr&action=join&task=loadPage&from=returnback" id="rewrite"/>
+      <area shape="rect" coords="215,177,299,262" onfocus="blur(this);" href ="m.php?app=meeting&func=mgr&action=join&&task=loadPage" id="join"/>
+      <area shape="rect" coords="112,111,196,196" onfocus="blur(this);" href ="m.php?app=meeting&func=mgr&action=meeting&task=loadPage&from=meetReading" id="read"/>
+    </map> 
+</div>
+    <!-- </div> -->
+    <div id="loading_mask" style="display: none;"></div>
+</div>
+</body>
+</html>

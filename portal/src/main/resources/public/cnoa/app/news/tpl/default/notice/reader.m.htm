@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=yes" /> 
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/font/m/font-glyphs/font-glyphs.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/common.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/scale.css" />
+<link rel="stylesheet" type="text/css" href="app/news/css/m/reader.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="scripts/jquery/prettify.js"></script>
+<script src="scripts/jquery/custom.js"></script>
+<script src="resources/scripts/m/scale.js"></script>
+<script src="/app/news/scripts/m/reader.js"></script>
+</head>
+
+<body>
+<div id="header">
+  <span>阅读情况</span>
+  <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+</div>
+
+<div id="content">
+    <!--info-->
+    <div id="wrapper">
+    
+      <div id="scroller">
+		<div id="pullDown">
+			<span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+		 </div>
+        <div id="main">
+        </div>
+        <div id="pullUp">
+            <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+        </div>
+        <div class="stop-label">已加载完成，不要再滚动了...</div>
+      </div>
+    </div>
+</div>
+</body>
+<!--%以下js文件必须在DOM加载完成之后再引用进来-->
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="scripts/jquery/iscroll.fun.js"></script>
+</html>

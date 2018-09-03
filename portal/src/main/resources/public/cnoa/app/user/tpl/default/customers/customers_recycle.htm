@@ -1,0 +1,23 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.customers.recycle");
+CNOA.user.customers.recycle.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_customers", "app/user/scripts/cnoa.customers.js", function(){
+		CNOA_user_customers_recycle = new CNOA_user_customers_recycleClass();
+		Ext.getCmp(CNOA.user.customers.recycle.parentID).add(CNOA_user_customers_recycle.mainPanel);
+		Ext.getCmp(CNOA.user.customers.recycle.parentID).doLayout();
+	});
+});
+
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/customers_recycle.js"));
+?>

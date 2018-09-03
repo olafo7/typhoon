@@ -1,0 +1,545 @@
+
+<?php
+//投票视图
+function votingView($type = ''){
+	$options = $GLOBALS['voteInfo']['options'];
+	$selectNum = $GLOBALS['voteInfo']['selectNum'];
+	if($selectNum == 1){
+		$inputType = 'radio';
+		$inputName = 'ticket';
+		$className = 'iradio-square-blue';
+		$GLOBALS['voteInfo']['selectWarn'] = "<div class='info'><span>本投票为单选</span></div>";
+	} else {
+		$inputType = 'checkbox';
+		$inputName = 'ticket[]';
+		$className = 'icheckbox-square-blue';
+		$GLOBALS['voteInfo']['selectWarn'] = "<div class='info'><span>本投票不能选择超过{$selectNum}项</span></div>";
+	}
+
+	if($type == 'result'){
+		$result =
+			'<div class="vote-option-bar">
+				<div id="vote-result-bar" class="vote-bar-graph">
+					<span style="width: %s%%; background-color: #%s;" ext:qtip ="以下成员投了此项:<br> %s"></span>
+				</div>
+				<div id="result-detail">
+					<span></span>
+				</div>
+				<div class="vote-percent">%s %%</div>
+				<div class="vote-number">%s票</div>
+			</div>';
+	}
+
+	$optionTpl = '
+		<li>
+			<div class="vote-option-text">
+				<div class="option-radio" id = "option_panel">
+					 <span class="%s" id = "icheckbox_blue" style="position: relative;">
+						 <input name="%s" type="%s" class="inputCss" value="%s">
+					 </span>
+					 <span class="optionText">%s</span>
+				</div>
+				'.$result.'
+			</div>
+		</li>';
+
+	$options = is_array($options) ? $options : array();
+	foreach ($options as $option) {	
+		$color = randColor();
+		$optionInfo = array($className, $inputName, $inputType, $option['oid'], $option['optionName']);
+		if($type = 'result'){
+			$optionInfo[] = $option['percent'];
+			$optionInfo[] = $color;
+			$optionInfo[] = $option['ticketDetail'];
+			$optionInfo[] = $option['percent'];
+			$optionInfo[] = $option['ticket'];
+		}
+		vprintf($optionTpl,$optionInfo);
+	}
+}
+
+//结果视图
+function resultView(){
+	$options = $GLOBALS['voteInfo']['options'];
+	$options = is_array($options) ? $options : array();
+
+	$optionTpl = '
+		<li>
+			<div class="vote-option-text">		
+				<div class="option-info">%s</div>
+			</div>
+			<div class="vote-option-bar">
+				<div id="vote-result-bar" class="vote-bar-graph">
+					<span style="width: %s%%; background-color: #%s;" ext:qtip ="以下成员投了此项:<br> %s"></span>
+				</div>
+				<div id="result-detail">
+					<span></span>
+				</div>
+				<div class="vote-percent">%s %%</div>
+				<div class="vote-number">%s票</div>
+			</div>
+		</li>';
+
+	foreach ($options as $option) {
+		$color = randColor();
+		vprintf($optionTpl, array($option['optionName'], $option['percent'], $color, $option['ticketDetail'], $option['percent'], $option['ticket']));
+	}
+}
+
+//查看视图
+function checkView(){
+	$options = $GLOBALS['voteInfo']['options'];
+	$selectNum = $GLOBALS['voteInfo']['selectNum'];
+	if($selectNum == 1){
+		$inputType = 'radio';
+	} else {
+		$inputType = 'checkbox';
+	}
+	$optionTpl = '
+		<li>
+			<div class="vote-option-text">
+				<div class="option-radio">
+					<input type="%s" disabled/><span class="optionText">%s</span>
+				</div>
+			</div>
+		</li>';
+
+	foreach ($options as $option) {
+		vprintf($optionTpl,array($inputType, $option['optionName']));
+	}
+}
+
+function randColor(){
+    $r = 128*256*256;
+    $g = 128*256;
+    $b = 128;
+
+    $color=rand($r,255*256*256)+rand($g, 255*256)+rand($b, 255);
+    return dechex($color);
+}
+
+$voteInfo = $GLOBALS['voteInfo'];
+?>
+<div style="">
+	<div id="vote-voting" style="width: 800px; margin: 10px auto; padding: 15px; border: 1px solid #CFCFCF;">
+		<h3 style="font-size: 24.5px; line-height: 40px;"><?php echo $voteInfo['title'] ?></h3>
+
+		<style>
+			#vote-info { height:20px; margin-top: 20px; padding: 8px; background-color: #D9EDF7; color: #666; }
+			#vote-info .info{ display: inline-block; margin-left: 20px; padding: 4px 0;float:left; }
+			#vote-description { margin-top: 20px; word-wrap: break-word; font-size: 14px; }
+
+			#vote-options { margin-top: 35px; }
+			#vote-options li{ margin: 10px 0; }
+			.vote-option-text { font-size: 17px; line-height: 25px; color: #333;}
+			.vote-option-bar { width: 100%; height: 20px; margin-top:10px;}
+			.vote-option-bar .vote-bar-graph { background-color: #F7F7F7; float: left; width: 80%;}
+			.vote-option-bar .vote-bar-graph span{ height: 20px; display: block; }
+			.vote-option-bar .vote-number { float: right; line-height: 20px; font-size: 10px; color: #669; }
+			.vote-option-bar .vote-percent { float: right; width: 85px; line-height: 20px; text-align: right; color: #888800}
+			.optionText{margin-left: 10px; display: inline-block;}
+
+			#vote-comment {margin-top:20px;}
+			.vote-comment-title{height: 25px;background-color: #E6E6E6;line-height: 25px;font-weight: bold;margin-top: 20px;}
+			.vote-comment-editor{border: 1px solid #ccc;line-height: 20px;font-size:12px;color: #666}
+			.comment-message{border-bottom: 1px solid #E6E6E6;margin-bottom:5px;margin-left: 5px;}
+			.comment-name{font-weight:bold;margin-left:5px;}
+			.comment-content{color:black; overflow: hidden;}
+			.comment-content img{width: 100% ;}
+			.comment-content strong, .comment-content strong em {font-weight: bold;}
+			.comment-content em, .comment-content em strong {font-style: italic;}
+
+			.vote-attach-title{height: 25px;background-color: #E6E6E6;line-height: 25px;font-weight: bold; margin-top: 20px;}
+
+			#result-detail{display: none}
+
+
+
+			.inputCss{
+				/*background-color: transparent;*/
+				position: absolute;
+				/*border:0;*/
+				/*display:none;*/
+				border:0px solid whrite;
+				top: -20%; left: -20%;
+				display: block;
+				width: 140%;
+				height: 140%;
+				margin: 0px;
+				padding: 0px;
+				/*border: 0px;*/
+				opacity: 0;
+				filter:alpha(opacity=0);
+				/*background: url(resources/images/33.jpg) no-repeat;*/
+				background: rgb(255, 255, 255);
+			}
+
+			.insCss{
+				position: absolute;
+				top: -20%; left: -20%;
+				display: block;
+				width: 140%;
+				height: 140%;
+				margin: 0px;
+				padding: 0px;
+				border: 0px; 
+				opacity: 0;
+				 background: rgb(255, 255, 255);
+			}
+
+			.icheckbox-square-blue{
+				display: inline-block;
+				vertical-align: middle;
+				margin: 0;
+				padding: 0;
+				width: 22px;
+				height: 22px;
+				background: url(resources/images/blue.png) no-repeat;
+				border: none;
+				cursor: pointer;
+			}
+
+			.iradio-square-blue {	
+				display: inline-block;
+				vertical-align: middle;
+				margin: 0;
+				padding: 0;
+				width: 22px;
+				height: 22px;
+				background: url(resources/images/blue.png) no-repeat;
+				background-position: -120px 0;
+				border: none;
+				cursor: pointer;
+			}
+
+			.hoverCheckbox{
+				background-position: -24px 0;
+			}
+			.checkedCheckbox{
+				background-position: -48px 0;
+			}
+
+			.hoverRadio{
+				background-position: -144px 0;
+			}
+			.checkedRadio{
+				background-position: -168px 0;
+			}
+		</style>
+
+		<!-- 投票信息 -->
+		<div id="vote-info">
+			<div class="info">
+				<span>发表人:</span>
+				<span><?php echo $voteInfo['launchName'] ?></span>
+			</div>
+			<div class="info">
+				<span>发表部门:</span>
+				<span><?php echo $voteInfo['launchDept'] ?></span>
+			</div>
+			<div class="info">
+				<span>发表时间:</span>
+				<span><?php echo $voteInfo['voteTime'] ?></span>
+			</div>
+			<?php
+			if($GLOBALS['type'] == 'voting'){
+				if ($voteInfo['selectNum'] == 1) {
+					echo "<div class='info'><span style = 'color:red'>本投票为单选</span></div>";
+				} else {
+					echo "<div class='info'><span style = 'color:red'>本投票不能选择超过{$voteInfo['selectNum']}项</span></div>";
+				}
+			}
+			?>
+		</div>
+
+		<!-- 投票描述 -->
+		<div id="vote-description">
+			<?php echo $voteInfo['desc'] ?>
+		</div>
+ 		<form>
+			<!-- 投票选项 -->
+			<div id="vote-options">
+				<ul>
+		<?php
+			$actionType = $GLOBALS['type'];
+			$checkRule = $voteInfo['checkRule'];
+			$extraCheck = $voteInfo['isExtraCheck'];
+			switch($actionType){
+				case 'voting':
+					if($extraCheck == 1 || $checkRule == 0){
+						votingView('result');
+					} else {
+						votingView();
+					}
+					break;
+				case 'result':
+					if($extraCheck == 1 || $checkRule != 2 ){
+						resultView();
+					} else {
+						checkView();
+					}
+					break;
+				case 'check':
+					checkView();
+					break;
+			}
+		?>
+
+				</ul>
+			</div>
+		</form>
+		<?php
+			if($GLOBALS['type'] == 'voting'){
+				echo "<button id= 'submit'>提交投票</button>";
+			}
+
+		?>
+
+		<!-- 投票附件 -->
+		<div class='vote-attach-title'>附件</div>
+		<div id="vote-attach">
+			<?php
+			echo $voteInfo['attach'];
+			?>
+
+		</div>
+
+		<!-- 投票评论 -->
+		<?php
+		if (! empty($voteInfo['isComment'])) {
+			echo '<div id = "vote-comment">
+					 <div class="vote-comment-title">投票相关评论</div>
+					 <div id="vote-comment-view"></div>
+					 <div id="vote-comment-editor"></div>
+				 </div>
+				 <button id="sub-comment">提交评论</button>';
+		 }
+		 ?>
+
+		<div style="height: 0px; clear: both;"></div>
+</div>
+
+<script>
+(function(){
+	var tabId = "<?php echo $GLOBALS['app']['parentid']; ?>";
+	var isComment = <?php echo intval($voteInfo['isComment']); ?>;
+	var isAnonymity = <?php echo intval($voteInfo['isAnonymity']); ?>;
+	var mainPanel = Ext.getCmp(tabId);
+
+	mainPanel.setAutoScroll(true);
+
+	// 投票样式
+	var voteOptions = $('#vote-options input');
+	voteOptions.bind('change',function(){
+		var nodeType = this.type;
+		if (this.type == 'radio') {
+			for (var i = 0, len = voteOptions.length; i < len; i++) {
+				var parent = voteOptions[i].parentElement;
+				voteOptions[i] === this
+					? $(parent).addClass('checkedRadio') 
+					: $(parent).removeClass('checkedRadio');
+			}
+
+		} else if (this.type == 'checkbox') {
+			var parent = this.parentElement;
+			this.checked ? $(parent).addClass('checkedCheckbox') : $(parent).removeClass('checkedCheckbox');
+		}
+	});
+
+	voteOptions.hover(
+		function(){
+			var parent = this.parentElement;
+			var nodeType = this.type;
+			if (nodeType == 'radio') {
+				$(parent).addClass('hoverRadio');
+			} else if (nodeType == 'checkbox') {
+				$(parent).addClass('hoverCheckbox');
+			}
+		},
+		function(){
+			var parent = this.parentElement;
+			var nodeType = this.type;
+			if (nodeType == 'radio') {
+				$(parent).removeClass('hoverRadio');
+			} else if (nodeType == 'checkbox') {
+				$(parent).removeClass('hoverCheckbox');
+			}
+		}
+ 	);
+
+
+	//匿名投票
+	if(isAnonymity == 1){
+		$('#vote-result-bar span').attr('ext:qtip','该投票为匿名投票');	
+	}
+
+	//评论判断
+	if (isComment == 1) {
+		var ue = UE.getEditor('vote-comment-editor', {
+			toolbars: [[
+				'fullscreen', 'source', '|',
+				'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', 	'|',
+				'bold', 'italic', 'underline', 'forecolor', 'backcolor'
+			]]
+		});
+
+		mainPanel.on("destroy", function(){
+			ue.destroy();
+		});
+	}
+	
+	deleteCommentView = function(cid){
+		CNOA.msg.cf('你确定要删除这条评论吗？', function(btn){
+			if(btn == 'yes'){
+				$.ajax({
+					url: 'index.php?app=news&func=vote&action=read&task=deleteComment',
+					type: 'post',
+					dataType: 'json',
+					data: 'cid=' + cid,
+					success: function(data){
+						CNOA.msg.alert(data.msg);
+						loadCommentView()
+					},
+					failure: function(){
+						CNOA.msg.alert(data.msg)
+					}
+				})
+			} else {
+				return false
+			}
+		})
+	};
+
+	//添加评论视图
+	var addCommentView = function(commentObj){
+		var delString = '';
+
+		 if(typeof(commentObj) != 'object' && commentObj){
+		 	return false;
+		 }
+
+		 if(commentObj.commentUid == CNOA_USER_UID){
+		 	delString = '<span><a onclick = "deleteCommentView(' + commentObj.commentCid + ')">删除</a></span>';
+		 }
+
+		$('#vote-comment-view').prepend(
+			'<div class = "vote-comment-editor">' +
+            '    <div class = "comment-message">' +
+			'		<span>发表人:</span>' +
+			'		<span class= "comment-name" >' + commentObj.commentName + '</span>&nbsp&nbsp' +
+			'		<span>部门:</span>' +
+			'		<span class= "comment-name">' + commentObj.commentDept + '</span>&nbsp&nbsp' +
+			'		<span>' + commentObj.commentTime + '</span>&nbsp&nbsp' +
+			delString +
+			'	</div>' +
+			'	<div class="comment-content">' +	
+			'		<span>' + commentObj.content + '</span>' +
+			'	</div>' +
+			'</div>'
+		)
+	};
+
+	//加载评论
+	var loadCommentView = function(){
+		$('#vote-comment-view').empty();
+		$.ajax({
+			url: 'index.php?app=news&func=vote&action=read&task=loadComment',
+			type: 'post',
+			dataType: 'json',
+			data: 'vid='+ <?php echo $voteInfo['vid'] ?>,
+			success: function(data){
+				for(var i = 0; i < data.length; i++ ){
+					var commentObj = {};
+					commentObj.commentCid = data[i].cid;
+					commentObj.commentVid = data[i].vid;
+					commentObj.commentUid = data[i].uid;
+					commentObj.commentName = data[i].commentName;
+					commentObj.commentDept = data[i].commentDept;
+					commentObj.content = data[i].content;
+					commentObj.commentTime = data[i].commentTime;
+					addCommentView(commentObj);
+				}
+			},
+			failure: function(){
+				CNOA.msg.alert(data.msg);
+			}
+		})
+	};
+
+	$(window).load(loadCommentView());
+
+	// 提交评论
+	$('#sub-comment').click(function(){
+		var content = ue.getContent();
+		var params = {};
+		var commentTime = '<?php echo date('Y-m-d h:i:s', $GLOBALS['CNOA_TIMESTAMP']); ?>';
+		var vid = <?php echo $voteInfo['vid'] ?>;
+
+		params['vid'] = vid;
+		params['uid'] = CNOA_USER_UID;
+		params['content'] = content;
+
+		$.ajax({
+			url: 'index.php?app=news&func=vote&action=read&task=addComment',
+			type: 'post',
+			dataType: 'json',
+			data: params,
+			success: function(data){
+				if(!data.failure){
+					var commentObj = {};
+					commentObj.commentCid = data.cid;
+					commentObj.commentVid = vid;
+					commentObj.commentUid = CNOA_USER_UID;
+					commentObj.commentName = CNOA_USER_TRUENAME;
+					commentObj.commentDept = CNOA_USER_DEPTMENT;
+					commentObj.content = content;
+					commentObj.commentTime = commentTime;
+					addCommentView(commentObj);
+					ue.setContent('');
+				} else {
+					CNOA.msg.alert(data.msg);
+				}
+			},
+			failure: function(){
+				CNOA.msg.alert(data.msg);
+			}
+		})
+	})
+})();
+</script>
+
+<script>
+	//投票提交数据
+	$('#submit').click(function(){
+		var optionSelect = $('#icheckbox_blue input');
+		var selectedCount = 0;
+		for(var i = 0; optionSelect.length > i; i++) {
+			if (optionSelect[i].checked == true) {
+				selectedCount++
+			}
+		}
+		if(selectedCount > <?php echo $voteInfo['selectNum'] ?>) {
+			CNOA.msg.alert('本投票不能选择超过'+ <?php echo $voteInfo['selectNum'] ?> + '项');
+			return false;
+		}
+		$.ajax({
+			url: 'index.php?app=news&func=vote&action=read&task=addTicket&vid='+ <?echo $voteInfo['vid']?>,
+			type: 'post',
+			dataType: 'json',
+			data: $('form').serialize(),
+			success: function(data){
+				if(data.opt == 'success'){
+					CNOA.msg.alert(data.text);
+					mainPanel.closeTab("CNOA_MENU_NEWS_VOTE_VOTING"); 
+					mainPanel.loadClass("index.php?app=news&func=vote&action=read&task=loadPage&from=result&vid=" + <?php echo $voteInfo['vid'] ?>, "CNOA_MENU_NEWS_VOTE_VOTING", '投票', "icon-system-vote");
+
+				} else {
+					CNOA.msg.alert('请选择要投票的选项');
+				}
+			}
+		})
+	})
+
+</script>
+
+</div>

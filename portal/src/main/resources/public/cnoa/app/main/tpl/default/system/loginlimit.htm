@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+<script language="javascript">
+Ext.namespace("CNOA.main.system.loginlimit");
+CNOA.main.system.loginlimit.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_main_system", "app/main/scripts/cnoa.system.js", function(){
+		CNOA_main_system_loginlimit = new CNOA_main_system_loginlimit_Class();
+		Ext.getCmp(CNOA.main.system.loginlimit.parentID).add(CNOA_main_system_loginlimit.mainPanel).doLayout();
+		Ext.getCmp(CNOA.main.system.loginlimit.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+echo loadJavascript("./app/main/scripts/system_loginlimit.js");
+?>

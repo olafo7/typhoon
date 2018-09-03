@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="app/wf/css/m/use/userData.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<link rel="stylesheet" type="text/css" href="resources/font/m/font-glyphs/font-glyphs.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/scale.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/iscroll5.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="scripts/jquery/jquery.form.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script src="resources/scripts/m/scale.js"></script>
+<script src="scripts/jquery/iospopwin.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/meeting/scripts/m/listContent.js");
+dynamicLoading.css("app/meeting/css/m/listContent.css");
+</script>
+</head>
+<body>
+<div id="header">
+<span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+纪要会议
+<span class="glyphicon glyphicon-align-justify" aria-hidden="true" id="listNav"></span>
+</div>
+<form id="myTableFrom" method="post" enctype="multipart/form-data">
+<div id="wrapper">
+    <div id="scroller">
+        <div class="list_title opinion">领导修改意见:</div> 
+        <textarea class="form-control list_content center-block opinion" disabled="disabled" id="opinion" rows="3"></textarea>
+        <div class="list_title">纪要内容:<span style="color:red"> * </span></div>  
+        <textarea class="form-control list_content center-block" id="markdetail" rows="3"></textarea>
+        <div class="list_title">会议纪要审批人:<span style="color:red"> * </span></div>  
+        <div class="panel-body">
+            <div class="form-group has-error">
+                <div class="form-control choice sendee must" id="username" data-datatype="user_sel" data-checktype="false" data-toggle="modal" data-target="#userDataModal" data-name="username" style="border-color: #a94442;">
+                    <span class="name" data-uid=""></span>
+                </div>
+                <input type="hidden" name="username" value="">
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<!--% 底部菜单 %-->
+<div id="jingle_popup" class="">
+    <div class="actionsheet">
+        <div class="btnUpload btn-success" id="allowAttachAdd"> 
+            <span>添加附件</span> 
+            <input id="fileupload" type="file" name="upload_file"> 
+        </div>
+        <button type="button" class="btn btn-primary btn-popup center-block" id="temporary">暂存</button>
+        <button type="button" class="btn btn-primary btn-popup center-block" id="submit">提交</button>
+        <button class="btn btn-danger btn-cancel">取消</button>
+    </div>
+</div>
+<div id="jingle_popup_mask"></div>
+<!--*/人员选择器模态框 *-->
+<div class="modal userDataModal" id="userDataModal" tabindex="-1" role="dialog" data-source="" data-checktype="" data-sid='1'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--*/选择器头部 *-->
+      <div class="modal-header">
+        <span class="glyphicon glyphicon-chevron-left glyphiconLeft" id="sback" data-fid="0" aria-hidden="true"></span>
+        <span>选择人员</span>
+        <span class="glyphicon glyphicon-remove glyphiconRight" id="sClose" aria-hidden="true" data-dismiss="modal" aria-label="Close"></span>
+        <div class="row search">
+          <div class="col-xs-12">
+            <input type="text" class="form-control input-m" id="search" placeholder="搜索">
+          </div>
+        </div>
+      </div>
+      <!--*/用户和部门 *-->
+      <div class="userDataWrapper" id="userDataWrapper">
+        <div class="userDataScroller" id="userDataScroller">
+          <div class="modal-body">
+            <ul class="list-group userDataGroup" id="userDataGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/存放待删除的用户 *-->
+      <div class="userWrapper" id="userWrapper">
+        <div class="userScroller" id="userScroller">
+          <div class="modal-body">
+            <ul class="list-group userGroup" id="userGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/待删除用户区域的操作按钮 *-->
+      <div class="opts-box">
+        <button type="button" class="btn btn-primary btn-sm opts" id="sFinish" aria-hidden="true" data-dismiss="modal" aria-label="Close" disabled>完成</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--% 图片在线预览 %-->
+<div class="imgzoom_pack">
+  <div class="imgzoom_x"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+  <div class="imgzoom_img">
+    <img src="">
+  </div>
+</div>
+<!--/*Iscroll5* -->
+<script src="scripts/jquery/iscroll-probe.js"></script>
+</body>
+</html>

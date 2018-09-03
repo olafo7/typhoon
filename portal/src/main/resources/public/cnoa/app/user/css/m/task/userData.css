@@ -1,0 +1,386 @@
+/**
+ *人员选择器
+ */
+#userDataModal .modal-dialog{
+	margin: 0px;
+}
+#userDataModal .modal-dialog .modal-content{
+	border-radius: 0px;
+	border: none;
+}
+#userDataModal .modal-content{
+	border-radius:0px;
+}
+#userDataModal .modal-header{
+	position:relative;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 52px;
+	line-height: 52px;
+	padding: 0;
+	font-size: 18px;
+	text-align: center;
+	background-color: #3871B8;
+	color: #fff;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+}
+.glyphiconLeft{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  font-size: 1.2em;
+  padding: 15px;
+}
+.glyphiconRight{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  font-size: 1.2em;
+  padding: 15px;
+}
+#userDataModal .modal-header .search{
+	padding: 6px 0px;
+	background: #eee;
+	margin:0px;
+	position: relative;
+  top: -1px;
+}
+#userDataModal .modal-header .col-xs-12{
+	padding: 0px 10px;
+}
+#userDataModal .modal-header .search input{
+	height: 34px;
+	border-radius: 20px;
+	text-align:center;
+}
+.userDataWrapper{
+	position: absolute;
+	z-index: 2;
+	top: 97px;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	background: #fff;
+	overflow: hidden;
+}
+.userDataScroller{
+	position: absolute;
+	z-index: 2;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 100%;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+.userDataWrapper .modal-body{
+	margin-bottom: 0px;
+	padding: 0px;
+}
+.userDataGroup{
+	margin-bottom: 0px;
+}
+.userDataGroup .list-group-item{
+	border-radius: 0px;
+	padding: 6px 10px;
+}
+.userDataGroup .title{
+	position: relative;
+	display: block;
+	padding: 2px 15px;
+	margin-bottom: -1px;
+	border: 1px solid #ddd;
+}
+.userDataGroup .list-group-item .name-box {
+	position: relative;
+	margin: 0px 40px 0px 32px;
+	display: block;
+	height: 40px;
+}
+.userDataGroup .list-group-item .name-box .truename{
+	overflow: hidden;
+	position: absolute;
+	top: 10px;
+	left: 50px;
+	font-size: 14px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+	margin: 1px 0 3px;
+}
+.userDataGroup .list-group-item .job{
+  position: relative;	
+  right: 5px;
+  top: -30px;
+  float: right;
+}
+.userDataGroup .list-group-item .face{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.userDataGroup .list-group-item .name-box .struct{
+  position: absolute;
+  left: 0;
+	line-height: 40px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+  width: 100%;
+}
+.userDataGroup .list-group-item .struct-ico-left{
+  font-size: 1.6em;
+  position: absolute;
+  top: 12px;
+  color: #59BB92;
+}
+.userDataGroup .list-group-item .struct-ico-right{
+  font-size: 1.6em;
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  color: #59BB92;
+}
+.userDataGroup .list-group-item .userTotal{
+	position: absolute;
+  right: 30px;
+  top: 16px;
+  color: #363636;
+  font-size: 14px;
+}
+.userWrapper{
+	position: relative;
+	z-index: 2;
+	height: 54px;
+	width: 80%;
+	background: #fafafa;
+	overflow: hidden;
+	-ms-touch-action: none;
+}
+.userScroller{
+	position: absolute;
+	z-index: 2;
+	top: -5px;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 2400px;
+	height: 54px;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+.userScroller .modal-body{
+	padding:0;
+}
+.userScroller ul {
+	list-style: none;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+.userScroller li {
+	width: 54px;
+	height: 54px;
+	float: left;
+	line-height: 54px;
+	background-color: #fafafa;
+	font-size: 14px;
+	overflow: hidden;
+	text-align: center;
+	border: none;
+}
+.userGroup .face{
+	width: 40px;
+  height: 40px;
+}
+#userDataModal .opts-box{
+  position: fixed;
+  z-index: 1;
+  height: 54px;
+  width: 100%;
+  background-color: #fafafa;
+}
+#userDataModal .opts{
+	float: right;
+	margin: 13px 12px 11px 11px;
+	background-color: #3871B8;
+}
+.choice{
+	border: solid 1px #ccc;
+	border-radius: 4px;
+	overflow: auto;
+	padding: 9px;
+	height: 40px;
+	color: #999999;
+}
+.checkbox{
+	width:16px;
+	height:16px;
+	padding:10px; 
+	display:block;
+	float:none;
+	border:1px solid #DBDBDB;
+	background: #F5F7F9; 
+	cursor:pointer;
+	position:absolute; 
+	top:6px;left:10px; 
+	/*
+	background:#eee url(../../../../../../resources/images/m/ico/input-unchecked.png) center no-repeat; 
+	*/
+	border-radius: 20px;
+}
+.tools .cur{
+	border:none;
+	width:16px;
+	height:16px; 
+	padding:10px;;  
+	border:#3498DB solid 1px; 
+	left:10px; 
+	top:3px; 
+	color:#fff; 
+	background:#3498DB url(../../../../../../resources/images/m/ico/input-checked.png) center no-repeat;
+}
+.tools span{
+	display:inline-block;
+	position:relative;
+	padding-left: 20px;
+	margin-right: 10px;
+}
+.tools .ipt-hide{
+	position:absolute;width:0;
+	height: 0;
+	border:none;
+	margin: 12px 0px 0px 2px;
+}
+#userDataModal{
+	padding: 0;
+	margin: 0;
+	border: none;
+}
+#userDataModal .modal-dialog{
+	width: 100%;
+}
+
+/*岗位选择器*/
+.selector .modal-dialog{
+	margin: 0px;
+	width: 100%;
+}
+.selector .modal-content{
+	border-radius:0px;
+  border: none;
+}
+.selector .modal-header{
+	position:relative;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 52px;
+	line-height: 52px;
+	padding: 0;
+	font-size: 18px;
+	text-align: center;
+	background-color: #3871B8;
+	color: #fff;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+}
+.stationDataWrapper{
+	position: absolute;
+	z-index: 2;
+	top: 51px;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	background: #fff;
+	overflow: hidden;
+}
+.stationDataScroller{
+	position: absolute;
+	z-index: 2;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 100%;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+.stationDataWrapper .modal-body{
+	margin-bottom: 0px;
+	padding: 0px;
+}
+.stationDataGroup{
+	margin-bottom: 0px;
+}
+.stationDataGroup .list-group-item{
+	border-radius: 0px;
+	padding: 6px 10px;
+}
+.stationDataGroup .title{
+	position: relative;
+	display: block;
+	padding: 2px 15px;
+	margin-bottom: -1px;
+	border: 1px solid #ddd;
+}
+.stationDataGroup .list-group-item .name-box {
+	position: relative;
+	margin: 0px 0px 0px 40px;
+	display: block;
+	height: 40px;
+}
+.stationDataGroup .list-group-item .name-box .job{
+	overflow: hidden;
+	position: absolute;
+	top: 10px;
+	left: 15px;
+	font-size: 14px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+	margin: 1px 0 3px;
+}
+
+.stationDataGroup .checkbox{
+	left: 15px;
+}
+

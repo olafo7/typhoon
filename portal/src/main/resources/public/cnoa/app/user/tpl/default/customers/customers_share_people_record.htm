@@ -1,0 +1,17 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.user.customers.share.record");
+CNOA.user.customers.share.record.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_customers", "app/user/scripts/cnoa.customers.js", function(){
+		CNOA_user_customers_share_record = new CNOA_user_customers_share_recordClass();
+		Ext.getCmp(CNOA.user.customers.share.record.parentID).add(CNOA_user_customers_share_record.mainPanel);
+		Ext.getCmp(CNOA.user.customers.share.record.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+?>

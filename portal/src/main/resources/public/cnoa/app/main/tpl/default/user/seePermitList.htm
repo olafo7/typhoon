@@ -1,0 +1,203 @@
+<html>
+<head>
+<title>人员权限列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js"></script>
+
+<style>
+    #Headerdiv{ overflow:hidden;float:left;}
+    .fixedcol{ overflow-y:hidden;}
+    .tablediv{overflow: scroll;position:relative}
+	span{display:inline-block;width:80px;}
+	th, td, table, div{padding:0; margin:0}
+	
+	*{font-size: 12px;}
+	table{max-width:100%;border-collapse:collapse;border-spacing:0;background-color:transparent;}
+	.table{width:100%;margin-bottom:18px;}.table th,.table td{padding:8px;line-height:18px;text-align:center;border-top:1px solid #dddddd;margin-top:15px;}
+	.table th{font-weight:bold;}
+	.table th span{display:inline-block;width:70px;}
+	.table thead th{vertical-align:bottom;}
+	.table colgroup+thead tr:first-child th,.table colgroup+thead tr:first-child td,.table thead:first-child tr:first-child th,.table thead:first-child tr:first-child td{border-top:0;}
+	.table tbody+tbody{border-top:2px solid #dddddd;}
+	.table-condensed th,.table-condensed td{padding:4px 5px;}
+	.table-bordered{border:1px solid #dddddd;border-left:0;border-collapse:separate;*border-collapse:collapsed;}
+	.table-bordered th,.table-bordered td{border-left:1px solid #dddddd;}
+	.table-bordered thead:first-child tr:first-child th,.table-bordered tbody:first-child tr:first-child th,.table-bordered tbody:first-child tr:first-child td{border-top:0;}
+	
+	.table-striped tbody tr:nth-child(odd) td,.table-striped tbody tr:nth-child(odd) th{background-color:#f9f9f9;}
+	.table tbody tr:hover td,.table tbody tr:hover th{background-color:#cfc;}
+	#Headerdiv td, #Columndiv td{background-color:#ccc;}
+	.cnoa_color_gray{color:gray;}
+	.cnoa_color_blue{color:blue;}
+	.cnoa_ico_rig span{color: #390;font-size: 25px;}
+	.first_th{border-left:1px solid #dddddd;border-top:1px solid #dddddd;}
+	.bg td{background-color:#FC9!important}
+</style>
+
+<script>
+
+    $(document).ready(function () {
+		fnAdjustTable();
+        changesize();
+      
+    });
+	//设置个区域的大小
+	function changesize(){
+		var _h = $(window).height();
+        var _w = $(window).width();
+		
+        //然后设定相关div的高度
+        var _head_h = $("#thead").height();
+        $("#maindiv").height(_h - _head_h);
+        $("#Columndiv").height(_h - _head_h - 18);//18是空出了相应滚动条的距离
+        var _clo_w = $("#Columndiv").width();
+        $("#Headerdiv").width(_w - _clo_w-18 );
+        $("#maindiv").width(_w - _clo_w);
+	}
+	//控制表格高度一致
+    function fnAdjustTable() {
+		var heights = [];
+		$('#Columndiv table tr').each(function(i){
+			var height = $(this).height();
+			if ($.browser.msie) {
+				height = height >= 51 ? height + 2 : height;
+			}
+			heights.push(height);
+		});
+		
+		$("#maindiv table tr").each(function(i){
+			//调整宽度
+			if(i==0 || i==1){
+				var h = $(this).height();
+				heights[i] = h > heights[i] ? h : heights[i];
+				if ($.browser.msie) {
+					heights[i] = heights[i] >= 51 ? heights[i] + 2 : heights[i];
+				}
+				$('#Columndiv table tr:nth-child('+(i+1)+')').height(heights[i]);
+			}
+			$(this).height(heights[i]);
+			
+			//添加单击事件
+			$(this).click(function(){
+				if($(this).hasClass('bg')){
+					$(this).removeClass('bg');
+				}else{
+					$(this).addClass('bg');
+				}
+			});
+			
+			//添加右击菜单事件
+//			$.each($(this).children(), function(i, n){
+//				this.oncontextmenu = function(){
+//					alert(222);
+//				}
+//			});
+		});
+    }
+
+    //滑动事件
+    function fnScroll () {
+        $('#Headerdiv').scrollLeft($('#maindiv').scrollLeft());
+        $('#Columndiv').scrollTop($('#maindiv').scrollTop());
+    }
+	
+	$(window).resize(function(){
+		fnAdjustTable();
+		changesize();
+	});
+	
+</script>
+
+</head>
+<body scroll="no" style=" margin:0;padding:0;">
+<div id="tablediv" style="overflow:hidden;">
+<table cellspacing="0" cellpadding="0">
+  <thead id="thead">
+	  <tr>
+	    <th class="first_th"></th>
+	    <th>
+	    	<div id="Headerdiv">
+		    	<table cellspacing="0" cellpadding="0" id="headertable" class="table table-bordered table-striped" style="margin:0px;border-bottom:none;">
+			        <tbody>
+			          <tr>
+			            <?php 
+							foreach($truename as $v){
+								echo '<td><span>', $v,'</span></td>';
+							}
+							unset($truename);
+						?>
+			          </tr>
+			        </tbody>
+			 	</table>
+	       </div>       
+	    </th>
+	  </tr>
+  </thead>
+  <tbody><tr>
+    <td valign="top">
+      <div id="Columndiv" class="fixedcol">
+        <table cellspacing="0" cellpadding="0" class="table table-bordered table-striped" style="border-right:none;">
+	        <tbody>
+				<tr><td><span>所在部门</span></td></tr>
+				<tr><td><span>担任职位</span></td></tr>
+				<tr><td><span>权限是否自定义</span></td></tr>
+	          <?php
+			  	foreach($permitsTh as $v){
+					if($v['area']==1){
+						$v['area'] = '<br /><span class="cnoa_color_blue">[有范围]</span>';
+					}else{
+						$v['area'] = '<br /><span class="cnoa_color_gray">[无范围]</span>';
+					}
+					echo '<tr><td><span>', $v['name'], $v['area'], '</span></td></tr>';
+				}
+				unset($permitsTh)
+			  ?>
+	        </tbody>
+		</table>
+      </div>
+    </td>
+
+    <td valign="top">
+      <div id="maindiv" class="tablediv" onscroll="fnScroll()">
+        <table cellspacing="0" cellpadding="0" id="content_table" class="table table-bordered table-striped">
+	        <tbody>
+	          <?php
+			  	echo '<tr>';
+			  	foreach($structs as $v){
+					echo '<td>', $v, '</td>';
+				}
+				echo '</tr><tr>';
+				foreach($stations as $v){
+					echo '<td>', $v, '</td>';
+				}
+				echo '</tr><tr>';
+				foreach($customPermit as $v){
+					echo '<td>', $v, '</td>';
+				}
+				echo '</tr>';
+				unset($structs, $stations, $customPermit, $users);
+				
+				foreach($permits as $tr){
+					echo '<tr>';
+					foreach($tr as $td){
+						if($td == ''){
+							echo '<td></td>';
+						}else{
+							echo '<td class="cnoa_ico_rig"><span>√</span></td>';
+						} 
+					}
+					echo '</tr>';
+				}
+				unset($permits)
+			  ?>
+	        </tbody>
+		</table>
+      </div>
+    </td>
+  </tr>
+</tbody></table>
+
+
+</div>
+</body>
+<html>

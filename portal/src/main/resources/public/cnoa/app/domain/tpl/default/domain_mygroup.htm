@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.domain.domain.mygroup");
+CNOA.domain.domain.mygroup.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+    loadScripts("sm_domain_domain2", "app/domain/scripts/domain_mygroup.js", function(){
+		CNOA_domain_domain_mygroup = new CNOA_domain_domain_mygroupClass();		
+		Ext.getCmp(CNOA.domain.domain.mygroup.parentID).add(CNOA_domain_domain_mygroup.mainPanel);
+		Ext.getCmp(CNOA.domain.domain.mygroup.parentID).doLayout();
+    });    
+});
+</script>
+CNOA;
+
+#echo loadJavascript("./app/domain/scripts/domain_mygroup.js");
+?>

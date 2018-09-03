@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="resources/font/m/font-glyphs/font-glyphs.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/iscroll5.js"></script>
+<!-- 字母排序 -->
+<script src="scripts/m/email/charfirst.pinyin.js"></script>
+<script src="scripts/m/email/sort.js"></script>
+<script src="scripts/jquery/sweetalert.min.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<!-- 提交 -->
+<script src="scripts/jquery/jquery.form.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script>
+var dynamicLoading = {
+  css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var link = document.createElement('link');
+      link.href = path+"?rnd="+Math.random();
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      head.appendChild(link);
+  },
+  js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.src = path+"?rnd="+Math.random();
+      head.appendChild(script);
+  }
+}
+dynamicLoading.js("app/communication/scripts/m/email/write.js");
+dynamicLoading.css("app/communication/css/m/email/write.css");
+</script>
+</head>
+
+<body>
+<div id="header">
+    <span>发邮件</span>
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack">返回</span>
+    <span class="btn-add-ico" aria-hidden="true" id="btnAdd">发送</span>
+</div>
+<div id="wrapper">
+  <div id="scroller">
+    <table class="table_form" width="90%" border="1">
+     <tbody>
+        <tr>
+          <td class="fieldLable">接收人</td>
+          <td class="input choice modSendee" id="modSendee" data-checktype="true" data-toggle="modal" data-target="#userDataModal">
+            <span class="glyphicon glyphicon-search search-icon people"></span>
+            <div class="modSend" data-checktype="true" data-toggle="modal" data-target="#userDataModal" readonly>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fieldLable">抄送人</td>
+          <td class="input choice modSendee" id="modSendee2" data-checktype="true" data-toggle="modal" data-target="#userDataModal">
+            <span class="glyphicon glyphicon-search search-icon people"></span>
+            <div class="modSend" data-checktype="true" data-toggle="modal" data-target="#userDataModal" readonly>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fieldLable">密送</td>
+          <td class="input choice modSendee" id="modSendee3" data-checktype="true" data-toggle="modal" data-target="#userDataModal">
+            <span class="glyphicon glyphicon-search search-icon people"></span>
+            <div class="modSend" data-checktype="true" data-toggle="modal" data-target="#userDataModal" readonly>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fieldLable">附件</td>
+          <td class="input">
+            <span class="glyphicon glyphicon-paperclip search-icon fs"></span>
+            <div class="upload" readonly="" data-toggle="modal" data-target="#myModal">上传附件</div>
+            <div class="fslist"></div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fieldLable">外部发信账号</td>
+          <td class="input choice modSendee" id="modSendee4" data-checktype="true" data-toggle="modal" data-target="#userDataModal">
+            <!-- <span class="glyphicon glyphicon-search search-icon people"></span> -->
+            <!-- <div class="modSend" data-checktype="true" data-toggle="modal" data-target="#userDataModal" readonly>
+            </div> -->
+          </td>
+        </tr>
+        <tr>
+          <td class="fieldLable">标题</td>
+          <td class="input">
+            <input type="text" class="tit">
+          </td>
+        </tr>
+        <tr>
+          <td class="fieldLable">内容</td>
+          <td class="input">
+
+            <textarea name="myEditor" id="myEditor" class="myEditor"></textarea>
+          </td>
+        </tr>
+     </tbody>
+    </table>
+  </div>
+</div>
+<div id="hideHtml" style="display:none"></div>
+<!--*/人员选择器模态框 *-->
+<div class="modal userDataModal" id="userDataModal" tabindex="-1" role="dialog" data-source="" data-checktype="" data-sid='1'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--*/选择器头部 *-->
+      <div class="modal-header">
+        <span class="glyphicon glyphicon-chevron-left glyphiconLeft" id="sback" data-fid="0" aria-hidden="true"></span>
+        <span class="dif">选择人员</span>
+        <span class="glyphicon glyphicon-remove glyphiconRight" id="sClose" aria-hidden="true" data-dismiss="modal" aria-label="Close"></span>
+        <div class="row search">
+          <div class="col-xs-12">
+            <input type="text" class="form-control input-m" id="search" placeholder="搜索">
+          </div>
+        </div>
+      </div>
+      <!--*/用户和部门 *-->
+      <div class="userDataWrapper" id="userDataWrapper">
+        <div class="userDataScroller" id="userDataScroller">
+          <div class="modal-body">
+            <ul class="list-group userDataGroup" id="userDataGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/存放待删除的用户 *-->
+      <div class="userWrapper" id="userWrapper">
+        <div class="userScroller" id="userScroller">
+          <div class="modal-body">
+            <ul class="list-group userGroup" id="userGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/待删除用户区域的操作按钮 *-->
+      <div class="opts-box">
+        <button type="button" class="btn btn-primary btn-sm opts" id="sFinish" aria-hidden="true" data-dismiss="modal" aria-label="Close" disabled>完成</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 外部发信 -->
+
+<!-- 上传附件 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog enclosure">
+      <div class="modal-content up">
+         <div class="modal-body">
+            <span class="word">上传附件</span>
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <br/>
+            <a href="javascript:void(0);" class="file">添加附件
+              <input type="file" name="upload_file" class="uploaded">
+            </a>
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+<div id="loading_mask"></div>
+<!--/*Iscroll5* -->
+<script src="scripts/jquery/iscroll-probe.js"></script>
+<!-- UMeditor配置文件 -->
+<link href="../../../../../../../scripts/m/UMeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../../../../../../../scripts/m/UMeditor/umeditor.config.js"></script>
+<!-- UMeditor编辑器源码文件 -->
+<script type="text/javascript" src="../../../../../../../scripts/m/UMeditor/umeditor.min.js"></script>
+</body>
+</html>

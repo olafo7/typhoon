@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.set.sort");
+CNOA.wf.set.sort.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_set_sort = new CNOA_wf_set_sortClass();
+		Ext.getCmp(CNOA.wf.set.sort.parentID).add(CNOA_wf_set_sort.mainPanel);
+		Ext.getCmp(CNOA.wf.set.sort.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+### echo loadJavascript(array("./app/wf/scripts/set_sort.js"));
+?>

@@ -1,0 +1,127 @@
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js?v=v 3.0.39"></script>
+
+<style type="text/css">
+	.table-block{
+	   margin-top: 15px;
+	   border:1px #cccccc solid;
+	   line-height:20px;
+	   font-size:9pt;
+	   border-collapse:collapse;
+	}
+
+	.table-block .table-header td,
+	.table-block td.table-header{
+	   height:30px;
+	   background:#c4de83;
+	   border:1px #9cb269 solid;
+	   font-weight:bold;
+	   color:#383838;
+	   line-height:23px;
+	   padding:0px;
+	   padding-left:5px;
+	}
+
+	.table-block .table-data td,
+	.table-block td.table-data{
+	   background: #FFFFFF;
+	   border-bottom: 1px #cccccc solid;
+	   border-right: 1px #cccccc solid;
+	   padding: 3px;
+	   height: 30px;
+	}
+
+	.table-block .table-content td,
+	.table-block td.table-content{
+	   background: #f2f2f2;
+	   border-bottom: 1px #cccccc solid;
+	   border-right: 1px #cccccc solid;
+	   padding: 3px;
+	   height: 30px;
+	}
+
+	.table-block .table-button td,
+	.table-block td.table-button{
+	   background: #FFFFFF;
+	   border: 1px #cccccc solid;
+	   padding: 3px;
+	   height: 30px;
+	}
+
+	.table-block .table-header td table td,
+	.table-block .table-data td table td,
+	.table-block .table-left td table td,
+	.table-block .table-content td table td,
+
+	.table-block .table-left td,
+	.table-block td.table-left{
+	   background: #c4de83;
+	   border-bottom: 1px #a7bd74 solid;
+	   padding: 3px;
+	   height: 30px;
+	}
+
+	.big-button {
+		width: 100px;
+		height: 40px;
+	}
+</style>
+</head>
+<body>
+<table class="table-block" width="80%" align="center" id='submitTable'>
+	<tbody>
+		<tr>
+			<td class="table-content" >计算公式: <?php echo $calculateGS ? $calculateGS : '请先编辑计算公式' ?>
+		</tr>
+		<?php echo $verifyHtml ?>
+
+		<tr align="right" class="table-button">
+			<td colspan="2">
+				<input type="submit" value="计算结果" <?php echo $hiddenButton ? 'hidden' : '' ?> name='verifyGS' onclick="JavaScript:verifyGS(<?php echo $fieldId.','.$cid;?>)" class="big-button">
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
+
+<script language="javascript">
+	function verifyGS(fieldId, cid){
+		var data = {};
+		data['pFieldId'] = fieldId;
+		data['cid'] = cid;
+
+		$('#submitTable').find('input').each(function(t,th){
+			if (th.name != 'verifyGS') {
+				var name = th.name;
+				data[name] = th.value;
+			}
+		})
+
+		$.ajax({
+			type: 'POST',
+			url: "index.php?app=salary&func=basic&action=cardinal&task=getVerifyResult",
+			data: data,
+			success: function(data){
+				var data = JSON.parse(data);
+				if (data.failure) {
+					alert(data.msg);
+				} else if (data.success) {
+					alert('计算结果：' + data.data);
+				}
+			}
+		});
+	}
+
+	function checkNum(th){
+		var value = th.value,
+			regex = /^0\.\d*$|^[1-9]\d*\.\d*$|^0$|^[1-9]\d*$/;
+
+		if (value.match(regex) == null && value != '') {
+			alert('输入结果必须大于或等于0且只保留两位小数');
+		}
+	}
+</script>

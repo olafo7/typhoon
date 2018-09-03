@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.salary.basic.cardinal");
+CNOA.salary.basic.cardinal.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_salary_salary", "app/salary/scripts/cnoa.salary.js", function(){
+		CNOA_salary_basic_cardinal = new CNOA_salary_basic_cardinalClass();
+		Ext.getCmp(CNOA.salary.basic.cardinal.parentID).add(CNOA_salary_basic_cardinal.mainPanel);
+		Ext.getCmp(CNOA.salary.basic.cardinal.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+// echo loadJavascript(array("./app/salary/scripts/salary_basic_cardinal.js"));
+
+?>

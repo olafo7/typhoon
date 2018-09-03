@@ -1,0 +1,158 @@
+<html>
+<head>
+<title>导入联系人列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="/cnoa/resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js"></script>
+
+<style>
+body{
+	margin: 0;
+	padding: 0;
+}
+.TableBlock tr{
+	border-bottom: 1px solid #C5C5C5;
+}
+.TableBlock td{
+	overflow: hidden;
+	width: 110px;
+}
+.TableBlock td select{
+	overflow: hidden;
+	width: 110px;
+}
+</style>
+<script language="javascript">
+<!--
+	$(document).ready(function(){
+		$("#checkAll").change(function(){
+			$("input[id^='ck_']").each(function(){
+				$(this).attr("checked", $("#checkAll").attr("checked"));
+			});
+		});
+
+		$("select[name^='select']").each(function(index1, domEle1){
+			$(domEle1).change(function(){			
+				$("select[name^='select']").each(function(index2, domEle2){
+					if(($(domEle2).val() != '0') && ($(domEle2).val() == $(domEle1).val()) && ($(domEle2).attr("name") !== $(domEle1).attr("name"))){
+						alert("已经选择了\""+$(domEle2).find("option:selected").text()+"\"");
+						$(domEle1).attr("value","0");
+						return;
+					}
+				});
+			});
+		});
+	});
+
+	function ckForm(){
+		var cked = false;
+		$("select[name^='select']").each(function(index1, domEle1){
+			if($(domEle1).val() != 0){
+				cked = true;
+			}
+		});
+		if(!cked){
+			alert("请选择要导入的数据所对应的字段");
+			return false;
+		}
+		
+		var cked2 = false;
+		$("input[id^='ck_']").each(function(index2, domEle2){
+			if($(domEle2).attr("checked") == true){
+				cked2 = true;
+			}
+		});
+		if(!cked2){
+			alert("请选择要导入的数据");
+			return false;
+		}
+
+		var name_selected = false;
+		$("select[name^='select']").each(function(index1, domEle1){
+			if($(domEle1).val() == "name"){
+				name_selected = true;
+			}
+		});
+		if(!name_selected){
+			alert("没有选择联系人列，不能导入，因为联系人是必选项");
+			return false;
+		}
+		
+		var email_selected = false;
+		$("select[name^='select']").each(function(index1, domEle1){
+			if($(domEle1).val() == "email"){
+				email_selected = true;
+			}
+		});
+		if(!email_selected){
+			alert("没有选择Email列，不能导入，因为Email是必选项");
+			return false;
+		}
+		
+		if(cked2 && cked){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function submit(){
+		if(ckForm()){
+			$("#importForm").submit();
+		}
+	}
+//-->
+</script>
+
+</head>
+<body class="bodycolor" topmargin="5">
+<form name="importForm" id="importForm" method="post" action="index.php?app=communication&func=email&action=index&task=import_linkman_insert" onsubmit="return ckForm();">
+
+<table class="TableBlock">
+  <!-- <tr>
+    <td nowrap class="TableHeader " colspan="<?php echo $GLOBALS['totalColum']+1;?>"><b>&nbsp;导入客户列表</b></td>
+  </tr> -->
+  
+  <tr>
+    <td height="35" colspan="<?php echo $GLOBALS['totalColum']+1;?>" align="left" nowrap class="TableContent">请修正各列的实际字段再导入[未提交前请勿刷新及关闭本窗口]</td>
+  </tr>
+  <tr>
+    <td height="35" colspan="<?php echo $GLOBALS['totalColum']+1;?>" align="left" nowrap class="TableContent">要导入的分类:<select name="sid" id="sid"><option value="0"></option><?php
+foreach($GLOBALS['groupList'] AS $v){
+	echo "<option value='{$v['id']}'>{$v['name']}</option>";
+}
+	?></select></td>
+  </tr>
+  <tr>
+    <td nowrap class='TableContent' style="width: 25px;">&nbsp;<?=$row?></td>
+	<td nowrap class='TableContent' style="width: 25px;"><input type='checkbox' checked="checked" id="checkAll" /></td>
+    <?php for($i=1;$i<$GLOBALS['totalColum'];$i++){ ?>
+	<td nowrap class='TableContent'>
+	<select name="select[<?=$i?>]" id="select<?=$i?>">
+		<option value="0"></option>
+		<option value="name">联系人</option>
+		<option value="email">Email</option>
+	</select>
+	</td>
+    <? } ?>
+  </tr>
+  <?php $row = 0;foreach($GLOBALS['data'] as $v1){
+	 $row++;$colum=1; ?>
+  <tr>
+    <td nowrap class='TableContent' style="width: 25px;">&nbsp;<?=$row?></td>
+    <td nowrap class='TableContent' style="width: 25px;">&nbsp;<input type='checkbox' name="ck[<?=$row?>]" id="ck_<?=$row?>" <?php if($row!=1){ ?>checked="checked"<?php } ?> /></td>
+  <?php foreach($v1 as $v2){
+	 ?>
+    <td nowrap ><input type='text' name="colum[<?=$row?>][<?=$colum++?>]" value="<?=$v2?>" style="width: 110px;" /></td>
+  <?php } ?>
+  </tr>
+  <?php } ?>
+
+  <!-- <tr>
+    <td height="35" colspan="<?php echo $GLOBALS['totalColum']+1;?>" align="left" nowrap class="TableContent"><input type="submit" name="button" id="button" value="开始导入"></td>
+  </tr> -->
+</table>
+
+</form>
+</body>
+</html>

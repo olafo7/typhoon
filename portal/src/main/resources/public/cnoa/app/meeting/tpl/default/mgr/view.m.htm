@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="resources/css/m/scale.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="resources/scripts/m/scale.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/meeting/scripts/m/view.js");
+dynamicLoading.js("scripts/jquery/iospopwin.js");
+dynamicLoading.css("app/meeting/css/m/view.css");
+</script>
+</head>
+<body>
+<div id="header">会议详情
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+</div>
+<div class="reader">点击查看阅读情况</div>
+<div id="wrapper">
+<table class="TableBlock" width="100%" align="center" style="word-break: break-all;">
+    <tr>
+        <td nowrap align='left' width='120'  class='TableContent'>会议名称：</td>
+        <td class='TableData name' colspan='3'></td>  
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent'>会议主题：</td>
+        <td class='TableData title' colspan='3' ></td>    
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120'  class='TableContent'>会议类型：</td>
+        <td class='TableData type' colspan='3' ></td>          
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120'  class='TableContent'>分发意见：</td>
+        <td class='TableData opinion' colspan='3' ></td>          
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent'>会议室计划人数：</td>
+        <td class='TableData plan' colspan='3' ></td>    
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120'  class='TableContent'>会议室名称：</td>
+        <td class='TableData meetingroomName' colspan='3' ></td>     
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent'>容纳人数：</td>
+        <td class='TableData contain' colspan='3' ></td>    
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120'  class='TableContent'>会议开始时间：</td>
+        <td class='TableData stime' colspan='3' ></td>        
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent'>会议结束时间：</td>
+        <td class='TableData etime' colspan='3' ></td>    
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120'  class='TableContent'>会议室管理人：</td>
+        <td class='TableData mgrman' colspan='3'  ></td>      
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent'>会议纪要人：</td>
+        <td class='TableData markname' colspan='3' ></td>    
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent'>会议地址：</td>
+        <td class='TableData address' colspan='3' ></td>    
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent'>会议出席人：</td>
+        <td class='TableData attend' colspan='3' ></td>    
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent'>会议其他出席人：</td>
+        <td class='TableData otherattend' colspan='3' ></td>    
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent'>会议查看人：</td>
+        <td class='TableData viewer' colspan='3' ></td>    
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent'>已确定参加人员：</td>
+        <td class='TableData join' colspan='3' ></td>    
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent'>已确定不参加人员：</td>
+        <td class='TableData njoin' colspan='3' ></td>    
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent' >会议室设备：</td>
+        <td class='TableData equipment' colspan='3' ></td>
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent' >会议描述：</td>
+        <td class='TableData descripts' colspan='3'></td>
+    </tr>
+    <tr>
+        <td nowrap align='left' width='120' class='TableContent' >会议纪要：</td>
+        <td class='TableData markdetail' colspan='3'></td>
+    </tr>
+</table>
+<div class='markAttachT'>会议纪要附件：</div>
+<div id="markAttach"></div>
+<div class='attachT'>附件：</div>
+<div id="myAttach"></div>
+</div>
+<!--%* 图片在线浏览 *%-->
+<div class="imgzoom_pack">
+  <div class="imgzoom_x"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+  <div class="imgzoom_img">
+    <img src="" />
+  </div>
+</div>
+
+<div class="readerContent">
+    <div class="readHeader"><span class="readTit">阅读情况</span>
+    <span class="glyphicon glyphicon-remove btn-back-ico" aria-hidden="true" id="btnCancel"></span>
+    </div>
+    <table class="bordered">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>所属部门</th>        
+                <th>姓名</th>
+                <th>阅读时间</th>
+            </tr>
+        </thead>
+        <tbody id="con_box"></tbody>
+    </table>
+    <div class="reason"></div>
+</div>
+<!--%以下js文件必须在DOM加载完成之后再引用进来-->
+<script src="scripts/jquery/iscroll.js"></script>
+</body>
+</html>

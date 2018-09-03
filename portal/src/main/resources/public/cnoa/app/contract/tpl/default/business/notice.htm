@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.contract.business.notice");
+CNOA.contract.business.notice.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_contract_business", "app/contract/scripts/cnoa.contract_business.js", function(){
+		CNOA_contract_business_notice = new CNOA_contract_business_noticeClass();
+		Ext.getCmp(CNOA.contract.business.notice.parentID).add(CNOA_contract_business_notice.mainPanel);
+		Ext.getCmp(CNOA.contract.business.notice.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/contract/scripts/business_notice.js"));
+?>

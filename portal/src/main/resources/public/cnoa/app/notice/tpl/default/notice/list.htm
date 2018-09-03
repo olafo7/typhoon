@@ -1,0 +1,30 @@
+<?php
+$GLOBALS['CNOA_NOTICE_FROM'] = json_encode($GLOBALS['CNOA_NOTICE_FROM']);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.notice.notice.list_{$GLOBALS['from']}");
+CNOA.notice.notice.list_{$GLOBALS['from']}.parentID = "{$GLOBALS['app']['parentid']}";
+
+var CNOA_notice_notice_list_{$GLOBALS['from']};
+
+Ext.onReady(function() {
+	loadScripts("sm_notice_notice", "app/notice/scripts/cnoa.notice.js", function(){
+		var init = function(){
+			CNOA_notice_notice_list_{$GLOBALS['from']} = new CNOA_notice_notice_listClass("{$GLOBALS['from']}");
+			Ext.getCmp(CNOA.notice.notice.list_{$GLOBALS['from']}.parentID).add(CNOA_notice_notice_list_{$GLOBALS['from']}.mainPanel);
+			Ext.getCmp(CNOA.notice.notice.list_{$GLOBALS['from']}.parentID).doLayout();
+		}
+		var iniVID = setInterval(function(){
+			if(typeof(CNOA_notice_notice_listClass) == "function"){
+				clearInterval(iniVID);
+				init();
+			}
+		}, 100);
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/notice/scripts/notice_list_common.js", "./app/notice/scripts/notice_list_{$GLOBALS['from']}.js"));
+?>

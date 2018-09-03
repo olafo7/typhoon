@@ -1,0 +1,92 @@
+<div class="wf_div_ct" style="border-bottom:1px solid #B1CEEB;"> 
+  <div class="header" id="${data:id_flowTitle}" style="cursor:pointer;backround-color:#C2CFEF;" onclick="CNOA_wf_use_dealflow.displayFlowInfo();" ext:qtip="${data:str_flowShowHide}"><span>${data:str_flowInfo}</span><a class="t_right">${data:str_flowShowDetail}</a></div>
+  <div class="body" id="${data:id_flowPanel}" style="display:none;">
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD">
+	  <tr>
+	    <td height="24" align="right" valign="middle" class="lable">${data:str_flowNumber}:&nbsp;</td>
+	    <td valign="middle" class="field">${flowNumber}</td>
+		  <td height="24" align="right" valign="middle" class="lable">${data:str_flowInfo1}:&nbsp;</td>
+      <td valign="middle" class="field">${level}</td>
+  	  </tr>
+	  <tr> 
+        <td height="24" width="15%" align="right" valign="middle" class="lable">${data:str_flowFreeTitle}:&nbsp;</td>
+	    <td width="35%" valign="middle" class="field" id="user_defined_flow_name">${flowName}</td>
+        <td width="15%" align="right" valign="middle" class="lable">${data:str_flowStatus}:&nbsp;</td>
+        <td width="35%" valign="middle" class="field">${status}</td>
+      </tr>
+      <tr>
+        <td height="24" align="right" valign="middle" class="lable">${data:str_flowInitiator}:&nbsp;</td>
+        <td valign="middle" class="field">${uname}</td>
+        <td align="right" valign="middle" class="lable">${data:str_flowInitTime}:&nbsp;</td>
+        <td valign="middle" class="field">${posttime}</td>
+      </tr>
+      <tr> 
+        <td height="60" align="right" valign="middle" class="lable">${data:str_flowReason}:&nbsp;</td>
+        <td height="60" class="field" colspan="3">${reason}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="wf_div_ct" style="margin-top:10px" id="wf_deal_formct"> 
+  <div class="header" >${data:str_flowTextInfo}<img id="wf_form_new_tushi" src="./resources/images/cnoa/wf-tushi.gif" style="float:right;"></div>
+  <div class="body" style="background-color:#EDEDED;" id="wf_formct_body">
+  	<table class="wf_div_cttb" border="0" align="center" cellpadding="0" cellspacing="0">
+	  <tr>
+	    <td class="wf_bd wf_tl"></td>
+	    <td class="wf_bd wf_t"></td>
+	    <td class="wf_bd wf_tr"></td>
+	  </tr>
+	  <tr>
+	    <td class="wf_bd2 wf_l"></td>
+	    <td class="wf_c wf_form_contentct wf_form_content_dealct">
+	    	<div id="${data:id_formPanel}" class="wf_c wf_form_content wf_form_content_deal" signature_position="true"></div>
+	    </td>
+	    <td class="wf_bd2 wf_r"></td>
+	  </tr>
+	  <tr>
+	    <td class="wf_bd wf_bl"></td>
+	    <td class="wf_bd wf_b"></td>
+	    <td class="wf_bd wf_br"></td>
+	  </tr>
+	</table>
+  </div>
+</div>
+
+<!--自由流程表单信息-->
+<div class="wf_div_ct" style="margin-top:10px" id="wf_deal_free_formct"> 
+  <div class="header" >${data:str_flowFormInfo}</div>
+  <div class="body" style="background-color:#EDEDED;" id="${data:id_freeFlow_formPanel}">
+  	<table class="wf_div_cttb" border="0" align="center" cellpadding="0" cellspacing="0">
+	</table>
+  </div>
+</div>
+
+<div id='${data:id_displayAt}' class="wf_div_ct" style="display:none;margin-top:10px" > 
+  <div class="header" >${data:str_flowAttach}</div>
+  <div class="body" id="${data:id_attachPanel}"> 
+    <table id="${data:id_attachTable}" class="attachTable" style="border-collapse:separate;border-width: 1px;" width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#CDCDCD">
+      <tr> 
+        <td height="24" align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowAttachName}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowUploadBy}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowUploadTime}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowOpt}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div id='${data:id_displaySms}' class="wf_div_ct" style="display:none;margin-top:10px" > 
+  <div class="header" >${data:str_flowSMS}</div>
+  <div class="body" id="${data:id_smsPanel}"> 
+    <table id="${data:id_smsTable}" class="attachTable" style="border-collapse:separate;border-width: 1px;" width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#CDCDCD">
+      <tr> 
+        <td align="center" bgcolor="#F6F6F6" width="16%" height="24">${data:str_flowStep}</td>
+        <td align="center" bgcolor="#F6F6F6" width="16%">${data:str_flowMobileNum}</td>
+        <td align="center" bgcolor="#F6F6F6" width="16%">${data:str_flowContent}</td>
+        <td align="center" bgcolor="#F6F6F6" width="16%">${data:str_flowPosttime}</td>
+        <td align="center" bgcolor="#F6F6F6" width="16%">${data:str_flowSender}</td>
+        <td align="center" bgcolor="#F6F6F6" width="16%">${data:str_flowOpt}</td>
+      </tr>
+    </table>
+  </div>
+</div>

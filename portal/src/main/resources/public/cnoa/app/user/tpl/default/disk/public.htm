@@ -1,0 +1,21 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.disk.public");
+CNOA.user.disk.public.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.user.disk.public.goDate = "{$GLOBALS['$goDate']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_disk", "app/user/scripts/cnoa.disk.js", function(){
+		CNOA_user_disk_index = new CNOA_user_disk_publicClass();
+		Ext.getCmp(CNOA.user.disk.public.parentID).add(CNOA_user_disk_index.mainPanel);
+		Ext.getCmp(CNOA.user.disk.public.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/disk_public.js"));
+?>

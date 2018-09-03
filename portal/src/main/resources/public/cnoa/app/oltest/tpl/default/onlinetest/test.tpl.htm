@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><?php echo $paperTitle ?></title>
+	<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js?v=v 3.0.75"></script>
+	<link rel="stylesheet" type="text/css" href="/cnoa/resources/css/oltest/viewTest.css" />
+</head>
+<body>
+	<div class="main">
+		<input id="dtime" type="hidden" name="" value="<?php echo $getMinTime ?>">
+		<div id="showTime"></div>
+		<?php if($paperTitle) : ?>
+		<div id="header">
+			<div class="paperinfo">
+				<div class="paperuser"><?php echo $userName ?></div>
+				<div class="paperCount">题目总数:&nbsp;<?php echo $titleNum ?> 题</div>
+				<div class="paperTime">考试时间:&nbsp;<?php echo $dblist['ttime'] ?> 分钟</div>
+			</div>
+			<div class="paperTitle"><?php echo $paperTitle ?></div>
+		</div>
+		<div class="fengexian"></div>
+		<div class="time">
+			<div class="stime">●  开始时间:&nbsp;<?php echo $stime ?></div>
+			<div class="etime">●  结束时间:&nbsp;<?php echo $etime ?></div>
+		</div>
+		<div class="paperContent">
+		<?php else : ?>
+				<div class="noTest"><?php echo $writedText ? $writedText : '无考试信息' ?></div>
+				<style type="text/css">
+			        #form {
+			          background-color: #fff;
+			        }
+			    </style>
+		<?php endif ?>
+		<form id="form" name="form1" action="index.php?app=oltest&func=oltest&action=test&task=submitFrom" method="post" accept-charset="utf-8">
+			<!-- 单选题 -->
+			<input type="hidden" name="record_id" value="<?php echo $dblist['id'] ?>">
+			<?php if(!empty($radioList)) : ?>
+					<div class="title"><span></span>单选题</div>
+				<!-- 题目 -->
+					<div class="titleContent">
+				<?php foreach($radioList as $value) : ?>
+						<div class="xiaoTitle"><?php echo $value['qid']."、".$value['title']."( ".$value['score']."分 )" ?></div>
+				<!-- 图片 -->
+				<?php if(!empty($value['images'])) : ?>
+					<p>
+						<?php foreach($value['images'] as $url) : ?>
+							<img src="<?php echo $url ?>">
+						<?php endforeach ?>
+					</p>
+				<?php endif ?>
+				<!-- 答案选项 -->
+						<div style="margin-top:10px;">
+					<?php if(!empty($value['answer'])) : ?>
+					<?php foreach ($value['answer'] as $k => $v) : ?>
+								<input style="margin: 10px 10px 10px 20px;" type="radio" id="radio_answer_<?php echo $value['id'].$k ?>" name="radio_answer_<?php echo $value['id']?>" value="<?php echo $k ?>"><label for="radio_answer_<?php echo $value['id'].$k ?>"><?php echo $v ?></label><br />
+					<?php endforeach ?>
+					<?php endif ?>
+				</div>
+						<br/>
+				<?php endforeach ?>
+					</div>
+			<?php endif ?>
+				<br/>
+
+				<!-- 多选题 -->
+				<?php if(!empty($checkboxList)) : ?>
+					<div class="title"><span></span>多选题</div>
+				<!-- 题目 -->
+					<div class="titleContent">
+				<?php foreach($checkboxList as $value) : ?>
+					<div class="xiaoTitle"><?php echo $value['qid']."、".$value['title']."( ".$value['score']."分 )" ?></div>
+				<!-- 图片 -->
+				<?php if(!empty($value['images'])) : ?>
+					<p>
+						<?php foreach($value['images'] as $url) : ?>
+							<img src="<?php echo $url ?>">
+						<?php endforeach ?>
+					</p>
+				<?php endif ?>
+				<!-- 答案选项 -->
+					<div style="margin-top:10px;">
+					<?php foreach ($value['answer'] as $k => $v) : ?>
+							<input style="margin: 10px 10px 10px 20px;" type="checkbox" id="checkbox_answer_<?php echo $value['id'].$k ?>" name="checkbox_answer_<?php echo $value['id']?>[]" value="<?php echo $k ?>"><label for="checkbox_answer_<?php echo $value['id'].$k ?>"><?php echo $v ?></label><br />
+					<?php endforeach ?>
+				</div>
+					<br>
+				<?php endforeach ?>
+					</div>
+			<?php endif ?>
+				<br/>
+
+			<!-- 判断题 -->
+			<?php if(!empty($judgeList)) : ?>
+					<div class="title"><span></span>判断题</div>
+				<!-- 题目 -->
+					<div class="titleContent">
+					<?php foreach($judgeList as $value) : ?>
+					<div class="xiaoTitle"><?php echo $value['qid']."、".$value['title']."( ".$value['score']."分 )" ?></div>
+				<!-- 图片 -->
+				<?php if(!empty($value['images'])) : ?>
+					<p>
+						<?php foreach($value['images'] as $url) : ?>
+							<img src="<?php echo $url ?>">
+						<?php endforeach ?>
+					</p>
+				<?php endif ?>
+				<!-- 答案选项 -->
+					<div style="margin-top:10px;">
+					<?php foreach ($value['answer'] as $k => $v) : ?>
+							<input style="margin: 10px 10px 10px 20px;" type="radio" id="judge_answer_<?php echo $value['id'].$k ?>" name="judge_answer_<?php echo $value['id']?>" value="<?php echo $k ?>"><label for="judge_answer_<?php echo $value['id'].$k ?>"><?php echo $v ?></label>
+					<?php endforeach ?>
+				</div>
+					<br>
+				<?php endforeach ?>
+					</div>
+			<?php endif ?>
+				<br>
+
+
+			<!-- 主观题 -->
+			<?php if(!empty($subjectiveList)) : ?>
+					<div class="title"><span></span>主观题</div>
+					<div class="titleContent">
+				<?php foreach($subjectiveList as $value) : ?>
+				<!-- 题目 -->
+					<div class="xiaoTitle"><?php echo $value['qid']."、".$value['title']."( ".$value['score']."分 )" ?></div>
+				<!-- 图片 -->
+				<?php if(!empty($value['images'])) : ?>
+					<p>
+						<?php foreach($value['images'] as $url) : ?>
+							<img src="<?php echo $url ?>">
+						<?php endforeach ?>
+					</p>
+				<?php endif ?>
+				<!-- 答案选项 -->
+					<div style="margin-top:10px;">
+						<textarea name="sub_answer_<?php echo $value['id']?>" rows="5" style="width: 100%; margin-top: 10px;"></textarea>
+				</div>
+					<br>
+				<?php endforeach ?>
+					</div>
+			<?php endif ?>
+		</form>
+		<?php if($paperTitle && $stime && $etime) : ?>
+				<div id="button">
+					<button type="submit" id="submit" onclick="submitFrom()">提交</button>
+				</div>
+			<?php endif ?>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" language="javascript">
+$('.main').css("box-shadow","0px 0px 10px #ccc");
+
+function submitFrom(){
+	if(window.confirm('你确定要提交试卷吗？')){
+		$('#form').submit();
+	}else{
+		return false;
+	}
+}
+
+var etime = $('#etime').val();
+var dtime = $('#dtime').val();
+showtime();
+function showtime(){
+	now = new top.Date();
+	now.setTime(top.differentMillisec + now.getTime());
+	str = now.format('Y-m-d H:i:s');
+	nowTime = parseInt(now.getTime()/1000);
+	if (nowTime == etime) {
+		$('#form').submit();
+	}
+	if (dtime != 0 && dtime != 'undefined') {
+		var m = parseInt((dtime - nowTime)/60);
+		var s = parseInt((dtime - nowTime)%60);
+		str = "距离开始考试还有:"+ m + "分钟" + s + "秒";
+		if (m==0 && s<=0) {
+			top.window.frames['iframe'].location.reload();
+			//str = "考试已经开始，请重新刷新本页面";
+		}
+	}
+	$("#showTime").html(str);
+	ctroltime=setTimeout("showtime()", 1000);
+}
+
+</script>

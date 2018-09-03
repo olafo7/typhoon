@@ -1,0 +1,122 @@
+<html>
+<head>
+	<style>
+	.title_panel{
+		/*width: 300px;*/
+		height: 100px;
+		padding-left:5px;
+		background-color:#F7F7F7;;
+		border: 1px solid #CFCFCF;
+	}
+
+	.title_panel li{
+		color:#15428b;
+		margin-bottom: 2px;
+	}
+
+	.title_text{
+		font-size: 16px;
+		font-weight: bold;
+		line-height: 44px;
+		color:black;
+	}
+
+	.label_text{
+		color: #807F7F;
+	}
+
+	.option_panel{
+		margin-top: 50px;
+		margin-left: 20px;
+	}
+
+	.option_panel li{
+		margin-top:10px;		
+
+	}
+
+	.attach_panel{
+		border:2px solid #E6E6E6;
+		height:auto;
+		margin-top:100px;
+	}
+
+	.attach_title{
+		height:32px;
+		background-color:#E6E6E6;
+		line-height:32px;
+	}
+	</style>
+</head>
+
+
+<body style='overflow:auto;'>
+
+	<div id='title_body' class='title_panel'>
+		<ul>
+			<li>
+				<span id="title" class='title_text'></span>
+			</li>
+			<li>
+				<span class='label_text'>发布部门:</span><span id="dept_tag">111</span>&nbsp;&nbsp;
+				<span class='label_text'>发表人:</span><span id="initiator_tag">222</span>&nbsp;&nbsp;
+				<span class='label_text'>发表时间:</span><span id="initime_tag">333</span>&nbsp;&nbsp;
+			</li>
+			<li>
+				<span class='label_text'>生效时间:</span><span id="stime_tag">444</span>&nbsp;&nbsp;
+				<span class='label_text'>结束时间:</span><span id="etime_tag">555</span>&nbsp;&nbsp;
+			</li>
+		</ul>
+	</div>
+<div style='overflow:auto'>
+	<div id='option_body' class='option_panel'>
+		<ul>
+
+		</ul>	
+	</div>
+
+	<div class='attach_panel'>
+		<div class='attach_title'>
+			<img src='./resources/images/icons/attach.gif'/>
+			<span>附件</span>
+		</div>
+		<div id='attach_body'>
+
+		</div>
+	</div>
+</div>
+
+<script>
+// var baseUrl = 
+$.ajax({
+	type:'POST',
+	dataType:'JSON',
+	url:'index.php&app=news&func=vote&action=launch&task=view',
+    data:'&vid=92',
+	success:function(v){
+		var obj = JSON.parse(v);
+		var vdata = obj.data;
+		var title = $('#title_body');
+
+		title.find('#title').text(vdata.title);
+		title.find('#dept_tag').text(vdata.initDept);
+		title.find('#initiator_tag').text(vdata.initiator);
+		title.find('#initime_tag').text(vdata.voteTime);
+		title.find('#stime_tag').text(vdata.stime);
+		title.find('#etime_tag').text(vdata.etime);
+
+		var optionLocal= $('#option_body').find('ul');
+		$.each(vdata.options,function(k,i) {
+			optionLocal.append('<li><input type= "checkbox" name="option'+k+'" value = "'+i.oid+'" disabled>'+i.optionName+'</li>');
+		});
+
+		var attachLocal = $('#attach_body');
+		window.cc = vdata;
+		attachLocal.append(vdata.attach); 
+
+	}
+})
+
+</script>
+</body>
+</html>

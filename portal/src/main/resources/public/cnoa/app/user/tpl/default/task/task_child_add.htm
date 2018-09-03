@@ -1,0 +1,23 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.task_child.addedit");
+CNOA.user.task_child.addedit.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.user.task_child.addedit.tid      = "{$GLOBALS['tid']}";
+CNOA.user.task_child.addedit.title    = "{$GLOBALS['title']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_plan", "app/user/scripts/cnoa.plan.js", function(){
+		CNOA_user_task_child_addedit = new CNOA_user_task_child_addeditClass();
+		Ext.getCmp(CNOA.user.task_child.addedit.parentID).add(CNOA_user_task_child_addedit.mainPanel);
+		Ext.getCmp(CNOA.user.task_child.addedit.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/task_child_add.js"));
+?>

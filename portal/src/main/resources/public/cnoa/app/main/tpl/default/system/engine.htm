@@ -1,0 +1,17 @@
+<?php
+print <<<CNOA
+<script language="javascript">
+Ext.namespace("CNOA.main.engine");
+CNOA.main.engine.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function(){
+	loadScripts("sm_main_engine", "app/main/scripts/cnoa.engine.js", function(){
+		CNOA_main_engine = new CNOA_main_engine_Class();
+		Ext.getCmp(CNOA.main.engine.parentID).add(CNOA_main_engine.mainPanel).doLayout();
+		Ext.getCmp(CNOA.main.engine.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+#echo loadJavascript("./app/main/scripts/business_engine.js");
+?>

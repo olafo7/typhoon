@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/iosOverlay.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/meeting/scripts/m/waiting.js");
+dynamicLoading.css("app/meeting/css/m/waiting.css");
+</script>
+</head>
+<body>
+<div id="header">
+<span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+待审批的纪要
+</div>
+<div class="row" id="f_control">
+    <div class="col-xs-12">
+        <div class="form-group">
+          <input type="search" class="form-control search" placeholder="搜索" id="search">
+        </div>
+    </div>
+</div>
+<div id="wrapper" data-url="m.php?app=meeting&func=mgr&action=join&task=getJiyaoJsonData">
+    <div id="scroller">
+        <div id="pullDown">
+            <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+        </div>
+        <div class="row meet_list" id="meet_list">
+        </div>
+        <div id="pullUp">
+            <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+        </div>
+        <div class="stop-label">已加载完成，不要再滚动了...</div>
+    </div>
+</div>
+<!--% 底部菜单 %-->
+<div id="jingle_popup" class="">
+    <div class="actionsheet">
+        <button type="button" class="btn btn-primary btn-popup center-block" id="need_me">需要我纪要的会议</button>
+        <button type="button" class="btn btn-primary btn-popup center-block" id="need_approval">待审批的纪要会议</button>
+        <button type="button" class="btn btn-primary btn-popup center-block" id="pass_approval">审批通过的纪要会议</button>
+        <button type="button" class="btn btn-primary btn-popup center-block" id="need_write">需重写的纪要会议</button>
+        <button class="btn btn-danger btn-cancel" >取消</button>
+    </div>
+</div>
+<div id="jingle_popup2" class="">
+    <div class="actionsheet">
+        <button type="button" class="btn btn-primary btn-popup center-block" data-aid='' id="pass">审批通过</button>
+        <button type="button" class="btn btn-primary btn-popup center-block" data-aid='' id="unpass">审批不通过</button>
+        <button type="button" class="btn btn-primary btn-popup center-block" data-aid='' id="meet_view">查看会议</button>
+        <button type="button" class="btn btn-primary btn-popup center-block" data-aid='' id="meet_add_edit">查看会议纪要详细信息</button>
+        <button class="btn btn-danger btn-cancel">取消</button>
+    </div>
+</div>
+<div id="jingle_popup_mask"></div>
+<script src="scripts/jquery/spin.min.js"></script>
+<script src="scripts/jquery/iosOverlay.js"></script>
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="scripts/jquery/iscroll.fun.js"></script>
+</body>
+</html>

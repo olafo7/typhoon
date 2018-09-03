@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+		var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+		var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/wf/scripts/m/flow/use/todo.js");
+dynamicLoading.css("app/wf/css/m/use/todo.css");
+</script>
+</head>
+
+<body>
+<div id="header">
+    <span>工作流程</span>
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>  
+    <span class="glyphicon glyphicon-plus btn-add-ico" aria-hidden="true" id="btnNewWf"></span>
+</div>
+<div class="row" id="f_control">
+    <div class="col-xs-12">
+        <div class="form-group">
+          <input type="search" class="form-control search" placeholder="流程编号/自定义标题" id="search">
+        </div>
+    </div>
+    <ul id="myTabs" class="nav nav-tabs" role="tablist" data-tab="0" data-url="m.php?app=wf&func=flow&action=use&modul=done&task=getAllFlowlist&version=mm">
+      <li role="presentation" class="active">
+        <a href="#" id="btnAllFlow" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">所有流程</a>
+      </li>
+      <li class="" role="presentation">
+        <a href="#" id="btnTodo" role="tab" data-toggle="tab" aria-expanded="true" aria-controls="profile">待办流程</a>
+      </li>
+      <li class="" role="presentation">
+        <a href="#" id="btnDone" role="tab" data-toggle="tab" aria-expanded="true" aria-controls="profile">已办流程</a>
+      </li>
+      <li class="" role="presentation">
+        <a href="#" id="btnMyFlow" role="tab" data-toggle="tab" aria-expanded="true" aria-controls="profile">我发起的</a>
+      </li>
+    </ul>
+</div>
+<div id="wrapper">
+    <div id="scroller">
+        <div id="pullDown">
+            <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+        </div>
+        <div class="row">
+            <div class="col-xs-12" id="todoList">
+    
+            </div>
+        </div>
+        <div id="pullUp">
+            <span class="pullUpIcon"></span>
+            <span class="pullUpLabel">上拉加载更多...</span>
+        </div>
+        <div class="stop-label">已加载完成，不要再滚动了...</div>
+    </div>
+</div>
+<div id="loading_mask"></div>
+
+<!--%以下js文件必须在DOM加载完成之后再引用进来-->
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="scripts/jquery/iscroll.fun.js?ran=1"></script>
+</body>
+</html>

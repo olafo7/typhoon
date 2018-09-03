@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css" media=print>
+.noprint{display : none;}
+</style>
+</head>
+<body>
+<div align="right" style="padding-right: 30px;">
+<input class="noprint" type="button" style="height:32px;width:140px" value="打印预览" onclick="JavaScript:printf()"/>
+</div>
+<script language="javascript">
+	function printf(){
+		print();
+		if(Ext.isIE){
+			WebBrowser.ExecWB(7,1);
+		}
+	}
+</script>
+</br>
+
+	<div id="print">
+		<div align="center"><font size=24px color=<?php echo $titlecolor ?>><strong><?php echo $title ?></strong></font></div>
+	<div align="center" style="padding-top:5px;">
+		发布部门:<a><?php echo $dept ?></a>&nbsp;&nbsp;
+		 发表人:<a><?php echo $user ?></a>&nbsp;&nbsp;
+		 发表时间:<a><?php echo $posttime ?></a><br>
+		 生效时间:<a><?php echo $stime ?></a>&nbsp;&nbsp;
+		 结束时间:<a><?php echo $etime ?></a>
+	</div>
+
+	<table frame="void" width="790px" style="margin: auto; font-size: 16px;">
+		<tbody>
+			<tr>
+				<td valign="top" style="word-break: break-all;">
+					<?php echo $content ?>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	</div>
+
+</body>
+</html>

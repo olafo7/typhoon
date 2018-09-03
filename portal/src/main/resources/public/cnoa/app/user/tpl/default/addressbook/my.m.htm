@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/m/adressbook/jquery.swipe.js"></script>
+<script src="scripts/m/adressbook/ajaxfileupload.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script src="scripts/jquery/cropbox.js"></script>
+<script src="scripts/m/weixin/jweixin-1.1.0.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+		var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+		var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/user/scripts/m/addressbook/my.js");
+dynamicLoading.css("app/user/css/m/addressbook/my.css");
+</script>
+</head>
+
+<body>
+<div class="masking"></div>
+<div id="btn-mask">
+    <div class="well center-block" style="max-width: 400px;">
+      <button type="button" class="btn btn-default btn-xg btn-block take-photos">拍照</button>
+      <button type="button" class="btn btn-default btn-xg btn-block photo-album">相册</button>
+      <button type="button" class="btn btn-default btn-xg btn-block photo-file">选择图片</button>
+      <button type="button" class="btn btn-default btn-xg btn-block photo-cancel">取消</button>
+      <input type="file" id="imagefile" name="image" accept="image/*" style="padding: 6px 12px;position: absolute;top: 24px;width: 90%;opacity: 0;">
+    </div>
+</div>
+<div class="containers">
+    <div class="imageBox">
+        <div class="thumbBox"></div>
+        <div class="spinner" style="display: none"></div>
+    </div>
+    <div class="action">
+        <button type="button" class="btn btn-default" id="btnZoomIn">
+            <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-default" id="btnZoomOut">
+            <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="crop center-block">
+        <button type="button" class="btn btn-default" id="croped">
+        确定
+        </button>
+        <button type="button" class="btn btn-default" id="take_cancel">
+        取消
+        </button>
+    </div>
+</div>
+
+<div id="header" data-url="m.php?app=user&func=addressbook&action=default&task=loadPage&from=list&task=getMyAddressBook">
+   <div class="dropdown clearfix center-block">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        我的
+        <span class="glyphicon glyphicon-triangle-bottom"></span>
+      </button>
+      <ul class="dropdown-menu dropdown" id="dropdown" aria-labelledby="dropdownMenu1">
+        <li><a id="organization" href="javascript:void(0);">组织架构</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a id="my" href="javascript:void(0);">我的</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a id="dept" href="javascript:void(0);">内部</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a id="common" href="javascript:void(0);">公共</a></li>
+      </ul>
+    </div>
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" id="addUser"></span>
+</div>
+<div class="row" id="f_control">
+    <div class="col-xs-12">
+        <div class="form-group">
+          <input type="search" class="form-control search" placeholder="搜索" id="search">
+        </div>
+    </div>
+</div>
+<div id="wrapper" style="overflow-x: hidden; left: 0px;">
+<div class="sort_box" id="sort_box">
+
+</div>
+<div class="noBody">您的通讯录还没有用户</div>
+<div class="initials">
+    <ul>
+    </ul>
+</div>
+</div>
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu">
+    <div class="face_info">
+        <span class="glyphicon glyphicon-chevron-left btn_back" aria-hidden="true">返回</span>
+        <span class="glyphicon glyphicon-pencil btn_update" aria-hidden="true"></span>
+        <div class="user_face center-block"><img src="file/common/face/default-face.jpg"></div>
+        <div class="user_common user_name"></div>
+        <div class="user_common user_grouping"></div>
+        <span class="hide hide_user_id"></span>
+    </div>
+    <ul class="user_info">
+        <li class="about_user_mobile"><a href="javascript:void(0);" class="about_value"></a><span class="about_more">></span></li>
+        <li class="about_user_comphone"><a href="javascript:void(0);" class="about_value"></a><span class="about_more">></span></li>
+        <li class="about_user_email"><a href="javascript:void(0);" class="about_value"></a><span class="about_more">></span></li>
+        <li class="about_user_fax"><span class="about_value"></span></li>
+        <li class="about_user_company"><span class="about_value"></span></li>
+    </ul>
+    <div class="relation">
+        <div class="relat_call"><a href="javascript:void(0);">快速拨号</a></div>
+        <div class="relat_note"><a href="javascript:void(0);">发信息</a></div>
+    </div>
+</nav>
+
+<script src="scripts/m/adressbook/jquery.charfirst.pinyin.js"></script>
+<script src="scripts/m/adressbook/sort.js"></script>
+</body>
+</html>

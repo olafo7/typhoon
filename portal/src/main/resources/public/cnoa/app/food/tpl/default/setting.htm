@@ -1,0 +1,22 @@
+<?php
+
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.food.snack.setting");
+CNOA.food.snack.setting.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+    loadScripts("sm_food_snack", "app/food/scripts/cnoa.food.js", function(){
+      	CNOA_food_snack_setting = new CNOA_food_snack_settingClass();
+		Ext.getCmp(CNOA.food.snack.setting.parentID).add(CNOA_food_snack_setting.mainPanel);
+		Ext.getCmp(CNOA.food.snack.setting.parentID).doLayout();
+    })
+});
+
+
+</script>
+CNOA;
+
+//echo loadJavascript(array("./app/food/scripts/setting.js"));
+?>

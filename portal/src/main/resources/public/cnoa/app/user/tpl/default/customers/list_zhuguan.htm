@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.customers.list.zhuguan");
+CNOA.user.customers.list.zhuguan.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_customers", "app/user/scripts/cnoa.customers.js", function(){
+		CNOA_user_customers_list_zhuguan = new CNOA_user_customers_list_zhuguanClass();
+		Ext.getCmp(CNOA.user.customers.list.zhuguan.parentID).add(CNOA_user_customers_list_zhuguan.mainPanel);
+		Ext.getCmp(CNOA.user.customers.list.zhuguan.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/customers_zhuguan_common.js", "./app/user/scripts/customers_zhuguan.js"));
+?>

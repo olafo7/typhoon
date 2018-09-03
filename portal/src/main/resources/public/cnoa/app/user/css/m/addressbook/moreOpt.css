@@ -1,0 +1,80 @@
+body,h1, h2, h3, h4, h5,p,ul,li{
+    font-family:"NotoSans CJK","Microsoft YaHei","Proxima Nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+li {
+   list-style-type: none;
+}
+
+a, a:link, a:visited, a:hover, a:active{
+    text-decoration:none;
+}
+
+#header {
+    position: relative;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 52px;
+    line-height: 52px;
+    padding: 0;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #4A78BB;
+    color: #fff;
+    text-decoration: none;
+}
+
+#header .btn-home-ico, #header .btn-back-ico {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-size: 1.2em;
+    padding: 15px;
+}
+
+/*list*/
+#wrapper{
+    position:absolute; 
+    top:60px; 
+    bottom:0px; 
+    left:0;
+    width:100%;
+    background:#fff;
+    overflow:auto;
+    padding: 10px;
+}
+
+#wrapper li {
+    float: left;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    border-bottom: 1px solid #DBDCDC;
+    padding-left: 50px;
+    color: #231815;
+}
+
+.commonImg {
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position-y: 7px;
+    background-position-x: 10px;
+}
+
+#wrapper li.addMobile {
+    border-top: 1px solid #DBDCDC;
+    background-image: url(../../../../../../resources/images/m/addressbook/add_mobile.png);
+}
+
+#wrapper li.scan {
+    background-image: url(../../../../../../resources/images/m/addressbook/scan.png);
+}
+
+#wrapper li.synNotes {
+    background-image: url(../../../../../../resources/images/m/addressbook/syn_notes.png);
+}

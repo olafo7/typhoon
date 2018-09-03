@@ -1,0 +1,22 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.set.desktop");
+CNOA.wf.set.desktop.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_set_desktop = new CNOA_wf_set_desktopClass();
+		Ext.getCmp(CNOA.wf.set.desktop.parentID).add(CNOA_wf_set_desktop.mainPanel);
+		Ext.getCmp(CNOA.wf.set.desktop.parentID).doLayout();
+
+	});
+});
+
+
+</script>
+
+CNOA;
+###echo loadJavascript(array("./app/wf/scripts/set_desktop.js"));
+?>

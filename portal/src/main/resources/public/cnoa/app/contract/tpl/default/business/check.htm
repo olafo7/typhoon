@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.contract.business.check");
+CNOA.contract.business.check.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_contract_business", "app/contract/scripts/cnoa.contract_business.js", function(){
+		CNOA_contract_business_check = new CNOA_contract_business_checkClass();
+	    Ext.getCmp(CNOA.contract.business.check.parentID).add(CNOA_contract_business_check.mainPanel);
+	    Ext.getCmp(CNOA.contract.business.check.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/contract/scripts/business_check.js"));
+?>

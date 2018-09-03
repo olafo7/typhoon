@@ -1,0 +1,31 @@
+<?php
+
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.job");
+CNOA.main.job.parentID = "{$GLOBALS['app']['parentid']}";
+
+CNOA.permitController.main_job = new Array();
+
+CNOA;
+foreach($GLOBALS['permissionController'] AS $k=>$v){
+print <<<CNOA
+CNOA.permitController.main_job['{$k}'] = {$v};
+
+CNOA;
+}
+print <<<CNOA
+
+Ext.onReady(function() {
+	loadScripts("sm_main_job", "app/main/scripts/cnoa.job.js", function(){
+		CNOA_main_job_list = new CNOA_main_job_listClass();
+		Ext.getCmp(CNOA.main.job.parentID).add(CNOA_main_job_list.mainPanel);
+		Ext.getCmp(CNOA.main.job.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/main/scripts/job_index.js", "./app/main/scripts/job_add_edit.js"));
+?>

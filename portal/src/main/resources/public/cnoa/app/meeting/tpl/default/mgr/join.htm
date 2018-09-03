@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.meeting.mgr.join");
+CNOA.meeting.mgr.join.parentID	= "{$GLOBALS['app']['parentid']}";
+CNOA.meeting.mgr.join.from		= "{$GLOBALS['from']}";
+CNOA.meeting.mgr.join.did		= "{$GLOBALS['did']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_meeting", "app/meeting/scripts/cnoa.meeting.js", function(){
+		CNOA_meeting_mgr_join = new CNOA_meeting_mgr_joinClass();
+		Ext.getCmp(CNOA.meeting.mgr.join.parentID).add(CNOA_meeting_mgr_join.mainPanel);
+		Ext.getCmp(CNOA.meeting.mgr.join.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/meeting/scripts/mgr_join.js"));
+?>

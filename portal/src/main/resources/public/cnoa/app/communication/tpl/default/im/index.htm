@@ -1,0 +1,22 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+var CNOA_communication_im_send_hot_key = "{$GLOBALS['app']['send_hot_key']}";
+var CNOA_communication_im_openuid      = "{$GLOBALS['openuid']}";
+var CNOA_communication_im_openname     = "{$GLOBALS['openname']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_communication_im", "app/communication/scripts/cnoa.im.js", function(){
+		if(CNOA_communication_im_index == null){
+			CNOA_communication_im_index = new CNOA_communication_im_indexClass();
+			CNOA_communication_im_index.show();
+		}
+	});
+});
+
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/communication/scripts/im_index.js"));
+?>

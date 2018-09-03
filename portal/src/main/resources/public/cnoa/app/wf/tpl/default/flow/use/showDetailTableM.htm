@@ -1,0 +1,42 @@
+<html>
+<head>
+<style type="text/css">
+.cnoa-formhtml-layout table {
+	margin: 5px;
+	border-collapse: collapse;
+	border-width: 0px;
+	border:1px solid #000000
+}
+
+.cnoa-formhtml-layout table.body {
+	width: 100%;
+	border:1px solid #000000
+}
+
+.cnoa-formhtml-layout td {
+	font-size: 16px;
+	color: #000;
+	border:1px solid #000000
+}
+
+.detailName{
+	padding: 5px;
+	font-weight: bold;
+}
+.firstRow{
+	text-align: center;
+}
+</style>
+
+</head>
+<body>
+<div class="cnoa-formhtml-layout">
+	<div class="detailName">
+		<?php echo $detailName;?>
+	</div>
+	<table>
+		<?php echo $htmlText;?>
+	</table>
+</div>
+</body>
+</html>

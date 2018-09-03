@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/scale.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/m/iosOverlay.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<link rel="stylesheet prefetch" href="scripts/m/photoswipe/css/photoswipe.css">
+<link rel="stylesheet prefetch" href="scripts/m/photoswipe/css/default-skin/default-skin.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="resources/images/m/qqface/jquery.qqFace.js"></script>
+<script src="scripts/jquery/iscroll5.js"></script>
+<script src="scripts/jquery/spin.min.js"></script>
+<script src="resources/scripts/m/scale.js"></script>
+<script src="scripts/jquery/iosOverlay.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/news/scripts/m/post_info.js");
+dynamicLoading.css("app/news/css/m/post_info.css");
+</script>
+</head>
+<body>
+<div id="header">帖子正文
+<span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+</div>
+<div id="wrapper" data-url="m.php?app=news&func=bbs&action=bbs&task=getJsonData">
+    <div id="scroller">
+        <div class="bbs_content" data-user=''></div>
+    </div>
+</div>
+<form id="myTableFrom" method="post" enctype="multipart/form-data">
+<div class="modal fade" id="replyModal" data-fid='' data-reply='' tabindex="-1" role="dialog" aria-labelledby="replyModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="replyModalLabel">评论</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <div class="comment">
+                <div class="com_form">
+                    <textarea class="input" id="saytext" name="saytext"></textarea>
+                </div>
+             </div> 
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div class="emotion">表情</div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary sub_btn">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!--%* 图片在线浏览 *%-->
+<div class="imgzoom_pack">
+    <div class="imgzoom_x">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </div>
+    <div class="imgzoom_img">
+        <img src="" />
+    </div>
+</div>
+<!--%* 图片在线浏览 *%-->
+<div class="imgzoom_pack">
+    <div class="imgzoom_x">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </div>
+    <div class="imgzoom_img">
+        <img src="" />
+    </div>
+</div>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- ios附件显示框  -->
+<script src="scripts/jquery/iospopwin.js"></script>
+<!--/*Iscroll5* -->
+<script src="scripts/jquery/iscroll-probe.js"></script>
+<!-- 确认弹窗 -->
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<!-- 附件图片 -->
+<script src="scripts/m/photoswipe/js/photoswipe-ui-default.min.js"></script>
+<script src="scripts/m/photoswipe/js/photoswipe.js"></script>
+</body>
+</html>

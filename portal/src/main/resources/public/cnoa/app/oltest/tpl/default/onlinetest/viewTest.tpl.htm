@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><?php echo $paperTitle ?></title>
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=8">
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+  <link rel="stylesheet" type="text/css" href="extjs/3.4.0/resources/css/ext-all.css?v=v 3.0.39">
+  <link rel="stylesheet" type="text/css" href="resources/css/cnoa.all.css?v=v 3.0.39"> -->
+  <link rel="stylesheet" type="text/css" href="resources/css/oltest/viewTest.css" />
+</head>
+<body>
+  <div class="main">
+    <?php if($paperTitle) : ?>
+    <div id="header">
+      <div class="paperinfo">
+        <div class="paperuser"><?php echo $userName ?></div>
+        <div class="paperCount">题目总数:&nbsp;<?php echo $titleNum ?> 题</div>
+        <div class="paperTime">考试时间:&nbsp;<?php echo $getRecord['ttime'] ?> 分钟</div>
+      </div>
+      <div class="paperTitle"><?php echo $paperTitle ?></div>
+    </div>
+    <div class="fengexian"></div>
+    <div class="time">
+      <div class="stime">●  开始时间:&nbsp;<?php echo $stime ?></div>
+      <div class="etime">●  结束时间:&nbsp;<?php echo $etime ?></div>
+    </div>
+    <div class="paperContent">
+    <?php else: ?>
+      <div class="noTest"><?php echo $emptyTitle ?></div>
+      <style type="text/css">
+        #form {
+          background-color: #fff;
+        }
+      </style>
+    <?php endif ?>
+    <form id="form" name="form1" action="index.php?app=oltest&func=oltest&action=test&task=submitFrom" method="post" accept-charset="utf-8">
+      <!-- 单选题 -->
+      <input type="hidden" name="record_id" value="<?php echo $getRecord['id'] ?>">
+      <?php if(!empty($radioList)) : ?>
+        <div class="title"><span></span>单选题</div>
+        <div class="titleContent">
+        <?php foreach($radioList as $value) : ?>
+        <div class="xiaoTitle"><?php echo $value['qid']."、".$value['title']."(".$value['score']."分)" ?></div>
+        <!-- 图片 -->
+        <?php if(!empty($value['images'])) : ?>
+          <p>
+            <?php foreach($value['images'] as $url) : ?>
+              <img src="<?php echo $url ?>">
+            <?php endforeach ?>
+          </p>
+        <?php endif ?>
+        <!-- 答案选项 -->
+        <div style="margin-top:10px;">
+          <?php if(!empty($value['answer'])) : ?>
+          <?php foreach ($value['answer'] as $k => $v) : ?>
+            <input style="margin: 10px 10px 10px 20px;" type="checkbox" disabled='true' <?php if (in_array($k, $temp) ) echo 'checked';?>  ><label><?php echo $v ?></label><br />
+          <?php endforeach ?>
+          <?php endif ?>
+        </div>
+        <br/>
+        <p style="color: red">参考答案:<?php echo $value['rightAnswer'] ?></p>
+        <br>
+        <?php endforeach ?>
+        </div>
+      <?php endif ?>
+      <br>
+
+
+
+      <!-- 多选题 -->
+      <?php if(!empty($checkboxList)) : ?>
+        <div class="title"><span></span>多选题</div>
+        <div class="titleContent">
+        <?php foreach($checkboxList as $value) : ?>
+        <div class="xiaoTitle"><?php echo $value['qid']."、".$value['title']."(".$value['score']."分)" ?></div>
+        <!-- 图片 -->
+        <?php if(!empty($value['images'])) : ?>
+          <p>
+            <?php foreach($value['images'] as $url) : ?>
+              <img src="<?php echo $url ?>">
+            <?php endforeach ?>
+          </p>
+        <?php endif ?>
+        <!-- 答案选项 -->
+        <div style="margin-top:10px;">
+          <?php foreach ($value['answer'] as $k => $v) : ?>
+            <input style="margin: 10px 10px 10px 20px;" type="checkbox" disabled='true' <?php if (in_array($k, $temp) ) echo 'checked';?>  ><label><?php echo $v ?></label><br />
+          <?php endforeach ?>
+        </div>
+        <br>
+        <div style="color: red">参考答案: <?php echo $value['rightAnswer'] ?></div>
+        <br>
+        <?php endforeach ?>
+        </div>
+      <?php endif ?>
+      <br>
+
+      <!-- 判断题 -->
+      <?php if(!empty($judgeList)) : ?>
+        <div class="title"><span></span>判断题</div>
+        <div class="titleContent">
+        <?php foreach($judgeList as $value) : ?>
+        <div class="xiaoTitle"><?php echo $value['qid']."、".$value['title']."(".$value['score']."分)" ?></div>
+        <!-- 图片 -->
+        <?php if(!empty($value['images'])) : ?>
+          <p>
+            <?php foreach($value['images'] as $url) : ?>
+              <img src="<?php echo $url ?>">
+            <?php endforeach ?>
+          </p>
+        <?php endif ?>
+        <!-- 答案选项 -->
+        <div style="margin-top:10px;">
+          <?php foreach ($value['answer'] as $k => $v) : ?>
+            <input style="margin: 10px 10px 10px 20px;" type="checkbox" disabled='true' <?php if (in_array($k, $temp) ) echo 'checked';?>  ><label><?php echo $v ?></label>
+          <?php endforeach ?>
+        </div>
+        <br>
+        <div style="color: red">参考答案: <?php echo $value['rightAnswer'] ?></div>
+        <br>
+        <?php endforeach ?>
+        </div>
+      <?php endif ?>
+      <br>
+
+      <!-- 主观题 -->
+      <?php if(!empty($subjectiveList)) : ?>
+        <div class="title"><span></span>主观题</div>
+        <div class="titleContent">
+        <?php foreach($subjectiveList as $value) : ?>
+        <div class="xiaoTitle"><?php echo $value['qid']."、".$value['title']."(".$value['score']."分)" ?></div>
+        <!-- 图片 -->
+        <?php if(!empty($value['images'])) : ?>
+          <p>
+            <?php foreach($value['images'] as $url) : ?>
+              <img src="<?php echo $url ?>">
+            <?php endforeach ?>
+          </p>
+        <?php endif ?>
+        <!-- 答案选项 -->
+        <div style="margin-top:10px;">
+          <textarea rows="5" cols="80"  disabled='true' style="width: 100%; margin-top: 10px;" ><?php echo $value['subAnswer'] ?></textarea>
+        </div>
+        <br>
+        <div style="color: red">参考答案: <?php echo $value['rightAnswer'] ?></div>
+        <br>
+        <?php endforeach ?>
+        </div>
+      <?php endif ?>
+    </form>
+    </div>
+  </div>
+  
+</body>
+</html>

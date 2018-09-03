@@ -1,0 +1,24 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.task.discuss_view");
+CNOA.user.task.discuss_view.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.user.task.discuss_view.tid      = "{$GLOBALS['tid']}";
+CNOA.user.task.discuss_view.ttitle   = "{$GLOBALS['ttitle']}";
+CNOA.user.task.discuss_view.did      = "{$GLOBALS['did']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_user_task", "app/user/scripts/cnoa.task.js", function(){
+		CNOA_user_task_discuss_view = new CNOA_user_task_discuss_viewClass();
+		Ext.getCmp(CNOA.user.task.discuss_view.parentID).add(CNOA_user_task_discuss_view.mainPanel);
+		Ext.getCmp(CNOA.user.task.discuss_view.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/task_discuss_view.js"));
+?>

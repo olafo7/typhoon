@@ -1,0 +1,13 @@
+<script language="JavaScript">
+    Ext.ns("CNOA.assets.assets.historical");
+    CNOA.assets.assets.historical.parentID = "docs-CNOA_MENU_ASSETS_HISTORICAL";
+
+
+    Ext.onReady(function() {
+        loadScripts("sm_assets_assets", "cnoa/app/assets/scripts/cnoa.assets.js", function(){
+            CNOA_assets_assets_historical = new CNOA_assets_assets_historicalClass();
+            Ext.getCmp(CNOA.assets.assets.historical.parentID).add(CNOA_assets_assets_historical.mainPanel);
+            Ext.getCmp(CNOA.assets.assets.historical.parentID).doLayout();
+        })
+    });
+</script>

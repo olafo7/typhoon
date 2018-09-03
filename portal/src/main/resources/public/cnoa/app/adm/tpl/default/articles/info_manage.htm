@@ -1,0 +1,21 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.adm.articles.infoManageIndex");
+CNOA.adm.articles.infoManageIndex.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_articles_manage", "app/adm/scripts/cnoa.articles_manage.js", function(){
+		CNOA_adm_articles_infoManageIndex = new CNOA_adm_articles_infoManageIndexClass();
+		Ext.getCmp(CNOA.adm.articles.infoManageIndex.parentID).add(CNOA_adm_articles_infoManageIndex.mainPanel);
+		Ext.getCmp(CNOA.adm.articles.infoManageIndex.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+##echo loadJavascript(array("./app/adm/scripts/articles_info_manage.js"));
+?>

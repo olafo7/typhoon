@@ -1,0 +1,16 @@
+_sendFlow
+
+
+notice::doneN($info['noticeid_c']);
+notice::doneT($info['todoid_c']);
+
+$notice['touid']	= $v;
+$notice['from']		= 5;
+$notice['fromid']	= 0;
+$notice['href']		= $noticeH;
+$notice['title']	= $noticeC;
+$notice['funname']	= "工作流管理";
+$notice['move']		= "审批";
+
+$data['todoid_c'] = notice::add2($notice);
+

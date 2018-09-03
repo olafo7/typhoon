@@ -1,0 +1,203 @@
+<?php
+$pwb = $GLOBALS['CNOA_SYSTEM_CONFIG']['s_tlo'] == 1 ? " - Powered by 协众OA - www.cnoa.cn" : "";
+$rnd = rand(1111111, 9999999);
+$defaultNoticeInfo = "试用版管理员:admin 密码:111111 [<a class='thickbox' href='switchuser.html?keepThis=true&TB_iframe=true&height=530&width=300' name='切换用户进入系统'>其它用户</a>]";
+print <<<CNOA
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>{$GLOBALS['CNOA_SYSTEM_CONFIG']['servername']}{$pwb}</title>
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js"></script>
+<script type="text/javascript" src="/cnoa/scripts/jquery/powerFloat/1.6.1.min.js"></script>
+<script type="text/javascript" src="/cnoa/app/main/scripts/passport.2013v1.js?r={$rnd}"></script>
+<link rel="stylesheet" href="/cnoa/scripts/thickbox/thickbox.css?r={$rnd}" type="text/css" />
+<script type="text/javascript" src="/cnoa/scripts/thickbox/thickbox.js?r={$rnd}"></script>
+<style>
+*{margin:0;padding:0;font-size:12px;color:#676464}
+img {border:none;}
+ul, ol, li, dl, dt, dd {list-style:none;}
+.clear {clear:both;}
+a, a:link {text-decoration:none;color:#676464;}
+a:hover {color:#f3400c;}
+.fontStyle20 {font-size:20px;}
+.fontStyle15 {font-size:15px;}
+#topBar, #loginForm, #loginForm2, #bottomBar, #cpBar {width:100%;min-width:960px;_width:expression_r((documentElement.clientWidth<960)?"960px":"100%");}
+#topBar .center, #loginForm .center, #bottomBar .center, #cpBar .center {width: 960px;margin: 0 auto;}
+#topBar {height: 80px;background-color: #F5F4F2;border-top:1px solid #E8E8E7}
+#topBar .logo, #topBar .systemname, #topBar .navbar {height: 80px;}
+#topBar {height: 80px;background-color: #F5F4F2;}
+#topBar .logo {width:600px;float:left;}
+#topBar .navbar {float:right;}
+#topBar .navbar p {font-size:14px;text-align: right;margin-top: 50px;color:#9c9b9a;margin-right: 5px;}
+#topBar .navbar p a {font-size:14px;}
+#loginForm, #loginForm2, #loginForm .center {height: 430px;}
+#loginForm {{$GLOBALS['CNOA_BG_BG']}}
+#loginForm #loginForm2, #loginForm .center {background:transparent url({$GLOBALS['CNOA_BG_URL']}) no-repeat center;}
+#form{margin-right: 5px;margin-top: 60px;width: 300px;float: right;background-color: #EDEFF1;-moz-box-shadow: 0 0 12px #000;-webkit-box-shadow: 0 0 12px #000;box-shadow: 0 0 12px #000;/*-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";filter:alpha(opacity=80);-moz-opacity:0.9; -khtml-opacity: 0.9;opacity: 0.9;*/}
+#form .formTitle {font-size: 20px;height: 50px;text-align: center;line-height: 50px;text-align: center;font-family: '微软雅黑', '黑体';color:#000;background:url(resources/images/login/2013v1/login_title.png) repeat-x;}
+.loginTable {margin: 20px;}
+.loginTable td {height: 40px;}
+.loginTable td.h70 {height: 80px;}
+.loginTable .tip{height:30px;text-align:center;color:red;}
+.loginTable .tip span{color:red;}
+.loginTable .inputText{height:30px;border:1px solid #cdcdcd;line-height:30px;font-size:16px;outline: none;text-indent:5px;}
+.loginTable input.focus{border:1px solid #FF8000;}
+.loginTable .inputTextLong {width:200px;}
+.loginTable .inputTextShort {width:128px;}
+a.submitbtn {background:url(resources/images/login/2013v1/btn_submit.jpg) no-repeat;display:block;height:44px;width:160px;color:#FFF;}
+a.submitbtn:hover {background:url(resources/images/login/2013v1/btn_submit.jpg) no-repeat 0 -44px;display:block;height:44px;width:160px;color:#FFF;}
+.qrcode{border: 2px solid #333 !important;background: #FFFFFF !important;padding: 4px !important;}
+#bottomBar {height: 80px;background-color: #F5F4F2;padding-top:20px;border-bottom:1px solid #E8E8E7}
+#bottomBar table {margin:0 auto;}
+#bottomBar table a {line-height: 34px;font-size:12px;display:block;}
+#cpBar {line-height: 70px;height: 70px;text-align: center;}
+#tooltip{position:absolute;border:1px solid #333;background:#f7f5d1;padding:2px 5px;color:#333;display:none;z-index:999;}
+.authCodeImg{border:1px solid #C5C5C5;padding:4px;padding-bottom:4px;background-color: #FFF;}
+/* #changeLanguage{border:1px solid #CDCDCD;background-color:#FFFFFF;padding:2px 5px;} */
+.float_list_ul {margin: 0;padding: 1px;border: 1px solid #beceeb;background-color: #fff;font-size: 12px;list-style-type: none;-moz-box-shadow: 1px 1px 5px #8e8e8e;-webkit-box-shadow: 1px 1px 5px #8e8e8e;box-shadow: 1px 1px 5px #8e8e8e;}
+.float_list_a {display:block;width: 128px;text-decoration: none;}
+.float_list_a:hover {background-color:#c9d3e9;color: #333;text-decoration: none;}
+.float_list_ul li {line-height: 26px;border-top: 1px solid #f0f3f9;text-indent: 5px;}
+.float_list_ul li:first-child {border-top: 0;}
+.float_list_null {padding: 40px 20px;text-align: center;}
+</style>
+
+<script language="JavaScript">
+var defaultNoticeInfo = "{$defaultNoticeInfo}";
+function doResize(){var a = $("#headbar");var wh = $(window).height();if(wh > 680){a.height((wh-680)/2);}else{a.height(0);}}
+CNOA;
+if($_GET['task'] != 'preview'){
+print <<<CNOA
+var CNOA_enableLoginAuth = {$GLOBALS['CNOA_SYSTEM_CONFIG']['login_authcode']};
+var CNOA_enableDomainID = {$GLOBALS['CNOA_ISSAAS']};
+var CNOA_enableGroup = {$GLOBALS['CNOA_ISGROUP']};
+var CNOA_LOGIN_EXPIRE = {$GLOBALS['CNOA_LOGIN_EXPIRE']};
+var CNOA_LOGIN_DLOGIN = {$GLOBALS['CNOA_LOGIN_DLOGIN']};
+var CNOA_LOGIN_USERNAME = "{$GLOBALS['USERNAME']}";
+CNOA;
+}
+print <<<CNOA
+</script>
+<!-- 
+  协众OA办公系统
+  Powered by CNOA.CN[广州协众软件科技有限公司]
+
+  @author	CNOA Dev Team
+  @email	admin@cnoa.cn
+  @site		http://www.cnoa.cn/
+  @copyright	Copyright (c) 2012, CNOA, Inc.
+  @license	http://www.cnoa.cn/license.html
+  -->
+
+</head>
+<body>
+<div id="headbar"></div>
+<script type="text/javascript">doResize();</script>
+<div id="topBar">
+  <div class="center">
+    <div class="logo"><img src="{$GLOBALS['CNOA_LOGO_URL']}" height="80"></div>
+    <div class="navbar">
+      <p><a href="m.php" onclick="alert('请下载下方相应的手机客户端使用手机版OA');return false;" title="点击进入手机版OA">手机版</a> | <a href="###" id="manuallist">使用手册</a> | 语言:<select id="changeLanguage"><option value=''>默认</option>
+CNOA;
+$langs = array();
+foreach($GLOBALS['languages'] AS $lk=>$lv){
+	echo "<option value='{$lk}'>{$lv}</option>";
+}
+print <<<CNOA
+</select><!-- <a href="javascript:void(0);" id="changeLanguage">简体中文<img width="12" height="11" src="resources/images/cnoa/list-down.gif" /></a> --></p>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/javascript">
+$("#changeLanguage").bind("change", function(){
+	var l = $(this).val();
+	$("#language").val(l);
+	ajaxLang(l);
+});
+$("#manuallist").powerFloat({
+    width: 133,
+    target: [{href: "http://help.cnoa.cn/?from=manual",text: "《用户使用手册》"},{href: "http://help.cnoa.cn/?from=admin",text: "《管理员使用手册》"	},{href: "http://help.cnoa.cn/?from=quick", text: "《快速使用手册》"	},{href: "http://help.cnoa.cn/?from=workflow",text: "《工作流使用手册》"	},{href: "http://help.cnoa.cn/?from=workreport",text: "《工作报表使用手册》"	}],
+    targetMode: "list"	
+});
+</script>
+<div id="loginForm">
+  <div id="loginForm2">
+    <div class="center" style="position: relative;">
+      <div id="form" style="z-index: 2;position: relative;">
+        <div class="formTitle">登陆系统</div>
+		<form method='post' action="" name='loginForm'>
+        <table class="loginTable">
+          <tr>
+            <td class="fontStyle15" width="60">帐　号</td>
+            <td colspan="2"><input type="text" id='userName' name='userName' autocomplete="off" class="inputText inputTextLong" value="{$GLOBALS['USERNAME']}" /></td>
+          </tr>
+          <tr>
+            <td class="fontStyle15">密　码</td>
+            <td colspan="2"><input type="password" id='passWord' name='passWord' autocomplete="off" class="inputText inputTextLong" /></td>
+          </tr>
+CNOA;
+if($GLOBALS['CNOA_ISSAAS'] == 1 && $GLOBALS['CNOA_ISGROUP'] == 0){
+print <<<CNOA
+          <tr>
+            <td class="fontStyle15">企业ID</td>
+            <td colspan="2"><input type="text" id='domainId' name='domainId' autocomplete="off" class="inputText inputTextLong" /></td>
+          </tr>
+CNOA;
+}
+if($GLOBALS['CNOA_SYSTEM_CONFIG']['login_authcode'] == 1){
+print <<<CNOA
+          <tr>
+            <td class="fontStyle15">验证码</td>
+            <td><input type="text" maxlength="4" id='authcode' name='authcode' autocomplete="off" class="inputText inputTextShort" /></td>
+            <td><a href="javascript:refreshCode();"><img class="authCodeImg" id="authCodeImg" alt="点击刷新验证码" src="index.php?app=main&func=common&action=commonJob&act=authcode" width="60" height="22" /></a></td>
+          </tr>
+CNOA;
+}
+print <<<CNOA
+          <tr>
+            <td class="h70"><input type="hidden" id='language' name='language' value='{$GLOBALS['LANGUAGE']}' /></td>
+            <td class="h70" colspan="2" valign="bottom"><a href="javascript:void(0);" class="submitbtn" id="submitbtn""></a></td>
+          </tr>
+		  <tr>
+            <td colspan="3" class="tip" id="notice"><span>{$defaultNoticeInfo}</span></td>
+          </tr>
+        </table>
+		</form>
+      </div>
+	  <div id="formShadow" style="background-color:#000;z-index: 1;right: 14px;top:52px;width:0px;height:0px;position: absolute;"></div>
+      <script type="text/javascript">
+		$(document).ready(function(){
+			if($.browser.msie && parseInt($.browser.version)<10){
+				$("#formShadow").width($("#form").width()).height($("#form").height()).css("filter", "progid:DXImageTransform.Microsoft.alpha(opacity=80) progid:DXImageTransform.Microsoft.Blur(pixelradius=8);");
+			}
+		});
+      </script>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+<div id="bottomBar">
+  <div class="center">
+    <table border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="110" align="center" valign="middle"><a id='iOST' href="https://itunes.apple.com/cn/app/oa-ban-gong-xi-tong/id871815687?mt=8" title="iPhone客户端，直接在线安装" target="_blank"><img src="resources/images/login/2013v1/apple.jpg" width="32" height="37" /><br />
+          iPhone下载</a></td>
+        <td width="110" align="center" valign="middle"><a id='androidT' title="安卓客户端，点击下载安装" href="file/download.php?target=android"><img src="resources/images/login/2013v1/android.jpg" width="32" height="37" /><br />
+          Android下载</a></td>
+        <td width="110" align="center" valign="middle"><a title="PC端OA小秘书安装程序" href="file/download.php?target=windows"><img src="resources/images/login/2013v1/messager.jpg" width="32" height="37" /><br />
+          小秘书下载</a></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div id="cpBar">
+  <div class="center">{$GLOBALS['CONFIG']['copyright_info']}</div>
+</div>
+</body>
+</html>
+CNOA;
+?>

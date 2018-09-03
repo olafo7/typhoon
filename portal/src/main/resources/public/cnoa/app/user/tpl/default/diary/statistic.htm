@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.diary.statistic");
+CNOA.user.diary.statistic.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_diary", "app/user/scripts/cnoa.diary.js", function(){
+		CNOA_user_diary_statistic = new CNOA_user_diary_statisticClass();
+		Ext.getCmp(CNOA.user.diary.statistic.parentID).add(CNOA_user_diary_statistic.mainPanel);
+		Ext.getCmp(CNOA.user.diary.statistic.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/diary_statistic.js"));
+?>

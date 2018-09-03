@@ -1,0 +1,56 @@
+<style>
+    .x-form-file-wrap {
+        position: relative;
+        height: 22px;
+    }
+    .x-form-file-wrap .x-form-file {
+        position: absolute;
+        right: 0;
+        -moz-opacity: 0;
+        filter:alpha(opacity: 0);
+        opacity: 0;
+        z-index: 2;
+        height: 22px;
+    }
+    .x-form-file-wrap .x-form-file-btn {
+        position: absolute;
+        right: 0;
+        z-index: 1;
+    }
+    .x-form-file-wrap .x-form-file-text {
+        position: absolute;
+        left: 0;
+        z-index: 3;
+        color: #777;
+    }
+</style>
+
+<script language="JavaScript">
+    Ext.namespace("CNOA.main.user.list");
+    CNOA.main.user.parentID = "docs-CNOA_MENU_SYSTEM_USER";
+
+    CNOA.permitController.main_user = new Array();
+    CNOA.permitController.main_user['list'] = 1;
+    CNOA.permitController.main_user['add'] = 1;
+    CNOA.permitController.main_user['edit'] = 1;
+    CNOA.permitController.main_user['delete'] = 1;
+
+</script>
+
+<script language="JavaScript">
+    //用户扩展字段
+    var CNOA_main_user_baseInfo_getFormExtFields = function(){
+        return [{"name":"cnoa_englishname","code":"cnoa_englishname","fieldLabel":"\u82f1\u6587\u540d","xtype":"textfield"},{"name":"cnoa_biyeyuanxiao","code":"cnoa_biyeyuanxiao","fieldLabel":"\u6bd5\u4e1a\u9662\u6821","xtype":"textfield"},{"name":"cnoa_zhuangye","code":"cnoa_zhuangye","fieldLabel":"\u4e13\u4e1a","xtype":"textfield"},{"name":"cnoa_xueli","code":"cnoa_xueli","fieldLabel":"\u6700\u9ad8\u5b66\u5386","xtype":"textfield"},{"name":"cnoa_hunyinzhuangkuang","code":"cnoa_hunyinzhuangkuang","fieldLabel":"\u5a5a\u59fb\u72b6\u51b5","xtype":"textfield"},{"name":"cnoa_zhengzhimianmao","code":"cnoa_zhengzhimianmao","fieldLabel":"\u653f\u6cbb\u9762\u8c8c","xtype":"textfield"},{"name":"cnoa_shengao","code":"cnoa_shengao","fieldLabel":"\u8eab\u9ad8","xtype":"textfield"},{"name":"cnoa_tizhong","code":"cnoa_tizhong","fieldLabel":"\u4f53\u91cd","xtype":"textfield"},{"name":"cnoa_minzu","code":"cnoa_minzu","fieldLabel":"\u6c11\u65cf","xtype":"textfield"},{"name":"cnoa_zhicheng","code":"cnoa_zhicheng","fieldLabel":"\u804c\u79f0","xtype":"textfield"},{"name":"cnoa_huji","code":"cnoa_huji","fieldLabel":"\u6237\u7c4d\u6240\u5728\u5730","xtype":"textfield"},{"name":"cnoa_jiatinzhuzhi","code":"cnoa_jiatinzhuzhi","fieldLabel":"\u5bb6\u5ead\u4f4f\u5740","xtype":"textfield"},{"name":"cnoa_jiatidianhua","code":"cnoa_jiatidianhua","fieldLabel":"\u5bb6\u5ead\u7535\u8bdd","xtype":"textfield"},{"name":"cnoa_bornaddress","code":"cnoa_bornaddress","fieldLabel":"\u51fa\u751f\u5730","xtype":"textfield"},{"name":"cnoa_usedname","code":"cnoa_usedname","fieldLabel":"\u66fe\u7528\u540d","xtype":"textfield"},{"name":"cnoa_guoji","code":"cnoa_guoji","fieldLabel":"\u56fd\u7c4d","xtype":"textfield"},{"name":"cnoa_language","code":"cnoa_language","fieldLabel":"\u8bed\u79cd","xtype":"textfield"},{"name":"cnoa_englishlevel","code":"cnoa_englishlevel","fieldLabel":"\u5916\u8bed\u6c34\u5e73","xtype":"textfield"},{"name":"cnoa_xinyang","code":"cnoa_xinyang","fieldLabel":"\u5b97\u6559\u4fe1\u4ef0","xtype":"textfield"},{"name":"cnoa_zuoshili","code":"cnoa_zuoshili","fieldLabel":"\u5de6\u773c\u89c6\u529b","xtype":"textfield"},{"name":"cnoa_youshili","code":"cnoa_youshili","fieldLabel":"\u53f3\u773c\u89c6\u529b","xtype":"textfield"},{"name":"cnoa_dangansuozaidi","code":"cnoa_dangansuozaidi","fieldLabel":"\u6863\u6848\u6240\u5728\u5730","xtype":"textfield"},{"name":"cnoa_jiazhao","code":"cnoa_jiazhao","fieldLabel":"\u9a7e\u7167\u53f7\u7801","xtype":"textfield"},{"name":"cnoa_xuexin","code":"cnoa_xuexin","fieldLabel":"\u8840\u578b","xtype":"textfield"},{"name":"cnoa_aihao","code":"cnoa_aihao","fieldLabel":"\u7231\u597d","xtype":"textarea"},{"name":"cnoa_techang","code":"cnoa_techang","fieldLabel":"\u7279\u957f","xtype":"textfield"},{"name":"cnoa_beizhu","code":"cnoa_beizhu","fieldLabel":"\u5907\u6ce8","xtype":"textarea"},{"name":"cnoa_faz","code":"cnoa_faz","fieldLabel":"\u4f20\u771f","xtype":"textfield"}];
+    }
+
+
+    Ext.onReady(function() {
+        loadScripts("sm_main_user", "cnoa/app/main/scripts/cnoa.user.js", function(){
+            //记录左边树被选中的状态
+            Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
+            CNOA_main_user_list = new CNOA_main_user_listClass();
+            Ext.getCmp(CNOA.main.user.parentID).add(CNOA_main_user_list.mainPanel);
+            Ext.getCmp(CNOA.main.user.parentID).doLayout();
+        });
+    });
+</script>

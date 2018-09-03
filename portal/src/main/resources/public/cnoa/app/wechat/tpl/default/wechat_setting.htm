@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.wechat.setting.setting");
+CNOA.wechat.setting.setting.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+    loadScripts("sm_wechat_wechat", "app/wechat/scripts/cnoa.wechat.js", function(){
+		CNOA_wechat_setting_setting = new CNOA_wechat_setting_settingClass();		
+		Ext.getCmp(CNOA.wechat.setting.setting.parentID).add(CNOA_wechat_setting_setting.mainPanel);
+		Ext.getCmp(CNOA.wechat.setting.setting.parentID).doLayout();
+    });    
+});
+</script>
+CNOA;
+
+#echo loadJavascript("./app/wechat/scripts/wechat_setting.js");
+?>

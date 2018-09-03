@@ -1,0 +1,49 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.flow.flow.user_newflow");
+CNOA.flow.flow.user_newflow.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.flow.flow.user_newflow.ac          = "{$GLOBALS['ac']}";
+CNOA.flow.flow.user_newflow.ulid        = "{$GLOBALS['ulid']}";
+CNOA.flow.flow.user_newflow.lid         = "{$GLOBALS['lid']}";
+CNOA.flow.flow.user_newflow.fid         = "{$GLOBALS['fid']}";
+CNOA.flow.flow.user_newflow.flowName    = "{$GLOBALS['flowName']}";
+CNOA.flow.flow.user_newflow.flowNumber  = "{$GLOBALS['flowNumber']}";
+CNOA.flow.flow.user_newflow.havePermit  = {$GLOBALS['havePermit']};
+CNOA.flow.flow.user_newflow.formReady   = "{$GLOBALS['formready']}";
+CNOA.flow.flow.user_newflow.allowup		= "{$GLOBALS['allowup']}";
+CNOA.flow.flow.user_newflow.attach		= {$GLOBALS['attach']};
+
+//以下为编辑时使用
+CNOA.flow.flow.user_newflow.title  = '{$GLOBALS['title']}';
+CNOA.flow.flow.user_newflow.level  = {$GLOBALS['level']};
+CNOA.flow.flow.user_newflow.reason = '{$GLOBALS['reason']}';
+CNOA.flow.flow.user_newflow.about  = '{$GLOBALS['about']}';
+CNOA.flow.flow.user_newflow.formData  = {$GLOBALS['formData']};
+
+Ext.onReady(function() {
+	loadScripts("sm_flow_flow", "app/flow/scripts/cnoa.flow.js", function(){
+		if(CNOA.flow.flow.user_newflow.havePermit == 0){
+			CNOA.msg.alert("对不起，你没有被授权使用该流程，请与管理员确认是否已经给你使用此流程的权限。", function(){
+				var pid = CNOA.flow.flow.user_newflow.parentID.replace("docs-", "");
+				mainPanel.closeTab(pid);
+			});
+		}else if(CNOA.flow.flow.user_newflow.formReady == "no"){
+			CNOA.msg.alert("经检测，此流程存在表单ID号不同步现象，请与管理员联系，进入表单设计界面重新保存一次该流程的绑定的表单，并重新设计一次本流程。", function(){
+				var pid = CNOA.flow.flow.user_newflow.parentID.replace("docs-", "");
+				mainPanel.closeTab(pid);
+			});
+		}else{
+			CNOA_flow_flow_user_newflow = new CNOA_flow_flow_user_newflowClass();
+			Ext.getCmp(CNOA.flow.flow.user_newflow.parentID).add(CNOA_flow_flow_user_newflow.mainPanel);
+			Ext.getCmp(CNOA.flow.flow.user_newflow.parentID).doLayout();
+		}
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/flow/scripts/flow_user_common.js", "./app/flow/scripts/flow_user_newflow.js"));
+?>

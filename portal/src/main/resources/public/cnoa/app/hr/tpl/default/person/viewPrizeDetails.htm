@@ -1,0 +1,138 @@
+<?php
+$data = $GLOBALS['hr']['viewDetails'];
+$personName = $GLOBALS['hr']['personName']['truename'];
+$data['attach'] = str_replace(array("openOfficeForView","openPdfForView"), array("opener.openOfficeForView","opener.openPdfForView"), $data['attach']);
+print <<<CNOA
+<html>
+<head>
+<title>人事奖罚信息 - Powered by 协众OA - www.cnoa.cn</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript'>
+	function ajaxDownload(url){
+		try{
+			document.body.removeChild(document.getElementById("cnoa_iframe_download"));
+		}catch(e){}
+
+		var f = document.createElement("iframe");
+			f.id = 'cnoa_iframe_download';
+			f.style.width = "0px";
+			f.style.height = "0px";
+			f.style.display = "none";
+			f.src = url + "&r=" + Math.random();
+			document.body.appendChild(f);
+	}
+	window.onload=function(){
+		window.focus()
+	}
+</script>
+</head>
+
+<body class="bodycolor" topmargin="5">
+
+
+
+<table border="0"  width="650" align="center" cellspacing="0" cellpadding="3" class="small">
+
+  <tr>
+
+    <td class="Big"><span class="big3"> 人事奖罚信息</span><br></td>
+	<td class="Big" align="right"><span> 姓名：{$personName}</span><br></td>
+
+  </tr>
+
+</table>
+
+<table class="TableBlock" width="650" align="center">
+
+  <tr>
+
+    <td nowrap class="TableHeader " colspan="6"><b>&nbsp;奖罚信息</b></td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">奖罚项目：</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$data['prizeType']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">奖罚日期：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['prizeDate']}</td>          
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">生效工资月份：</td>
+
+    <td class="TableData" width="180">{$data['prizeWorkDate']}</td>  	
+
+    <td nowrap align="left" width="120" class="TableContent">奖罚属性：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['prizeProperty']}</td>         
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">奖罚金额：</td>
+
+    <td class="TableData" width="180" >{$data['prizeValue']}</td>            
+
+  </tr>
+  
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">奖罚说明：</td>
+
+  </tr>   
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$data['prizeNotes']}</td>               
+
+  </tr>      
+
+  </tr>  
+  
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">备注：</td>
+
+  </tr>   
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$data['prize_notes']}</td>               
+
+  </tr>                                    
+
+  <tr>
+
+  	<td nowrap  class="TableHeader" colspan="6">附件文档：</td>
+
+  </tr>
+
+  <tr>    
+
+    <td nowrap align="left" class="TableData" colspan="6">{$data['attach']}</td>
+
+  </tr>
+
+  <!-- <tr align="center" class="TableControl">
+
+    <td colspan="6">
+
+      <input type="button" value="关闭" class="BigButton" onClick="window.close();" title="关闭窗口">
+
+    </td>
+
+  </tr> -->                     
+
+</table>
+
+</body>
+
+</html>
+CNOA;
+?>

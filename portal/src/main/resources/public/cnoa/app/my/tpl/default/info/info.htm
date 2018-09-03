@@ -1,0 +1,26 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.my.index.info");
+CNOA.my.index.info.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_my_myInfo", "app/my/scripts/cnoa.myInfo.js", function(){
+		if(CNOA_my_info == null){
+			CNOA_my_info = new CNOA_my_infoClass();
+			CNOA_my_info.show();
+		}
+		Ext.getCmp(CNOA.my.index.info.parentID).on("close", function(){
+			try{
+				CNOA_my_info.close();
+			}catch(e){}
+		});
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/my/scripts/info.js"));
+?>

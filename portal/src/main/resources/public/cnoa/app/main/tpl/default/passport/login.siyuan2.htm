@@ -1,0 +1,36 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+{$GLOBALS['CNOA_CONFIG']}
+
+var CNOA_LOGIN_EXPIRE = {$GLOBALS['CNOA_LOGIN_EXPIRE']};
+var CNOA_LOGIN_DLOGIN = {$GLOBALS['CNOA_LOGIN_DLOGIN']};
+var CNOA_LOGIN_USERNAME = "{$GLOBALS['USERNAME']}";
+</script>
+
+<body>
+<style>
+body{background-color:#FFF}
+.my-icon(background: url(./resources/images/icons/lock.gif) 0 6px no-repeat !important;}
+.lk a{color:red}
+.lk a,.lk a:link{color:#1C5784}
+.x-window-plain .x-window-body {border-width: 0px;}
+
+body{background-color: #FFF;font-size: 12px;font-family: Verdana, Arial, Helvetica, SunSans-Regular, Sans-Serif;color: #564b47;padding: 0px;margin: 0px;}
+#main{position: absolute;height: 768px;width: 1024px;margin: -384px 0px 0px -512px;top: 50%;left: 50%;text-align: left;padding: 0px;overflow: auto;background: url(./resources/images/siyuan/index.bg.jpg) 0 0 no-repeat !important;}
+#login_form{width:269px;height:211px;margin-left:753px;margin-top:555px;}
+</style>
+
+<div class="ext-el-mask-msg x-mask-loading" id="cnoa-x-mask-loading-msg"><div>载入中,请稍候..</div></div>
+<script language="JavaScript">var CNOAXMask = document.getElementById("cnoa-x-mask-loading-msg");CNOAXMask.style.left = document.body.clientWidth/2-80+"px";CNOAXMask.style.top = document.documentElement.clientHeight/2-30+"px"; </script>
+
+
+<div id="main">
+  <div id="login_form"></div>
+</div>
+
+
+CNOA;
+echo loadJavascript("./app/main/scripts/passport_index_siyuan2.js");
+?>

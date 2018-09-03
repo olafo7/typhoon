@@ -1,0 +1,25 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.notice.notice.todo");
+CNOA.notice.notice.todo.parentID	= "{$GLOBALS['app']['parentid']}";
+CNOA.notice.notice.todo.from		= "{$GLOBALS['CNOA_NOTICE_TODO']}";
+CNOA.notice.notice.todo.other		= "{$GLOBALS['CNOA_NOTICE_TODO_OTHER']}";
+
+//CNOA.notice.notice.todo.pageNoticeIndex		= "{$GLOBALS['pageNoticeIndex']}";
+//CNOA.notice.notice.todo.pageNoticePage		= "{$GLOBALS['pageNoticePage']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_notice_notice", "app/notice/scripts/cnoa.notice.js", function(){
+		CNOA_notice_notice_todo = new CNOA_notice_notice_todoClass();
+		Ext.getCmp(CNOA.notice.notice.todo.parentID).add(CNOA_notice_notice_todo.mainPanel);
+		Ext.getCmp(CNOA.notice.notice.todo.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+
+##echo loadJavascript(array("./app/notice/scripts/notice_todo.js"));
+?>

@@ -1,0 +1,83 @@
+<div class="wf_div_ct"> 
+  <div class="header">${data:str_flowInfo}</div>
+  <div class="body" id="${data:id_flowPanel}"> 
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD">
+	  <tr>
+	    <td height="24" align="right" valign="middle" class="lable">${data:str_flowNumber}:&nbsp;</td>
+	    <td valign="middle" class="field">${flowNumber}</td>
+		<td height="24" align="right" valign="middle" class="lable">${data:str_flowLevel}:&nbsp;</td>
+        <td valign="middle" class="field">${level}</td>
+  	  </tr>
+	  <tr> 
+        <td width="15%" align="right" valign="middle" class="lable">${data:str_flowFreeTitle}:&nbsp;</td>
+	    <td width="35%" valign="middle" class="field">${flowName}</td>
+        <td width="15%" align="right" valign="middle" class="lable">${data:str_flowStatus}:&nbsp;</td>
+        <td width="35%" valign="middle" class="field">${status}</td>
+      </tr>
+      <tr>
+        <td height="24" align="right" valign="middle" class="lable">${data:str_flowInitiator}:&nbsp;</td>
+        <td valign="middle" class="field">${uname}</td>
+        <td align="right" valign="middle" class="lable">${data:str_flowInitTime}:&nbsp;</td>
+        <td valign="middle" class="field">${posttime}</td>
+      </tr>
+      <tr> 
+        <td height="60" align="right" valign="middle" class="lable">${data:str_flowReason}:&nbsp;</td>
+        <td height="60" valign="top" class="field" colspan="3">${reason}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<!-- html表单插入的地方 -->
+<div class="wf_div_ct">
+  <div class="header" id="wf_form_newfree_tushi">${data:str_flowTextInfo}</div>
+  <div class="body" style="background-color:#EDEDED;">
+    <table class="wf_div_cttb" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="wf_bd wf_tl"></td>
+        <td class="wf_bd wf_t"></td>
+        <td class="wf_bd wf_tr"></td>
+      </tr>
+      <tr>
+        <td class="wf_bd2 wf_l"></td>
+        <td style="padding:50px;" id="${data:id_formPanel}" class="wf_c wf_form_content" signature_position="true"></td>
+        <td class="wf_bd2 wf_r"></td>
+      </tr>
+      <tr>
+        <td class="wf_bd wf_bl"></td>
+        <td class="wf_bd wf_b"></td>
+        <td class="wf_bd wf_br"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- word表单插入的div -->
+<div class="wf_div_ct" style="margin:10px" id="wf_show_formct"></div>
+
+<div id='${data:id_displayAt}' class="wf_div_ct" style="display:none;margin-top:10px" >
+  <div class="header" >${data:str_flowAttach}</div>
+  <div class="body" id="${data:id_attachPanel}"> 
+    <table id="${data:id_attachTable}" class="attachTable" style="border-collapse:separate;border-width: 1px;" width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#CDCDCD">
+      <tr> 
+        <td height="24" align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowAttachName}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowUploadBy}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowUploadTime}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowOpt}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div id='${data:id_displayRd}' class="wf_div_ct" style="display:none;margin-top:10px" >
+  <div class="header" >${data:str_flowReadInfo}</div>
+  <div class="body" id="${data:id_readerPanel}"> 
+    <table id="${data:id_readTable}" style="border-collapse:separate;border-width: 1px;" width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#CDCDCD">
+      <tr> 
+        <td height="24" align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowFFpeople}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowPyPeople}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowBelongDept}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowPyContent}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowPyDate}</td>
+      </tr>
+    </table>
+  </div>
+</div>

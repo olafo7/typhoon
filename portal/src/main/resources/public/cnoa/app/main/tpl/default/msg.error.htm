@@ -1,0 +1,16 @@
+<?php
+print <<<CNOA
+<div id="CNOA_MSG_ERROR_ID"></div>
+<script language="JavaScript">
+	Ext.Msg.buttonText.ok = "确定";
+	Ext.Msg.alert("提示", "{$GLOBALS['msg']}", function(){
+		var parent = $('#CNOA_MSG_ERROR_ID').parents('[id^=docs-]');
+		if (parent){
+			var id = parent.attr('id').replace('docs-', '');
+			mainPanel.closeTab(id);
+		}
+	});
+</script>
+
+CNOA;
+?>

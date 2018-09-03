@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/iosOverlay.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="app/att/css/m/person/manage.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/spin.min.js"></script>
+<script src="scripts/jquery/iosOverlay.js"></script>
+<script src="scripts/jquery/prettify.js"></script>
+<script src="scripts/jquery/custom.js"></script>
+<script>
+    $(function(){
+        
+        $(".ui-ios-overlay").removeClass("ios-overlay-show").addClass("ios-overlay-hide");
+        iosOverlay({
+            text: '该用户的设备信息不正确',
+            duration: 2e3,
+            icon: "../../../../../../resources/images/m/artDialog/cross.png"
+        })
+        //路径导航
+        $(document).on("touchstart","#btnBack",function(){
+            if(/android/ig.test(navigator.userAgent)){
+                window.javaInterface.returnToMain();
+            }else{
+                window.location.href = 'js://pop_view_controller';
+            }
+            return false;
+        })
+    })
+</script>
+</head>
+
+<body>
+    <div id="header">
+        <span class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            手机考勤
+          </a>
+        </span>
+        <button type="button" id="btnBack" class="btn btn-primary btn-back-ico" aria-label="Justify">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div id="loading_mask" style="display: none;"></div>
+</body>
+</html>

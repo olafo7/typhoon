@@ -1,0 +1,22 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+
+Ext.namespace("CNOA.monitor.mgr.tasktotaldetail");
+CNOA.monitor.mgr.tasktotaldetail.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.monitor.mgr.tasktotaldetail.execman = "{$GLOBALS['execman']}";
+CNOA.monitor.mgr.tasktotaldetail.status = "{$GLOBALS['status']}";
+CNOA.monitor.mgr.tasktotaldetail.uname = "{$GLOBALS['uname']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_monitor_mgr", "app/monitor/scripts/cnoa.monitor.js", function(){
+		CNOA_monitor_mgr_tasktotaldetail = new CNOA_monitor_mgr_tasktotaldetailClass();
+		Ext.getCmp(CNOA.monitor.mgr.tasktotaldetail.parentID).add(CNOA_monitor_mgr_tasktotaldetail.mainPanel);
+		Ext.getCmp(CNOA.monitor.mgr.tasktotaldetail.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/task_total.js"));
+?>

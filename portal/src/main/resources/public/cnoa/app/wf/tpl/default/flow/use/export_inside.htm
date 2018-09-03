@@ -1,0 +1,144 @@
+<?php
+$rand = rand(0, 9999999);
+
+$GLOBALS['showBase']  = $GLOBALS['showBase'] ? "" : "display:none";
+$GLOBALS['showForm']  = $GLOBALS['showForm'] ? "" : "display:none";
+$GLOBALS['showStep']  = $GLOBALS['showStep'] ? "" : "display:none";
+$GLOBALS['showEvent'] = $GLOBALS['showEvent'] ? "" : "display:none";
+$GLOBALS['showRead']  = $GLOBALS['showRead'] ? "" : "display:none";
+
+print <<<CNOA
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" type="text/css" href="/cnoa/resources/css/cnoa.all.css?v="/>
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js"></script>
+<script type="text/javascript" src="/cnoa/scripts/extjs.3.4.0.js?v=V 2.0.2"></script>
+<script type="text/javascript" src="/cnoa/scripts/cnoa.common.js?v=V 2.0.2"></script>
+<script language="JavaScript">
+var printwidth	= "{$GLOBALS['wf']['export']['width']}";
+var flowId		= "{$GLOBALS['wf']['export']['flowId']}";
+var uFlowId		= "{$GLOBALS['wf']['export']['uFlowId']}";
+var stepId		= "{$GLOBALS['wf']['export']['stepId']}";
+var flowType	= 0;
+var tplSort		= 0;
+</script>
+
+CNOA;
+echo loadJavascript(array("./app/wf/scripts/export_inside.js"));
+print <<<CNOA
+
+</head>
+<body style="margin:0">
+<object id="WebBrowser" width=0 height=0 classid="CLSID:8856F961-340A-11D0-A96B-00C04FD705A2"></object>
+<div style="width:640px;" id="wf_export_total" class="cnoa-formhtml-layout">
+<!--基本信息-->
+  <!--<div class="header" id="base_header">流程信息</div>-->
+  <div class="body" id="base_body" style="{$GLOBALS['showBase']}"> 
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD">
+	  <tr>
+	    <td height="24" align="right" valign="middle" class="lable">流程编号:&nbsp;</td>
+	    <td valign="middle" class="field">{$GLOBALS['wf']['flowInfo']['flowNumber']}</td>
+		<td height="24" align="right" valign="middle" class="lable">重要等级:&nbsp;</td>
+        <td valign="middle" class="field">{$GLOBALS['wf']['flowInfo']['level']}</td>
+  	  </tr>
+	  <tr> 
+        <td height="24" align="right" valign="middle" class="lable">流程名称:&nbsp;</td>
+	    <td width="35%" valign="middle" class="field">{$GLOBALS['wf']['flowInfo']['flowName']}</td>
+        <td width="15%" align="right" valign="middle" class="lable">流程状态:&nbsp;</td>
+        <td width="35%" valign="middle" class="field">{$GLOBALS['wf']['flowInfo']['status']}</td>
+      </tr>
+      <tr>
+        <td height="24" align="right" valign="middle" class="lable">发起人:&nbsp;</td>
+        <td valign="middle" class="field">{$GLOBALS['wf']['flowInfo']['uname']}</td>
+        <td align="right" valign="middle" class="lable">发起时间:&nbsp;</td>
+        <td valign="middle" class="field">{$GLOBALS['wf']['flowInfo']['posttime']}</td>
+      </tr>
+      <tr> 
+        <td height="60" align="right" valign="middle" class="lable">申请理由:&nbsp;</td>
+        <td height="60" class="field" colspan="3">{$GLOBALS['wf']['flowInfo']['reason']}</td>
+      </tr>
+    </table>
+  </div>
+
+<!--表单信息--> 
+  <!--<div class="header" id="form_header">表单信息</div>-->
+  <div class="body" id="form_body" style="{$GLOBALS['showForm']}">
+  	<table class="wf_div_cttb" border="0" cellpadding="0" cellspacing="0">
+	  <tr>
+	    <td class="wf_bd2 wf_l"></td>
+	    <td style="padding:0;" id="wf_form_content" class="wf_c wf_form_content"></td>
+	    <td class="wf_bd2 wf_r"></td>
+	  </tr>
+	</table>
+  </div>
+  <br />
+
+<!--流程步骤--> 
+  <!--<div class="header" id="step_header">流程步骤</div>-->
+  <div class="body" id="step_body" style="{$GLOBALS['showStep']}"> 
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD">
+	  <tr> 
+        <td valign="middle" class="lable">步骤名称</td>
+        <td valign="middle" class="lable">状态</td>
+        <td valign="middle" class="lable">经办人、开始时间</td>
+        <td valign="middle" class="lable">持续时间</td>
+        <td valign="middle" class="lable">办理理由</td>
+      </tr>
+    </table>
+  </div>
+  <br />
+
+<!--流程事件--> 
+  <!--<div class="header" id="event_header">流程事件</div>-->
+  <div class="body" id="event_body" style="{$GLOBALS['showEvent']}">
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD">
+	  <tr>
+        <td valign="middle" class="lable">类型</td>
+        <td valign="middle" class="lable">步骤</td>
+        <td valign="middle" class="lable">经办人、时间</td>
+        <td valign="middle" class="lable">办理理由</td>
+      </tr>
+    </table>
+  </div>
+  <br />
+
+<!--流程评阅--> 
+  <!--<div class="header" id="read_header">流程评阅</div>-->
+  <div class="body" id="read_body" style="{$GLOBALS['showRead']}">
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD">
+	  <tr> 
+        <td valign="middle" class="lable">评阅人</td>
+        <td valign="middle" class="lable">所属部门</td>
+        <td valign="middle" class="lable">评阅内容</td>
+        <td valign="middle" class="lable">评阅时间</td>
+      </tr>
+    </table>
+  </div>
+ </div>
+ <br />
+
+ 
+ 
+
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+</html>
+CNOA;
+?>

@@ -1,0 +1,162 @@
+<?php
+$data = $GLOBALS['adm']['car']['driver'];
+if($data['pic'] != ""){
+$pic = '&nbsp;<a onclick="showpic(\''.$data['pic'].'\')" href="javascript:void(0)"><img src="resources/images/icons/x-edit-picture.png" align="absbottom" /></a>';
+}else{
+$pic = "";
+}
+print <<<CNOA
+<html>
+<head>
+<title>车辆信息</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript'>
+	window.onload=function(){
+		window.focus()
+	}
+	
+function autoSizePicture(obj, height) {
+	var width = height == undefined ? 500 : height;
+	var height = 99999;
+	myImage = new Image();
+	myImage.src = obj.src;
+	if (myImage.width > 0 && myImage.height > 0) {
+		var rate = 1;
+		if (myImage.width > width || myImage.height > height) {
+			if (width / myImage.width < height / myImage.height) {
+				rate = width / myImage.width;
+			} else {
+				rate = height / myImage.height;
+			}
+		}
+		if (window.navigator.appName == "Microsoft Internet Explorer") {
+			obj.style.zoom = rate;
+		} else {
+			obj.width = myImage.width * rate;
+			obj.height = myImage.height * rate;
+		}
+	}
+}
+
+function showpic(value){
+	x = (screen.availWidth - 850) / 2;
+	y = (screen.availHeight - 600) / 2;
+	window.open('/file/common/car/'+value,'viewpic','width=500,height=300,left='+x+',top='+y+',scrollbars=yes,resizable=yes,status=no')
+}
+
+</script>
+</head>
+
+<body class="bodycolor" topmargin="5">
+
+
+
+<table border="0"  width="650" align="center" cellspacing="0" cellpadding="3" class="small">
+
+  <tr>
+
+    <td class="Big"><span class="big3">{$a}</span><br></td>
+
+  </tr>
+
+</table>
+
+<table class="TableBlock" width="650" align="center">
+
+  <tr>
+
+    <td nowrap class="TableHeader " colspan="6"><b>&nbsp;司机信息</b></td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">司机姓名：</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$data['name']}{$pic}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">车牌号：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['carnumber']}</td>          
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">性别：</td>
+
+    <td class="TableData" width="180">{$data['sex']}</td>  	
+
+    <td nowrap align="left" width="120" class="TableContent">年龄：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['age']}</td>         
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">联系电话：</td>
+
+    <td class="TableData" width="180" >{$data['mobile']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">身高：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['tall']}</td>             
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">驾驶经验：</td>
+
+    <td class="TableData" width="180">{$data['experience']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">驾驶等级:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['rank']}</td>       
+
+  </tr>
+  
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">户籍地址：</td>
+
+  </tr>   
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$data['address']}</td>               
+
+  </tr> 
+  
+  
+  
+  </tr>  
+
+  <!-- <tr align="center" class="TableControl">
+
+    <td colspan="6">
+
+      <input type="button" value="关闭" class="BigButton" onClick="window.close();" title="关闭窗口">
+
+    </td>
+
+  </tr>  -->                    
+
+</table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

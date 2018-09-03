@@ -1,0 +1,22 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.addressbook.setting");
+CNOA.user.addressbook.setting.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_user_addressbook", "app/user/scripts/cnoa.addressbook.js", function(){
+		CNOA_user_addressbook_setting = new CNOA_user_addressbook_settingClass();
+		Ext.getCmp(CNOA.user.addressbook.setting.parentID).add(CNOA_user_addressbook_setting.mainPanel);
+		Ext.getCmp(CNOA.user.addressbook.setting.parentID).doLayout();
+		
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/addressbook_setting.js"));
+?>

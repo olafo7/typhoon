@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>协众OA邮件内容查看</title>
+<style>
+/* ===============页面属性 CSS Reset=============== */
+td,input,button,select,body {font-family:"lucida Grande",Verdana;font-size:12px;}
+h1,h2,h3,h4,h5,h6 {font-size:12px; font-weight:normal; margin:0;}
+ul,li{list-style:none;}
+input,textarea,a {outline:none;}
+form,body,ul,li {margin:0;padding:0;}
+select,body,textarea {background:#fff;font-size:12px;}
+select {font-weight:normal; font-size:12px; font-family:Tahoma;line-height:20px;}
+textarea {width:540px;border:1px solid #718da6;padding:3px;font-family:"lucida Grande",Verdana;}
+img {border:none}
+a {text-decoration:none;cursor:pointer;outline:none;}
+a:hover {text-decoration:underline;}
+
+strong{font-weight:bold;}
+.selectTdClass{background-color:#3399FF !important}
+table.noBorderTable td,table.noBorderTable th,table.noBorderTable caption{border:1px dashed #ddd !important}
+table{border-collapse:collapse;display:table;}
+td,th{}
+caption{border:1px dashed #000;border-bottom:0;padding:3px;text-align:center;}
+th{border-top:2px solid #BBB;background:#F7F7F7;}
+.ue-table-interlace-color-single{ background-color: #fcfcfc; }
+.ue-table-interlace-color-double{ background-color: #f7faff; }
+td p{margin:0;padding:0;}
+</style>
+</head>
+
+<body style="margin:5px;">
+<?=$GLOBALS['content']?>
+
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+</html>
+<script language="javascript">
+<!--
+	window.onload = function(){
+		try{
+			setInterval(function(){
+				parent.CNOA_communication_email_view.doLayout();
+			}, 1000);
+		}catch(e){}
+	}
+//-->
+</script>

@@ -1,0 +1,21 @@
+<?php
+
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.assets.assets.historical");
+CNOA.assets.assets.historical.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+    loadScripts("sm_assets_assets", "app/assets/scripts/cnoa.assets.js", function(){
+        CNOA_assets_assets_historical = new CNOA_assets_assets_historicalClass();
+        Ext.getCmp(CNOA.assets.assets.historical.parentID).add(CNOA_assets_assets_historical.mainPanel);
+        Ext.getCmp(CNOA.assets.assets.historical.parentID).doLayout();
+    })
+});
+
+</script>
+CNOA;
+
+##echo loadJavascript(array("./app/assets/scripts/assets_historical.js"));
+?>

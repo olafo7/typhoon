@@ -1,0 +1,71 @@
+<?php
+$data = $GLOBALS['meeting']['mgr']['person'];
+
+print <<<CNOA
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="scripts/cnoa/viewAttach.js"></script>
+</head>
+<body class="bodycolor" topmargin="5">
+
+<table class="TableBlock" width="650" align="center" style="word-break: break-all;">
+
+  <tr>
+
+    <td nowrap class="TableHeader" colspan="6"><b>&nbsp;会议设备基本信息</b></td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align='left' width='120'  class='TableContent'>设备编号：</td>
+
+   	<td class='TableData' width='180'  >{$data['number']}</td>  
+
+    <td nowrap align='left' width='120' class='TableContent'>设备名称：</td>
+
+    <td class='TableData' width='180' >{$data['name']}</td>          
+   
+
+  </tr>
+  
+    <tr>
+
+
+  	<td nowrap align='left' width='120'  class='TableContent'>绑定会议室名称：</td>
+
+   	<td class='TableData' width='180'  >{$data['meetingroom']}</td>  
+
+    <td nowrap align='left' width='120' class='TableContent'>设备数量：</td>
+
+    <td class='TableData' width='180' >{$data['quantity']}[{$data['unit']}]</td>   
+         
+  </tr>  
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>设备描述：</td>
+
+    <td class='TableData' colspan='3'>{$data['descripts']}</td>    
+         
+  </tr>
+  
+</table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

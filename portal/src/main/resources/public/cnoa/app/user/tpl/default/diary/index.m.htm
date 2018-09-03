@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/common.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="scripts/m/diary/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/sweetalert.min.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="scripts/jquery/date.js?ran=1.9"></script>
+<!-- <script src="scripts/jquery/iscroll5.js"></script> -->
+<!-- 左右触屏 -->
+<script src="scripts/m/diary/touch.js"></script>
+<!-- test -->
+<script src="scripts/m/diary/jquery-ui.js"></script>
+<script>
+var dynamicLoading = {
+  css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var link = document.createElement('link');
+      link.href = path+"?rnd="+Math.random();
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      head.appendChild(link);
+  },
+  js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.src = path+"?rnd="+Math.random();
+      head.appendChild(script);
+  }
+}
+dynamicLoading.js("app/user/scripts/m/diary/mydiary.js");
+dynamicLoading.css("app/user/css/m/diary/mydiary.css");
+</script>
+</head>
+
+<body>
+<div id="header">
+  我的日记
+  <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+  <span class="glyphicon glyphicon-plus btn-add-ico" aria-hidden="true" id="btnAdd"></span>
+</div>
+
+<div id="content">
+    <div id="hea-con">
+            <!--图标-->
+            <input type="search" class="input-medium search-query" id="search" placeholder="搜索">
+    </div>
+    <!-- <div class="line"></div> -->
+    <div id="demo">
+    </div>
+    <div id="wrapper">
+      <div id="scroller">
+        <div id="pullDown">
+            <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+        </div>
+         <!-- 日历 -->
+              
+        <div id="main">
+        </div>
+
+      <div id="pullUp">
+          <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+      </div>
+      <div class="stop-label">已加载完成，不要再滚动了...</div>
+
+    </div>
+</div>
+<!-- 延期 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               延期工作计划
+            </h4>
+         </div>
+         <div class="modal-body">
+          <div id="delycon">
+            <span class="delyw">延期到：</span>
+            <input type="text" class="form-control datetimepick-input kbtn" id="delytime" name="delytime" readonly>
+          </div>
+          <div id="delytype">
+            <span class="delyt">延期类型：</span>
+            <div class="radio">
+              <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 跳到当天
+              </label><br/>
+              <label class="radio-inline delaytype">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 时间段
+              </label>
+            </div>
+          </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default sure" 
+               data-dismiss="modal">确定
+            </button>
+            <button type="button" class="btn btn-primary cancel">
+               取消
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+
+</div><!-- /.modal -->
+<div id="datePlugin"></div>
+</body>
+<!--%以下js文件必须在DOM加载完成之后再引用进来-->
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="scripts/jquery/iscroll.fun.js"></script>
+<!-- <script src="scripts/m/diary/iscroll.fun.js"></script> -->
+</html>
+  

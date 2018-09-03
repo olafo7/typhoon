@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.user.attendance.setting");
+CNOA.user.attendance.setting.parentID = "{$GLOBALS['app']['parentid']}";
+Ext.onReady(function() {
+	loadScripts("sm_user_attendance", "app/user/scripts/cnoa.attendance.js", function(){
+		CNOA_user_attendance_setting = new CNOA_user_attendance_settingClass();
+	    Ext.getCmp(CNOA.user.attendance.setting.parentID).add(CNOA_user_attendance_setting.mainPanel);
+	    Ext.getCmp(CNOA.user.attendance.setting.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+###echo loadJavascript(array("./app/user/scripts/attendance_setting.js"));
+?>

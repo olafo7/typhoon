@@ -1,0 +1,21 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.user.attendance.overtime");
+CNOA.user.attendance.overtime.parentID = "{$GLOBALS['app']['parentid']}";
+//*
+Ext.onReady(function() {
+	loadScripts("sm_user_attendance", "app/user/scripts/cnoa.attendance.js", function(){
+		CNOA_user_attendance_overtime = new CNOA_user_attendance_overtimeClass();
+	    Ext.getCmp(CNOA.user.attendance.overtime.parentID).add(CNOA_user_attendance_overtime.mainPanel);
+	    Ext.getCmp(CNOA.user.attendance.overtime.parentID).doLayout();
+	});
+});
+//*/
+</script>
+
+
+CNOA;
+#echo loadJavascript(array("./app/user/scripts/attendance_overtime.js"));
+?>

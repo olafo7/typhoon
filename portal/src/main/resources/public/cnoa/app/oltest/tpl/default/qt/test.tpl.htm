@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><?php echo $data['name'] ?></title>
+  <script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js?v=v 3.0.75"></script>
+  <link rel="stylesheet" type="text/css" href="/cnoa/resources/css/oltest/viewTest.css" />
+</head>
+<body>
+        
+  <?php if(!empty($data)) :?> 
+  <div class="main">
+    <div id="header">
+      <div class="paperinfo">
+        <div class="paperuser"><?php echo $truename ?></div>
+        <div class="paperCount">结束时间:&nbsp;<?php echo $etime ?></div>
+      </div>
+      <div class="paperTitle"><?php echo $data['name'] ?></div>
+    </div>
+    <div class="fengexian"></div>
+    <div class="paperContent">
+    <form id="form" action="index.php?app=oltest&func=qt&action=qtlist&task=submit" method="post" name="form">
+      <!--单选题-->
+      <input type="hidden" name="paper_id" value="<?php echo $data['id'] ?>">
+      <?php if(!empty($danxuan)) : ?>
+          <div class="title"><span></span>单选题</div>
+          <div class="titleContent">
+          <?php foreach ($danxuan as $v) : ?>
+              <div class="xiaoTitle">(<?php echo $v['tihao']?>).<?php echo $v['title']?></div>
+              <!-- 图片 -->
+              <?php if(!empty($v['images'])) : ?>
+                <p>
+                  <?php foreach($v['images'] as $url) : ?>
+                    <img src="<?php echo $url ?>">
+                  <?php endforeach ?>
+                </p>
+              <?php endif ?>
+              <!-- 答案 -->
+              <div style="margin-top:15px;">
+              <?php foreach ($v['answer'] as $key => $value): ?>
+                  <input type="radio" id="radio_answer_<?php echo $v['bid'].$key ?>" name="radio_<?php echo $v['bid'] ?>" value="<?php echo $key?>">
+                  <label for="radio_answer_<?php echo $v['bid'].$key ?>"><?php echo $value ?></label>
+                  <br/>
+                <br/>
+              <?php endforeach; ?>
+            </div>
+          <?php endforeach ?>
+          </div>
+      <?php endif; ?>
+      <br>
+      <!--多选题-->
+      <?php if(!empty($duoxuan)) : ?>
+          <div class="title"><span></span>多选题</div>
+          <div class="titleContent">
+          <?php foreach ($duoxuan as $v) : ?>
+              <div class="xiaoTitle">(<?php echo $v['tihao']?>).<?php echo $v['title']?></div>
+              <!-- 图片 -->
+              <?php if(!empty($v['images'])) : ?>
+                <p>
+                  <?php foreach($v['images'] as $url) : ?>
+                    <img src="<?php echo $url ?>">
+                  <?php endforeach ?>
+                </p>
+              <?php endif ?>
+              <!-- 答案 -->
+              <div style="margin-top:15px;">
+              <?php foreach ($v['answer'] as $key => $value): ?>
+                <input type="checkbox" id="checkbox_answer_<?php echo $v['bid'].$key ?>" name="checkbox_<?php echo $v['bid'] ?>[]" value="<?php echo $key ?>">
+                <label for="checkbox_answer_<?php echo $v['bid'].$key ?>"><?php echo $value ?></label>
+                <br>
+                <br>
+              <?php endforeach; ?>
+              </div>
+          <?php endforeach ?>
+          </div>
+      <?php endif; ?>
+      <br>
+      <!--主观题-->
+      <?php if(!empty($tiankong)) : ?>
+          <div class="title"><span></span>主观题</div>
+          <div class="titleContent">
+          <?php foreach ($tiankong as $v) : ?>
+              <div class="xiaoTitle">(<?php echo $v['tihao']?>).<?php echo $v['title']?></div>
+              <!-- 图片 -->
+              <?php if(!empty($v['images'])) : ?>
+                <p>
+                  <?php foreach($v['images'] as $url) : ?>
+                    <img src="<?php echo $url ?>">
+                  <?php endforeach ?>
+                </p>
+              <?php endif ?>
+              <!-- 答案 -->
+              <div style="margin-top:10px;">
+                <textarea name="tiankong_<?php echo $v['bid'] ?>" rows="5"  style="width: 100%; margin-top: 10px;"></textarea>
+              </div>
+              <br/>
+          <?php endforeach ?>
+      <?php endif; ?>
+    </form>
+      <!-- <input type="submit" value="提交" style="width: 100px; height: 50px; margin-bottom: 1em;margin-top: 1em;"> -->
+    <div id="button">
+      <button  onclick="submitFrom()" id="submit">提交</button>
+    </div>
+    </div>
+  </div>
+  
+  <?php endif; ?>
+</body>
+</html>
+<script>
+
+    function submitFrom(){
+        if(window.confirm('你确定要提交吗？')){
+          $('#form').submit();
+        }else{
+          return false;
+        }
+    }
+</script>

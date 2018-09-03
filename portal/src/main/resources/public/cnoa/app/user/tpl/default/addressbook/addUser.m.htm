@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+		var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+		var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/user/scripts/m/addressbook/addUser.js");
+dynamicLoading.css("app/user/css/m/addressbook/addUser.css");
+</script>
+</head>
+
+<body>
+<div id="header">
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+</div>
+<div id="wrapper" style="overflow-x: hidden; left: 0px;">
+    <div class="add_user_info">
+        <div class="center-block user_input">
+            <input type="text" class="form-control" id="user_name" placeholder="输入名字">
+            <div id="user_face"><img src="file/common/face/default-face.jpg"></div>
+        </div>
+        <div class="center-block user_input">
+            <input type="text" class="form-control" id="user_phone" placeholder="输入号码">
+        </div>
+        <div class="center-block user_input">
+            <input type="text" class="form-control" id="user_company" placeholder="公司名称">
+        </div>
+    </div>
+    <select class="form-control" id="user_group"></select>
+    <div class="form-control" id="syn_notes">
+        <label><input type="checkbox" id="syn" class="form-control" placeholder="公司名称"><span>同步到手机通讯录</span></label>
+    </div>
+    <div class="well center-block sure" style="max-width: 400px;">
+      <button type="button" class="btn btn-primary btn-lg btn-block" id="save">确定</button>
+      <button type="button" class="btn btn-default btn-lg btn-block" id="cancel">取消</button>
+    </div>
+</div>
+</body>
+</html>

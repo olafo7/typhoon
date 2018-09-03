@@ -1,0 +1,117 @@
+<?php
+$data = $GLOBALS['meeting']['mgr']['setting'];
+$data['notes']     = nl2br($data['notes']);
+$data['descripts'] = nl2br($data['descripts']);
+$data['equipment'] = nl2br($data['equipment']);
+
+print <<<CNOA
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="scripts/cnoa/viewAttach.js"></script>
+</head>
+<body class="bodycolor" topmargin="5">
+
+<table class="TableBlock" width="650" align="center" style="word-break: break-all;">
+
+  <tr>
+
+    <td nowrap class="TableHeader" colspan="6"><b>&nbsp;会议室基本信息</b></td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align='left' width='120'  class='TableContent'>会议室名称：</td>
+
+   	<td class='TableData' width='180'  >{$data['name']}</td>  
+
+    <td nowrap align='left' width='120' class='TableContent'>容纳人数：</td>
+
+    <td class='TableData' width='180' >{$data['contain']}</td>          
+   
+
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>会议地址：</td>
+
+    <td class='TableData' width='180' colspan='3' >{$data['address']}</td>    
+         
+  </tr>  
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>申请权限：</td>
+
+    <td class='TableData' colspan='3'>{$data['applyers']}</td>    
+         
+  </tr>  
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>管理权限：</td>
+
+    <td class='TableData' colspan='3' >{$data['mgrers']}</td>    
+         
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent' >会议室设备：</td>
+
+    <td class='TableData' colspan='3' >{$data['equipmentArr']}</td>
+         
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent' >会议室设备说明：</td>
+
+    <td class='TableData' colspan='3' >{$data['equipment']}</td>
+         
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent' >会议室描述：</td>
+
+    <td class='TableData' colspan='3'>{$data['descripts']}</td>
+         
+  </tr>
+  
+    <tr>
+
+    <td nowrap align='left' width='120' class='TableContent' >会议室管理制度：</td>
+	
+    <td class='TableData' colspan='3' >{$data['notes']}</td>
+         
+  </tr>
+  
+  <tr>
+  
+    <td nowrap align='left' width='120' class='TableContent'>附件：</td>
+
+    <td class='TableData' colspan='3' >{$data['attach']}</td>
+
+  </tr>
+  
+</table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

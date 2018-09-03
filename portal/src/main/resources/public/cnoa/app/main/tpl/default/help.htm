@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.oa.help");
+CNOA.main.oa.help.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.main.oa.help.faqid = {$GLOBALS['FAQID']};
+Ext.onReady(function() {
+	loadScripts("sm_oa_help", "app/main/scripts/cnoa.oa_help.js", function(){
+		CNOA_main_oa_help = new CNOA_main_oa_helpClass();
+		Ext.getCmp(CNOA.main.oa.help.parentID).add(CNOA_main_oa_help.mainPanel);
+		Ext.getCmp(CNOA.main.oa.help.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/main/scripts/user_index.js","./app/main/scripts/user_info.js","./app/main/scripts/user_baseInfo.js"));
+?>

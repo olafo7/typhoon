@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js?v=v 3.0.39"></script>
+
+<style type="text/css">
+	.table-block{
+	   margin-top: 15px;
+	   border:1px #cccccc solid;
+	   line-height:20px;
+	   font-size:9pt;
+	   border-collapse:collapse;
+	}
+
+	.table-block td.table-content{
+	   background: #f2f2f2;
+	   border-bottom: 1px #cccccc solid;
+	   border-right: 1px #cccccc solid;
+	   height: 30px;
+	   padding-left:10px;
+	}
+
+	.table-block .table-data td,
+	.table-block td.table-data{
+	   background: #FFFFFF;
+	   border-bottom: 1px #cccccc solid;
+	   border-right: 1px #cccccc solid;
+	   padding-left:10px;
+	   height: 30px;
+	}
+
+	.table-block .table-button td,
+	.table-block td.table-button{
+	   background: #FFFFFF;
+	   border: 1px #cccccc solid;
+	   padding: 3px;
+	   height: 30px;
+	}
+
+	.big-button {
+		width: 100px;
+		height: 40px;
+	}
+</style>
+</head>
+<body>
+<table class="table-block" width="80%" align="center" id='submitTable'>
+	<tbody>
+		<tr>
+			<td class="table-content" >姓名: <?php echo $truename; ?>
+		</tr>
+		<tr>
+			<td class="table-data" >日期: <?php echo $year.'-'.$month; ?>
+		</tr>
+		<?php echo $detailHtml; ?>
+	</tbody>
+</table>
+</body>
+</html>

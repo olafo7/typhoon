@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.setMyMenu");
+CNOA.main.setMyMenu.parentID = "{$GLOBALS['app']['parentid']}";
+/*
+Ext.onReady(function() {
+	loadScripts("sm_main_sms", "app/main/scripts/cnoa.sms.js", function(){
+		CNOA_main_setMyMenu = new CNOA_main_setMyMenuClass();
+		Ext.getCmp(CNOA.main.sms.send.parentID).add(CNOA_main_setMyMenu.mainPanel);
+		Ext.getCmp(CNOA.main.sms.send.parentID).doLayout();
+	});
+});
+*/
+</script>
+
+CNOA;
+echo loadJavascript("./app/main/scripts/main_setMyMenu.js");
+?>

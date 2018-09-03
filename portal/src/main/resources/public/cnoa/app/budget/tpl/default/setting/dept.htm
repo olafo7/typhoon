@@ -1,0 +1,18 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.budget.setting.dept");
+CNOA.budget.setting.dept.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_budget_mgr", "app/budget/scripts/cnoa.budget.js", function(){
+		CNOA_budget_setting_dept = new CNOA_budget_setting_deptClass();
+		Ext.getCmp(CNOA.budget.setting.dept.parentID).add(CNOA_budget_setting_dept.mainPanel);
+		Ext.getCmp(CNOA.budget.setting.dept.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+###echo loadJavascript(array("./app/budget/scripts/setting_dept.js"));
+?>

@@ -1,0 +1,443 @@
+body,h1, h2, h3, h4, h5,p,ul,li{
+	font-family:"NotoSans CJK","Microsoft YaHei","Proxima Nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+#header {
+    position: relative;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 52px;
+    line-height: 52px;
+    padding: 0;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #3871B8;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+}
+#header .btn-home-ico, #header .btn-back-ico {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-size: 1.2em;
+    padding: 15px;
+}
+#header .btn-add-ico{
+	position: absolute;
+	right: 15px;
+	top: 10px;
+	border: 1px solid #11598c;
+	background-color: #11598c;
+	background-image: -webkit-linear-gradient(top,#1985d0,#1468a2 3%,#0e4b75);
+}
+a:hover,a:link,a:visited,a:active{
+	color:#fff;
+	text-decoration:none;
+}
+
+#header span {
+    font-size: 15px;
+}
+
+/*通讯录搜索*/
+#f_control{
+  position: absolute;
+  top: 52px;
+  z-index: 2;
+  width: 100%;
+  padding-top: 8px;
+  margin: 0px;
+  background: #EFEEF3;
+}
+
+#f_control .col-xs-12 {
+    padding: 0px 0px;
+}
+
+.search {
+    height: 36px;
+    border-radius: 18px;
+}
+
+#f_control .form-group {
+    margin-bottom: 8px;
+}
+
+/*通讯分类*/
+#myTabs {
+    float: left;
+    width: 100%;
+}
+
+#myTabs > li {
+    width: 25%;
+    text-align: center;
+    height: 75px;
+}
+
+.nav-tabs{
+    background: #FFFFFF;
+}
+
+.nav-tabs li a{
+    color: #595757;
+    border: 0px;
+    border-radius: 0px;
+    padding-top: 39px;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #9FA0A0;
+    border-left: 0px;
+    border-top: 0px;
+    border-right: 0px;
+    border-bottom-color: #EFEEF3;
+    background-color: #FFFFFF;
+}
+
+#struct {
+    background: url(../../../../../../resources/images/m/addressbook/struct_default.png);
+    background-position:center center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position-y: 15px; 
+}
+
+#my {
+    background: url(../../../../../../resources/images/m/addressbook/my_default.png);
+    background-position:center center;
+    background-size: 23px;
+    background-repeat: no-repeat;
+    background-position-y: 15px; 
+}
+
+#dept {
+    background: url(../../../../../../resources/images/m/addressbook/dept_default.png);
+    background-position:center center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position-y: 15px; 
+}
+
+#outside {
+    background: url(../../../../../../resources/images/m/addressbook/outside_default.png);
+    background-position:center center;
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position-y: 15px; 
+}
+
+/*内容页*/
+#wrapper{
+    position:absolute; 
+    z-index:1;
+    top:209px; 
+    bottom:0px; 
+    left:0;
+    width:100%;
+    background:#fff;
+    overflow:auto;
+}
+
+
+#scroller {
+    position: absolute;
+    z-index: 1;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    text-size-adjust: none;
+    font-size: 0.8em;
+}
+
+/**
+ * 下拉样式 Pull down styles
+ */
+#pullDown, #pullUp {
+    background:#fafafa;
+    height:50px;
+    line-height:50px;
+    font-weight:bold;
+    font-size:14px;
+    color:#888;
+    border-top: #eee solid 1px;
+}
+#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+    display:block; float:left;
+    width:40px; height:40px;
+    margin-left:30%;
+    background:url(../../../../../../resources/images/m/ico/pull-icon@2x.png) 0 0 no-repeat;
+    -webkit-background-size:40px 80px; background-size:40px 80px;
+    -webkit-transition-property:-webkit-transform;
+    -webkit-transition-duration:250ms;  
+}
+#pullDown .pullDownIcon {
+    -webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUp .pullUpIcon  {
+    -webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullDown.flip .pullDownIcon {
+    -webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullUp.flip .pullUpIcon {
+    -webkit-transform:rotate(0deg) translateZ(0);
+}
+
+#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+    background-position:0 100%;
+    -webkit-transform:rotate(0deg) translateZ(0);
+    -webkit-transition-duration:0ms;
+
+    -webkit-animation-name:loading;
+    -webkit-animation-duration:2s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes loading {
+    from { -webkit-transform:rotate(0deg) translateZ(0); }
+    to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+
+#scroller .stop-label {
+  background: #fafafa;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #eee;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  color: #888;
+  display: none;
+}
+
+/*经常呼叫联系人*/
+#oftenCall {
+    height: 30px;
+    width: 100%;
+    float: left;
+    line-height: 30px;
+    color: #717071;
+    padding-left: 10px;
+    background-color: #EEEEF3;
+    font-size: 13px;
+}
+
+
+#f_control .col-xs-12 {
+    padding: 0px 10px;
+}
+
+#addressbookList {
+    padding: 0px;
+}
+
+#addressbookList .panel {
+  margin-bottom: 0px;
+  border-radius: 0px;
+  border: 0px;
+}
+
+#addressbookList .panel-heading {
+  font-weight: 300;
+  padding: 0px;
+  text-align: -webkit-match-parent;
+  border-top: #eee solid 1px;
+  border-radius: 0px;
+}
+
+#addressbookList .panel-heading .title {
+  display: block;
+  height: 70px;
+  position: relative;
+}
+
+#addressbookList .panel-heading .name-box {
+  height: 70px;
+  padding-left: 25px;
+}
+#addressbookList .name-box {
+  display: block;
+  position: relative;
+}
+
+#addressbookList .panel-heading .name-box .user_info {
+    padding-left: 70px;
+    width: 100%;
+    height: 70px;
+}
+
+#addressbookList .panel-heading .name-box .username {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 80%;
+    display: block;
+    padding-top: 12px;
+    float: left;
+}
+
+.face {
+    position: absolute;
+    width: 50px;
+    line-height: 70px;
+}
+
+.face img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.username .name {
+    color: #231815;
+    font-size: 15px;
+    display: block;
+    float: left;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.username .mobile {
+    margin-left: 5px;
+    color: #727171;
+    display: block;
+    float: left;
+    line-height: 23px;
+}
+
+#addressbookList .panel-heading .name-box .baseInfo {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 80%;
+    padding-top: 5px;
+}
+
+#addressbookList .panel-heading .name-box .baseInfo .profession {
+    display: block;
+    float: left;
+    height: 20px;
+    max-width: 150px;
+    line-height: 20px;
+    text-align: left;
+    color: #FFFFFF;
+    background-color: #5ABA91;
+    padding-left: 15px;
+    border-radius: 10px;
+    padding-right: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#addressbookList .panel-heading .name-box .baseInfo .calltime {
+    display: block;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 10px;
+    color: #888888;
+}
+
+.telIcon {
+    position: absolute;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: url(../../../../../../resources/images/m/addressbook/phone.png) center no-repeat;
+    top: 11px;
+    background-size: 20px;
+}
+
+
+.selected{
+    -webkit-transform: translate(-20%,0);
+    -webkit-transition: all 0.3s linear;
+}
+
+.ui-loader-default,.ui-btn-inner {
+    display: none;
+}
+
+.row {
+    margin: 0px;
+}
+
+.dial {
+    position: absolute;
+    right: 70px;
+    height: 70px;
+    width: 70px;
+    background-color: #C8C9CA;
+    color: #FFF;
+    line-height: 70px;
+    text-align: center;
+    display: none;
+}
+
+.delete {
+    position: absolute;
+    right: 0px;
+    height: 70px;
+    width: 70px;
+    background-color: #E15C5B;
+    color: #FFF;
+    line-height: 70px;
+    text-align: center;
+    display: none;
+}
+
+.jconfirm .jconfirm-box div.content {
+    text-align: center;
+    padding: 30px 15px 30px;
+    color: #231815;
+    font-size: 15px;
+}
+
+.jconfirm.white .jconfirm-box .buttons {
+    border-top: 1px solid #9E9E9F;
+    padding: 0px;
+}
+
+.jconfirm.white .jconfirm-box .buttons button {
+    width: 50%;
+    border-radius: 0px;
+    margin: 0px;
+    background-color: #FFF;
+    color: #4C83C4;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.btn-primary {
+    border-right: 1px solid #9E9E9F !important;
+    border-bottom-left-radius:10px !important;
+}
+
+.btn-danger {
+    border-bottom-right-radius:10px !important;
+}

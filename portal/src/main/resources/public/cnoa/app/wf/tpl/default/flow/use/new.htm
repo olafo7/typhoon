@@ -1,0 +1,89 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.use_new");
+CNOA.wf.use_new.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.wf.use_new.flowId	 = "{$GLOBALS['app']['flowId']}";
+CNOA.wf.use_new.flowNumber = "{$GLOBALS['app']['flowNumber']}";
+CNOA.wf.use_new.action   = "{$GLOBALS['app']['action']}";
+CNOA.wf.use_new.uFlowId  = "{$GLOBALS['app']['uFlowId']}";
+CNOA.wf.use_new.havePermit  = "{$GLOBALS['havePermit']}";
+CNOA.wf.use_new.flowType  = "{$GLOBALS['app']['flowType']}";
+CNOA.wf.use_new.tplSort  = "{$GLOBALS['app']['tplSort']}";
+CNOA.wf.use_new.childId  = "{$GLOBALS['app']['childId']}";
+CNOA.wf.use_new.otherApp = "{$GLOBALS['app']['otherApp']}";
+CNOA.wf.use_new.allowPrint  = "{$GLOBALS['app']['wf']['new']['allowPrint']}";
+CNOA.wf.use_new.saveduFlowId  = "{$GLOBALS['saveduFlowId']}";
+CNOA.wf.use_new.saveduFlowTime  = "{$GLOBALS['saveduFlowTime']}";
+CNOA.wf.use_new.salaryApproveId  = "{$GLOBALS['app']['salaryApproveId']}";
+CNOA.wf.use_new.userCid  = "{$GLOBALS['app']['userCid']}";
+CNOA.wf.use_new.noticeLid  = "{$GLOBALS['app']['noticeLid']}";
+CNOA.wf.use_new.puFlowId  = "{$GLOBALS['app']['puFlowId']}";
+CNOA.wf.use_new.cid  = "{$GLOBALS['app']['cid']}";
+CNOA.wf.use_new.pid  = "{$GLOBALS['app']['pid']}";
+CNOA.wf.use_new.againId = "{$GLOBALS['app']['againId']}";
+
+var wfAutoSaveStart = false;
+
+if(CNOA.wf.use_new.havePermit === "0"){
+	var pid = CNOA.wf.use_new.parentID.replace("docs-", "");
+	mainPanel.closeTab(pid);
+	CNOA.msg.alert("对不起，你没有被授权使用该流程，请与管理员确认是否已经给你使用此流程的权限。");
+	try{
+		CNOA_wf_use_list.store.reload();
+	}catch(e){};
+}else{
+	Ext.onReady(function() {
+		loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+			var init = function(){
+				CNOA_wf_use_new = new CNOA_wf_use_newClass();
+				Ext.getCmp(CNOA.wf.use_new.parentID).add(CNOA_wf_use_new.mainPanel);
+				Ext.getCmp(CNOA.wf.use_new.parentID).doLayout();
+			};
+			if(CNOA.wf.use_new.saveduFlowId !== "0" && CNOA.wf.use_new.action != 'edit'){
+				CNOA.msg.cf("检测到草稿箱中有已经保存的流程，是否载入？<br />最后保存时间："+CNOA.wf.use_new.saveduFlowTime, function(btn){
+					if(btn == "yes"){
+						CNOA.wf.use_new.action = "edit";
+						CNOA.wf.use_new.uFlowId = CNOA.wf.use_new.saveduFlowId;
+					}
+
+					init();
+				});
+			}else{
+				init();
+			}
+			Ext.getCmp(CNOA.wf.use_new.parentID).on("destroy", function(){
+				try{
+					clearInterval(window.wfAutoSaveIDV);
+				}catch(e){}
+
+				//刷新公文拟稿列表
+				try{
+					CNOA_odoc_send_apply.store.reload();
+				}catch(e){}
+				//刷新公文收文列表
+				try{
+					CNOA_odoc_receive_apply.store.reload();
+				}catch(e){}
+			});
+		});
+	});
+}
+function getHtml(){
+	var val = $('#ID_RECORD').html();
+	if (val == "" || val == null) {
+		$('#ID_RECORD').css("height", "100px");
+	}else{
+		$('#ID_RECORD').css("height", "");
+	}
+}
+setTimeout('getHtml()', 1000);
+
+</script>
+CNOA;
+### if($GLOBALS['havePermit'] === 1){
+### 	echo loadJavascript(array("./app/wf/scripts/use_commonflow.js", "./app/wf/scripts/form_init.js", "./app/wf/scripts/use_new.js"));
+### }
+?>

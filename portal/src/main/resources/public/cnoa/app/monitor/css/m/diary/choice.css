@@ -1,0 +1,71 @@
+body,h1, h2, h3, h4, h5,p,ul,li{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	background-color:#EEEEF3;
+	margin-right:0px !important;
+}
+#header{
+	position:relative;
+	z-index: 2000;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 52px;
+	line-height: 52px;
+	padding: 0;
+	font-size: 18px;
+	text-align: center;
+	font-weight: bold;
+	background-color: #3871B8;
+	color: #fff;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+}
+#header .btn-home-ico,#header .btn-back-ico{
+	left: 0px;
+    position: fixed;
+    top: 0px;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+}
+#header .btn-add-ico{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	font-size: 1.2em;
+	padding: 15px 1px;
+}
+.userDataGroup .list-group-item .name-box1 {
+    position: relative;
+    margin: 0px 40px 0px 32px;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+}
+.name-box {
+    position: relative;
+    margin: 0px 40px 0px 0px !important;
+    display: block;
+    height: 40px;
+}
+#userDataModal{
+	overflow: hidden;
+}
+#userDataModal .modal-header {
+    position: absolute !important;
+    z-index: 1;
+    top: 52px !important;
+    left: 0;
+    width: 100%;
+    height: 32px;
+    line-height: 52px;
+    padding: 0;
+    font-size: 18px;
+    text-align: center;
+    background-color: #3871B8;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+}

@@ -1,0 +1,292 @@
+body,h1, h2, h3, h4, h5,p,ul,li{
+    font-family:"NotoSans CJK","Microsoft YaHei","Proxima Nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+ul {
+    text-decoration: none; 
+    list-style-type: none;
+}
+
+a,a:hover,a:link,a:visited {
+    list-style-type: none;
+    text-decoration: none; 
+}
+
+/*header styles*/
+#header,
+.readHeader {
+	position: fixed;
+	width: 100%;
+	height: 52px;
+	text-align: center;
+	line-height: 52px;
+	background-color: #4A78BB;
+	color: #FFFFFF;
+	z-index: 1;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.reader {
+    position: absolute;
+    top: 52px;
+    height: 40px !important;
+    line-height: 40px;
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+    z-index: 1;
+    background-color: #82B2FF;
+    color: #fff;
+}
+
+#wrapper {
+    position: absolute;
+    top: 40px;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    overflow: auto;
+}
+.reason{
+    margin-top: 64px;
+    margin-left:10px;
+    font-family: '微软雅黑';
+    font-size:larger;
+}
+/*attach styles*/
+.attachT,
+.markAttachT {
+    color: #333;
+    height: 35px;
+    padding: 7px 6px;
+    border-radius: 0px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-top: 5px;
+}
+
+.attachs {
+	margin-top: 5px;
+}
+
+#myAttach .panel-heading,
+#markAttach .panel-heading {
+    font-weight: 300;
+    padding: 0px;
+    text-align: -webkit-match-parent;
+    border-top: #eee solid 1px;
+    border-radius: 0px;
+}
+
+#myAttach .panel-heading .attachTitle,
+#markAttach .panel-heading .attachTitle {
+    display: block;
+    height: 56px;
+    position: relative;
+    width: 100%;
+}
+.panel {
+	background-color: #FFF;
+}
+
+#myAttach .name-box,
+#markAttach .name-box {
+    position: relative;
+    color: #1f8ed6;
+    display: block;
+    height: 50px;
+    margin: 0px 0px 0px 35px;
+}
+
+#myAttach .panel-heading .name-box,
+#markAttach .panel-heading .name-box {
+    margin: 0px 55px 0px 15px;
+    height: 56px;
+}
+
+#myAttach .name-box .attachN,
+#markAttach .name-box .attachN {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+#myAttach .info,
+#markAttach .info {
+    overflow: hidden;
+    position: absolute;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    left: 0;
+    top: 20px;
+    color: #595757;
+    font-size: 15px;
+}
+
+#myAttach .enter,
+#markAttach .enter {
+    background-size: 25px auto;
+    right: 0;
+    top: 0;
+    width: 50px;
+    color: #d2d2d2;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#myAttach .icon, #myAttach .enter, #myAttach .prev, #myAttach .next ,
+#markAttach .icon, #markAttach .enter, #markAttach .prev, #markAttach .next {
+    color: #1f8ed6;
+    display: block;
+    height: 56px;
+    line-height: 56px;
+}
+
+#myAttach .glyphicon,
+#markAttach .glyphicon {
+    padding: 0px 10px 0px 10px;
+    font-size: 22px;
+    color: #d2d2d2;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 1;
+}
+
+#myAttach .btn,
+#markAttach .btn {
+    padding: 10px 12px;
+    margin-bottom: 5px;
+    background-color: #4B83C4;
+    color: #FFFFFF;
+}
+
+.TableBlock {
+    margin-top: 52px;
+}
+
+.readerContent {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 5;
+    overflow: auto;
+    background-color: #FFF;
+}
+
+#btnCancel,#btnBack {
+    right: 0px;
+    position: fixed;
+    top: 0px;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+}
+
+#btnBack {
+	left: 0px;
+}
+
+/*table*/
+table {
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0;
+    width: 100%;    
+}
+
+.bordered {
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px #ccc; 
+    -moz-box-shadow: 0 1px 1px #ccc; 
+    box-shadow: 0 1px 1px #ccc;
+    font-size: 12px;
+    margin-top: 52px;
+}
+
+.bordered tr:hover {
+    background: #fbf8e9;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;     
+}    
+    
+.bordered td, .bordered th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    text-align: center;
+    width: 5%;
+    height: 50px;
+}
+
+.bordered tr {
+    height: 30px !important;
+}
+
+.bordered th {
+    background-color: #dce9f9;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+    background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:    -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:     -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:      -o-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:         linear-gradient(top, #ebf3fc, #dce9f9);
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+    border-top: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+}
+
+.bordered td:first-child, .bordered th:first-child {
+    border-left: none;
+    width: 3%;
+}
+
+.bordered th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+    width: 3%;
+}
+
+.bordered th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+.bordered th:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.bordered tr:last-child td:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+
+.cnoa_color_red {
+	color: red;
+}

@@ -1,0 +1,18 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.odoc.receive.check");
+CNOA.odoc.receive.check.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_odoc_odoc", "app/odoc/scripts/cnoa.odoc.js", function(){
+		CNOA_odoc_receive_check = new CNOA_odoc_receive_checkClass();
+		Ext.getCmp(CNOA.odoc.receive.check.parentID).add(CNOA_odoc_receive_check.mainPanel);
+		Ext.getCmp(CNOA.odoc.receive.check.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+###echo loadJavascript(array("./app/odoc/scripts/receive_check.js"));
+?>

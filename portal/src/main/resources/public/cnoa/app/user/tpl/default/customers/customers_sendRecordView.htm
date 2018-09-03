@@ -1,0 +1,21 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.customers.sendRecordView");
+CNOA.user.customers.sendRecordView.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.user.customers.sendRecordView.rid      = {$GLOBALS['rid']};
+
+Ext.onReady(function() {
+	loadScripts("sm_user_customers", "app/user/scripts/cnoa.customers.js", function(){
+		CNOA_user_customers_sendRecordView = new CNOA_user_customers_sendRecordViewClass();
+		Ext.getCmp(CNOA.user.customers.sendRecordView.parentID).add(CNOA_user_customers_sendRecordView.mainPanel);
+		Ext.getCmp(CNOA.user.customers.sendRecordView.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/customers_checkRecordView.js"));
+?>

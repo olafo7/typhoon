@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.domain.domain.userlist");
+CNOA.domain.domain.userlist.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+    loadScripts("sm_domain_domain3", "app/domain/scripts/domain_userlist.js", function(){
+		CNOA_domain_domain_userlist = new CNOA_domain_domain_userlistClass();		
+		Ext.getCmp(CNOA.domain.domain.userlist.parentID).add(CNOA_domain_domain_userlist.mainPanel);
+		Ext.getCmp(CNOA.domain.domain.userlist.parentID).doLayout();
+    });    
+});
+</script>
+CNOA;
+
+#echo loadJavascript("./app/domain/scripts/domain_userlist.js");
+?>

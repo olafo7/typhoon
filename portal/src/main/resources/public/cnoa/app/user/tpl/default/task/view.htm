@@ -1,0 +1,24 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.task.view");
+CNOA.user.task.view.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.user.task.view.tid      = "{$GLOBALS['tid']}";
+CNOA.user.task.view.status   = "{$GLOBALS['status']}";
+CNOA.user.task.view.from	 = "{$GLOBALS['from']}";
+CNOA.user.task.view.type	 = "{$GLOBALS['user_task']['type']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_task", "app/user/scripts/cnoa.task.js", function(){
+		CNOA_user_task_view = new CNOA_user_task_viewClass();
+		Ext.getCmp(CNOA.user.task.view.parentID).add(CNOA_user_task_view.mainPanel);
+		Ext.getCmp(CNOA.user.task.view.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/task_view.js"));
+?>

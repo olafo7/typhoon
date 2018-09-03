@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.hr.person.field");
+CNOA.hr.person.field.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("hr_person_file", "app/hr/scripts/cnoa.person.js", function(){
+		CNOA_hr_person_field = new CNOA_hr_person_fieldClass();
+		Ext.getCmp(CNOA.hr.person.field.parentID).add(CNOA_hr_person_field.mainPanel);
+		Ext.getCmp(CNOA.hr.person.field.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+##echo loadJavascript(array("./app/hr/scripts/person_field.js"));
+?>

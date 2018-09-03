@@ -1,0 +1,24 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.news.news.sortlist");
+CNOA.news.news.sortlist.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_news_news", "app/news/scripts/cnoa.news.js", function(){
+		CNOA_news_news_sortlist = new CNOA_news_news_sortlistClass();
+		Ext.getCmp(CNOA.news.news.sortlist.parentID).add(CNOA_news_news_sortlist.mainPanel);
+		Ext.getCmp(CNOA.news.news.sortlist.parentID).doLayout();
+	});
+});
+
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/news/scripts/news_sortlist.js"));
+
+?>

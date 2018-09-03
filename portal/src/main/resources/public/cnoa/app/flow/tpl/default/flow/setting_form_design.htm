@@ -1,0 +1,32 @@
+<script type="text/javascript" src="./scripts/cnoa/form/Ext.form.BasicFormForCKEditor.js"></script>
+<script type="text/javascript" src="./scripts/cnoa/form/Ext.form.CKEditor.js"></script>
+<script type="text/javascript" src="./scripts/ckeditor/3.5.2/ckeditor.js"></script>
+<script type="text/javascript" src="./app/flow/scripts/flow_settingflow_formdesign.js"></script>
+
+<body scroll="no" id="CNOA_FLOW_FLOW_FORM_DESIGN">
+
+
+<?php
+print <<<CNOA
+
+<script language="javascript">
+	var form_id = {$GLOBALS['formid']};
+</script>
+
+<textarea id="FORM_CONTENT_2" name="FORM_CONTENT_2" style="display:none;">
+{$GLOBALS['content']}
+</textarea>
+
+<script type="text/javascript">
+
+function killErrors() {
+	return true;
+}
+window.onerror = killErrors;
+
+</script>
+
+CNOA;
+?>
+
+

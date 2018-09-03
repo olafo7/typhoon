@@ -1,0 +1,19 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.use_list");
+CNOA.wf.use_list.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_use_list = new CNOA_wf_use_listClass();
+		Ext.getCmp(CNOA.wf.use_list.parentID).add(CNOA_wf_use_list.mainPanel);
+		Ext.getCmp(CNOA.wf.use_list.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+### echo loadJavascript(array("./app/wf/scripts/use_flowpreview.js", "./app/wf/scripts/use_list.js"));
+?>

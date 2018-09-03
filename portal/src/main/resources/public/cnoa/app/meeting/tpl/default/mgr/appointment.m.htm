@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/meeting/scripts/m/appointment.js");
+dynamicLoading.css("app/meeting/css/m/appointment.css");
+</script>
+</head>
+<body>
+<div id="header">会议预约情况
+<span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+</div>
+<div id="explain">
+    <div class="color_e1">颜色说明:</div>
+    <div class="color_e2"><span></span>会议待审中</div>
+    <div class="color_e3"><span></span>会议室申请时间重叠</div>
+    <div class="color_e4"><span></span>会议室审核通过</div>
+</div>
+<div class="btn-group btn-group-justified days" role="group" data-url="m.php?app=meeting&func=mgr&action=appointment&task=getJsonData">
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" id="yesterday" data-days='0'>前一天</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" id="today">今天</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" id="tomorrow" data-days='0'>后一天</button>
+  </div>
+</div>
+<div class="date"></div>
+<div id="main">
+    <ul class="meetT"></ul>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr class="tableHeader">
+            </tr>
+            <tr class="half">
+            </tr>
+        </thead>
+            <tbody id="timeBody"></tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

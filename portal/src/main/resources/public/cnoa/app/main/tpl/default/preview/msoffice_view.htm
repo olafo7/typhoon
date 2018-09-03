@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>预览文档</title>
+<style>
+body{
+	margin:0;padding:0;
+}
+</style>
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js"></script>
+<script type="text/javascript" src="/cnoa/scripts/extjs.3.4.0.js?v=V 3.0.0"></script>
+<script type="text/javascript" src="/cnoa/scripts/cnoa.common.js?v=V 3.0.0"></script>
+
+<script language="JavaScript">
+function doResize(){
+	try{
+		var webObj = document.getElementById("CNOA_WEBOFFICE");
+		webObj.style.height=document.body.clientHeight;
+	}catch(e){}
+}
+$(window).resize(function() {
+	doResize();
+});
+
+//关闭的时候恢复复制
+window.onbeforeunload = function(){
+	var webObj = document.getElementById("CNOA_WEBOFFICE");
+	webObj.SetSecurity(0x04 + 0x8000); 
+}
+</script>
+<!-- <script language=javascript event=NotifyCtrlReady for=CNOA_WEBOFFICE>
+var baseURI = location.href.substr(0, location.href.indexOf('index.php'));
+try{
+	var webObj = document.getElementById("CNOA_WEBOFFICE");
+	//webObj.OptionFlag |= 128;
+	webObj.LoadOriginalFile(baseURI + "<?=$GLOBALS['URL']?>", "<?=$GLOBALS['DOCTYPE']?>");
+	webObj.ShowToolBar = false;
+	webObj.OptionFlag &= 0xff7f;
+	webObj.setCurrUserName("广州协众软件科技有限公司");
+	webObj.SetSecurity(0x01);
+	webObj.SetSecurity(0x02);
+	webObj.SetSecurity(0x04);
+	webObj.SetSecurity(0x08);
+	//webObj.SetToolBarButton2("Menu Bar",1,0);//隐藏2003文件菜单
+}catch(e){}
+</script> -->
+
+</head>
+
+<body onload="doResize();" scroll="no">
+<script type="text/javascript">
+<!--
+	document.write(CNOA.webObject.getWebOffice("100%", "100%", 'left: 0px; TOP: 0px'));
+	var baseURI = location.href.substr(0, location.href.indexOf('index.php'));
+	try{
+		var webObj = document.getElementById("CNOA_WEBOFFICE");
+		//webObj.OptionFlag |= 128;
+		webObj.ShowToolBar = false;
+		setTimeout(function(){
+			webObj.LoadOriginalFile(baseURI + "<?=$GLOBALS['URL']?>", "<?=$GLOBALS['DOCTYPE']?>");
+			webObj.OptionFlag &= 0xff7f;
+			webObj.setCurrUserName("广州协众软件科技有限公司");
+			webObj.SetSecurity(0x01);
+			webObj.SetSecurity(0x02);
+			webObj.SetSecurity(0x04);
+			webObj.SetSecurity(0x08);
+			webObj.HideMenuArea("hideall", "", "", "")
+		}, 500)
+		//webObj.SetToolBarButton2("Menu Bar",1,0);//隐藏2003文件菜单
+	}catch(e){}
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.customapp.defaults.index");
+CNOA.customapp.defaults.index.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("customapp_defaults_index", "app/customapp/scripts/cnoa.customapp.js", function(){
+		CNOA_customapp_defaults_index = new CNOA_customapp_defaults_indexClass("{$GLOBALS['src']}");
+		Ext.getCmp(CNOA.customapp.defaults.index.parentID).add(CNOA_customapp_defaults_index.mainPanel);
+		Ext.getCmp(CNOA.customapp.defaults.index.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+
+?>

@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.communication.email.setting");
+CNOA.communication.email.setting.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_communication_email", "app/communication/scripts/cnoa.email.js", function(){
+		CNOA_communication_email_setting = new CNOA_communication_email_settingClass();
+		Ext.getCmp(CNOA.communication.email.setting.parentID).add(CNOA_communication_email_setting.mainPanel);
+		Ext.getCmp(CNOA.communication.email.setting.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+?>

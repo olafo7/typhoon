@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.flow.flow.user_newcommonflow");
+CNOA.flow.flow.user_newcommonflow.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.flow.flow.user_newcommonflow.ac = "{$GLOBALS['ac']}";
+CNOA.flow.flow.user_newcommonflow.ulid = "{$GLOBALS['ulid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_flow_flow", "app/flow/scripts/cnoa.flow.js", function(){
+		CNOA_flow_flow_user_newcommonflow = new CNOA_flow_flow_user_newcommonflowClass();
+		Ext.getCmp(CNOA.flow.flow.user_newcommonflow.parentID).add(CNOA_flow_flow_user_newcommonflow.mainPanel);
+		Ext.getCmp(CNOA.flow.flow.user_newcommonflow.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/flow/scripts/flow_user_newcommonflow.js"));
+?>

@@ -1,0 +1,179 @@
+<?php
+$version = parse_ini_file(CNOA_PATH . "/.version");
+print <<<CNOA
+<html>
+<head>
+<title>办理流程</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<link rel="stylesheet" type="text/css" href="/cnoa/extjs/3.4.0/resources/css/ext-all.css?v={$version['versionName']}">
+<link rel="stylesheet" type="text/css" href="/cnoa/resources/css/cnoa.all.css?v={$version['versionName']}">
+<script type="text/javascript" src="/cnoa/scripts/extjs.3.4.0.js?v={$version['versionName']}"></script>
+<script type="text/javascript" src="/cnoa/file/language/cn.js?v={$version['versionName']}"></script>
+<script type="text/javascript" src="/cnoa/scripts/cnoa.common.js?v={$version['versionName']}"></script>
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js?v={$version['versionName']}"></script>
+<script type="text/javascript" src="/cnoa/scripts/cnoa.extra.js?v={$version['versionName']}"></script>
+<script type="text/javascript" src="/cnoa/app/wf/scripts/cnoa.wf.js?v={$version['versionName']}"></script>
+<script type="text/javascript" src="/cnoa/scripts/datePicker/datePicker.js?v={$version['versionName']}"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	window.wfDealInNewWindow = true;
+
+	//转换主窗口的变量
+	window.CNOA_USER_UID = opener.CNOA_USER_UID;
+	window.CNOA_USER_SID = opener.CNOA_USER_SID;
+	window.CNOA_USER_JID = opener.CNOA_USER_JID;
+	window.CNOA_USER_DID = opener.CNOA_USER_DID;
+	window.CNOA_USER_MENUCED = opener.CNOA_USER_MENUCED;
+	window.CNOA_USER_JOBTYPE = opener.CNOA_USER_JOBTYPE;
+	window.CNOA_USER_USERNAME = opener.CNOA_USER_USERNAME;
+	window.CNOA_USER_TRUENAME = opener.CNOA_USER_TRUENAME;
+	window.CNOA_USER_DEPTMENT = opener.CNOA_USER_DEPTMENT;
+	window.CNOA_USER_THEME = opener.CNOA_USER_THEME;
+	window.CNOA_SYSTEM_ONLINE_LIST = opener.CNOA_SYSTEM_ONLINE_LIST;
+	window.CNOA_COMMUNICATION_IM_CHATTING_LIST = opener.CNOA_COMMUNICATION_IM_CHATTING_LIST;
+	window.CNOA_EXTJS_PATH = opener.CNOA_EXTJS_PATH;
+	window.CNOA_VERSION_INFO = opener.CNOA_VERSION_INFO;
+	window.CNOA_SMS_ENABLE = opener.CNOA_SMS_ENABLE;
+	window.CNOA_LOCK_INDEX_LAYOUT = opener.CNOA_LOCK_INDEX_LAYOUT;
+	window.LAYOUT_TYPE = opener.LAYOUT_TYPE;
+	window.CNOA_TAG_NUM = opener.CNOA_TAG_NUM;
+	window.CNOA_VERSION = opener.CNOA_VERSION;
+	window.CNOA_HOST = opener.CNOA_HOST;
+	window.CNOA_ACTIVEX_CONFIG = opener.CNOA_ACTIVEX_CONFIG;
+	window.CNOA_wf_use_todo = opener.CNOA_wf_use_todo;
+	window.CNOA_notice_notice_todo = opener.CNOA_notice_notice_todo;
+	window.CNOA_wf_signature_electron = opener.CNOA_wf_signature_electron;
+
+	Ext.ns('CNOA.config');
+	Ext.ns('CNOA.permitController');
+	CNOA.config.name = opener.CNOA.config.name;
+	CNOA.config.onlineRefreshTime = opener.CNOA.config.onlineRefreshTime;
+	CNOA.config.myIp = opener.CNOA.config.myIp;
+	CNOA.permitController = opener.CNOA.permitController;
+	CNOA.enableLoginAuth = opener.CNOA.enableLoginAuth;
+	CNOA.viewOfficeAllowPrint = opener.CNOA.viewOfficeAllowPrint;
+	CNOA.viewOfficeAllowCopy = opener.CNOA.viewOfficeAllowCopy;
+	CNOA.systemTitleShowType = opener.CNOA.systemTitleShowType;
+	Ext.BLANK_IMAGE_URL = opener.Ext.BLANK_IMAGE_URL;
+	CNOA.unReadNoticeCount = opener.CNOA.unReadNoticeCount;
+	CNOA.config.themeList = opener.CNOA.config.themeList;
+	CNOA.config.scblg = opener.CNOA.config.scblg;
+	CNOA.config.file = opener.CNOA.config.file;
+	window.CNOA_APP_NOTICE_FROMTYPE = opener.CNOA_APP_NOTICE_FROMTYPE;
+	mainPanel = {
+		closeTab : function(id){
+			try{opener.mainPanel.closeTab(id);}catch(e){}
+			if(id == "CNOA_MENU_WF_USE_OPENFLOW"){window.close();}
+		},
+		loadClass : function(href, cls, title, icon, forceRefresh){
+			if(mainPanel.isWfInNewWindow(href)){
+				return false;
+			}
+			opener.mainPanel.loadClass(href, cls, title, icon, forceRefresh);
+		},
+		isWfInNewWindow : function(url){
+			var uo = parseURL(url);
+			if(opener.CNOA_USER_WFINNEWWINDOW && uo.params.app == "wf" && uo.params.func == "flow" && uo.params.action == "use" && uo.params.task == "loadPage" && uo.params.from == "dealflow"){
+				url = url.replace("from=dealflow", "from=dealflow&openInNewWin=1");
+				window.open(url);
+				return true;
+			}
+			return false;
+		}
+	};
+
+
+
+	Ext.Window.prototype.constrain = true;
+
+	window.uFlowId = "{$GLOBALS['app']['uFlowId']}";
+
+	Ext.namespace("CNOA.wf.use_dealflow");
+	CNOA.wf.use_dealflow.parentID	= "{$GLOBALS['app']['parentid']}";
+	CNOA.wf.use_dealflow.flowId		= "{$GLOBALS['app']['flowId']}";
+	CNOA.wf.use_dealflow.uFlowId	= "{$GLOBALS['app']['uFlowId']}";
+	CNOA.wf.use_dealflow.step		= "{$GLOBALS['app']['step']}";
+	CNOA.wf.use_dealflow.huiqiannum	= "{$GLOBALS['app']['huiqian']['num']}";
+	CNOA.wf.use_dealflow.touid		= "{$GLOBALS['app']['entrust']['touid']}";
+	CNOA.wf.use_dealflow.tplSort	= "{$GLOBALS['app']['wf']['tplSort']}";
+	CNOA.wf.use_dealflow.flowType	= "{$GLOBALS['app']['wf']['flowType']}";
+	CNOA.wf.use_dealflow.childFlow	= "{$GLOBALS['app']['wf']['childFlow']}";
+	CNOA.wf.use_dealflow.childNum	= "{$GLOBALS['app']['wf']['childNum']}";
+	CNOA.wf.use_dealflow.showChildAlert	= "{$GLOBALS['app']['wf']['showChildAlert']}";
+	CNOA.wf.use_dealflow.relevanceUFlowInfo	= '{$GLOBALS['app']['wf']['relevanceUFlowInfo']}';
+	CNOA.wf.use_dealflow.allowWordEdit	= '{$GLOBALS['allowWordEdit']}';
+
+	CNOA.wf.use_dealflow.ismystep	= {$GLOBALS['ismystep']};
+
+	if(CNOA.wf.use_dealflow.ismystep == 0){
+		setTimeout(function() {
+				Ext.get('loading').remove();
+				Ext.get('loading-mask').remove();
+			},
+		250);
+		CNOA.msg.alert("当前步骤不是由您办理的，无权访问！", function(){
+			mainPanel.closeTab("CNOA_MENU_WF_USE_OPENFLOW");
+			try{
+				CNOA_wf_use_todo.store.reload();
+			}catch(e){}
+			try{
+				CNOA_notice_notice_todo.reload();
+			}catch(e){}
+		});
+	}else{
+		Ext.onReady(function() {
+			loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+				CNOA_wf_use_dealflow = new CNOA_wf_use_dealflowClass();
+			
+				window.onbeforeunload = function(){
+					//刷新公文拟稿列表
+					try{
+						opener.CNOA_odoc_send_apply.store.reload();
+					}catch(e){}
+					//刷新公文收文列表
+					try{
+						opener.CNOA_odoc_receive_apply.store.reload();
+					}catch(e){}
+					try{
+						opener.CNOA_wf_use_dealflow.editor.destroy();
+					}catch(e){}
+				};
+				setTimeout(function() {
+						Ext.get('loading').remove();
+						Ext.get('loading-mask').remove();
+					},
+				250);
+
+				var vp = new Ext.Viewport({
+					renderTo: Ext.getBody(),
+					layout: "border",
+					items: [CNOA_wf_use_dealflow.mainPanel]
+				});
+			});
+		});
+	}
+});
+
+
+</script>
+
+</head>
+
+<body style="margin:0;">
+	<div id="loading-mask" style="width:100%;height:100%;background:#f1f1f1;position:absolute;z-index:20000;left:0;top:0;">&#160;</div> 
+	<div id="loading"> 
+		<div class="loading-indicator" style="background:white url(file/common/login/logo-loading.gif) 20px 10px no-repeat;"> 
+		<img src="resources/images/loading.gif" style="width:16px;height:16px;vertical-align:middle" />&#160;<span id="load-status">系统模块载入中, 请稍候...</span> 
+		<div style="font-size:10px; font-weight:normal;margin-top:15px;">Copyright &copy; CNOA 2015</div> 
+	</div>
+</body>
+</html>
+CNOA;
+
+?>

@@ -1,0 +1,69 @@
+<?php
+$html	= $GLOBALS['outsidelink']['html'];
+$key	= $GLOBALS['outsidelink']['key'];
+$rand = rand(0, 9999999);
+print <<<CNOA
+<html>
+<head>
+<script language="JavaScript">
+function ajaxDownload(url){
+	try{
+		document.body.removeChild(document.getElementById("cnoa_iframe_download"));
+	}catch(e){}
+	try{
+		var f = document.createElement("iframe");
+			f.id = 'cnoa_iframe_download';
+			f.style.width = "0px";
+			f.style.height = "0px";
+			f.style.display = "none";
+			//f.src = url + "&r=" + Math.random();
+			f.src = url;
+			document.body.appendChild(f);
+	}catch(e){alert(e);}
+}
+
+var xmlHttp;    
+function createXMLHttpRequest() {    
+    if (window.ActiveXObject) {
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    else if (window.XMLHttpRequest) {
+        xmlHttp = new XMLHttpRequest();    
+    }
+}
+
+var startAjax = function(from){
+    createXMLHttpRequest();
+    if(!xmlHttp){
+        return alert('create failed');    
+    }
+    xmlHttp.open("POST", "index.php?action=commonJob&act=outsidelinkhandler&key={$key}&from="+from, false);
+    xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    xmlHttp.send();
+	var result	= xmlHttp.responseText;
+	var obj		= eval('(' + result + ')');
+	if(obj.reflash == true){
+		location.reload();
+	};
+
+}
+
+</script>
+</head>
+<body>
+{$html}
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+</html>
+CNOA;
+?>

@@ -1,0 +1,17 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.project.proj.mytask");
+CNOA.project.proj.mytask.opentype = "{$GLOBALS['opentype']}";
+CNOA.project.proj.mytask.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_project_proj", "app/project/scripts/cnoa.project.js", function(){
+		CNOA_project_proj_mytask = new CNOA_project_proj_mytaskClass();
+		Ext.getCmp(CNOA.project.proj.mytask.parentID).add(CNOA_project_proj_mytask.mainPanel);
+		Ext.getCmp(CNOA.project.proj.mytask.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+?>

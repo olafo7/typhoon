@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/news/scripts/m/my_info.js");
+dynamicLoading.css("app/news/css/m/my_info.css");
+</script>
+</head>
+<body>
+    <div id="header" class="center-block">
+         <span class="glyphicon glyphicon-chevron-left btn_back" id="btnBack" aria-hidden="true">返回</span>
+         <div class="my_face center-block"><img class="center-block" src=""></div>
+         <div class="my_name center-block"></div>
+         <div class="my_posts center-block">
+            <div class="my_post">我的帖子<span></span></div>
+            <div class="my_reply">我的回帖<span></span></div>
+         </div>
+    </div>
+    <ul id="my_info" class="center-block">
+        <li class="about_my_posts"><a href="javascript:void(0);">我的发帖</a><span class="about_more">&gt;</span></li>
+        <li class="about_my_replys"><a href="javascript:void(0);">我的回帖</a><span class="about_more">&gt;</span></li>
+        <li class="about_my_likes"><a href="javascript:void(0);">我的点赞</a><span class="about_more">&gt;</span></li>
+        <li class="about_my_collects"><a href="javascript:void(0);">我的收藏</a><span class="about_more">&gt;</span></li>
+    </ul>
+</body>
+</html>

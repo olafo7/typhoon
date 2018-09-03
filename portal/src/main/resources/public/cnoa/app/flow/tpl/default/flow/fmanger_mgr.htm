@@ -1,0 +1,21 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.flow.flow.fmanger.mgr");
+CNOA.flow.flow.fmanger.mgr.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_flow_flow", "app/flow/scripts/cnoa.flow.js", function(){
+		CNOA_flow_flow_fmanger_mgr = new CNOA_flow_flow_fmanger_mgrClass();
+		Ext.getCmp(CNOA.flow.flow.fmanger.mgr.parentID).add(CNOA_flow_flow_fmanger_mgr.mainPanel);
+		Ext.getCmp(CNOA.flow.flow.fmanger.mgr.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/flow/scripts/flow_fmanger_mgr.js"));
+?>

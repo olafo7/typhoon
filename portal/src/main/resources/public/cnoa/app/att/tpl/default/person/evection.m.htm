@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/iosOverlay.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="scripts/jquery/spin.min.js"></script>
+<script src="scripts/jquery/iosOverlay.js"></script>
+<script src="scripts/jquery/prettify.js"></script>
+<script src="scripts/jquery/custom.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+        if(!path || path.length === 0){
+            throw new Error('路径必填!');
+        }
+        var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+        if(!path || path.length === 0){
+            throw new Error('路径必填!');
+        }
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.css("app/att/css/m/person/evection.css");
+dynamicLoading.js("app/att/scripts/m/person/evection.js");
+</script>
+</head>
+
+<body>
+<div id="header">
+    <span class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        出差记录
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu myDropdownMenu">
+        <li><a href="#" id="btnOvertime">加班记录</a></li>
+        <li><a href="#" id="btnLeave">请假记录</a></li>
+        <li><a href="#" id="btnEgression">外出记录</a></li>
+        <li><a href="#" id="btnAgain">补卡记录</a></li>
+        <li><a href="#" id="btnRegister">上下班记录</a></li>
+        <li><a href="#" id="btnClasses">我的考勤管理</a></li>
+      </ul>
+    </span>
+    <button type="button" id="btnBack" class="btn btn-primary btn-back-ico" aria-label="Justify">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    </button>
+    <button type="button" id="btn_evection" class="btn btn-primary btn-add-ico" aria-label="Justify">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+</div>
+<div id="wrapper">
+    <div id="scroller">
+        <div id="myTabContent" class="tab-content">
+            
+        </div>
+    </div>
+</div>
+</body>
+</html>

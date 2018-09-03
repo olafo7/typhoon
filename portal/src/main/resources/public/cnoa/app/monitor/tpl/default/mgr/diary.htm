@@ -1,0 +1,26 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.monitor.mgr.diary");
+CNOA.monitor.mgr.diary.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.monitor.mgr.diary.uid = "{$GLOBALS['monitor']['diary']['uid']}";
+CNOA.monitor.mgr.diary.cid = "{$GLOBALS['monitor']['diary']['cid']}";
+CNOA.monitor.mgr.diary.lid = "{$GLOBALS['monitor']['diary']['lid']}";
+CNOA.monitor.mgr.diary.truname = "{$GLOBALS['monitor']['diary']['truename']}";
+								
+
+Ext.onReady(function() {
+	loadScripts("sm_monitor_mgr", "app/monitor/scripts/cnoa.monitor.js", function(){
+		CNOA_monitor_mgr_diary = new CNOA_monitor_mgr_diaryClass();
+		Ext.getCmp(CNOA.monitor.mgr.diary.parentID).add(CNOA_monitor_mgr_diary.mainPanel);
+		Ext.getCmp(CNOA.monitor.mgr.diary.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/monitor/scripts/diary_mgr.js"));
+?>

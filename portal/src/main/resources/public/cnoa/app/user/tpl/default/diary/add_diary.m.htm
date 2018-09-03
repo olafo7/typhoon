@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrapSwitch.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/common.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="resources/font/m/font-glyphs/font-glyphs.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/iscroll5.js"></script>
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="scripts/bootstrap/js/bootstrapSwitch.js"></script>
+<!-- 提交 -->
+<script src="scripts/jquery/jquery.form.js"></script>
+<!-- 日期 -->
+<script src="scripts/jquery/date.js?ran=1.9"></script>
+<script>
+var dynamicLoading = {
+  css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var link = document.createElement('link');
+      link.href = path+"?rnd="+Math.random();
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      head.appendChild(link);
+  },
+  js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.src = path+"?rnd="+Math.random();
+      head.appendChild(script);
+  }
+}
+dynamicLoading.js("app/user/scripts/m/diary/add.js");
+dynamicLoading.css("app/user/css/m/diary/add.css");
+</script>
+</head>
+
+<body>
+<div id="header">
+	<span>添加计划</span>
+	<span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack">返回</span>
+</div>
+<div id="wrapper">
+	<div id="scroller">
+    <table class="table_form" width="90%" border="1">
+     	<tbody>
+        <tr>
+          <td class="input" colspan='2'>
+            <textarea name="myEditor" id="myEditor" class="myEditor" placeholder="计划内容"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="input" colspan='2'>
+            <div class="time"><span class="stime">*执行时间</span>
+              <input type="text" class="datetimepick-input kbtn" id="plantime" name="plantime" readonly>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="input" colspan='2'>
+            <div class="etime"><span class="endtime">*完成时间</span>
+            <input type="text" class="datetimepick-input kbtn" id="planetime" name="planetime" readonly>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="input" colspan='2'>
+            <span class="accpeople">选择验收人员</span>
+            <span class="glyphicon glyphicon-search search1" aria-hidden="true"></span>
+            <div class="modSend" id="modSend" data-checktype="false" data-toggle="modal" data-target="#userDataModal" readonly></div>
+          </td>
+        </tr>
+        <tr>
+          <td class="input" colspan='2'>
+            <div class="notice">
+              <span class="isnotice">是否提醒</span>
+              <div class="switch" data-on="success" data-off="warning">
+                  <input type="checkbox" checked />
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="input" colspan='2'>
+            <div class="ntime">
+              <span class="noticetime">*提醒时间</span>
+              <input type="text" class="datetimepick-input kbtn nn" id="noticetime" name="noticetime" readonly>
+            </div>
+          </td>
+        </tr>
+     </tbody>
+    </table>
+		<button type="botton" id="btn-add" class="btn btn-m btn-primary btn-block btn-add">确认保存</button>
+		<p style="height:15px;"></p>
+	</div>
+</div>
+<div id="datePlugin"></div>
+<!--*/人员选择器模态框 *-->
+<div class="modal userDataModal" id="userDataModal" tabindex="-1" role="dialog" data-source="" data-checktype="" data-sid='1'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--*/选择器头部 *-->
+      <div class="modal-header">
+         <span class="glyphicon glyphicon-chevron-left glyphiconLeft" id="sback" data-fid="0" aria-hidden="true"></span>
+        <span>选择人员</span>
+        <span class="glyphicon glyphicon-remove glyphiconRight" id="sClose" aria-hidden="true" data-dismiss="modal" aria-label="Close"></span>
+        <div class="row search">
+          <div class="col-xs-12">
+            <input type="text" class="form-control input-m" id="search" placeholder="搜索">
+          </div>
+        </div>
+      </div>
+      <!--*/用户和部门 *-->
+      <div class="userDataWrapper" id="userDataWrapper">
+        <div class="userDataScroller" id="userDataScroller">
+          <div class="modal-body">
+            <ul class="list-group userDataGroup" id="userDataGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/存放待删除的用户 *-->
+      <div class="userWrapper" id="userWrapper">
+        <div class="userScroller" id="userScroller">
+          <div class="modal-body">
+            <ul class="list-group userGroup" id="userGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/待删除用户区域的操作按钮 *-->
+      <div class="opts-box">
+        <button type="button" class="btn btn-primary btn-sm opts" id="sFinish" aria-hidden="true" data-dismiss="modal" aria-label="Close" disabled>完成</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

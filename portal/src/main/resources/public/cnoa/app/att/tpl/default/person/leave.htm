@@ -1,0 +1,21 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.att.person.leave");
+CNOA.att.person.leave.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_att_att", "app/att/scripts/cnoa.att.js", function(){
+		CNOA_att_person_leave = new CNOA_att_person_leaveClass();
+		Ext.getCmp(CNOA.att.person.leave.parentID).add(CNOA_att_person_leave.mainPanel);
+		Ext.getCmp(CNOA.att.person.leave.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+// echo loadJavascript(array("./app/att/scripts/att_person_leave.js"));
+
+?>

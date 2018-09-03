@@ -1,0 +1,69 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.use_dealflow");
+CNOA.wf.use_dealflow.parentID	= "{$GLOBALS['app']['parentid']}";
+CNOA.wf.use_dealflow.flowId		= "{$GLOBALS['app']['flowId']}";
+CNOA.wf.use_dealflow.uFlowId	= "{$GLOBALS['app']['uFlowId']}";
+CNOA.wf.use_dealflow.step		= "{$GLOBALS['app']['step']}";
+CNOA.wf.use_dealflow.huiqiannum	= "{$GLOBALS['app']['huiqian']['num']}";
+CNOA.wf.use_dealflow.touid		= "{$GLOBALS['app']['entrust']['touid']}";
+CNOA.wf.use_dealflow.tplSort	= "{$GLOBALS['app']['wf']['tplSort']}";
+CNOA.wf.use_dealflow.flowType	= "{$GLOBALS['app']['wf']['flowType']}";
+CNOA.wf.use_dealflow.childFlow	= "{$GLOBALS['app']['wf']['childFlow']}";
+CNOA.wf.use_dealflow.childNum	= "{$GLOBALS['app']['wf']['childNum']}";
+CNOA.wf.use_dealflow.showChildAlert	= "{$GLOBALS['app']['wf']['showChildAlert']}";
+CNOA.wf.use_dealflow.relevanceUFlowInfo	= '{$GLOBALS['app']['wf']['relevanceUFlowInfo']}';
+CNOA.wf.use_dealflow.allowWordEdit	= '{$GLOBALS['allowWordEdit']}';
+CNOA.wf.use_dealflow.stepType 	= "{$GLOBALS['app']['wf']['stepType']}";
+CNOA.wf.use_dealflow.isDeal 	= "{$GLOBALS['app']['isDeal']}";
+CNOA.wf.use_dealflow.ismystep	= {$GLOBALS['ismystep']};
+CNOA.wf.use_dealflow.puStepId	= "{$GLOBALS['app']['wf']['puStepId']}";
+CNOA.wf.use_dealflow.changeFlowInfo = "{$GLOBALS['app']['wf']['changeFlowInfo']}";
+
+if(CNOA.wf.use_dealflow.ismystep == 0){
+	CNOA.msg.notice("当前步骤不是由您办理的，无权访问！", "工作流程");
+	mainPanel.closeTab("CNOA_MENU_WF_USE_OPENFLOW");
+	try{
+		CNOA_wf_use_todo.store.reload();
+	}catch(e){}
+}else{
+	Ext.onReady(function() {
+		loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+			CNOA_wf_use_dealflow = new CNOA_wf_use_dealflowClass();
+			Ext.getCmp(CNOA.wf.use_dealflow.parentID).add(CNOA_wf_use_dealflow.mainPanel);
+			Ext.getCmp(CNOA.wf.use_dealflow.parentID).doLayout();
+
+			Ext.getCmp(CNOA.wf.use_dealflow.parentID).on("destroy", function(){
+				//刷新公文拟稿列表
+				try{
+					CNOA_odoc_send_apply.store.reload();
+				}catch(e){}
+				//刷新公文收文列表
+				try{
+					CNOA_odoc_receive_apply.store.reload();
+				}catch(e){}
+				try{
+					CNOA_wf_use_dealflow.editor.destroy();
+				}catch(e){}
+			});
+		});
+	});
+}
+function getHtml(){
+	var val = $('#ID_RECORD').html();
+	if (val == "" || val == null) {
+		$('#ID_RECORD').css("height", "100px");
+	}else{
+		$('#ID_RECORD').css("height", "");
+	}
+}
+setTimeout('getHtml()', 1000);
+</script>
+CNOA;
+### if($GLOBALS['ismystep'] == 1){
+### 	echo loadJavascript(array("./app/wf/scripts/use_commonflow.js", "./app/wf/scripts/use_flowpreview.js", "./app/wf/scripts/form_init.js", "./app/wf/scripts/use_dealflow.js"));
+### }
+?>

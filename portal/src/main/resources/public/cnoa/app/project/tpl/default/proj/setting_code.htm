@@ -1,0 +1,16 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.project.proj.setting_code");
+CNOA.project.proj.setting_code.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_project_proj", "app/project/scripts/cnoa.project.js", function(){
+		CNOA_project_proj_setting_code = new CNOA_project_proj_setting_codeClass();
+		Ext.getCmp(CNOA.project.proj.setting_code.parentID).add(CNOA_project_proj_setting_code.mainPanel);
+		Ext.getCmp(CNOA.project.proj.setting_code.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+?>

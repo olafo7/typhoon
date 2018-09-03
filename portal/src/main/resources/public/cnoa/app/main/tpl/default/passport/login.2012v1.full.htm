@@ -1,0 +1,121 @@
+<?php
+$pwb = $GLOBALS['CNOA_SYSTEM_CONFIG']['s_tlo'] == 1 ? " - Powered by 协众OA - www.cnoa.cn" : "";
+print <<<CNOA
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+  协众OA办公系统
+  Powered by CNOA.CN[广州协众软件科技有限公司]
+
+  @email	service@cnoa.cn
+  @site		http://www.cnoa.cn/
+  @copyright	Copyright (c) 2012, CNOA, Inc.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$GLOBALS['CNOA_SYSTEM_CONFIG']['servername']}{$pwb}</title>
+<style type="text/css">
+*{margin: 0;padding: 0;border: 0;font-size:12px;}
+html,body{height:100%;overflow: auto;}
+/* body{background: {$GLOBALS['CNOA_BACKGROUND_COLOR']} url({$GLOBALS['CNOA_LOGINPAGE_URL']}) {$GLOBALS['CNOA_LOGINPAGE_SHOWTYPE']};} */
+#table .l{font-size:14px;}
+#table input{border:1px solid #C5C5C5;height:27px;width: 156px;outline: none;line-height:27px;padding:0 3px;font-size:14px;background: url(resources/images/login/2011v1.input.bg.gif) repeat-x;}
+#table input.focus{border:1px solid #FF8000;}
+a.submit{width: 94px;height:28px;display:block;background: url(resources/images/login/2011v1.submit.gif) no-repeat;}
+a.submit:hover{background-position: 0 -28px;}
+#tooltip{position:absolute;border:1px solid #333;background:#f7f5d1;padding:2px 5px;color:#333;display:none;z-index:999;}
+.c_red{color:red;}
+.split{	background:url(resources/images/login/2011v1.split.png) left center no-repeat;_background:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="resources/images/login/2011v1.split.png" ,sizingMethod="crop");}
+.authCodeImg{border:1px solid #C5C5C5;padding:2px;padding-bottom:3px;background-color: #FFF;}
+.companylk{color:#333}
+.companylk:hover{color:red}
+</style>
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js"></script>
+<script type="text/javascript" src="/cnoa/app/main/scripts/passport.2012v1.js?r=245435"></script>
+<script language="JavaScript">
+var bodyBg = "{$GLOBALS['CNOA_BACKGROUND_COLOR']} url({$GLOBALS['CNOA_LOGINPAGE_URL']}) {$GLOBALS['CNOA_LOGINPAGE_SHOWTYPE']}";
+
+CNOA;
+if($_GET['task'] != 'preview'){
+print <<<CNOA
+var CNOA_enableLoginAuth = {$GLOBALS['CNOA_SYSTEM_CONFIG']['login_authcode']};
+var CNOA_LOGIN_EXPIRE = {$GLOBALS['CNOA_LOGIN_EXPIRE']};
+var CNOA_LOGIN_DLOGIN = {$GLOBALS['CNOA_LOGIN_DLOGIN']};
+var CNOA_LOGIN_USERNAME = "{$GLOBALS['USERNAME']}";
+CNOA;
+}
+print <<<CNOA
+</script>
+
+<!--[if IE 6]>
+<script language="javascript">
+var clear = "scripts/cnoa/clear.gif";
+function pngfix(){var isIE=!!window.ActiveXObject;var isIE6=isIE&&!window.XMLHttpRequest;if(isIE6){var els=document.getElementsByTagName('*');var ip=/\.png/i;var i=els.length;while(i>0){i--;var el=els[i];var es=el.style;if(el.src&&el.src.match(ip)&&!es.filter){es.height=el.height;es.width=el.width;es.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+el.src+"',sizingMethod='crop')";el.src=clear}else{var elb=el.currentStyle.backgroundImage;if(elb.match(ip)){var path=elb.split('"');var rep=(el.currentStyle.backgroundRepeat=='no-repeat')?'crop':'scale';es.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+path[1]+"',sizingMethod='"+rep+"')";es.height=el.clientHeight+'px';es.backgroundImage='none';var elkids=el.getElementsByTagName('*');if(elkids){var j=elkids.length;if(el.currentStyle.position!="absolute")es.position='static';while(j>0){j--;if(!elkids[j].style.position)elkids[j].style.position="relative"}}}}}}}
+</script>
+<![endif]-->
+
+</head>
+
+<body onload="doResize();try{pngfix();}catch(e){}">
+
+<table border="0" cellspacing="0" cellpadding="0" id="table" style="position:absolute;display:none;">
+  <tr>
+	<td align="center" valign="middle">
+	  <div style="margin:10px;display:{$GLOBALS['CNOA_LOGO_SHOW']}"><img src="{$GLOBALS['CNOA_LOGO_URL']}" /></div>
+	</td>
+	<td width="252" class="{$GLOBALS['CNOA_TABLE_SPLITE_CLASS']}" style="padding-left:{$GLOBALS['CNOA_LOGO_PDLEFT']}px;">
+	  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+	    <form method='post' action="" name='loginForm'>
+		  <tr>
+			<td height="
+CNOA;
+if($GLOBALS['CNOA_SYSTEM_CONFIG']['login_authcode'] == 1){echo 23;}else{echo 39;}
+print <<<CNOA
+" colspan="3">&nbsp;</td>
+		  </tr>
+		  <tr>
+			<td height="38" align="right"><div style='width:90px;' class='l'>帐　号:&nbsp;</div></td>
+			<td colspan="2" valign="middle"><input id='userName' name='userName' type="text" class='input' value="{$GLOBALS['USERNAME']}" /></td>
+		  </tr>
+		  <tr>
+			<td height="38" align="right"><div style='width:90px;' class='l'>密　码:&nbsp;</div></td>
+			<td colspan="2" valign="middle"><input id='passWord' name='passWord' type="password" class='input' /></td>
+		  </tr>
+CNOA;
+if($GLOBALS['CNOA_SYSTEM_CONFIG']['login_authcode'] == 1){
+print <<<CNOA
+		  <tr>
+			<td height="38" align="right"><div style='width:90px;' class='l'>验证码:&nbsp;</div></td>
+			<td valign="middle"><input maxlength="4" id='authcode' name='authcode' style='width:81px;' type="text" class='input' /></td>
+			<td valign="middle" align="right"><a href="javascript:refreshCode();" ><img class="authCodeImg" id="authCodeImg" alt="点击刷新验证码" src="index.php?app=main&amp;func=common&amp;action=commonJob&amp;act=authcode&amp;r=_0.7284812331199646" width="60" height="22" /></a></td>
+		  </tr>
+CNOA;
+}
+print <<<CNOA
+		  <tr>
+			<td height="38" align="right">&nbsp;</td>
+			<td colspan="2">
+			  <a href="javascript:void(0);" class="submit" id="submitbtn" style="float:left;"></a>
+			  <!-- note:noRemove --><!-- {NUM004} --><!-- note:noRemove -->
+			</td>
+		  </tr>
+		  <tr>
+			<td height="
+CNOA;
+if($GLOBALS['CNOA_SYSTEM_CONFIG']['login_authcode'] == 1){echo 23;}else{echo 39;}
+print <<<CNOA
+" colspan="3" align="center">&nbsp;<span class="c_red" id="notice"></span></td>
+		  </tr>
+	    </form>
+	  </table>
+	</td>
+  </tr>
+  <!-- note:noRemove --><!-- {NUM001} --><!-- note:noRemove -->
+</table>
+
+<div style="position:absolute;right:5px;bottom:5px;color:#DDDDDD;text-align:right;font-family:Verdana, Geneva, sans-serif;font-size:11px;" class="lk"><a href="http://www.cnoa.cn" target="_blank" class="companylk" >Copyright &copy; 2012 广州协众软件科技有限公司</a></div><div class="clear"></div>
+
+</body>
+</html>
+CNOA;
+?>

@@ -1,0 +1,32 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.system.index");
+CNOA.main.system.parentID = "{$GLOBALS['app']['parentid']}";
+
+CNOA.permitController.main_system = new Array();
+
+CNOA;
+foreach($GLOBALS['permissionController'] AS $k=>$v){
+print <<<CNOA
+CNOA.permitController.main_system['{$k}'] = {$v};
+
+CNOA;
+}
+print <<<CNOA
+
+
+Ext.onReady(function() {
+	loadScripts("sm_main_system", "app/main/scripts/cnoa.system.js", function(){
+		CNOA_main_system_index = new CNOA_main_system_indexClass();
+
+		Ext.getCmp(CNOA.main.system.parentID).add(CNOA_main_system_index.mainPanel());
+		Ext.getCmp(CNOA.main.system.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript("./app/main/scripts/system_index.js");
+?>

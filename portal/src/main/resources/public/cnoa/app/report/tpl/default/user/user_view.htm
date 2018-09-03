@@ -1,0 +1,23 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.report.user.view");
+CNOA.report.user.view.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.report.user.view.id = "{$GLOBALS['app']['report']['userViewID']}";
+CNOA.report.user.view.tid = "{$GLOBALS['app']['report']['userViewTID']}";
+CNOA.report.user.view.allowexcel = "{$GLOBALS['app']['report']['allowexcel']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_report_wf", "app/report/scripts/cnoa.report.js", function(){
+		CNOA_report_user_view = new CNOA_report_user_viewClass();
+		Ext.getCmp(CNOA.report.user.view.parentID).add(CNOA_report_user_view.mainPanel);
+		Ext.getCmp(CNOA.report.user.view.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+##echo loadJavascript(array("./app/report/scripts/user_view.js"));
+?>

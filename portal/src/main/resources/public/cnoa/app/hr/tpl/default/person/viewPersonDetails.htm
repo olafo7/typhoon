@@ -1,0 +1,451 @@
+<?php
+$person = $GLOBALS['hr']['viewDetails'];
+$person['attach'] = str_replace(array("openOfficeForView","openPdfForView"), array("opener.openOfficeForView","opener.openPdfForView"), $person['attach']);
+print <<<CNOA
+<html>
+<head>
+<title>人员基本信息</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<style type='css/text'>
+	.selectDetails{
+		float:right
+	}
+</style>
+<script type='text/javascript'>
+	function ajaxDownload(url){
+		try{
+			document.body.removeChild(document.getElementById("cnoa_iframe_download"));
+		}catch(e){}
+
+		var f = document.createElement("iframe");
+			f.id = 'cnoa_iframe_download';
+			f.style.width = "0px";
+			f.style.height = "0px";
+			f.style.display = "none";
+			f.src = url + "&r=" + Math.random();
+			document.body.appendChild(f);
+	}
+	window.onload=function(){
+		window.focus()
+	}
+	
+	function viewDetails(value){
+		x = (screen.availWidth - 850) / 2;
+		y = (screen.availHeight - 600) / 2;
+	    var rURL  = location.href.substring(0, location.href.lastIndexOf('/') + 1);
+		if(value != 0){
+			window.open(rURL+"index.php?app=hr&func=person&action=manage&task=loadPage&from=viewDetails&type="+value+"&viewType=true&personID={$person['pid']}",'_blank','width=890,height=500,left='+x+',top='+y+',scrollbars=yes,resizable=yes,status=no')
+		}
+	}
+</script>
+</head>
+
+<body class="bodycolor" topmargin="5">
+
+<table border="0"  width="850" align="center" cellspacing="0" cellpadding="3" class="small">
+
+  <tr>
+    <td class="Big"><span class="big3">人员基本信息</span><br></td>
+	<td class="Big" align="right">
+		<select class='selectDetails' onchange="viewDetails(this.value)">
+			<option selected='selected' value='0'>--请选择其他的信息--</option>
+			<option value='contract'>合同信息</option>
+			<option value='prize'>奖罚信息</option>
+			<option value='license'>证书信息</option>
+			<option value='peixun'>培训信息</option>
+			<option value='study'>学习经历信息</option>
+			<option value='work'>工作经验信息</option>
+			<option value='skill'>劳动技能信息</option>
+			<option value='relationship'>社会关系信息</option>
+			<option value='change'>调动信息</option>
+			<option value='leave'>离职信息</option>
+			<option value='recovery'>复职信息</option>
+		</select>
+	</td>
+  </tr>
+</table>
+
+<table class="TableBlock" width="850" align="center">
+
+  <tr>
+
+    <td nowrap class="TableHeader " colspan="6"><b>&nbsp;基本信息</b></td>
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">姓名</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$person['truename']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">部门：</td>
+
+    <td class="TableData"  colspan="2">{$person['deptName']}</td>
+
+    <td class="TableData" align="center" rowspan="6" colspan="1">
+
+<center>{$person['photo']}</center>    
+
+    </td>           
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">编号：</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$person['bianHao']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">工号：</td>
+
+    <td class="TableData" width="180" colspan="2">{$person['workNumber']}</td>          
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">性别：</td>
+
+    <td class="TableData" width="180">{$person['gender']}</td>  	
+
+    <td nowrap align="left" width="120" class="TableContent">英文名：</td>
+
+    <td class="TableData" width="180" colspan="2">{$person['englishName']}</td>         
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">身份证号：</td>
+
+    <td class="TableData" width="180" >{$person['idCard']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">出生日期：</td>
+
+    <td class="TableData" width="180" colspan="2">{$person['birthday']}</td>             
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">年龄：</td>
+
+    <td class="TableData" width="180">{$person['age']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">年休假:</td>
+
+    <td class="TableData" width="180" colspan="2">{$person['vacation']}</td>       
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">籍贯：</td>
+
+    <td class="TableData" width="180" >{$person['jiGuan']}</td>    
+
+    <td nowrap align="left" width="120" class="TableContent">民族：</td>
+
+    <td class="TableData" width="180" colspan="2">{$person['nation']}</td>            
+
+  </tr>  
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">婚姻状况：</td>
+
+    <td class="TableData" width="180">{$person['marrage']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">健康状况：</td>
+
+    <td class="TableData"  width="180" colspan="3">{$person['health']}</td>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">政治面貌：</td>
+
+    <td class="TableData" width="180">{$person['politics']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">入党/入团时间：</td>
+
+    <td class="TableData"  width="180" colspan="3">{$person['partyTime']}</td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">户口类别：</td>
+
+    <td class="TableData"  width="180">{$person['huKouType']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">户口所在地:</td>
+
+    <td class="TableData"  width="180" colspan="3">{$person['huKouLocation']}</td> 
+
+  </tr>
+  
+CNOA;
+if(!empty($person['cFields'])){
+print <<<CNOA
+  <tr>
+    <td nowrap class="TableHeader" colspan="6"><b>&nbsp;人员扩展信息：</b></td>
+  </tr>
+CNOA;
+	foreach($person['cFields'] as $k=>$v){
+		if($k % 2 == 0){
+print <<<CNOA
+    <tr>
+	  <td nowrap align="left" class="TableContent">{$v['title']}</td>
+	  <td colspan="2" class="TableData">{$v['content']}&nbsp;</td>
+CNOA;
+		}else{
+print <<<CNOA
+	  <td nowrap align="left" class="TableContent">{$v['title']}</td>
+	  <td colspan="2" class="TableData">{$v['content']}&nbsp;</td>
+  </tr>
+CNOA;
+		}
+	}
+}
+print <<<CNOA
+  <tr>
+
+    <td nowrap class="TableHeader" colspan="6"><b>&nbsp;职位情况及联系方式：</b></td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">工种：</td>
+
+    <td class="TableData"  width="180">{$person['workType']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">在职状态:：</td>
+
+    <td class="TableData"  width="180">{$person['workStatus']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">入职时间：</td>
+
+    <td class="TableData">{$person['ruZhiTime']}</td>        
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">职务：</td>
+
+    <td class="TableData"  width="180">{$person['jobType']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">职称：</td>
+
+    <td class="TableData"  width="180">{$person['zhiCheng']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">起薪时间:：</td>
+
+    <td class="TableData"  width="180">{$person['qiXinTime']}</td>                 
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">参加工作时间:</td>
+
+    <td class="TableData"  width="180">{$person['workStartTime']}</td>   
+
+    <td nowrap align="left" width="120" class="TableContent">本单位工龄(年):</td>
+
+    <td class="TableData"  width="180"><b>{$person['workAge']}<b></td>
+
+    <td nowrap align="left" width="120" class="TableContent">总工龄:</td>
+
+    <td class="TableData"  width="180">{$person['totalWorkAge']}</td>            
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">手机号码：</td>
+
+    <td class="TableData"  width="180">{$person['cellPhone']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">联系电话：</td>
+
+    <td class="TableData"  width="180">{$person['telephone']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">QQ：</td>
+
+    <td class="TableData"  width="180">{$person['qqNum']}</td>                
+
+  </tr>     
+
+  <tr>        
+
+    <td nowrap align="left" width="120" class="TableContent">MSN：</td>
+
+    <td class="TableData"  width="180">{$person['MSN']}</td>    
+
+    <td nowrap align="left" width="120" class="TableContent">电子邮件：</td>
+
+    <td class="TableData"  width="180" colspan="3">{$person['email']}</td>            
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">家庭地址：</td>
+
+    <td class="TableData"  width="180" colspan="5">{$person['location']}</td>                
+
+  </tr>  
+
+  <tr>     
+
+    <td nowrap align="left" width="120" class="TableContent">其他联系方式：</td>
+
+    <td class="TableData"  width="180" colspan="5">{$person['otherContact']}</td>                
+
+  </tr>
+
+  <tr>
+
+    <td nowrap class="TableHeader" colspan="6"><b>&nbsp;教育背景：</b></td>
+
+  </tr>              
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">学历：</td>
+
+    <td class="TableData"  width="180">{$person['highestSchool']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">学位：</td>
+
+    <td class="TableData"  width="180">{$person['studySituation']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">毕业时间：</td>
+
+    <td class="TableData"  width="180">{$person['graduateTime']}</td>                 
+
+  </tr>       
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">毕业学校：</td>
+
+    <td class="TableData"  width="180">{$person['graduateSchool']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">专业：</td>
+
+    <td class="TableData"  width="180">{$person['professor']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">计算机水平：</td>
+
+    <td class="TableData"  width="180">{$person['computStand']}</td>                 
+
+  </tr>       
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">外语语种1：</td>
+
+    <td class="TableData"  width="180">{$person['language1']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">外语语种2：</td>
+
+    <td class="TableData"  width="180">{$person['language2']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">外语语种3：</td>
+
+    <td class="TableData"  width="180">{$person['language3']}</td>                 
+
+  </tr>       
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">特长：</td>
+
+    <td class="TableData"  width="180" colspan="5">{$person['specialty']}</td>             
+
+  </tr>
+  
+  <tr>
+  
+  	<td nowrap align="left" colspan="6" class="TableHeader">职务情况：</td>
+	
+  </tr>
+  
+  <tr>
+  	
+	<td class="TableData" colspan="6">{$person['jobSituation']}</td>
+	
+  </tr>
+
+  <tr>
+
+  	<td nowrap class="TableHeader" colspan="6"><b>&nbsp;社保缴纳情况：</b></td>
+
+  </tr>
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$person['sheBaoSituation']}</td>
+
+  </tr>           
+  
+  <tr>
+  
+  	<td nowrap class="TableHeader" colspan="6"><b>&nbsp;体检记录：</b></td>
+	
+  </tr>
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$person['tiJianRecorde']}</td>
+
+  </tr>   
+
+  <tr>
+
+    <td nowrap align="left" colspan="6" class="TableHeader">备注：</td>
+
+  </tr>   
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$person['notes']}</td>               
+
+  </tr>                                    
+
+  <tr>
+
+  	<td nowrap  class="TableHeader" colspan="6">附件文档：</td>
+
+  </tr>
+
+  <tr>    
+
+    <td nowrap align="left" class="TableData" colspan="6">{$person['attach']}</td>
+
+  </tr>             
+
+                  
+
+</table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/iscroll5.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="resources/images/m/qqface/jquery.qqFace.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/news/scripts/m/new_post.js");
+dynamicLoading.css("app/news/css/m/new_post.css");
+</script>
+</head>
+<body>
+<div id="header">发帖
+<span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+</div>
+<div id="wrapper">
+    <div id="scroller">
+        <form id="myTableFrom" method="post" enctype="multipart/form-data">
+        <div class="post_title">
+            <div class="post_label">标题*</div>
+            <input type="text" class="form-control center-block post_t" placeholder="请输入标题">
+        </div>
+        <div class="post_type">
+            <div class="type">分类</div>
+            <select class="form-control center-block select" id="select_c"></select>
+        </div>
+        <div class="post_msg">
+            <textarea placeholder="想说点什么呢..." class="form-control center-block post_content" name="post_content" id="post_content" rows="3"></textarea>
+        </div>
+        <div class="post_opt">
+            <div class="post_attach">
+                <input type="file" name="upload_file" id="fileupload">
+                <span class="glyphicon glyphicon-plus post_add_attach" aria-hidden="true"></span>
+            </div>
+            <div class="post_opt_c">
+                <div class="post_c_nums">
+                    <label>还可以输入</label><span>200</span>字
+                </div>
+                <div class="post_emotion">表情</div>
+            </div>
+        </div>
+        <div class="address">所在位置</div>
+        <div class="new_post_to">
+            <button type="button" class="btn btn-primary btn-md center-block btn-block" id="post_sub">发表</button>
+        </div>
+        </form>
+    </div>
+</div>
+<iframe id="mapPage" width="100%" height="100%" frameborder=0 
+    src="">
+</iframe>
+<!--% 位置菜单 %-->
+<div id="jingle_popup" class="">
+    <div class="actionsheet">
+        <button type="button" class="btn btn-primary btn-popup center-block" id="chose_address">选择位置</button>
+        <button class="btn btn-danger btn-cancel" >取消</button>
+    </div>
+</div>
+<div id="jingle_popup_mask"></div>
+<!-- 弹窗插件 -->
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<!-- 表单插件 -->
+<script src="scripts/jquery/jquery.form.js"></script>
+<!-- 错误插件 -->
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<!--/*Iscroll5* -->
+<script src="scripts/jquery/iscroll-probe.js"></script>
+</body>
+</html>

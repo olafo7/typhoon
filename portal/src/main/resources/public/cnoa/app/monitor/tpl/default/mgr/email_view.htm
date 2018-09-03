@@ -1,0 +1,26 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.monitor.mgr.emailView");
+CNOA.monitor.mgr.emailView.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.monitor.mgr.emailView.folder   = "{$GLOBALS['folder']}";
+CNOA.monitor.mgr.emailView.id       = {$GLOBALS['id']};
+CNOA.monitor.mgr.emailView.isMonitor = "{$GLOBALS['isMonitor']}";
+CNOA.monitor.mgr.emailView.uid       = {$GLOBALS['uid']};
+
+
+Ext.onReady(function() {
+	loadScripts("sm_monitor_mgr", "app/monitor/scripts/cnoa.monitor.js", function(){
+		CNOA_monitor_mgr_emailView = new CNOA_monitor_mgr_emailViewClass();
+		Ext.getCmp(CNOA.monitor.mgr.emailView.parentID).add(CNOA_monitor_mgr_emailView.mainPanel);
+		Ext.getCmp(CNOA.monitor.mgr.emailView.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/communication/scripts/email_view.js"));
+
+?>

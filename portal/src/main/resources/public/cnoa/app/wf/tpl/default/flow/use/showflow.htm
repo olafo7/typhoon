@@ -1,0 +1,39 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.use_showflow");
+CNOA.wf.use_showflow.parentID	= "{$GLOBALS['app']['parentid']}";
+CNOA.wf.use_showflow.uFlowId	= "{$GLOBALS['app']['uFlowId']}";
+CNOA.wf.use_showflow.flowId		= "{$GLOBALS['app']['flowId']}";
+CNOA.wf.use_showflow.step		= "{$GLOBALS['app']['step']}";
+CNOA.wf.use_showflow.status		= "{$GLOBALS['app']['status']}";
+CNOA.wf.use_showflow.flowNumber	= "{$GLOBALS['app']['flowNumber']}";
+CNOA.wf.use_showflow.type		= "{$GLOBALS['app']['wf']['type']}";
+CNOA.wf.use_showflow.allowCallback = "{$GLOBALS['app']['wf']['allowCallback']}";
+CNOA.wf.use_showflow.allowCancel= "{$GLOBALS['app']['wf']['allowCancel']}";
+CNOA.wf.use_showflow.allowPrint= "{$GLOBALS['app']['wf']['allowPrint']}";
+CNOA.wf.use_showflow.tplSort	= "{$GLOBALS['app']['wf']['tplSort']}";
+CNOA.wf.use_showflow.flowType	= "{$GLOBALS['app']['wf']['flowType']}";
+CNOA.wf.use_showflow.owner		= "{$GLOBALS['app']['wf']['owner']}";
+CNOA.wf.use_showflow.relevanceUFlowInfo	= '{$GLOBALS['app']['wf']['relevanceUFlowInfo']}';
+CNOA.wf.use_showflow.isInitiator = '{$GLOBALS['app']['wf']['isInitiator']}';
+CNOA.wf.use_showflow.childSeeParent = "{$GLOBALS['app']['wf']['childSeeParent']}";
+CNOA.wf.use_showflow.puStepId   = "{$GLOBALS['app']['wf']['puStepId']}";
+CNOA.wf.use_showflow.allowHqAttachAdd = "{$GLOBALS['app']['wf']['allowHqAttachAdd']}";
+CNOA.wf.use_showflow.allowHqAttachView = "{$GLOBALS['app']['wf']['allowHqAttachView']}";
+CNOA.wf.use_showflow.allowHqAttachEdit = "{$GLOBALS['app']['wf']['allowHqAttachEdit']}";
+CNOA.wf.use_showflow.allowHqAttachDelete = "{$GLOBALS['app']['wf']['allowHqAttachDelete']}";
+CNOA.wf.use_showflow.allowHqAttachDown = "{$GLOBALS['app']['wf']['allowHqAttachDown']}";
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_use_showflow = new CNOA_wf_use_showflowClass();
+		Ext.getCmp(CNOA.wf.use_showflow.parentID).add(CNOA_wf_use_showflow.mainPanel);
+		Ext.getCmp(CNOA.wf.use_showflow.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+### echo loadJavascript(array("./app/wf/scripts/use_commonflow.js", "./app/wf/scripts/use_flowpreview.js", "./app/wf/scripts/use_showflow.js"));
+?>

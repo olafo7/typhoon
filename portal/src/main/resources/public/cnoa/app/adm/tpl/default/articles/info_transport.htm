@@ -1,0 +1,16 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.adm.articles.transportIndex");
+CNOA.adm.articles.transportIndex.parentID = "{$GLOBALS['app']['parentid']}";
+Ext.onReady(function() {
+	loadScripts("sm_articles_manage", "app/adm/scripts/cnoa.articles_manage.js", function(){
+		CNOA_adm_articles_transportIndex = new CNOA_adm_articles_transportIndexClass();
+		Ext.getCmp(CNOA.adm.articles.transportIndex.parentID).add(CNOA_adm_articles_transportIndex.mainPanel);
+		Ext.getCmp(CNOA.adm.articles.transportIndex.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+?>

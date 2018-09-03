@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.hr.person.dropdown");
+CNOA.hr.person.dropdown.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("hr_person_file", "app/hr/scripts/cnoa.person.js", function(){
+		CNOA_hr_person_dropdown = new CNOA_hr_person_dropdownClass();
+		Ext.getCmp(CNOA.hr.person.dropdown.parentID).add(CNOA_hr_person_dropdown.mainPanel);
+		Ext.getCmp(CNOA.hr.person.dropdown.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/hr/scripts/person_dropdown.js"));
+
+?>

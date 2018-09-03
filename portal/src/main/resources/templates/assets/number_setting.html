@@ -1,0 +1,13 @@
+<script language="JavaScript">
+    Ext.ns("CNOA.assets.base.numberset");
+    CNOA.assets.base.numberset.parentID = "docs-CNOA_MENU_ASSETS_NUMBERSET";
+
+
+    Ext.onReady(function() {
+        loadScripts("sm_assets_assets", "cnoa/app/assets/scripts/cnoa.assets.js", function(){
+            CNOA_assets_base_numberset = new CNOA_assets_base_numbersetClass();
+            Ext.getCmp(CNOA.assets.base.numberset.parentID).add(CNOA_assets_base_numberset.mainPanel);
+            Ext.getCmp(CNOA.assets.base.numberset.parentID).doLayout();
+        });
+    });
+</script>

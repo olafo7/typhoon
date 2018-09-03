@@ -1,0 +1,26 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.notice.notice.calendar");
+CNOA.notice.notice.calendar.parentID	= "{$GLOBALS['app']['parentid']}";
+CNOA.notice.notice.calendar.from		= "{$GLOBALS['CALENDAR']['FROM']}";
+CNOA.notice.notice.calendar.time		= "{$GLOBALS['CALENDAR']['TIME']}";
+CNOA.notice.notice.calendar.flowId		= "{$GLOBALS['CALENDAR']['flowId']}";
+
+Ext.onReady(function() {
+	loadScripts ('cnoa_ux_calendar', 'extjs/3.4.0/calendar-all.js', function() {
+		loadScripts("sm_notice_notice", "app/notice/scripts/cnoa.notice.js", function(){
+			try{Ext.destroy(CNOA_notice_notice_calendar.mainPanel);}catch (e){}
+			CNOA_notice_notice_calendar = new CNOA_notice_notice_calendarClass();
+			Ext.getCmp(CNOA.notice.notice.calendar.parentID).add(CNOA_notice_notice_calendar.mainPanel);
+			Ext.getCmp(CNOA.notice.notice.calendar.parentID).doLayout();
+		});
+	});
+});
+
+</script>
+CNOA;
+
+##echo loadJavascript(array("./app/notice/scripts/notice_calendar.js"));
+?>

@@ -1,0 +1,19 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.use_proxy");
+CNOA.wf.use_proxy.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_use_proxy = new CNOA_wf_use_proxyClass();
+		Ext.getCmp(CNOA.wf.use_proxy.parentID).add(CNOA_wf_use_proxy.mainPanel);
+		Ext.getCmp(CNOA.wf.use_proxy.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+### echo loadJavascript(array("./app/wf/scripts/use_proxy.js"));
+?>

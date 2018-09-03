@@ -1,0 +1,28 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.communication.message.view");
+CNOA.communication.message.view.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.communication.message.view.folder   = "{$GLOBALS['folder']}";
+CNOA.communication.message.view.id       = {$GLOBALS['id']};
+CNOA.communication.message.view.smstype  = "{$GLOBALS['smstype']}";
+CNOA.communication.message.view.uid		 = "{$GLOBALS['uid']}";
+CNOA.communication.message.view.isMonitor = "{$GLOBALS['isMonitor']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_communication_message", "app/communication/scripts/cnoa.message.js", function(){
+		CNOA_communication_message_view = new CNOA_communication_message_viewClass();
+		Ext.getCmp(CNOA.communication.message.view.parentID).add(CNOA_communication_message_view.mainPanel);
+		Ext.getCmp(CNOA.communication.message.view.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/communication/scripts/message_view.js"));
+
+?>

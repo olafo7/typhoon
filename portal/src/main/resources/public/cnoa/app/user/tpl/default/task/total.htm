@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+
+Ext.namespace("CNOA.user.task.total");
+CNOA.user.task.total.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_task", "app/user/scripts/cnoa.task.js", function(){
+		CNOA_user_task_total = new CNOA_user_task_totalClass();
+		Ext.getCmp(CNOA.user.task.total.parentID).add(CNOA_user_task_total.mainPanel);
+		Ext.getCmp(CNOA.user.task.total.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/task_total.js"));
+?>

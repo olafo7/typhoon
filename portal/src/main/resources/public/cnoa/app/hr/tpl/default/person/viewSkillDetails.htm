@@ -1,0 +1,150 @@
+<?php
+$data = $GLOBALS['hr']['viewDetails'];
+$personName = $GLOBALS['hr']['personName']['truename'];
+$data['attach'] = str_replace(array("openOfficeForView","openPdfForView"), array("opener.openOfficeForView","opener.openPdfForView"), $data['attach']);
+print <<<CNOA
+<html>
+<head>
+<title>人事劳动技能信息</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript'>
+	function ajaxDownload(url){
+		try{
+			document.body.removeChild(document.getElementById("cnoa_iframe_download"));
+		}catch(e){}
+
+		var f = document.createElement("iframe");
+			f.id = 'cnoa_iframe_download';
+			f.style.width = "0px";
+			f.style.height = "0px";
+			f.style.display = "none";
+			f.src = url + "&r=" + Math.random();
+			document.body.appendChild(f);
+	}
+	window.onload=function(){
+		window.focus()
+	}
+</script>
+</head>
+
+<body class="bodycolor" topmargin="5">
+
+
+
+<table border="0"  width="650" align="center" cellspacing="0" cellpadding="3" class="small">
+
+  <tr>
+
+    <td class="Big"><span class="big3"> 人事劳动技能信息</span><br></td>
+	<td class="Big" align="right"><span> 姓名：{$personName}</span><br></td>
+
+  </tr>
+
+</table>
+
+<table class="TableBlock" width="650" align="center">
+
+  <tr>
+
+    <td nowrap class="TableHeader " colspan="6"><b>&nbsp;技能信息</b></td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">技能名称：</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$data['skillName']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">特种技能：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['specialSkill']}</td>          
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">级别：</td>
+
+    <td class="TableData" width="180">{$data['level']}</td>  	
+
+    <td nowrap align="left" width="120" class="TableContent">技能证：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['skillLicense']}</td>         
+
+  </tr>
+  
+    <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">发证日期：</td>
+
+    <td class="TableData" width="180">{$data['skillStartDate']}</td>  	
+
+    <td nowrap align="left" width="120" class="TableContent">结束日期：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['endDate']}</td>         
+
+  </tr>
+  
+    <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">发证单位：</td>
+
+    <td class="TableData" width="180">{$data['skillDepartment']}</td>  	     
+
+  </tr>
+  
+  </tr>  
+  
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">备注：</td>
+
+  </tr>   
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$data['skill_notes']}</td>               
+
+  </tr>                                    
+
+  <tr>
+
+  	<td nowrap  class="TableHeader" colspan="6">附件文档：</td>
+
+  </tr>
+
+  <tr>    
+
+    <td nowrap align="left" class="TableData" colspan="6">{$data['attach']}</td>
+
+  </tr>
+
+  <!-- <tr align="center" class="TableControl">
+
+    <td colspan="6">
+
+      <input type="button" value="关闭" class="BigButton" onClick="window.close();" title="关闭窗口">
+
+    </td>
+
+  </tr>    -->                  
+
+</table>
+
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

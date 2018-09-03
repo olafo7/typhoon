@@ -1,0 +1,12 @@
+<script language="JavaScript">
+    Ext.namespace("CNOA.main.station");
+    CNOA.main.station.parentID = "docs-CNOA_MENU_SYSTEM_STATION";
+
+    Ext.onReady(function() {
+        loadScripts("sm_main_station", "cnoa/app/main/scripts/cnoa.station.js", function(){
+            CNOA_main_station_index = new CNOA_main_station_indexClass();
+            Ext.getCmp(CNOA.main.station.parentID).add(CNOA_main_station_index.mainPanel);
+            Ext.getCmp(CNOA.main.station.parentID).doLayout();
+        });
+    });
+</script>

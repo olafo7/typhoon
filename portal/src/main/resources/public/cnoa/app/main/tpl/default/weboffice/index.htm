@@ -1,0 +1,404 @@
+<?php
+print <<<CNOA
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript" src="scripts/jquery/1.4.2.min.js"></script>
+<style>
+	body{margin:0;padding:0;background:#e4e4e4 url(resources/images/loadingOffice.gif) no-repeat center center;overflow:hidden;}
+	#CNOA_WO{position: absolute;top: -9999999px;}
+</style>
+<script type="text/javascript">
+if(!top.CNOA_USER_TRUENAME){top.CNOA_USER_TRUENAME = "测试用户";}
+if(!top.cdump){
+	var cdump = function(obj){
+		if(arguments.length>0){
+			for (var i=0; i<arguments.length; i++){
+				try{console.log(arguments[i]);}catch(e){}
+			}
+		}else{
+			try{console.log(obj);}catch(e){}
+		}
+	}
+	top.cdump = cdump;
+}
+if(!top.CNOA){
+	top.CNOA = {
+		msg : {alert : function(msg){alert(msg);}}
+	}
+}
+</script>
+<script type="text/javascript">
+var WO;
+
+//是否是公共硬盘的修改
+var IFRAME_ID			= "{$GLOBALS['iframeId']}";
+
+//绝对根路径
+var baseURI				= location.href.substr(0, location.href.lastIndexOf("/")+1);
+//文档的打开地址
+var FILE_OPEN_URL		= baseURI + "{$GLOBALS['url']}";
+//文档的类型, doc/xls/ppt
+var FILE_TYPE			= "{$GLOBALS['type']}";
+//1:查看模式 / 0:修改模式
+var isView				= "{$GLOBALS['isView']}";
+//保护文档模式(只读)时的保护密码
+var PWD					= Math.random();
+//是否允许复制文档中的内容
+var viewOfficeAllowCopy = {$GLOBALS['allowCopy']};
+//文件名
+var FILE_NAME			= "{$GLOBALS['fileName']}";
+//文档的保存地址
+var FILE_SAVE_URL		= baseURI + "{$GLOBALS['saveUrl']}";
+//文档修改者用户名
+var USER_NAME			= top.CNOA_USER_TRUENAME;
+//是否启动痕迹保留功能
+var PROTECT_REVISION	= {$GLOBALS['protectRevision']};
+//是否显示痕迹
+var SHOW_REVISE			= {$GLOBALS['showRevise']};
+//保存文档时要POST的参数
+var POST_PARS			= "{$GLOBALS['postPars']}";
+//是否是公共硬盘的修改
+var PUB_DISK_EDIT		= {$GLOBALS['fromPubDisk']};
+
+function reload(){
+	location.reload();
+	//WO.HideMenuItem(0);
+}
+</script>
+</head>
+<body>
+<a href="#" onclick="reload()" style="display:none;">刷新</a>
+CNOA;
+if($GLOBALS['isIE']){
+print <<<CNOA
+	<object id="CNOA_WO" style="width:100%;height:100%" height="100%" width="100%"  classid="clsid:E77E049B-23FC-4DB8-B756-60529A35FAD5"></object>
+CNOA;
+}else{
+print <<<CNOA
+	<object id="CNOA_WO" style="width:100%;height:100%" TYPE="application/x-itst-activex"  clsid="{E77E049B-23FC-4DB8-B756-60529A35FAD5}" progid="WEBOFFICE.WebOfficeCtrl.1"  height="100%" width="100%"></object>
+CNOA;
+}
+?>
+<script type="text/javascript">
+WO = document.getElementById("CNOA_WO");
+
+var noActiveX = "你的电脑尚未安装OFFICE控件或者OFFICE控件需要升级<br /><br />请点击这里[<a href='file/download.php?target=activex'><span class='cnoa_color_red'>下载</span></a>]安装，安装之前请关闭浏览器及其它应用程序<br /><br />如果您已经安装好组件，请点击这里进行[<a href='javascript:void(0);' onclick='location.reload()'><span class='cnoa_color_red'>刷新</span></a>]！";
+
+var noOffice = "你的电脑尚未安装OFFICE或者WPS软件，请安装OFFICE或WPS标准安装版后重试<br />如果您已经安装好OFFICE/WPS，请点击这里[<a href='javascript:void(0);' onclick='location.reload()'><span class='cnoa_color_red'>刷新</span></a>]！";
+var noSupportChromeVersion = "谷歌浏览器(Chrome)从V41版本后不再支持NPAPI插件，本office控件也受此影响不能运行。<br />如要继续能运行本office控件，请使用V41及以下版本的谷歌浏览器。<br />下载地址：<a href='http://pan.baidu.com/s/1mgilw8o' target='_blank'>http://pan.baidu.com/s/1mgilw8o</a>";
+
+//检查OFFICE控件是否已经安装
+function checkOfficeActivex(){
+	try{
+		if(WO.Version !== "V=7010, Copyright 北京点聚信息技术有限公司 2004-2013"){
+			return false;
+		}else{
+			return true;
+		}
+	}catch(e){
+		return false;
+	}
+}
+//检查OFFICE是否安装
+function checkOfficeInstall(){
+	//WPS无法得到版本信息，这里暂时先取消判断
+	return true;
+	try{
+		if(WO.AppVersion != ""){
+			return true;
+		}else{
+			return false;
+		}
+	}catch(e){
+		return false;
+	}
+}
+function removeBg(){
+	$(document.body).css("background", "none");
+}
+//检查Chrome版本，如果是41以上则不支持本插件
+function checkChromeVersion(){
+	if(top.Ext.isChrome){
+		if(top.Ext.chromeVersion > 41){
+			return false;
+		}
+	}
+	return true;
+}
+
+function openOffice(){
+	$("#CNOA_WO").width($(window).width());
+	$("#CNOA_WO").height($(window).height()+16);
+
+	//隐藏点聚工具栏
+	WO.ShowToolBar =  !WO.ShowToolBar;
+
+	//检查是否已经安装OFFICE
+	try{
+		WO.LoadOriginalFile("", FILE_TYPE);
+	}catch(e){
+		top.cdump(e);
+	}
+
+	var officeInstall = checkOfficeInstall();
+	if(!officeInstall){
+		top.CNOA.msg.alert(noOffice);
+		removeBg();
+		closeOffice();
+		return;
+	}	
+	//打开文档
+	try{WO.LoadOriginalFile(FILE_OPEN_URL, FILE_TYPE);}catch(e){top.cdump(e);}
+
+	//移走背景，把OFFICE控件居中显示
+	$("#CNOA_WO").css("top", "-16px");
+	$(document.body).css("background", "none");
+
+	if(isView == "1"){
+		//隐藏2003工具栏(用于阅读文档的时候)
+		try{
+			WO.HideMenuArea('', '', '', '');
+		}catch(e){
+			top.cdump(e);
+			top.CNOA.msg.alert("不能打开文件，可能是"+noOffice);
+			return;
+		}
+
+		//隐藏2007/2010工具栏(用于阅读文档的时候)
+		try{
+			WO.HideMenuArea('hideall', '', '', '');
+		}catch(e){
+			top.cdump(e);
+			top.CNOA.msg.alert("不能打开文件，可能是"+noOffice);
+			return;
+		}
+
+		//如果是在线浏览，则保护文档不让修改
+		try{WO.ProtectDoc(1, 1, PWD);}catch(e){}
+
+		//是否不允许复制内容
+		if(!viewOfficeAllowCopy){
+			WO.SetSecurity(0x04);
+		}
+	}
+
+	//设置用户名
+	try{
+		WO.SetCurrUserName(USER_NAME);
+	}catch(e){
+		top.cdump(e);
+		top.CNOA.msg.alert("不能打开文件，可能是"+noOffice);
+		return;
+	}
+
+	//设置显示痕迹
+	if(SHOW_REVISE == 1){
+		try{WO.ShowRevisions(1);}catch(e){}
+	}else{
+		try{WO.ShowRevisions(0);}catch(e){}
+	}
+
+	//设置启用痕迹保留功能
+	if(PROTECT_REVISION == 1){
+		try{WO.SetTrackRevisions(1);}catch(e){}
+	}else{
+		try{WO.SetTrackRevisions(0);}catch(e){}
+	}
+}
+//重置文档，让office恢复正常
+function closeOffice(){
+	//允许复制
+	try{WO.SetSecurity(0x04 + 0x8000);}catch(e){}
+	//允许拖动
+	try{WO.SetSecurity(0x08 + 0x8000);}catch(e){}
+	//允许拖动
+	try{WO.SetSecurity(0x08 + 0x8000);}catch(e){}
+	//解锁文档
+	try{WO.ProtectDoc(0, 1, PWD);}catch(e){}
+	//关闭文档
+	try{WO.CloseDoc(0);}catch(e){}
+}
+//打印文档
+function printOffice(){
+	try{WO.PrintDoc(1);}catch(e){}
+}
+//全屏
+function fullScreenOffice(){
+	try{WO.FullScreen = true;}catch(e){}
+}
+//隐藏（其实是把它移到一个看不见的位置）
+function hideOffice(){//alert(11);
+	//$(WO).css("top", "-999999px");
+	if(top.Ext.isIE){
+		$(WO).css("display", "none");
+	}else{
+		top.$("#"+IFRAME_ID).addClass("x-hide-display");
+	}
+}
+//隐藏（其实是把它移到一个看不见的位置）
+function showOffice(){
+	//$(WO).css("top", "-16px");
+	if(top.Ext.isIE){
+		$(WO).css("display", "block");
+	}else{
+		top.$("#"+IFRAME_ID).removeClass("x-hide-display");
+	}
+}
+//保存文档
+function saveOffice(saveUrl, newVersion){
+	$(WO).css("visibility", "hidden");
+
+	try{WO.HttpInit();}catch(e){}
+
+	POST_PARS2 = POST_PARS.split("&");
+	for(var i=0; i<POST_PARS2.length; i++){
+		var p = POST_PARS2[i].split("=");
+		try{WO.HttpAddPostString(p[0], p[1]);}catch(e){}
+	}
+
+	if(PUB_DISK_EDIT){
+		if(newVersion){
+			try{WO.HttpAddPostString("versions", 1);}catch(e){}
+		}else{
+			try{WO.HttpAddPostString("versions", 0);}catch(e){}
+		}
+	}
+
+	try{WO.HttpAddPostCurrFile("msOffice", "");}catch(e){}
+
+	if(saveUrl){
+		saveUrl = baseURI + saveUrl;
+	}else{
+		saveUrl = FILE_SAVE_URL;
+	}
+	
+	var ok;
+	try{ok = WO.HttpPost(saveUrl);}catch(e){ok = 0;}
+
+	if(ok == "1"){
+		ok = 'succeed';
+	}
+
+	$(WO).css("visibility", "visible");
+	
+	return ok;
+}
+//接受所有修订
+function acceptAllRevisions(){
+	try{WO.SetTrackRevisions(4);}catch(e){}
+}
+//拒绝所有修订
+function rejectAllRevisions(){
+	try{
+		var vCount = WO.GetRevCount();
+		var strUserName;
+		for(var i=1;i<=vCount;i++){
+			strUserName = WO.GetRevInfo(i, 0);
+			WO.AcceptRevision(strUserName, 1);
+		}
+	}catch(e){
+		top.cdump("异常\r\nError:"+e+"\r\nError Code:"+e.number+"\r\nError Des:"+e.description);
+	}
+}
+//显示修订
+function showRevisions(){
+	try{
+		WO.ShowRevisions(1);
+	}catch(e){
+		top.cdump("异常\r\nError:"+e+"\r\nError Code:"+e.number+"\r\nError Des:"+e.description);
+	}
+}
+//隐藏修订
+function hideRevisions(){
+	try{
+		WO.ShowRevisions(0);
+	}catch(e){
+		top.cdump("异常\r\nError:"+e+"\r\nError Code:"+e.number+"\r\nError Des:"+e.description);
+	}
+}
+//开始/退出修订模式
+function setTrackRevisions(code){
+	try{
+		WO.SetTrackRevisions(code);
+	}catch(e){
+		top.cdump("异常\r\nError:"+e+"\r\nError Code:"+e.number+"\r\nError Des:"+e.description);
+	}
+}
+//接受修订并下载
+function acceptAndDownload(){
+	//解锁文档
+	try{WO.ProtectDoc(0, 1, PWD);}catch(e){}
+	acceptAllRevisions();
+	try{
+		WO.ShowDialog(84);
+	}catch(e){
+		top.cdump("异常\r\nError:"+e+"\r\nError Code:"+e.number+"\r\nError Des:"+e.description);
+	}
+	reloadWindow();
+}
+//刷新页面
+function reloadWindow(code){
+	location.reload();
+}
+//
+function autoShowHideOffice(){
+	setInterval(function(){
+		try{
+			if(top.Ext.WindowMgr.hasWindowShowed() || top.Ext.menu.MenuMgr.hasMenuShowed()){
+				hideOffice();
+			}else{
+				showOffice();
+			}
+		}catch(e){}
+	}, 50);
+}
+function moveObject(fool){
+	if (fool) {
+		$('#CNOA_WO').css({"position": "absolute","top": "0"});
+	}else{
+		$('#CNOA_WO').css({"position": "absolute","top": "-99999999px"});
+	}
+}
+function setTaoHong(name){
+	if (!name) return;
+	var weburl=location.host;//得到路径字符串
+	var openpath = FILE_OPEN_URL;//打开文件路径
+	var url= "http://"+weburl+"/file/common/wf/weboffice/"+name;//红头模板
+	//WO.SaveTo(savepath);//将当前打开文档保存到本地临时路径
+	//WO.CloseDoc(0);//关闭不保存
+	WO.LoadOriginalFile(url,"doc");//加载红头模板文档
+	WO.SetFieldValue("taohong",openpath,"::FILE::");//套红
+	moveObject(true);
+}
+$(document).ready(function(){
+	$(document.body).height($(window).height());
+
+	if(!checkChromeVersion()){
+		top.CNOA.msg.alert(noSupportChromeVersion);
+		removeBg();
+		return;
+	}
+
+
+	var ActiveXinit = checkOfficeActivex();
+	if(!ActiveXinit){
+		top.CNOA.msg.alert(noActiveX);
+		removeBg();
+		return;
+	}
+
+	if(PUB_DISK_EDIT){
+		try{top.CNOA.WO.checkFileLocked(openOffice);}catch(e){}
+	}else{
+		openOffice();
+	}
+	if(top.$("#"+IFRAME_ID).parents(".x-window").length <= 0){
+		autoShowHideOffice();
+	}
+});
+</script>
+</body>
+</html>

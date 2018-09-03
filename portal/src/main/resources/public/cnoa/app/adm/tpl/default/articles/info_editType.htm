@@ -1,0 +1,21 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.adm.articles.editTypeIndex");
+CNOA.adm.articles.editTypeIndex.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_articles_manage", "app/adm/scripts/cnoa.articles_manage.js", function(){
+		CNOA_adm_articles_editTypeIndex = new CNOA_adm_articles_editTypeIndexClass();
+		Ext.getCmp(CNOA.adm.articles.editTypeIndex.parentID).add(CNOA_adm_articles_editTypeIndex.mainPanel);
+		Ext.getCmp(CNOA.adm.articles.editTypeIndex.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+?>

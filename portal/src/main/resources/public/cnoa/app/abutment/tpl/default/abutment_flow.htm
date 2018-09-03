@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.abutment.abutment.flow");
+CNOA.abutment.abutment.flow.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+    loadScripts("sm_abutment_abutment", "app/abutment/scripts/cnoa.abutment.js", function(){
+		CNOA_abutment_abutment_flow = new CNOA_abutment_abutment_flowClass();		
+		Ext.getCmp(CNOA.abutment.abutment.flow.parentID).add(CNOA_abutment_abutment_flow.mainPanel);
+		Ext.getCmp(CNOA.abutment.abutment.flow.parentID).doLayout();
+    });    
+});
+</script>
+CNOA;
+
+#echo loadJavascript("./app/abutment/scripts/abutment_flow.js");
+?>

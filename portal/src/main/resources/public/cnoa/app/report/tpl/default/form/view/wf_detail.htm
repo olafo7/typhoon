@@ -1,0 +1,20 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.report.view_detail_wf");
+CNOA.report.view_detail_wf.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.report.view_detail_wf.tid		= "{$GLOBALS['report']['tid']}";
+CNOA.report.view_detail_wf.hid		= "{$GLOBALS['report']['hid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_report_wf", "app/report/scripts/cnoa.report.js", function(){
+		CNOA_report_view_detail_wf = new CNOA_report_view_detail_wfClass();
+	});
+});
+
+</script>
+CNOA;
+##echo loadJavascript(array("./app/report/scripts/view_detail_wf.js"));
+?>

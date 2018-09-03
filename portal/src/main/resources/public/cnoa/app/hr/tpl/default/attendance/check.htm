@@ -1,0 +1,21 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.hr.attendance.check");
+CNOA.hr.attendance.check.parentID = "{$GLOBALS['app']['parentid']}";
+//*
+Ext.onReady(function() {
+	loadScripts("sm_hr_attendance", "app/hr/scripts/cnoa.attendance.js", function(){
+		CNOA_hr_attendance_check = new CNOA_hr_attendance_checkClass();
+		Ext.getCmp(CNOA.hr.attendance.check.parentID).add(CNOA_hr_attendance_check.mainPanel);
+		Ext.getCmp(CNOA.hr.attendance.check.parentID).doLayout();
+	});
+});
+//*/
+</script>
+
+
+CNOA;
+#echo loadJavascript(array("./app/hr/scripts/attendance_check.js"));
+?>

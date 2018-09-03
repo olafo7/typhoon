@@ -1,0 +1,22 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.adm.articles.setting");
+CNOA.adm.articles.setting.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_articles_manage", "app/adm/scripts/cnoa.articles_manage.js", function(){
+		CNOA_adm_articles_setting = new CNOA_adm_articles_settingClass();
+		Ext.getCmp(CNOA.adm.articles.setting.parentID).add(CNOA_adm_articles_setting.mainPanel);
+		Ext.getCmp(CNOA.adm.articles.setting.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+#echo loadJavascript(array("./app/adm/scripts/articles_library_setting.js"));
+?>

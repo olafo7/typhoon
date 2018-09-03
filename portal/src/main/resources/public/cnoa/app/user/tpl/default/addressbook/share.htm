@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.addressbook.share");
+CNOA.user.addressbook.share.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_addressbook", "app/user/scripts/cnoa.addressbook.js", function(){
+		CNOA_user_addressbook_share = new CNOA_user_addressbook_shareClass();
+		Ext.getCmp(CNOA.user.addressbook.share.parentID).add(CNOA_user_addressbook_share.mainPanel);
+		Ext.getCmp(CNOA.user.addressbook.share.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/addressbook_share.js"));
+?>

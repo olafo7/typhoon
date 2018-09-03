@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/scale.css">
+<!-- <link rel="stylesheet" type="text/css" href="app/report/css/m/wf_detail.css"> -->
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/iscroll-probe.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="resources/scripts/m/scale.js"></script>
+<script src="scripts/jquery/iospopwin.js"></script>
+<!-- <script src="app/report/scripts/m/wf_detail.js"></script> -->
+<script>
+var dynamicLoading = {
+  css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+    var link = document.createElement('link');
+    link.href = path+"?rnd="+Math.random();
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    head.appendChild(link);
+  },
+  js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.src = path+"?rnd="+Math.random();
+    head.appendChild(script);
+  }
+}
+dynamicLoading.js("app/report/scripts/m/wf_detail.js");
+dynamicLoading.css("app/report/css/m/wf_detail.css");
+</script>
+</head>
+
+<body>
+<div id="header">
+  <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="wfDetailBlack"></span>
+  <span>报表查看</span>
+</div> 
+<div class="alert search-box" role="alert">
+  <div class="col-xs-4">
+    <select class="form-control" id="fieldsName">
+      
+    </select>
+  </div>
+  <div class="col-xs-8">
+    <div class="input-group">
+      <input type="search" class="form-control search" placeholder="请输入检索关键词" id="iptSearch">
+      <span class="input-group-btn">
+        <button class="btn btn-default btn-m" type="botton" id="btnSearch">搜索</button>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="containers">
+  <div id="wrapper">
+    <div id="scroller">
+      <div id="pullDown">  
+        <div class="pullDownIcon"></div>  
+        <div class="pullDownLabel">下拉刷新</div>  
+      </div>
+      <div class="wfDetailContainer" id="wfDetailContainer">
+        <table class="table table-bordered">
+          <thead id="wfDetailThead"></thead>
+          <tbody id="wfDetailTbody"></tbody>
+        </table>
+      </div>
+      <div id="pullUp">  
+        <div class="pullUpIcon"></div>  
+        <div class="pullUpLabel">上拉加载更多...</div>  
+      </div>
+    </div>
+  </div>
+</div>
+<div class="imgzoom_pack">
+  <div class="imgzoom_x">
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  </div>
+  <div class="imgzoom_img">
+    <img src="">
+  </div>
+</div>
+</body>
+</html>

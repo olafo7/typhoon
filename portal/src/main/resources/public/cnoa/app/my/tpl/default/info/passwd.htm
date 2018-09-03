@@ -1,0 +1,26 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.my.index.passwd");
+CNOA.my.index.passwd.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_my_myPasswd", "app/my/scripts/cnoa.myPasswd.js", function(){
+		if(CNOA_my_passwd == null){
+			CNOA_my_passwd = new CNOA_my_passwdClass();
+			CNOA_my_passwd.show();
+		}
+		Ext.getCmp(CNOA.my.index.passwd.parentID).on("close", function(){
+			try{
+				CNOA_my_passwd.close();
+			}catch(e){}
+		});
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/my/scripts/passwd.js"));
+?>

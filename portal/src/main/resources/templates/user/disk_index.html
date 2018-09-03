@@ -1,0 +1,15 @@
+<script language="JavaScript">
+    Ext.namespace("CNOA.user.disk.index");
+    CNOA.user.disk.index.parentID = "docs-CNOA_MENU_USER_DISK_INDEX";
+    CNOA.user.disk.index.goDate = "";
+
+    CNOA.user.disk.index.used = '';
+
+    Ext.onReady(function() {
+        loadScripts("sm_user_disk", "cnoa/app/user/scripts/cnoa.disk.js", function(){
+            CNOA_user_disk_index = new CNOA_user_disk_indexClass();
+            Ext.getCmp(CNOA.user.disk.index.parentID).add(CNOA_user_disk_index.mainPanel);
+            Ext.getCmp(CNOA.user.disk.index.parentID).doLayout();
+        });
+    });
+</script>

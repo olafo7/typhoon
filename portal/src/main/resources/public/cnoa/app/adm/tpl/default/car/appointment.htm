@@ -1,0 +1,17 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.adm.car.appointment");
+CNOA.adm.car.appointment.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_adm_car", "app/adm/scripts/cnoa.car_manage.js", function(){
+		CNOA_adm_car_appointment = new CNOA_adm_car_appointmentClass();
+		Ext.getCmp(CNOA.adm.car.appointment.parentID).add(CNOA_adm_car_appointment.mainPanel);
+		Ext.getCmp(CNOA.adm.car.appointment.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+?>

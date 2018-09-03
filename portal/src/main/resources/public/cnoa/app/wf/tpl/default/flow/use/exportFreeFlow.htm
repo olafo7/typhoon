@@ -1,0 +1,18 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.use_export");
+CNOA.wf.use_export.printwidth	= "{$GLOBALS['wf']['export']['width']}";
+CNOA.wf.use_export.flowId		= "{$GLOBALS['wf']['export']['flowId']}";
+CNOA.wf.use_export.uFlowId		= "{$GLOBALS['wf']['export']['uFlowId']}";
+CNOA.wf.use_export.stepId		= "{$GLOBALS['wf']['export']['stepId']}";
+CNOA.wf.use_export.flowType		= "{$GLOBALS['wf']['export']['flowType']}";
+CNOA.wf.use_export.tplSort		= "{$GLOBALS['wf']['export']['tplSort']}";
+</script>
+<script type="text/javascript" src="scripts/cnoa.extra.js"></script>
+
+CNOA;
+echo loadJavascript(array("./app/wf/scripts/exportFreeFlow.js"));
+?>

@@ -1,0 +1,42 @@
+<script type="text/javascript" src="scripts/cnoa.extra.js"></script>
+
+<script language="javascript">
+<!--
+	window.focus();
+	Ext.ns("CNOA.odoc");
+	CNOA.odoc.func	= "<?=$GLOBALS['func']?>";
+	CNOA.odoc.id	= "<?=$GLOBALS['id']?>";
+	CNOA.odoc.action	= "<?=$GLOBALS['action']?>";
+	CNOA.odoc.fromType	= "<?=$GLOBALS['fromType']?>";
+	CNOA.odoc.truename	= "<?=$GLOBALS['CNOA_USERNAME']?>";
+	CNOA.odoc.uFlowId	= "<?=$GLOBALS['CNOA_ODOC_UFLOWID']?>";
+	//Ext.getBody().on('contextmenu', Ext.emptyFn, this, {preventDefault: true});
+//-->
+</script>
+<!-- 加载WORD红头文件 -->
+<script language=javascript event=NotifyCtrlReady for=CNOA_WEBOFFICE>
+/*
+var baseUrl = "index.php?app=odoc&func=<?=$GLOBALS['func']?>&action=<?=$GLOBALS['action']?>&fromType=<?=$GLOBALS['fromType']?>";
+var baseURI = location.href.substr(0, location.href.indexOf('index.php'));
+try{
+	var webObj = document.getElementById("CNOA_WEBOFFICE");
+	//webObj.OptionFlag |= 128;
+	webObj.OptionFlag &= 0xff7f;
+	webObj.setCurrUserName("CNOA");
+	webObj.ReadOnly = 1;//只读打开(好像无效)
+	webObj.LoadOriginalFile(baseURI + baseUrl + "&task=view&act=getZhengWen&id=<?=$GLOBALS['id']?>", "doc");
+	webObj.ShowToolBar = false;//隐藏自带工具栏
+	webObj.SetTrackRevisions(1);//开始修订
+	webObj.ProtectDoc(1, 1, "cnoa.odoc.pwd."+Math.random()*38);
+	setTimeout(function(){webObj.hideMenuArea("hideall"," "," "," ");},500);//隐藏word所有工具
+}catch(e){}
+*/
+</script>
+<script language=javascript event=NotifyWordEvent(eventname) for=CNOA_WEBOFFICE>
+<!--
+try{
+	
+}catch(e){}
+//-->
+</script>
+<script type='text/javascript' src='app/odoc/scripts/viewOdocFiles.js'></script>

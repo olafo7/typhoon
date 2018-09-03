@@ -1,0 +1,214 @@
+body,h1, h2, h3, h4, h5,p,ul,li{
+    font-family:"NotoSans CJK","Microsoft YaHei","Proxima Nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+ul {
+    text-decoration: none; 
+    list-style-type: none;
+}
+
+a,a:hover,a:link,a:visited {
+    list-style-type: none;
+    text-decoration: none; 
+}
+
+/*header styles*/
+#header {
+    position: fixed;
+    width: 100%;
+    height: 52px;
+    text-align: center;
+    line-height: 52px;
+    background-color: #4A78BB;
+    color: #FFFFFF;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#btnBack {
+    left: 0px;
+    position: fixed;
+    top: 0px;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+}
+
+#listNav {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    font-size: 1.2em;
+    padding: 15px;
+}
+
+/*jingle_popup styles*/
+#jingle_popup {
+    display: none;
+    background-color: #eef3f3;
+    color: #222;
+    -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 98;
+    min-height: 50px;
+    bottom: 0px;
+}
+
+#jingle_popup .btn {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 8px;
+}
+
+.actionsheet {
+    display: -webkit-box;
+    display: box;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    padding: 20px;
+}
+
+#jingle_popup_mask {
+    display: none;
+    position: absolute;
+    z-index: 90;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: #222;
+    bottom: 0;
+    opacity: 0.3;
+}
+
+/*content styles*/
+#wrapper {
+    position:absolute; 
+    z-index:1;
+    top: 52px;
+    bottom:0px; 
+    left:0;
+    width:100%;
+    background:#fff;
+    overflow-y:auto;
+}
+
+#scroller {
+    position:relative;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    float:left;
+    width:100%;
+    padding:0;
+}
+
+#scroller .stop-label {
+  background: #fafafa;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #eee;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  color: #888;
+  display: none;
+}
+
+#wrapper .list_title {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #4978BC;
+    font-size: 12px;
+    margin-top: 3px;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    margin-bottom: 5px;
+}
+
+#wrapper .list_content {
+    width: 90%;
+}
+
+
+/*人员选择*/
+.tools .cur {
+    border: none;
+    width: 16px;
+    height: 16px;
+    padding: 10px;
+    border: #3498DB solid 1px;
+    left: 10px;
+    top: 3px;
+    color: #fff;
+    background: #3498DB url(../../../../../../resources/images/m/ico/input-checked.png) center no-repeat;
+}
+
+/*附件按钮*/
+.btnUpload {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    padding: 12px 12px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 18px;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-bottom-color: #b3b3b3;
+}
+
+#fileupload {
+    width: 100%;
+    height: 100%;
+}
+
+.btnUpload input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    border: solid transparent;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+}
+
+.formInfoTitle {
+    text-align: center;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    padding: 5px 0px;
+    margin-bottom: 10px;
+}
+
+#attachGroup .formInfoTitle {
+    margin-bottom: 0px;
+}
+.panel-default > .panel-heading {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+
+.panel-attach-box > .panel-heading {
+    border-bottom: none;
+    padding: 8px 15px;
+}
+
+.panel-attach .btn {
+    margin: 4px 6px 0px 0px;
+}   

@@ -1,0 +1,21 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.user.attendance.leave");
+CNOA.user.attendance.leave.parentID = "{$GLOBALS['app']['parentid']}";
+//*
+Ext.onReady(function() {
+	loadScripts("sm_user_attendance", "app/user/scripts/cnoa.attendance.js", function(){
+		CNOA_user_attendance_leave = new CNOA_user_attendance_leaveClass();
+	    Ext.getCmp(CNOA.user.attendance.leave.parentID).add(CNOA_user_attendance_leave.mainPanel);
+	    Ext.getCmp(CNOA.user.attendance.leave.parentID).doLayout();
+	});
+});
+//*/
+</script>
+
+
+CNOA;
+#echo loadJavascript(array("./app/user/scripts/attendance_leave.js"));
+?>

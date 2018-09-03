@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script>
+var dynamicLoading = {
+  css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var link = document.createElement('link');
+      link.href = path+"?rnd="+Math.random();
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      head.appendChild(link);
+  },
+  js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.src = path+"?rnd="+Math.random();
+      head.appendChild(script);
+  }
+}
+dynamicLoading.js("app/communication/scripts/m/email/emailIndex.js");
+dynamicLoading.css("app/communication/css/m/email/email.css");
+</script>
+</head>
+<body>
+<div id="header">
+    <span>内部邮件</span>
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+    <a href="m.php?app=communication&func=message&action=index&task=loadPage&from=writeEmail" class="aa"><span class="glyphicon glyphicon-plus btn-add-ico" aria-hidden="true" id="btnAdd"></a>
+    </span>
+</div>
+<div id="content">
+    <div id="cont">
+        <ul class="list-group">
+          <li class="list-group-item accept">
+            <a href="m.php?app=communication&func=message&action=index&task=loadPage&from=acceptEmail">
+                <img src="resources/images/email_icon/accept.png">
+                <span class="left">收件箱&nbsp;&nbsp;&nbsp;<span class="num">/<?php echo $count; ?></span></span>
+            </a>
+               <span class="glyphicon glyphicon-chevron-right btnGO" aria-hidden="true"></span> 
+          </li>
+          <li class="list-group-item draft">
+            <a href="m.php?app=communication&func=message&action=index&task=loadPage&from=draft">
+                <img src="resources/images/email_icon/draft.png">
+                <span class="left">草稿箱&nbsp;&nbsp;&nbsp;<span class="num"></span></span>
+            </a>
+            <span class="glyphicon glyphicon-chevron-right btnGO" aria-hidden="true"></span>
+          </li>
+          <li class="list-group-item hassend">
+            <a href="m.php?app=communication&func=message&action=index&task=loadPage&from=hassend">
+                <img src="resources/images/email_icon/send.png">
+                <span class="left">已发送&nbsp;&nbsp;&nbsp;<span class="num"></span></span>
+            </a>
+            <span class="glyphicon glyphicon-chevron-right btnGO" aria-hidden="true"></span>
+          </li>
+          <li class="list-group-item recycle">
+            <a href="m.php?app=communication&func=message&action=index&task=loadPage&from=recycle">
+                <img src="resources/images/email_icon/recovery.png">
+                <span class="left">回收站&nbsp;&nbsp;&nbsp;<span class="num"></span></span>
+            </a>
+            <span class="glyphicon glyphicon-chevron-right btnGO" aria-hidden="true"></span>
+          </li>
+          <li class="list-group-item mailfolder">
+            <a href="m.php?app=communication&func=message&action=index&task=loadPage&from=mailfolder">
+                <img src="resources/images/email_icon/file.png">
+                <span class="left">邮箱文件夹&nbsp;&nbsp;&nbsp;<span class="num"></span></span>
+            </a>
+            <span class="glyphicon glyphicon-chevron-right btnGO" aria-hidden="true"></span>
+          </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

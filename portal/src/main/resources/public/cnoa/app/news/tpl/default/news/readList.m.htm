@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <title><?php echo $GLOBALS['SERVERNAME'];?></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="scripts/video-js/video-js.min.css">
+  <link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="scripts/m/swiper/swiper.min.css">
+  <link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+  <script src="scripts/m/diary/zepto.min.js"></script>
+  <script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+  <script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+  <script src="scripts/m/swiper/swiper.min.js"></script>
+  <script src="resources/scripts/m/showLoading.js"></script>
+</head>
+<script>
+var dynamicLoading = {
+  css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var link = document.createElement('link');
+      link.href = path+"?rnd="+Math.random();
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      head.appendChild(link);
+  },
+  js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.src = path+"?rnd="+Math.random();
+      head.appendChild(script);
+  }
+}
+dynamicLoading.js("app/news/scripts/m/read.js");
+dynamicLoading.css("app/news/css/m/read.css");
+</script>
+<body> 
+  <div id="header">
+    <span>新闻中心</span>
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+    <span class="glyphicon glyphicon-search btn-add-ico"  data-toggle="modal" 
+   data-target="#myModal" aria-hidden="true" id="btnAdd"></span>
+    </botton>
+  </div>
+  <div id="wrapper">
+    <div id="scroller">
+      
+      <ul class="nav nav-tabs">
+        
+      </ul>
+      
+    </div>
+  </div>
+  <div id="lunbo">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+          
+      </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
+      <!-- test title -->
+      <span class="swiper-title"></span>
+    </div>
+  </div>
+  <div id="Vwrapper">
+    <div id="Vscroller">
+      <div id="pullDown" style="height:0px;width:0px">
+      </div>
+
+      <div id="content">
+        
+      </div>
+
+      <div id="pullUp">
+          <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+      </div>
+      <div class="stop-label">已加载完成，不要再滚动了...</div>
+    </div>
+  </div>
+
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-body">
+            <input type="search" class="input-medium search-query" id="search" placeholder="搜索">
+         </div>
+      </div>
+</div>
+<!--%以下js文件必须在DOM加载完成之后再引用进来-->
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="scripts/m/swiper/iscroll.fun.js"></script>
+</body>
+</html>

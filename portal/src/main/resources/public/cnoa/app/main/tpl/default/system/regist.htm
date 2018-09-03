@@ -1,0 +1,38 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.system.regist");
+CNOA.main.system.regist.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.main.system.regist.modal = {$GLOBALS['modal']};
+CNOA.main.system.regist.havepermit = {$GLOBALS['havepermit']};
+CNOA.main.system.regist.permitmsg = "{$GLOBALS['permitmsg']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_main_system", "app/main/scripts/cnoa.system.js", function(){
+		if(CNOA.main.system.regist.havepermit == 0){
+			CNOA.msg.alert(CNOA.main.system.regist.permitmsg, function(){
+				mainPanel.closeTab(CNOA.main.system.regist.parentID.replace("docs-", ""));
+			});
+			return;
+		}
+		
+		if(CNOA_main_system_regist == null){
+			CNOA_main_system_regist = new CNOA_main_system_registClass();
+			CNOA_main_system_regist.show();
+		}
+		
+		Ext.getCmp(CNOA.main.system.regist.parentID).on("close", function(){
+			try{
+				CNOA_main_system_regist.close();
+			}catch(e){}
+		});
+	});
+});
+
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/main/scripts/system_regist.js"));
+?>

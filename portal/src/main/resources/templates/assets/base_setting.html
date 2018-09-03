@@ -1,0 +1,12 @@
+<script language="JavaScript">
+    Ext.ns("CNOA.assets.base.baseSet");
+    CNOA.assets.base.baseSet.parentID = "docs-CNOA_MENU_ASSETS_BASESET";
+
+    Ext.onReady(function() {
+        loadScripts("sm_assets_assets", "cnoa/app/assets/scripts/cnoa.assets.js", function(){
+            CNOA_assets_base_baseSet = new CNOA_assets_base_baseSetClass();
+            Ext.getCmp(CNOA.assets.base.baseSet.parentID).add(CNOA_assets_base_baseSet.mainPanel);
+            Ext.getCmp(CNOA.assets.base.baseSet.parentID).doLayout();
+        })
+    });
+</script>

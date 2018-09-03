@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.exsms.outboxList");
+CNOA.main.exsms.outboxList.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_main_exsms", "app/main/scripts/cnoa.exsms.js", function(){
+		CNOA_main_exsms_outboxList = new CNOA_main_exsms_outboxListClass();
+		Ext.getCmp(CNOA.main.exsms.outboxList.parentID).add(CNOA_main_exsms_outboxList.mainPanel);
+		Ext.getCmp(CNOA.main.exsms.outboxList.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript("./app/main/scripts/exsms_outboxList.js");
+?>

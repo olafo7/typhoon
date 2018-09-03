@@ -1,0 +1,92 @@
+<?php
+$data = $GLOBALS['hr']['viewDetails'];
+$personName = $GLOBALS['hr']['personName']['truename'];
+foreach($data AS $value){
+	$list .= "<tr>";
+		$list .= '<td nowrap align="left" class="TableData" width="100">'.$value['stayJob'].'</td>';
+		$list .= '<td nowrap align="left" class="TableData" width="100">'.$value['stayDepartment'].'</td>';
+		$list .= '<td nowrap align="left" class="TableData" width="100">'.$value['startDate'].'</td>';
+		$list .= '<td nowrap align="left" class="TableData" width="100">'.$value['endDate'].'</td>';
+		$list .= '<td nowrap align="left" class="TableData" width="100">'.$value['jobType'].'</td>';
+		$list .= '<td nowrap align="left" class="TableData" width="100">'.$value['workDepartment'].'</td>';
+		$list .= '<td nowrap align="left" class="TableData" width="80"><a href="index.php?app=hr&func=person&action=manage&task=loadPage&from=viewDetails&type=work&ID='.$value['id'].'&personID='.$GLOBALS['hr']['person']['pid'].'">查看</a></td>';
+	$lsit .= "</tr>";
+}
+print <<<CNOA
+<html>
+<head>
+<title>人事工作经验列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript'>
+	window.onload=function(){
+		window.focus()
+	}
+</script>
+</head>
+
+<body class="bodycolor" topmargin="5">
+
+
+
+<table border="0"  width="680" align="center" cellspacing="0" cellpadding="3" class="small">
+
+  <tr>
+
+    <td class="Big"><span class="big3"> 人事工作经验列表</span><br></td>
+	<td class="Big" align="right"><span class=""> 姓名：{$personName}</span><br></td>
+
+  </tr>
+
+</table>
+
+<table class="TableBlock" width="650" align="center">
+
+  <tr>
+
+  	<td nowrap align="left" width="100" class="TableContent">担任职务：</td>
+
+    <td nowrap align="left" width="100" class="TableContent">所在部门：</td>
+	
+    <td nowrap align="left" width="100" class="TableContent">开始时间：</td>
+	
+    <td nowrap align="left" width="100" class="TableContent">结束时间：</td>
+	
+    <td nowrap align="left" width="100" class="TableContent">行业类别：</td>
+
+    <td nowrap align="left" width="100" class="TableContent">工作单位：</td>
+
+    <td nowrap align="left" width="80" class="TableContent">操作：</td>
+       
+  </tr>
+  
+ {$list}
+
+  <!-- <tr align="center" class="TableControl">
+
+    <td colspan="8">
+
+      <input type="button" value="关闭" class="BigButton" onClick="window.close();" title="关闭窗口">
+
+    </td>
+
+  </tr>      -->                
+
+</table>
+
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

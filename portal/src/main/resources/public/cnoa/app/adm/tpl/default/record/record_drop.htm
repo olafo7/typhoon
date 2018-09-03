@@ -1,0 +1,18 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.adm.articles.dropRecordIndex");
+CNOA.adm.articles.dropRecordIndex.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_articles_record", "app/adm/scripts/cnoa.articles_record.js", function(){
+		CNOA_adm_articles_dropRecordIndex = new CNOA_adm_articles_dropRecordIndexClass();
+		Ext.getCmp(CNOA.adm.articles.dropRecordIndex.parentID).add(CNOA_adm_articles_dropRecordIndex.mainPanel);
+		Ext.getCmp(CNOA.adm.articles.dropRecordIndex.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+?>

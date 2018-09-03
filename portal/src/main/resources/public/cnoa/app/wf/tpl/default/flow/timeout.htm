@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.flow.timeout");
+CNOA.wf.flow.timeout.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_flow_timeout = new CNOA_wf_flow_timeoutClass();
+		Ext.getCmp(CNOA.wf.flow.timeout.parentID).add(CNOA_wf_flow_timeout.mainPanel);
+		Ext.getCmp(CNOA.wf.flow.timeout.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/wf/scripts/wf_flow_timeout.js"));
+?>

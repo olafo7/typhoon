@@ -1,0 +1,173 @@
+<?php
+$data = $GLOBALS['adm']['articlesViewDetails'];
+print <<<CNOA
+<html>
+<head>
+<title>用品信息 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript'>
+	window.onload=function(){
+		window.focus()
+	}
+</script>
+</head>
+
+<body class="bodycolor" topmargin="5">
+
+
+
+<table border="0"  width="760" align="center" cellspacing="0" cellpadding="3" class="small">
+
+  <tr>
+
+    <td class="Big"><span class="big3"> 用品信息</span><br></td>
+
+  </tr>
+
+</table>
+
+<table class="TableBlock" width="760" align="center">
+
+  <tr>
+
+    <td nowrap class="TableHeader " colspan="6"><b>&nbsp;用品基本信息</b></td>
+
+  </tr>
+
+  <tr>
+        
+	<td nowrap align="left" width="120" class="TableContent">用品名称：</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$data['name']}</td>  
+
+  	<td nowrap align="left" width="120" class="TableContent">用品编号：</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$data['number']}</td>  
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">计量单位：</td>
+
+    <td class="TableData" width="180">{$data['unit']}</td>  	
+
+    <td nowrap align="left" width="120" class="TableContent">规格：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['standard']}</td>         
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">供应商：</td>
+
+    <td class="TableData" width="180" >{$data['supplies']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">单价（元）：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['price']}</td>             
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">最低警戒库存：</td>
+
+    <td class="TableData" width="180">{$data['lowerStock']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">最高警戒库存:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['heightStock']}</td>       
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">用品库：</td>
+
+    <td class="TableData" width="180">{$data['libraryName']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">用品类别:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['typeName']}</td>       
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">用品描述：</td>
+
+    <td class="TableData" width="180">{$data['description']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">创建人:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['createName']}</td>       
+
+  </tr>
+  
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">当前库存：</td>
+
+    <td class="TableData" width="180">{$data['stock']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent"></td>
+
+    <td class="TableData" width="180" colspan="3"></td>       
+
+  </tr>
+
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">审核/登记信息：</td>
+
+  </tr>   
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">审核用户：</td>
+
+    <td class="TableData" width="180">{$data['checkName']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">登记用户:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['signInNames']}</td>       
+
+  </tr>
+
+<!--  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">登记部门：</td>
+
+    <td class="TableData" width="180">{$data['deptName']}</td>    
+
+  </tr> -->
+
+  <!-- <tr align="center" class="TableControl">
+
+    <td colspan="6">
+
+      <input type="button" value="关闭" class="BigButton" onClick="window.close();" title="关闭窗口">
+
+    </td>
+
+  </tr>  -->                    
+
+</table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

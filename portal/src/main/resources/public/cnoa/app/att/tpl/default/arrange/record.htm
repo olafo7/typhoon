@@ -1,0 +1,25 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.att.arrange.record");
+CNOA.att.arrange.record.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.att.arrange.record.recordAdmin = "{$GLOBALS['att']['recordAdmin']}";
+
+CNOA.att.arrange.record.isThreeDate = "{$GLOBALS['CNOA_ISTHREE_DATE']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_att_att", "app/att/scripts/cnoa.att.js", function(){
+		CNOA_att_arrange_record = new CNOA_att_arrange_recordClass();
+		Ext.getCmp(CNOA.att.arrange.record.parentID).add(CNOA_att_arrange_record.mainPanel);
+		Ext.getCmp(CNOA.att.arrange.record.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+// echo loadJavascript(array("./app/att/scripts/att_arrange_record.js"));
+
+?>

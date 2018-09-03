@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <title><?php echo $GLOBALS['SERVERNAME'];?></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="scripts/video-js/video-js.min.css">
+  <link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="app/news/css/m/readContent.css">
+  <link rel="stylesheet" type="text/css" href="scripts/m/swiper/video-js.css">
+  <link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+  <link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+  <script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+  <script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+  <script src="scripts/jquery/iscroll.js"></script>
+  <script src="app/news/scripts/m/readContentInfo.js"></script>
+  <script src="scripts/m/swiper/video.js"></script>
+  <script src="resources/scripts/m/jNotify.jquery.js"></script>
+  <script src="scripts/m/weixin/jweixin-1.1.0.js"></script>
+  <script src="resources/scripts/m/showLoading.js"></script>
+  <!-- 图片插件 -->
+  <script src="resources/scripts/m/scale.js"></script>
+  <!-- 在线浏览 -->
+  <script src="resources/scripts/m/popwin.js"></script>
+  <script src="scripts/jquery/iospopwin.js"></script>
+</head>
+<body>
+  <div id="header">
+    <span>新闻详情</span>
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack">返回</span>
+  </div>
+  <div id="content">
+    <div id="userinfo"> 
+    </div>
+    <div id="main">
+      <div id="wrapper">
+        <div id="scroller">
+        <div class="title1"></div>
+      
+          <div class="newinfo"></div>
+          <div class="fs"></div>
+          <div class="com">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="comment">
+        <div class="form">
+          <div class="form-group">
+            <input type="text" class="form-control" id="commentinfo" placeholder="写评论">
+          </div>
+          <button type="button" class="btn btn-default submit">发表</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="loading_mask"></div>
+  <!--% 图片在线预览 %-->
+<div class="imgzoom_pack" style="display:none;">
+  <div class="imgzoom_x"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+  <div class="imgzoom_img">
+    <img src="">
+  </div>
+</div>
+</body>
+</html>

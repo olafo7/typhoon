@@ -1,0 +1,22 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.sms.view");
+CNOA.main.sms.view.parentID = "{$GLOBALS['app']['parentid']}";
+
+CNOA.main.sms.view.type = "{$GLOBALS['type']}";
+CNOA.main.sms.view.id   = {$GLOBALS['id']};
+
+Ext.onReady(function() {
+	loadScripts("sm_main_sms", "app/main/scripts/cnoa.sms.js", function(){
+		CNOA_main_sms_view = new CNOA_main_sms_viewClass();
+		Ext.getCmp(CNOA.main.sms.view.parentID).add(CNOA_main_sms_view.mainPanel);
+		Ext.getCmp(CNOA.main.sms.view.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript("./app/main/scripts/sms_view.js");
+?>

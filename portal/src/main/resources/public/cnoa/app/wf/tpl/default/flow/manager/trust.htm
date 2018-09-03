@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.manager.trust");
+CNOA.wf.manager.trust.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_manager_trust = new CNOA_wf_manager_trustClass();
+		Ext.getCmp(CNOA.wf.manager.trust.parentID).add(CNOA_wf_manager_trust.mainPanel);
+		Ext.getCmp(CNOA.wf.manager.trust.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+### echo loadJavascript(array("./app/wf/scripts/manager_trust.js"));
+?>

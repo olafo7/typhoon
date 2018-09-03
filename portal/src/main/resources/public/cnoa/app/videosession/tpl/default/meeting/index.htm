@@ -1,0 +1,14 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<OBJECT id="ClientLoader" style="LEFT: 0px; TOP: 0px" height="1" width="1" classid="clsid:4F02C8AE-DF9A-4249-B817-D4476B9F490D"></OBJECT>
+
+<script language="JavaScript">
+Ext.namespace("CNOA.videosession.session");
+CNOA.videosession.session.parentID = "{$GLOBALS['app']['parentid']}";
+</script>
+
+CNOA;
+echo loadJavascript(array("./app/videosession/scripts/meeting.js"));
+?>

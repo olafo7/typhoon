@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=yes" /> 
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/font/m/font-glyphs/font-glyphs.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/common.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/scale.css" />
+<link rel="stylesheet" type="text/css" href="app/news/css/m/view.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="scripts/jquery/prettify.js"></script>
+<script src="scripts/jquery/custom.js"></script>
+<script src="resources/scripts/m/scale.js"></script>
+<script type="text/javascript">
+  var dynamicLoading = {
+    css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+  }
+  dynamicLoading.js("scripts/jquery/iospopwin.js");
+  dynamicLoading.js("app/news/scripts/m/view.js");
+</script>
+</head>
+
+<body>
+<div id="header">
+    <span>查看公告</span>
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+    <span class="glyphicon glyphicon-align-justify btn-add-ico" aria-hidden="true" id="btn_actionsheet"></span>
+</div>
+<div id="wrapper">
+    <div id="scroller">
+        <div id="myTabContent" class="tab-content">
+            
+        </div>
+    </div>
+</div>
+<div id="jingle_popup" class="">
+    <div class="actionsheet">
+    	<div class="btn-opt">
+			<button class="btn btn-popup" id="btnAgree" >阅读情况</button>
+    	</div>
+    	<div class="btn-qx">
+			<button class="btn btn-danger" id="btn-cancel">取消</button>
+		</div>
+    </div>
+</div>
+<div id="jingle_popup_mask"></div>
+<!--%* 日期控件 *%-->
+<div id="datePlugin"></div>
+<!--%* 图片在线浏览 *%-->
+<div class="imgzoom_pack">
+  <div class="imgzoom_x"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+  <div class="imgzoom_img">
+    <img src="" />
+  </div>
+</div>
+<!--* 模态框 *-->
+<div class="modal" id="getUser" tabindex="-1" role="dialog">
+  <div class="modal-dialog my-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn btn-primary btn-sure" id="btnSure" data-dismiss="modal" aria-label="Close"  aria-label="Justify">确定</button>
+        <button type="button" class="btn btn-primary btn-cancel-ico" data-dismiss="modal" aria-label="Close"  aria-label="Justify">取消</button>
+      <span>人员选择器</span>
+      <div class="row search">
+        <div class="col-xs-12">
+            <input type="text" class="form-control input-m" id="search" placeholder="搜索">
+        </div>
+      </div>
+      </div>
+      <div class="modal-body-wrapper" id="modal-body-wrapper">
+          <div class="modal-body-scroller" id="modal-body-scroller">
+        <div class="modal-body">
+          <ul class="list-group" id="userGroup">
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+<!-- 加载 -->
+<div id="loading_mask" style="display: none;"></div>
+</body>
+</html>

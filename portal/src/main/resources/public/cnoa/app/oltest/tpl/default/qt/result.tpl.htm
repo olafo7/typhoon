@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="resources/css/oltest/viewTest.css" />
+</head>
+<body>
+	<div class="main">
+		<?php if(!empty($data)) :?> 
+		<div id="header2" style="font-size: 1.8em;"><?php echo $data['name'] ?></div>
+		<div class="fengexian"></div>
+		<div class="time">
+			<div class="stime" style="font-size: 1.3em;">●  生效时间:&nbsp;<?php echo $stime ?></div>
+			<div class="etime" style="font-size: 1.3em;">●  结束时间:&nbsp;<?php echo $etime ?></div>
+		</div>
+		<div class="paperContent">
+		<form id="form"  action="" method="post" name="form">
+			<!--单选题-->
+			<input type="hidden" name="paper_id" value="<?php echo $data['id'] ?>">
+			<?php if(!empty($danxuan)) : ?>
+			 	<div class="title" style="font-size: 1.3em;"><span></span>单选题</div>
+			 	<div class="titleContent">
+			  <?php foreach ($danxuan as $v) : ?>
+			        <div class="xiaoTitle" style="font-size: 1.4em;">(<?php echo $v['tihao']?>).<?php echo $v['title']?></div>
+			        <br/>
+			      <?php foreach ($v['answer'] as $key => $value): ?>
+			          <div style="margin: 0 0 10px 0px;font-size: 1.3em;"><?php echo $value ?></div>
+
+			          <div style="width: 70%; height: 20px; float: left;">
+			          <span style="width: <?php echo $percent[$key] ?>; display: block; height: 20px; float: left; background-color: <?php echo '#'.sprintf('%02X',rand(0,255)).sprintf('%02X',rand(0,255)).sprintf('%02X',rand(0,255)); ?>"></span> 
+			          </div>
+
+			          <div style="width: 30%; height: 20px; float: left; text-align: right;">
+				          <div style="width: 50%; float: left;color: #669;font-size: 1.3em;"><?php echo $p_select[$key] ? $p_select[$key] : 0 ?>人选</div>
+				          <div style="width: 50%; float: left;color: #888800;font-size: 1.3em;"><?php echo $percent[$key] ?></div>
+			          </div>
+			          <br/>
+			          <br/>
+			      <?php endforeach; ?>
+			  <?php endforeach ?>
+			  </div>
+			<?php endif; ?>
+			<br/>
+			<!--多选题-->
+			<?php if(!empty($duoxuan)) : ?>
+			  <div class="title" style="font-size: 1.3em;"><span></span>多选题</div>
+			  <div class="titleContent">
+			  <?php foreach ($duoxuan as $v) : ?>
+			      	<div class="xiaoTitle" style="font-size: 1.4em;">(<?php echo $v['tihao']?>).<?php echo $v['title']?></div>
+			      	<br/>
+			      <?php foreach ($v['answer'] as $key => $value): ?>
+			        <div style="margin: 0 0 10px 0px;font-size: 1.3em;"><?php echo $value ?></div>
+			        	<div style="width: 70%; height: 20px; float: left;">
+						<span style="width: <?php echo $percent2[$key] ?>; display: block; height: 20px; float: left; background-color: <?php echo '#'.sprintf('%02X',rand(0,255)).sprintf('%02X',rand(0,255)).sprintf('%02X',rand(0,255)); ?>"></span> 
+						</div>
+
+						<div style="width: 30%; height: 20px; float: left; text-align: right;">
+						  <div style="width: 50%; float: left;color: #669;font-size: 1.3em;"><?php echo $p_select[$key] ? $p_select[$key] : 0 ?>人选</div>
+						  <div style="width: 50%; float: left;color: #888800;font-size: 1.3em;"><?php echo $percent2[$key] ?></div>
+						</div>
+						<br/>
+						<br/>
+			      <?php endforeach; ?>
+			  <?php endforeach ?>
+			  </div>
+			<?php endif; ?>
+
+			<br/>
+			<!--主观题-->
+			<?php if(!empty($tiankong)) : ?>
+			  <div class="title" style="font-size: 1.3em;"><span></span>主观题</div>
+			  <div class="titleContent">
+			  <?php foreach ($tiankong as $value) : ?>
+			      <div class="xiaoTitle" style="font-size: 1.4em;">(<?php echo $value['tihao']?>).<?php echo $value['title']?></div><br/>
+			      <div style="font-size: 1.3em;background-color: #ffffff;color: #595757;">用户答案 :</div><br/>
+			      <?php if(!empty($sub[$value['bid']])) : ?>
+				      <?php foreach ($sub[$value['bid']] as $k => $v) :  ?>
+				      	<div style="color: red;font-size: 1.3em; line-height: 2em;" ><?php $k = $k +1; echo $k.' 楼: '.$v ?></div>
+				      	<br/>
+				      	<br/>
+				      <?php endforeach ?>
+				  <?php endif; ?>
+			  <?php endforeach ?>
+			  </div>
+			<?php endif; ?>
+		</form>
+		</div>
+
+		<?php endif; ?>
+	</div>
+</body>
+</html>

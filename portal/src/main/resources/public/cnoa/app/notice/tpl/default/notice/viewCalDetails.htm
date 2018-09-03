@@ -1,0 +1,109 @@
+<?php
+$data = $GLOBALS['notice']['viewDetails'];
+
+if(!empty($data['flowId'])){
+	$periodText = ' <tr>
+    <td nowrap align="left" width="120" class="TableContent">流程名称：</td>
+
+    <td nowrap align="left" class="TableData" {$class} width="180"><a href="javascript:void(0);" onclick="showFlow('.$data["uFlowId"].', '.$data["flowId"].', '.$data["step"].', '.$data["flowType"].', '.$data["tplSort"].', '.$data["owner"].','.$data["status"].','.$data["nameRuleId"].','.$data["cid"].','.$data["pid"].','.$data["older"].')" >'.$data["flowName"].'</a></td>
+
+    <td nowrap align="left" width="120" class="TableContent">流程状态：</td>
+
+    <td class="TableData" width="180" {$class}>'.$data["fStatus"].'</td>
+         
+  </tr>';
+}else{
+	$periodText = "";
+}
+
+print <<<CNOA
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="/cnoa/resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js?v=v 3.0.75"></script>
+</head>
+<body class="bodycolor" topmargin="5">
+
+<table class="TableBlock" width="650" align="center">
+
+  <tr>
+
+    <td nowrap class="TableHeader" colspan="6"><b>&nbsp;日程基本信息</b></td>
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>日程名称：</td>
+
+    <td class='TableData' width='180' colspan='3' {$class}>{$data['title']}</td>
+         
+  </tr>
+  
+  <tr>
+
+  	<td nowrap align='left' width='120' class='TableContent'>开始时间：</td>
+
+    <td nowrap align='left' class='TableData' {$class} width='180'>{$data['stime']}</td>
+
+    <td nowrap align='left' width='120' class='TableContent'>结束时间：</td>
+
+    <td class='TableData' width='180' {$class}>{$data['etime']}</td>
+
+  </tr>    
+  
+   <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>内容：</td>
+
+    <td class='TableData' width='180' colspan='3' {$class}>{$data['content']}</td>
+         
+  </tr>  
+  
+  <tr>
+
+    <td nowrap align='left' width='120' class='TableContent'>共享人：</td>
+
+    <td class='TableData' width='180' colspan='3' {$class}>{$data['shareName']}</td>    
+         
+  </tr>
+  {$periodText}
+  
+</table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+
+<script type="text/javascript">
+//查看流程(操作)
+function showFlow(uFlowId, flowId, step, flowType, tplSort, owner, status, nameRuleId, cid, pid, older){
+    var _this = this;
+    if (older == 1 && status == 0) {
+      parent.CNOA.msg.alert('该日程已经过期!');
+      return;
+    }
+    if (older == 0 && status == 0) {
+        parent.mainPanel.closeTab("CNOA_MENU_WF_USE_OPENFLOW");
+        parent.mainPanel.loadClass("index.php?app=wf&func=flow&action=use&modul=new&task=loadPage&from=newflow&flowId="+flowId+"&nameRuleId="+nameRuleId+"&flowType="+flowType+"&tplSort="+tplSort+"&cid="+cid+"&pid="+pid, "CNOA_MENU_WF_USE_OPENFLOW", "查看工作流程", "icon-flow-new");
+    } else {
+        parent.mainPanel.closeTab("CNOA_MENU_WF_USE_OPENFLOW");
+        parent.mainPanel.loadClass("index.php?app=wf&func=flow&action=use&modul=done&task=loadPage&from=showflow&uFlowId="+uFlowId+"&flowId="+flowId+"&step="+step+"&flowType="+flowType+"&tplSort="+tplSort+"&owner="+owner, "CNOA_MENU_WF_USE_OPENFLOW", "查看工作流程", "icon-flow");
+    }
+    parent.mainPanel.lhcWin.close();
+  }
+</script>
+
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

@@ -1,0 +1,29 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.mgr_listView");
+CNOA.wf.mgr_listView.parentID	= "{$GLOBALS['app']['parentid']}";
+CNOA.wf.mgr_listView.uFlowId	= "{$GLOBALS['app']['uFlowId']}";
+CNOA.wf.mgr_listView.flowId		= "{$GLOBALS['app']['flowId']}";
+CNOA.wf.mgr_listView.step		= "{$GLOBALS['app']['step']}";
+CNOA.wf.mgr_listView.stepUid	= "{$GLOBALS['app']['stepUid']}";
+CNOA.wf.mgr_listView.status		= "{$GLOBALS['app']['status']}";
+CNOA.wf.mgr_listView.flowNumber	= "{$GLOBALS['app']['flowNumber']}";
+
+CNOA.wf.mgr_listView.flowType	= "{$GLOBALS['app']['wf']['flowType']}";
+CNOA.wf.mgr_listView.tplSort	= "{$GLOBALS['app']['wf']['tplSort']}";
+CNOA.wf.mgr_listView.relevanceUFlowInfo	= '{$GLOBALS['app']['wf']['relevanceUFlowInfo']}';
+
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_mgr_listView = new CNOA_wf_mgr_listViewClass();
+		Ext.getCmp(CNOA.wf.mgr_listView.parentID).add(CNOA_wf_mgr_listView.mainPanel);
+		Ext.getCmp(CNOA.wf.mgr_listView.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+### echo loadJavascript(array("./app/wf/scripts/use_commonflow.js", "./app/wf/scripts/mgr_listView.js"));
+?>

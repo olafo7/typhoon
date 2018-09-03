@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?=$lang['msg']['alert_title']?> - 协众OA</title>
+<script language="JavaScript">
+	try{
+		Ext.Msg.buttonText.ok = "确定";
+		Ext.Msg.alert("提示", "<?=$content?>");
+	}catch(e){
+		document.write("<span style='font-size:14px;font-weight:bold;color:red;'>协众OA提示您：</span><br /><br />");
+		document.write("<?=$content?>");
+	}
+</script>
+</head>
+
+<body style="font-size:12px;">
+
+</body>
+</html>

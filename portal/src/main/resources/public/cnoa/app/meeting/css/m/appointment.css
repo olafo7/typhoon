@@ -1,0 +1,169 @@
+body,h1, h2, h3, h4, h5,p,ul,li{
+    font-family:"NotoSans CJK","Microsoft YaHei","Proxima Nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+ul {
+    text-decoration: none; 
+    list-style-type: none;
+}
+
+a,a:hover,a:link,a:visited {
+    list-style-type: none;
+    text-decoration: none; 
+}
+
+th,td {
+    padding: 0px 8px !important;
+    text-align: center;
+}
+
+.half {
+    height: 10px;
+}
+
+.cnoa_car_a {
+   background-color: #F90;
+   border: none !important;
+}
+
+.cnoa_car_b {
+    background-color: #FC0;
+    border: none !important;
+}
+
+.cnoa_car_c {
+    background-color: #7589B7;
+    border: none !important;
+}
+
+.cnoa_car_d {
+    background-color: #F6F6F6;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    border-bottom-width: 0px;
+}
+
+/*header styles*/
+#header {
+    position: fixed;
+    width: 100%;
+    height: 52px;
+    text-align: center;
+    line-height: 52px;
+    background-color: #4A78BB;
+    color: #FFFFFF;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#btnBack {
+    left: 0px;
+    position: fixed;
+    top: 0px;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+}
+
+/*explain styles*/
+#explain {
+    position: absolute;
+    top: 52px;
+}
+
+#explain div {
+    float: left;
+    width: 50%;
+    margin-top: 5px;
+    padding-left: 1%;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+.color_e1 {
+    text-align: left !important;
+}
+
+.color_e2 span,.color_e3 span,.color_e4 span {
+    display: block;
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+
+.color_e2 span {
+    background-color: #FC0;
+}
+
+.color_e3 span {
+    background-color: #F90;
+}
+
+.color_e4 span {
+    background-color: #7589B7;
+}
+
+
+/*table styles*/
+#main {
+    position: absolute;
+    top: 170px;
+    width: 100%;
+}
+
+.meetT {
+    width: 30%;
+    float: left;
+    text-align: center;
+}
+.meetT li {
+    border: 1px solid #ccc;
+    border-bottom: none; 
+    border-right: none; 
+    height: 21px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.meetT .meet2 {
+    height: 10px;
+}
+
+.meetT li:last-of-type {
+    height: 22px;
+    border-bottom: 1px solid #ccc;
+}
+
+.table-responsive {
+    width: 70%;
+    margin: 0px;
+    float: left;
+}
+
+.table-responsive td {
+    height: 21px !important;
+}
+
+/*days styles*/
+.days {
+    position: absolute;
+    top: 105px;
+    width: 100%;
+}
+
+/*date styles*/
+.date {
+    position: absolute;
+    top: 145px;
+    width: 100%;
+    text-align: center;
+}

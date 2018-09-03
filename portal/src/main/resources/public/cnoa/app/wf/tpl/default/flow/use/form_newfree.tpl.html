@@ -1,0 +1,50 @@
+<div class="wf_div_ct" id='${data:id_stepDisplayAt}' style="display:none;"> 
+  <div class="header">${data:str_flowStep}</div>
+  <div class="body" id="${data:id_stepPanel}"> 
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD">
+    	
+    </table>
+  </div>
+</div>
+
+<div class="wf_div_ct" style="margin-top:10px"> 
+  <div class="header">${data:str_flowInfo}</div>
+  <div class="body" id="${data:id_flowPanel}"> 
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD">
+      <tr> 
+        <td width="100" height="24" align="right" valign="middle" class="lable">${data:str_flowNumber}:</td>
+        <td valign="middle" class="field">${flowNumber}</td>
+        <td width="100" height="24" align="right" valign="middle" class="lable">${data:str_flowLevel}:</td>
+        <td valign="middle" class="field">${level}</td>
+      </tr>
+      <tr> 
+        <td height="24" align="right" valign="middle" class="lable">${data:str_flowFreeTitle}:</td>
+        <td class="field" valign="top" id="user_defined_flow_name">${flowName}</td>
+        <td height="24" align="right" valign="middle" class="lable">${data:str_flowReason}:</td>
+        <td class="field">${reason}</td>
+      </tr>
+    </table>
+	${uFlowId}
+  </div>
+</div>
+
+<!--自由流程表单信息-->
+<div class="wf_div_ct" style="margin-top:10px" id="wf_newfree_formct"> 
+  <div class="header" id="wf_form_newfree_tushi">${data:str_flowFormInfo}</div>
+  <div class="body" style="background-color:#EDEDED;" id="${data:id_freeFlow_formPanel}">
+  </div>
+</div>
+
+<div id='${data:id_displayAt}' class="wf_div_ct" style="display:none;margin-top:10px" > 
+  <div class="header" >${data:str_flowAttach}</div>
+  <div class="body" id="${data:id_attachPanel}"> 
+    <table id="${data:id_attachTable}" class="attachTable" style="border-collapse:separate;border-width: 1px;" width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#CDCDCD">
+      <tr> 
+        <td height="24" align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowAttachName}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowUploadBy}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowUploadTime}</td>
+        <td align="center" bgcolor="#F6F6F6" width="20%">${data:str_flowOpt}</td>
+      </tr>
+    </table>
+  </div>
+</div>

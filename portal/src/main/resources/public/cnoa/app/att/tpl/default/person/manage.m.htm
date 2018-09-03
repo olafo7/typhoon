@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<!-- <link rel="stylesheet" type="text/css" href="resources/css/m/iosOverlay.css"> -->
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script src="scripts/jquery/sweetalert.min.js"></script>
+<!-- <script src="scripts/jquery/spin.min.js"></script>
+<script src="scripts/jquery/iosOverlay.js"></script> -->
+<script src="scripts/jquery/prettify.js"></script>
+<script src="scripts/jquery/custom.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+        if(!path || path.length === 0){
+            throw new Error('路径必填!');
+        }
+        var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+        if(!path || path.length === 0){
+            throw new Error('路径必填!');
+        }
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.css("app/att/css/m/person/manage.css");
+dynamicLoading.js("app/att/scripts/m/person/manage.js");
+</script>
+</head>
+
+<body>
+<div id="header">
+    <span class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        手机考勤
+      </a>
+    </span>
+    <button type="button" id="btnBack" class="btn btn-primary btn-back-ico" aria-label="Justify">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    </button>
+</div>
+<div id="wrapper" style="overflow-x: hidden;">
+    <!-- 标题 -->
+    <div id="myTabLabel" class="tab-label">
+        <div id="myTabTitle" class="tab-title">
+            <span>考勤管理</span>
+        </div>
+    </div>
+    <!-- 考勤 -->
+        <!-- 出差 -->
+        <div class="tab-evection" id="wfEvection">
+            <div class="ico-evection"></div>
+            <div class="tit-evection">出差</div>
+        </div>
+        <!-- 请假 -->
+        <div class="tab-leave" id="wfLeave">
+            <div class="ico-leave"></div>
+            <div class="tit-leave">请假</div>
+        </div>
+        <!-- 加班 -->
+        <div class="tab-overtime" id="wfOvertime">
+            <div class="ico-overtime"></div>
+            <div class="tit-overtime">加班</div>
+        </div>
+        <!-- 外出 -->
+        <div class="tab-egression" id="wfEgression">
+            <div class="ico-egression"></div>
+            <div class="tit-egression">外出</div>
+        </div>
+        <!-- 补卡 -->
+        <div class="tab-again" id="wfAgain">
+            <div class="ico-again"></div>
+            <div class="tit-again">补卡</div>
+        </div>
+        <!-- 打卡 -->
+        <div class="tab-register" id="wfRegister">
+            <div class="ico-register"></div>
+            <div class="tit-register"><div id="now_time"></div>打卡</div>
+        </div>
+    <!-- -->
+    <!-- <div id="scroller"> -->
+        <div id="myTabContent" class="tab-content">
+     
+        </div>
+    <!-- </div> -->
+    <div id="loading_mask" style="display: none;"></div>
+</div>
+</body>
+</html>

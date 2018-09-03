@@ -1,0 +1,21 @@
+<?php
+
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.oltest.oltest.paper");
+CNOA.oltest.oltest.paper.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+    loadScripts("sm_oltest_oltest", "app/oltest/scripts/cnoa.oltest.js", function(){
+        CNOA_oltest_oltest_paper = new CNOA_oltest_oltest_paperClass();
+		Ext.getCmp(CNOA.oltest.oltest.paper.parentID).add(CNOA_oltest_oltest_paper.mainPanel);
+		Ext.getCmp(CNOA.oltest.oltest.paper.parentID).doLayout();
+    });    
+});
+
+</script>
+CNOA;
+
+##echo loadJavascript(array("./app/oltest/scripts/oltest_paper.js"));
+?>

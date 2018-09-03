@@ -1,0 +1,357 @@
+<html class="  ext-strict x-viewport"><head>
+<title> - Powered by 协众OA - www.cnoa.cn</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style>
+
+
+a {
+	color: #1E4176;
+}
+a:link {
+	color: #1E4176;
+	text-decoration: none;
+}
+
+a:visited {
+   color: #555;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #15428b;
+}
+
+
+/* .x-table-layout-cell{vertical-align: top;} */
+.x-form-check-wrap-border {
+	padding:5px;
+	border: 1px solid #FFF;
+}
+.x-form-check-wrap-active{
+	border: 1px dashed #FF1E00;
+}
+.x-form-check-wrap-selected{
+	background: #FFF1EA;
+	cursor: pointer;
+}
+/* 流程信息*/
+.wf_div_ct{
+	border:1px solid #B1CEEB;
+	/*width:1056px!important;*/
+}
+.wf_div_ct .header{
+	background-color:#E4EEF8;
+	border-bottom:1px solid #B1CEEB;
+	font-size:14px;
+	font-weight:bold;
+	color: #215181;
+	height:25px;
+	text-indent: 10px;
+	padding:3px 0;
+}
+.wf_div_ct .body{
+	padding: 5px;
+}
+
+.wf_div_ct a.t_right{
+	float: right;
+	color: #FF0000;
+	font-size: 12px;
+	margin-right: 10px;
+	text-decoration: underline;
+	position: relative;
+	bottom: 2px;
+	padding: 3px;
+	word-break: break-all;
+}
+
+.wf_div_ct .attachTable td{
+	font-size: 12px;
+}
+
+/* 工作流表单设计器及表单样式 */
+.wf_form_content{
+	margin:8px;
+	font-family:"宋体";
+	font-size:16px !important;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+.wf_form_content .selectTdClass {
+	background-color: #3399FF ! important
+}
+.wf_form_content pre {
+	background-color: #F8F8F8;
+	border: 1px solid#CCCCCC;
+	padding: 10px 10px;
+	margin: 5px;
+	word-wrap: normal;
+}
+.wf_form_content table {
+	margin-bottom: 10px;
+	border-collapse: collapse;
+	word-break:break-all;
+}
+.wf_form_content .view {
+	padding:0;
+	word-wrap:break-word;
+	word-break:break-all;
+	height:100%;
+}
+.wf_form_content td, .wf_form_content th {
+	vertical-align: middle;
+	padding: 2px;
+	border:1px solid #000;
+}
+.wf_form_content .group {
+	border:1px dashed red;
+	display:inline-block;
+	vertical-align:bottom;
+	padding:3px;
+}
+.wf_form_content .pagebreak {
+	border-bottom: 1px dotted#999999 ! important;
+	border-top: 1px dotted#999999 ! important;
+	clear: both ! important;
+	cursor: default ! important;
+	height: 5px ! important;
+	padding: 0 ! important;
+	width: 100 % !important;
+	margin-bottom: 10px;
+	height: 5px ! important;
+	overflow: hidden;
+}
+.wf_form_content .anchorclass {
+	background: url("/cnoa/scripts/ueditor/themes/default/images/anchor.gif") no-repeat scroll left center transparent;
+	border: 1px dotted#0000FF;
+	cursor: auto;
+	display: inline-block;
+	height: 16px;
+	width: 15px;
+}
+.wf_form_content .view {
+	padding: 0;
+	word-wrap: break-word;
+	word-break: break-all;
+	cursor: text;
+	height: 100 % ;
+}
+
+.wf_form_content table {
+	word-break: break-all;
+}
+.wf_form_content p {
+	margin: 5px 0;
+}
+.wf_form_content .tableclear {
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
+.wf_form_content strong, b {
+	font-weight: bold;
+}
+
+/* 工作流表单设计器及表单样式 */
+.wf_form_content .wf_readonly{display:inline-block;vertical-align: bottom;}
+.wf_form_content input, .wf_form_content textarea{font-size:16px;}
+/*.wf_form_content input[type="text"]{border:1px solid #4B4B4B;background-color:#FEEDDE;}*/
+.wf_form_content .wf_field{border:1px solid #4B4B4B;background-color:#FEEDDE;}
+.wf_form_content .wf_field_must{background-color: #FFD0D0;}
+.wf_form_content .wf_field_write{background-color: #BCE9BA;}
+.wf_form_content .wf_field_read{border:none;background-color:transparent;padding:1px;}
+.wf_form_content .wf_row_jia,.wf_form_content .wf_row_jian,.wf_form_content .wf_list_query{cursor:pointer;}
+
+.wf_div_ct .body{}
+
+.wf_div_cttb{
+	position: relative;
+}
+
+.wf_div_cttb td.wf_bd{
+	background-image:url(../images/wf-pager-borderbg.gif);
+}
+.wf_div_cttb td.wf_bd2{
+	background-image:url(../images/wf-pager-borderbg-h.gif);
+}
+.wf_div_cttb td.wf_tl{
+	width:10px;height:10px;
+	background-position:0 0;
+}
+.wf_div_cttb td.wf_t{
+	background-position:0 -40px;
+}
+.wf_div_cttb td.wf_tr{
+	width:10px;height:10px;
+	background-position:0 -10px;
+}
+.wf_div_cttb td.wf_bl{
+	width:10px;height:10px;
+	background-position:0 -30px;
+}
+.wf_div_cttb td.wf_b{
+	background-position:0 -50px;
+}
+.wf_div_cttb td.wf_br{
+	width:10px;height:10px;
+	background-position:0 -20px;
+}
+.wf_div_cttb td.wf_l{
+	background-position:-10px 0;
+	background-repeat:repeat-y;
+}
+.wf_div_cttb td.wf_r{
+	background-position:0 0;
+	background-repeat:repeat-y;
+}
+.wf_div_cttb td.wf_c{
+background-color:#FFFFFF;
+}
+
+/* formhtml layout */
+.cnoa-formhtml-layout .head {
+	background: #DFE8F6 URL(../images/form/leaf.gif) no-repeat 5 5;
+	font-weight: bold;
+	font-size: 14px;
+	border: solid #999;
+	border-width: 1px 1px 0px 1px;
+	padding: 5px 10px 5px 25px;
+	vertical-align: bottom;
+	color: #333;
+}
+
+.ext-ie6 .cnoa-formhtml-layout .head {
+	width: 100%;
+}
+
+.cnoa-formhtml-layout .head span {
+	font-weight: normal;
+	font-size: 12px;
+	color: #666;
+	padding-left: 10px;
+}
+
+.cnoa-formhtml-layout table {
+	border-collapse: collapse;
+	border-width: 0px;
+}
+
+.cnoa-formhtml-layout table.body {
+	width: 100%;
+}
+
+.cnoa-formhtml-layout td {
+	font-size: 16px;
+	color: #000;
+}
+
+.cnoa-formhtml-layout .lable {
+	padding: 5px 5px 5px 10px;
+	text-align: left;
+	font-weight: bold;
+	white-space: nowrap;
+	background-color: #EEE;
+	color: #333;
+	vertical-align: top;
+	border: solid #999;
+	border-width: 1px 1px 1px 1px;
+	font-size: 12px;
+}
+
+.cnoa-formhtml-layout .field {
+	padding: 5px 5px 5px 5px;
+	background-color: #FFF;
+	border: solid #999;
+	border-width: 1px 1px 1px 1px;
+	font-size: 12px;
+}
+
+.ext-ie6 .cnoa-formhtml-layout .x-form-text,.ext-ie7 .cnoa-formhtml-layout .x-form-text {
+	border-bottom-width: 2px;
+}
+
+.cnoa-formhtml-layout .foot {
+	margin: 5px 5px 15px 5px;
+}
+
+.cnoa-formhtml-layout .foot li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.cnoa-formhtml-layout .foot,.parf-page .foot li {
+	color: #666;
+	font-size: 12px;
+}
+
+.cnoa-formhtml-layout a.wf-next-win-a{
+	background:#F3F8FC url(../images/cnoa/wf-radio-nstd.gif) 3px 7px no-repeat;
+	display:block;
+	height: 28px;
+	line-height: 28px;
+	border: 1px solid #C8DEF0;
+	margin-bottom:5px;
+	text-indent: 25px;
+	text-decoration: none;
+	font-weight:normal;
+	overflow:hidden;
+}
+.cnoa-formhtml-layout a.wf-next-win-a:hover{
+	border: 1px solid #80D5F5;
+	background-color: #E4F6FD;
+}
+.cnoa-formhtml-layout a.selected{
+	background:#FFEAE2 url(../images/cnoa/wf-radio-std.gif) 3px 7px no-repeat;
+	border: 1px solid #FF9C77;
+	font-weight:bold;
+}
+
+/*委托流程列表样式*/
+.cnoa-formhtml-layout a.wf-proxy-list-a{
+	background:#E7FAFE url(../images/cnoa/wf-uncheck.gif) 3px 7px no-repeat;
+	display:block;
+	height: 28px;
+	line-height: 28px;
+	border: 1px solid #B0D0EA;
+	margin-bottom:5px;
+	text-indent: 25px;
+	width: 200px;
+	float:left;
+	margin-right: 3px;
+	text-decoration: none;
+	font-weight:normal;
+	overflow:hidden;
+}
+.cnoa-formhtml-layout a.wf-proxy-list-a:hover{
+	border: 1px solid #67CDF3;
+	background-color: #DDFBFB;
+}
+.cnoa-formhtml-layout a.selecteds{
+	background:#FFEAE2 url(../images/cnoa/wf-checkbox.gif) 3px 7px no-repeat;
+	border: 1px solid #FF9C77;
+	font-weight:bold;
+}
+.cnoa-formhtml-layout a.disable{
+	border:1px solid #D0D0D0;
+	color: #B3B3B3;
+	background-color:#F7F7F7;
+	background-image:none;
+}
+.cnoa-formhtml-layout a.disable:hover{
+	border: 1px solid #D0D0D0;
+	background-color: #F7F7F7;
+}
+
+
+</style>
+</head>
+<body class="cnoa-formhtml-layout">
+
+
+<?=$GLOBALS['html']?>
+
+</body>
+</html>

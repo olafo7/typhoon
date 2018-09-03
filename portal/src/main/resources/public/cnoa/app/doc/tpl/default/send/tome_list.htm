@@ -1,0 +1,16 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.doc.send.tome_list");
+CNOA.doc.send.tome_list.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_flow_flow", "app/flow/scripts/cnoa.flow.js", function(){});
+});
+</script>
+
+CNOA;
+echo loadJavascript(array("./app/doc/scripts/api_flow_common.js", "./app/doc/scripts/send_tome_list.js"));
+?>

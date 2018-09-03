@@ -1,0 +1,9 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.adm.ammanage.dep");
+CNOA.adm.ammanage.dep.parentID = "{$GLOBALS['app']['parentid']}";
+</script>
+CNOA;
+echo loadJavascript(array("./app/adm/scripts/ammanage_dep.js"));
+?>

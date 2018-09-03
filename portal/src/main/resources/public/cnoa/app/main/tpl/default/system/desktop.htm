@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.system.desktop");
+CNOA.main.system.desktop.DestTopAppList = {$GLOBALS['appList']};
+
+
+Ext.onReady(function() {
+	loadScripts("sm_main_system", "app/main/scripts/cnoa.system.js", function(){
+		CNOA_main_system_desktop = new CNOA_main_system_desktop_Class();
+		Ext.getCmp("CNOA_MAIN_SYSTEM_INDEX_TABPANEL_DESKTOP").add(CNOA_main_system_desktop.mainPanel).doLayout();
+		Ext.getCmp("CNOA_MAIN_SYSTEM_INDEX_TABPANEL_DESKTOP").doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript("./app/main/scripts/system_desktop.js");
+?>

@@ -1,0 +1,32 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.struct.list");
+CNOA.main.struct.list.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.main.struct.list.tree = {};
+
+CNOA.permitController.main_struct = new Array();
+
+CNOA;
+foreach($GLOBALS['permissionController'] AS $k=>$v){
+print <<<CNOA
+CNOA.permitController.main_struct['{$k}'] = {$v};
+
+CNOA;
+}
+print <<<CNOA
+
+
+Ext.onReady(function() {
+	loadScripts("sm_main_struct", "app/main/scripts/cnoa.struct.js", function(){
+		var CNOA_main_user_dept = new CNOA_main_user_deptClass("add");
+		Ext.getCmp(CNOA.main.struct.list.parentID).add(CNOA_main_user_dept.mainPanel);
+		Ext.getCmp(CNOA.main.struct.list.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript("./app/main/scripts/struct_index.js");
+?>

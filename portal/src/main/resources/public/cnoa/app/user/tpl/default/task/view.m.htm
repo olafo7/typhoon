@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" /> 
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/font/m/font-glyphs/font-glyphs.css">
+<!-- <link rel="stylesheet" type="text/css" href="resources/css/m/iosOverlay.css"> -->
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/common.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/scale.css" />
+<link rel="stylesheet" type="text/css" href="app/user/css/m/task/userData.css">
+<link rel="stylesheet" type="text/css" href="app/user/css/m/task/view.css?ran=1">
+<link rel="stylesheet" type="text/css" href="app/user/css/m/task/userData.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script src="scripts/jquery/date.js"></script>
+<script src="scripts/jquery/sweetalert.min.js"></script>
+<!-- <script src="scripts/jquery/iosOverlay.js"></script> -->
+<script src="scripts/jquery/iscroll.js"></script>
+<!-- <script src="scripts/jquery/spin.min.js"></script> -->
+<script src="scripts/jquery/prettify.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="resources/scripts/m/popwin.js"></script>
+<script src="scripts/jquery/iospopwin.js"></script>
+<script src="scripts/jquery/custom.js"></script>
+<script src="resources/scripts/m/scale.js"></script>
+<script src="app/user/scripts/m/task/view.js?ran=1"></script>
+</head>
+
+<body>
+<div id="header">
+    <span class="glyphicon glyphicon-menu-left btn-back-ico" aria-hidden="true" id="btnBack">返回</span>
+    <span>查看任务</span>
+    <div id="btn_actionsheet" class="btn btn-primary btn-add-ico" aria-label="Justify"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></div>
+</div>
+<ul id="myTabs" class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active">
+    <a href="#basicInfo" id="btnBasicInfo" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">基本资料</a>
+  </li>
+  <li class="" role="presentation">
+    <a href="#taskActive" id="btnTaskActive" role="tab" data-toggle="tab" aria-expanded="true" aria-controls="profile">任务事件</a>
+  </li>
+</ul>
+<div id="wrapper">
+    <div id="scroller">
+        <div id="myTabContent" class="tab-content">
+        </div>
+    </div>
+</div>
+<!-- 等待模态框 -->
+<div id="loading_mask" style="display: none;"></div>
+<div id="jingle_popup" class="">
+    <div class="actionsheet">
+      <div class="btn-opt">
+        <button class="btn btn-popup" id="btnAgree" style="display:none;">同意审批</button>
+        <button class="btn btn-popup" id="btnDisagree" style="display:none;">不同审批</button>
+        <button class="btn btn-popup" id="btnReceive" style="display:none;">接收任务</button>
+        <button class="btn btn-popup" id="btnRefuse" style="display:none;">拒绝接收</button>
+        <button class="btn btn-popup" id="btnFinish" style="display:none;">同意审核</button> 
+        <button class="btn btn-popup" id="btnNofinish" style="display:none;">不同意审核</button> 
+        <button class="btn btn-popup" id="btnComplete">完成任务</button> 
+        <button class="btn btn-popup" id="btnReport">汇报进度</button> 
+        <button class="btn btn-popup" id="btnMod">修改任务</button> 
+        <button class="btn btn-popup" id="btnDel">删除任务</button> 
+        <button class="btn btn-popup" id="btnFail">任务失败</button> 
+        <button class="btn btn-popup" id="btnDelay">任务延期</button> 
+        <button class="btn btn-popup" id="btnUrge">督办任务</button> 
+        <button class="btn btn-popup" id="btnRepeal">撤销任务</button> 
+        <button class="btn btn-popup" id="btnEditPrincipal">修改负责人</button>
+      </div>
+      <div class="btn-qx">
+        <button class="btn btn-danger" id="btn-cancel">取消</button>
+      </div>
+    </div>
+</div>
+<div id="jingle_popup_mask"></div>
+<!--%* 日期控件 *%-->
+<div id="datePlugin"></div>
+<!--%* 图片在线浏览 *%-->
+<div class="imgzoom_pack">
+  <div class="imgzoom_x"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+  <div class="imgzoom_img">
+    <img src="" />
+  </div>
+</div>
+<!--* 模态框 *-->
+<div class="modal userDataModal" id="userDataModal" tabindex="-1" role="dialog" data-source="" data-checktype="" data-sid='1'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--*/选择器头部 *-->
+      <div class="modal-header">
+        <span class="glyphicon glyphicon-chevron-left glyphiconLeft" id="sback" data-fid="0" aria-hidden="true"></span>
+        <span>选择人员</span>
+        <span class="glyphicon glyphicon-remove glyphiconRight" id="sClose" aria-hidden="true" data-dismiss="modal" aria-label="Close"></span>
+        <div class="row search">
+          <div class="col-xs-12">
+            <input type="text" class="form-control input-m" id="search" placeholder="搜索">
+          </div>
+        </div>
+      </div>
+      <!--*/用户和部门 *-->
+      <div class="userDataWrapper" id="userDataWrapper">
+        <div class="userDataScroller" id="userDataScroller">
+          <div class="modal-body">
+            <ul class="list-group userDataGroup" id="userDataGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/存放待删除的用户 *-->
+      <div class="userWrapper" id="userWrapper">
+        <div class="userScroller" id="userScroller">
+          <div class="modal-body">
+            <ul class="list-group userGroup" id="userGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/待删除用户区域的操作按钮 *-->
+      <div class="opts-box">
+        <button type="button" class="btn btn-primary btn-sm opts" id="sFinish" aria-hidden="true" data-dismiss="modal" aria-label="Close" disabled>完成</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

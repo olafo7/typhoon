@@ -1,0 +1,116 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js?v=v 3.0.39"></script>
+
+<style type="text/css">
+	.table-block{
+	   margin-top: 15px;
+	   border: 1px #cccccc solid;
+	   line-height: 20px;
+	   font-size: 9pt;
+	   border-collapse: collapse;
+	}
+
+	.table-block td.table-content{
+	   background: #f2f2f2;
+	   border-bottom: 1px #cccccc solid;
+	   border-right: 1px #cccccc solid;
+	   height: 30px;
+	   padding-right: 10px;
+	   padding-left: 10px;
+	}
+
+	.table-block tr.table_coltd td{
+	   background: #f2f2f2;
+	   border-bottom: 1px #cccccc solid;
+	   border-right: 1px #cccccc solid;
+	   padding-left: 10px;
+	   padding-right: 10px;
+	   text-align: center;
+	}
+
+	.table-block tr.table_data td{
+	   background: #f2f2f2;
+	   border-bottom: 1px #cccccc solid;
+	   border-right: 1px #cccccc solid;
+	   padding-left: 10px;
+	   padding-right: 10px;
+	   height: 30px;
+	   text-align: center;
+	}
+
+	.table-block input.table_input{
+	   width: 80px; 
+	}
+
+	.table-block input.table_button{
+	   width: 50px;
+	}
+
+	.trHide {
+		display: none
+	}
+
+	.big-button {
+		width: 100px;
+		height: 40px;
+	}
+</style>
+</head>
+<body>
+<table class="table-block" align="center" id='submitTable'>
+	<tbody>
+		<?php echo $showHtml; ?>
+		<tr align="right" class=<?php echo $isHide ?  'trHide' : 'table-button'?> >
+			<td colspan="<?php echo $colspan; ?>">
+				<input type="submit" value="保存录入" 
+				onclick="JavaScript:submitSalary(<?php echo "'" . implode(',', $uids) . "','" . $date . "'" . ',' . $cid;?>)" class="big-button">
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
+<script language="javascript">
+	function submitSalary(uids, date, cid) {
+		var data = {date: '', cid: '', record: []};
+
+		data.date = date;
+		data.cid = cid;
+
+		uids = uids.split(',');
+		for (var i in uids) {
+			var uidData = {}, finTr = $('#' + uids[i]);
+				uidData['uid'] = uids[i];
+			finTr.find('input').each(function(t, th){
+				if ( th.type != 'submit' ) {
+					var name = th.name;
+					uidData[name] = th.value;
+				}
+			})
+
+			finTr.find('textarea').each(function(t, th){
+				var name = th.name;
+				uidData[name] = th.value;
+			})
+
+			data.record.push(uidData);
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: "index.php?app=salary&func=manage&action=entering&task=enterBatchSalary",
+			data: data,
+			success: function(response){
+				var responseText = JSON.parse(response),
+					data = responseText.data;
+				if (responseText.failure) {
+					alert(responseText.msg);
+				} else {
+					window.location.reload();
+				}
+			}
+		})
+	}
+</script>

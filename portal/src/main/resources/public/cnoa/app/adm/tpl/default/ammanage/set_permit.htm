@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.adm.ammanage.set");
+CNOA.adm.ammanage.set.parentID = "{$GLOBALS['app']['parentid']}";
+
+/*
+Ext.onReady(function() {
+	loadScripts("adm_ammanage_set"", "app/adm/scripts/ammanage_set.js", function(){
+		CNOA_adm_ammanage_set = new CNOA_adm_ammanage_setClass();
+		Ext.getCmp(CNOA.hr.manbri.birthday.parentID).add(CNOA_hr.manbri.birthday.mainPanel);
+		Ext.getCmp(adm.ammanage.set.parentID).doLayout();
+	});
+});
+*/
+</script>
+CNOA;
+echo loadJavascript(array("./app/adm/scripts/ammanage_set.js"));
+?>

@@ -1,0 +1,14 @@
+<script language="JavaScript">
+    Ext.namespace("CNOA.main.signature");
+    CNOA.main.signature.parentID = "docs-CNOA_MENU_SYSTEM_SIGNATURE";
+
+
+    Ext.onReady(function() {
+        loadScripts("sm_main_signature", "cnoa/app/main/scripts/cnoa.signature.js", function(){
+            CNOA_main_signature = new CNOA_main_signatureClass();
+
+            Ext.getCmp(CNOA.main.signature.parentID).add(CNOA_main_signature.mainPanel);
+            Ext.getCmp(CNOA.main.signature.parentID).doLayout();
+        });
+    });
+</script>

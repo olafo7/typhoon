@@ -1,0 +1,19 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.report.use_wf_conlist");
+CNOA.report.use_wf_conlist.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_report_wf", "app/report/scripts/cnoa.report.js", function(){
+		CNOA_report_use_wf_conlist = new CNOA_report_use_wf_conlistClass();
+		Ext.getCmp(CNOA.report.use_wf_conlist.parentID).add(CNOA_report_use_wf_conlist.mainPanel);
+		Ext.getCmp(CNOA.report.use_wf_conlist.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+##echo loadJavascript(array("./app/report/scripts/use_wf_conlist.js"));
+?>

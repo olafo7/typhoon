@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.portals.portals.setting");
+CNOA.portals.portals.setting.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+   loadScripts("sm_portals_portals", "app/portals/scripts/cnoa.portals.js", function(){
+		CNOA_portals_portals_setting = new CNOA_portals_portals_settingClass();		
+		Ext.getCmp(CNOA.portals.portals.setting.parentID).add(CNOA_portals_portals_setting.mainPanel);
+		Ext.getCmp(CNOA.portals.portals.setting.parentID).doLayout();
+    });    
+});
+</script>
+CNOA;
+
+#echo loadJavascript("./app/portals/scripts/setting.js");
+?>

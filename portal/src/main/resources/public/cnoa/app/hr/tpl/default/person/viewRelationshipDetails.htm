@@ -1,0 +1,174 @@
+<?php
+$data = $GLOBALS['hr']['viewDetails'];
+$personName = $GLOBALS['hr']['personName']['truename'];
+$data['attach'] = str_replace(array("openOfficeForView","openPdfForView"), array("opener.openOfficeForView","opener.openPdfForView"), $data['attach']);
+print <<<CNOA
+<html>
+<head>
+<title>人事社会关系信息</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript'>
+	function ajaxDownload(url){
+		try{
+			document.body.removeChild(document.getElementById("cnoa_iframe_download"));
+		}catch(e){}
+
+		var f = document.createElement("iframe");
+			f.id = 'cnoa_iframe_download';
+			f.style.width = "0px";
+			f.style.height = "0px";
+			f.style.display = "none";
+			f.src = url + "&r=" + Math.random();
+			document.body.appendChild(f);
+	}
+	window.onload=function(){
+		window.focus()
+	}
+</script>
+</head>
+
+<body class="bodycolor" topmargin="5">
+
+
+
+<table border="0"  width="650" align="center" cellspacing="0" cellpadding="3" class="small">
+
+  <tr>
+
+    <td class="Big"><span class="big3"> 人事社会关系信息</span><br></td>
+	<td class="Big" align="right"><span> 姓名：{$personName}</span><br></td>
+
+  </tr>
+
+</table>
+
+<table class="TableBlock" width="650" align="center">
+
+  <tr>
+
+    <td nowrap class="TableHeader " colspan="6"><b>&nbsp;社会关系信息</b></td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">成员名称：</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$data['name']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">与本人关系：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['relationship']}</td>          
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">出生日期：</td>
+
+    <td class="TableData" width="180">{$data['birthday']}</td>  	
+
+    <td nowrap align="left" width="120" class="TableContent">政治面貌：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['politics']}</td>         
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">职业：</td>
+
+    <td class="TableData" width="180" >{$data['job']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">担任职务：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['jobType']}</td>             
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">联系电话（个人）：</td>
+
+    <td class="TableData" width="180">{$data['telephone']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">联系电话（单位）:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['companyPhone']}</td>       
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">工作单位：</td>
+
+    <td class="TableData" width="180">{$data['company']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">单位地址:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['companyPosition']}</td>       
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">家庭住址：</td>
+
+    <td class="TableData" width="180">{$data['homePosition']}</td>   
+
+  </tr>
+    
+  </tr>  
+  
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">备注：</td>
+
+  </tr>   
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$data['relationship_notes']}</td>               
+
+  </tr>                                    
+
+  <tr>
+
+  	<td nowrap  class="TableHeader" colspan="6">附件文档：</td>
+
+  </tr>
+
+  <tr>    
+
+    <td nowrap align="left" class="TableData" colspan="6">{$data['attach']}</td>
+
+  </tr>
+
+  <a href=""><tr align="center" class="TableControl">
+
+    <td colspan="6">
+
+      <input type="button" value="关闭" class="BigButton" onClick="window.close();" title="关闭窗口">
+
+    </td>
+
+  </tr>   </a>                  
+
+</table>
+
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

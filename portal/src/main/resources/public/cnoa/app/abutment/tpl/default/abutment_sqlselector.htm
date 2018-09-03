@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.abutment.abutment.sqlselector");
+CNOA.abutment.abutment.sqlselector.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+    loadScripts("sm_abutment_abutment", "app/abutment/scripts/cnoa.abutment.js", function(){
+		CNOA_abutment_abutment_sqlselector = new CNOA_abutment_abutment_sqlselectorClass();		
+		Ext.getCmp(CNOA.abutment.abutment.sqlselector.parentID).add(CNOA_abutment_abutment_sqlselector.mainPanel);
+		Ext.getCmp(CNOA.abutment.abutment.sqlselector.parentID).doLayout();
+    });    
+});
+</script>
+CNOA;
+
+#echo loadJavascript("./app/abutment/scripts/abutment_sqlselector.js");
+?>

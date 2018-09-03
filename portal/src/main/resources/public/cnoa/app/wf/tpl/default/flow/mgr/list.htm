@@ -1,0 +1,23 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.mgr.list");
+CNOA.wf.mgr.list.parentID = "{$GLOBALS['app']['parentid']}";
+
+CNOA.wf.mgr.list.hour	= "{$GLOBALS['wf']['mgrList']['hour']}";
+CNOA.wf.mgr.list.stime	= "{$GLOBALS['wf']['mgrList']['stime']}";
+CNOA.wf.mgr.list.etime	= "{$GLOBALS['wf']['mgrList']['etime']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_mgr_list = new CNOA_wf_mgr_listClass();
+		Ext.getCmp(CNOA.wf.mgr.list.parentID).add(CNOA_wf_mgr_list.mainPanel);
+		Ext.getCmp(CNOA.wf.mgr.list.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+### echo loadJavascript(array("./app/wf/scripts/mgr_list.js"));
+?>

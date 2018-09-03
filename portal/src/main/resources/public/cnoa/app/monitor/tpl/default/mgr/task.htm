@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.monitor.mgr.task");
+CNOA.monitor.mgr.task.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_monitor_mgr", "app/monitor/scripts/cnoa.monitor.js", function(){
+		CNOA_monitor_mgr_task = new CNOA_monitor_mgr_taskClass();
+		Ext.getCmp(CNOA.monitor.mgr.task.parentID).add(CNOA_monitor_mgr_task.mainPanel);
+		Ext.getCmp(CNOA.monitor.mgr.task.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+// echo loadJavascript(array("./app/monitor/scripts/task_mgr.js"));
+?>

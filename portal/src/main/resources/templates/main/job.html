@@ -1,0 +1,18 @@
+<script language="JavaScript">
+    Ext.namespace("CNOA.main.job");
+    CNOA.main.job.parentID = "docs-CNOA_MENU_SYSTEM_JOB";
+
+    CNOA.permitController.main_job = new Array();
+    CNOA.permitController.main_job['list'] = 1;
+    CNOA.permitController.main_job['add'] = 1;
+    CNOA.permitController.main_job['edit'] = 1;
+    CNOA.permitController.main_job['delete'] = 1;
+
+    Ext.onReady(function() {
+        loadScripts("sm_main_job", "cnoa/app/main/scripts/cnoa.job.js", function(){
+            CNOA_main_job_list = new CNOA_main_job_listClass();
+            Ext.getCmp(CNOA.main.job.parentID).add(CNOA_main_job_list.mainPanel);
+            Ext.getCmp(CNOA.main.job.parentID).doLayout();
+        });
+    });
+</script>

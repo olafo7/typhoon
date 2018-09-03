@@ -1,0 +1,26 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.customers.info.my");
+CNOA.user.customers.info.my.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.user.customers.info.my.readlyIsShow = "{$GLOBALS['readlyIsShow']}";
+CNOA.user.customers.info.my.readlyName = "{$GLOBALS['readlyName']}";
+CNOA.user.customers.info.my.submitIsShow = "{$GLOBALS['submitIsShow']}";
+CNOA.user.customers.info.my.submitName = "{$GLOBALS['submitName']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_customers", "app/user/scripts/cnoa.customers.js", function(){
+		CNOA_user_customers_info_my = new CNOA_user_customers_info_myClass({$GLOBALS['cid']});
+		Ext.getCmp(CNOA.user.customers.info.my.parentID).add(CNOA_user_customers_info_my.mainPanel);
+		Ext.getCmp(CNOA.user.customers.info.my.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/info_my.js"));
+?>

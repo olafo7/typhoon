@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<link rel="stylesheet" type="text/css" href="/cnoa/extjs/3.4.0/resources/css/ext-all.css?v=v 3.0.39">
+<link rel="stylesheet" type="text/css" href="/cnoa/resources/css/cnoa.all.css?v=v 3.0.39">
+<script type="text/javascript" src="/cnoa/scripts/extjs.3.4.0.js?v=v 3.0.39"></script>
+<script type="text/javascript" src="/cnoa/file/language/cn.js?v=v 3.0.39"></script>
+<script type="text/javascript" src="/cnoa/scripts/cnoa.common.js?v=v 3.0.39"></script>
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js?v=v 3.0.39"></script>
+<script type="text/javascript" src="/cnoa/scripts/cnoa.extra.js?v=v 3.0.39"></script>
+
+<style type="text/css">
+	.table-block{
+	   margin-top: 15px;
+	   border:1px #cccccc solid;
+	   line-height:20px;
+	   font-size:9pt;
+	   border-collapse:collapse;
+	}
+
+	.table-block .table-header td,
+	.table-block td.table-header{
+	   height:30px;
+	   background:#c4de83;
+	   border:1px #9cb269 solid;
+	   font-weight:bold;
+	   color:#383838;
+	   line-height:23px;
+	   padding:0px;
+	   padding-left:5px;
+	}
+
+	.table-block .table-data td,
+	.table-block td.table-data{
+	   background: #FFFFFF;
+	   border-bottom: 1px #cccccc solid;
+	   border-right: 1px #cccccc solid;
+	   padding: 3px;
+	   height: 30px;
+	}
+
+	.table-block .table-content td,
+	.table-block td.table-content{
+	   background: #f2f2f2;
+	   border-bottom: 1px #cccccc solid;
+	   border-right: 1px #cccccc solid;
+	   padding: 3px;
+	   height: 30px;
+	}
+
+	.table-block td.table-data input{
+	   width: 80px;
+	}
+
+	.table-block .table-button td,
+	.table-block td.table-button{
+	   background: #FFFFFF;
+	   border: 1px #cccccc solid;
+	   padding: 3px;
+	   height: 30px;
+	}
+
+	.table-block .table-header td table td,
+	.table-block .table-data td table td,
+	.table-block .table-content td table td,
+
+
+
+	.big-button {
+		width: 100px;
+		height: 40px;
+	}
+</style>
+</head>
+<body>
+<table class="table-block" width="80%" align="center" id='submitTable'>
+	<tbody>
+		<tr>
+			<td class="table-content" >名称: <input type="text" id='reserveName' name="reserveName" value="<?php echo $data['name'] ? $data['name'] : '' ?>">
+		</tr>
+		<tr>
+			<td class="table-data" >默认基数: <input type="text" name="reserveBasic" value="<?php echo $data['reserveBasic'] ? $data['reserveBasic'] : '' ?>">
+		</tr>
+		<tr>
+			<td class="table-content">公积金系数：</td>
+		</tr>
+		<tr>
+			<td class="table-data" style="padding-left:10px;">
+				单位支付：
+				<input type="text" name="companyPay"  onblur="checkNum(this)" value="<?php echo $data['companyPay'] ? $data['companyPay'] : '50.00'?>" style="text-align: right;">
+				%  +
+				<input type="text" name="companyM" onblur="checkAddMoney(this)" value="<?php echo $data['companyM'] ? $data['companyM'] : '0.00'?>" style="text-align: right;">
+			</td>
+		</tr>
+		<tr>
+			<td class="table-data" style="padding-left:10px;">
+				个人支付：
+				<input type="text" name="personPay"  onblur="checkNum(this)" value="<?php echo $data['personPay'] ? $data['personPay'] : '50.00'?>" style="text-align: right;">
+				%  +
+				<input type="text" name="personM" onblur="checkAddMoney(this)" value="<?php echo $data['personM'] ? $data['personM'] : '0.00'?>" style="text-align: right;">
+			</td>
+		</tr>
+		<tr align="right" class="table-button">
+			<td colspan="2">
+				<input type="submit" value="保存" name='save' onclick="JavaScript:save(<?php echo $rid;?>)" class="big-button">
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
+
+<script language="javascript">
+	function save(rid){
+		var data = {}, name = $('#reserveName').val();
+		data['rid'] = rid;
+
+		if ( name == null ) {
+			alert('名称不能为空');
+			return;
+		}
+
+		$('#submitTable').find('input').each(function(t,th){
+			if (th.name != 'save' && th.name != 'reset') {
+				var name = th.name;
+				data[name] = th.value;
+			}
+		})
+		
+		Ext.Ajax.request({
+			url: "index.php?app=salary&func=basic&action=insure&task=addEditReserve",
+			params: data,
+			success: function(response){
+				var responseText = Ext.decode(response.responseText);
+				if ( responseText.failure ) {
+					alert(responseText.msg);
+					return;
+				}
+				opener.CNOA_salary_basic_insure.reserveStore.reload();
+				window.close();
+			}
+		});
+	}
+
+	function checkNum(th){
+		var value = th.value,
+			regex = /^(0\.[0-9]{0,2}$|[1-9][0-9]?\.[0-9]{0,2}$|100|0|[1-9][0-9]?)$/;
+
+		if (value.match(regex) == null) {
+			CNOA.msg.alert('系数必须大于0小于100且小数点后只保留两位小数');
+		}
+	}
+
+	function checkAddMoney(th){
+		var value = th.value,
+			regex = /^(0\.[0-9]{0,2}$|[1-9][0-9]{1,3}\.[0-9]{0,2}$|10000|0|[1-9][0-9]{1,3})$/;
+
+		if (value.match(regex) == null) {
+			CNOA.msg.alert('附加金额必须大于0小于10000且小数点后只保留两位小数,如何疑问请联系相关负责人');
+		}
+	}
+</script>

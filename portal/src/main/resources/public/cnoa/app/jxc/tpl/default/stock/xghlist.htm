@@ -1,0 +1,19 @@
+<?php
+/*
+库存查询 - 强克农资 - 与象过河软件对接
+*/
+
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.jxc.stock.xghlist");
+CNOA.jxc.stock.xghlist.parentID = "{$GLOBALS['app']['parentid']}";
+</script>
+
+
+CNOA;
+echo loadJavascript(array("./app/jxc/scripts/jxc_stock_xghlist.js"));
+
+?>

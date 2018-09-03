@@ -1,0 +1,57 @@
+<?php
+$data = $GLOBALS['project']['proj']['viewdetail']['member'];
+
+!is_array($data) && $data = array();
+$color = 1;
+
+foreach($data as $v){
+	if($color == 2){
+		$class = "style='background-color:#EBEFF9'";
+		$color = 1;
+	}else{
+		$class = "style='background-color:#F0FFF0'";
+		$color = 2;
+	}
+	$member .= "<tr>";
+	$member .= "<td class='TableData' width='180'  $class>{$v['job']}</td>";
+	$member .= "<td class='TableData' width='180' colspan='3' $class>{$v['name']}</td>";
+	$member .= "</tr>";
+}
+
+print <<<CNOA
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="bodycolor" topmargin="5">
+
+	<table class="TableBlock" width="650" align="center">
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent" >项目角色：</td>
+	
+	<td nowrap align="left" width="120" class="TableContent" colspan="3">姓名：</td>
+
+  </tr>
+  
+  {$member}
+  
+  </table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

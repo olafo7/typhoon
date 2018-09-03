@@ -1,0 +1,20 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.customers.presalesView");
+CNOA.user.customers.presalesView.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_customers", "app/user/scripts/cnoa.customers.js", function(){
+		CNOA_user_customers_presalesView = new CNOA_user_customers_presalesViewClass({$GLOBALS['pid']});
+		Ext.getCmp(CNOA.user.customers.presalesView.parentID).add(CNOA_user_customers_presalesView.mainPanel);
+		Ext.getCmp(CNOA.user.customers.presalesView.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+?>

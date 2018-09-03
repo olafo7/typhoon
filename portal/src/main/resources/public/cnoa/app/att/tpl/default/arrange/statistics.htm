@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.att.arrange.statistics");
+CNOA.att.arrange.statistics.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_att_att", "app/att/scripts/cnoa.att.js", function(){
+		CNOA_att_arrange_statistics = new CNOA_att_arrange_statisticsClass();
+		Ext.getCmp(CNOA.att.arrange.statistics.parentID).add(CNOA_att_arrange_statistics.mainPanel);
+		Ext.getCmp(CNOA.att.arrange.statistics.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+// echo loadJavascript(array("./app/att/scripts/att_arrange_statistics.js"));
+
+?>

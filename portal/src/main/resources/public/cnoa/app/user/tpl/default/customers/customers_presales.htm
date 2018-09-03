@@ -1,0 +1,23 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.customers.presales");
+CNOA.user.customers.presales.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_user_customers", "app/user/scripts/cnoa.customers.js", function(){
+		CNOA_user_customers_collectPresalesList = new CNOA_user_customers_presalesListClass(0, 'collect', true);
+		Ext.getCmp(CNOA.user.customers.presales.parentID).add(CNOA_user_customers_collectPresalesList.mainPanel);
+		Ext.getCmp(CNOA.user.customers.presales.parentID).doLayout();
+	});
+});
+
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/customers_presales.js"));
+?>

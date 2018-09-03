@@ -1,0 +1,46 @@
+<?php
+$debug = false;
+
+$rand = $debug ? '?r='.rand(1, 99999999) : '';
+?>
+<script type="text/javascript" src="/cnoa/scripts/cnoa.extra.js<?=$rand?>"></script>
+
+<script type="text/javascript" charset="utf-8" src="/cnoa/scripts/ueditor/ueditor.config.wf.js<?=$rand?>"></script>
+<script type="text/javascript" charset="utf-8" src="/cnoa/scripts/ueditor/ueditor.js<?=$rand?>"> </script>
+<script type="text/javascript" charset="utf-8" src="/cnoa/scripts/ueditor/ueditor.ux.wf.js<?=$rand?>"></script>
+<script type="text/javascript" charset="utf-8" src="/cnoa/scripts/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<!--
+<script type="text/javascript" src="scripts/ueditor/ueditor.js<?=$rand?>"></script>
+<script type="text/javascript" src="scripts/ueditor/ueditor.ux.wf.js<?=$rand?>"></script>
+<script type="text/javascript" src="scripts/ueditor/editor_config.js<?=$rand?>"></script>
+-->
+
+<style>
+.edui-default .edui-editor{border: none !important;}
+</style>
+
+<script type="text/javascript" src="/cnoa/app/wf/scripts/set_flow_form_design.js<?=$rand?>"></script>
+<script type="text/javascript" src="/cnoa/app/wf/scripts/form_init.js<?=$rand?>"></script>
+<script language="javascript">
+	var form_id = "<?=$GLOBALS['formid']?>";
+	var editor;
+	
+	//function killErrors() {
+		//return true;
+	//}
+	//window.onerror = killErrors;
+</script>
+</head>
+
+<body scroll="no">
+
+<script type="text/plain" id="myEditorData" class="myEditorData"><?=$GLOBALS['content']?></script>
+
+<?php
+print <<<CNOA
+
+
+
+CNOA;
+?>

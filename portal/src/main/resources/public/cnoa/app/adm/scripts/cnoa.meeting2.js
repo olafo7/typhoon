@@ -1,0 +1,1 @@
+var sm_adm_meeting2=1;

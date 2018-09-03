@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+	<title>协众OA协同管理系统</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="scripts/video-js/video-js.min.css">
+	<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="app/news/css/m/read.css">
+</head>
+<body> 
+	<div id="header">
+		<span>信息阅读</span>
+		<botton type="button" class="btn btn-primary btn-back-ico" id="btnBack">
+	    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+	  </botton>
+	  <botton type="button" class="btn btn-primary btn-back-ico" id="contentBack" style="display:none">
+	    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+	  </botton>
+		<!-- <button type="button" class="btn btn-primary btn-add-ico" id="btn_actionsheet">
+			<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+		</button> -->
+	</div>
+	<form style="margin-top: 1px;" id="searchForm">
+		<div class="form-group">
+		  <input type="search" class="form-control right" id="search">
+		  <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true" id="searchIcon"></span>
+		</div>
+	</form>
+	<div id="wrapper">
+		<div id="scroller">
+			<ul class="nav nav-tabs">
+			</ul>
+		</div>
+	</div>
+	<div id="newsRead">
+		<div>
+			<div id="newsReadContent" data-page="0" data-sid="0">
+			</div>
+			<div id="pullUp">
+				<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+			</div>
+			<div id="noMore" style="display:none">没有更多了...</div>
+		</div>
+	</div>
+	<div id="cScroll">
+		<div id="content">
+			
+		</div>
+	</div>
+	<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+	<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+	<script src="scripts/iscroll/iscroll-probe.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		/*var dynamicLoading = {
+		    css: function(path){
+				if(!path || path.length === 0){
+					throw new Error('路径必填!');
+				}
+				var head = document.getElementsByTagName('head')[0];
+		        var link = document.createElement('link');
+		        link.href = path+"?rnd="+Math.random();
+		        link.rel = 'stylesheet';
+		        link.type = 'text/css';
+		        head.appendChild(link);
+		    },
+		    js: function(path){
+				if(!path || path.length === 0){
+					throw new Error('路径必填!');
+				}
+				var head = document.getElementsByTagName('head')[0];
+		        var script = document.createElement('script');
+		        script.src = path+"?rnd="+Math.random();
+		        head.appendChild(script);
+		    }
+
+		}
+		dynamicLoading.js('app/news/scripts/m/read.js');*/
+	</script>
+	<script src="app/news/scripts/m/read.js"></script>
+</body>
+</html>

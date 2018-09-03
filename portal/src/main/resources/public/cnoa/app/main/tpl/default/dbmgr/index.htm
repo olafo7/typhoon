@@ -1,0 +1,21 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.dbmgr.index");
+CNOA.main.dbmgr.index.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_main_backUpdate", "app/main/scripts/cnoa.backUpdate.js", function(){
+		CNOA_main_dbmgr_index = new CNOA_main_dbmgr_indexClass();
+		Ext.getCmp(CNOA.main.dbmgr.index.parentID).add(CNOA_main_dbmgr_index.mainPanel);
+		Ext.getCmp(CNOA.main.dbmgr.index.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+##echo loadJavascript("./app/main/scripts/dbmgr_index.js");
+?>

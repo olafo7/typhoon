@@ -1,0 +1,64 @@
+<?php
+print <<<CNOA
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+    table{width: 100%; cellspacing : 0px; cellpadding : 0px;  border-collapse: collapse; font-size:12px;}
+    table td{border: 1px solid #ccc;background:#FFFFFF;}
+    table .title{ background:#f2f2f2;border-bottom:1px #cccccc solid;border-right:1px #cccccc solid; height: 30px; padding-left: 10px;}
+    table .titltheader{ background:#82B2FF; height: 35px; color:#fff;}
+    table .titledata{padding-left: 5px;}
+    .picture{width: 163px; height: 118px; float: left; margin: 5px 0 0 0;vertical-align: middle;text-align: center;}
+    .picture img{max-width: 163; max-height: 118px; border: 0px;overflow:hidden;}
+</style>
+</head>
+<body>
+<table border="0">
+CNOA;
+if(!empty($content)){
+
+print <<<CNOA
+  <tr>
+    <td nowrap class="titltheader" colspan="6"><b>&nbsp;资产信息：</b></td>
+  </tr>
+CNOA;
+    $n = 0;
+    foreach($content as $k=>$v){
+        if ($k != 'id' && !empty($field[$k])) {
+            if( $n % 2 == 0){
+print <<<CNOA
+        <tr>
+          <td nowrap align="left" class="title">{$field[$k]}</td>
+          <td colspan="2" class="titledata">{$v}&nbsp;</td>
+CNOA;
+        }else{
+print <<<CNOA
+          <td nowrap align="left" class="title">{$field[$k]}</td>
+          <td colspan="2" class="titledata">{$v}&nbsp;</td>
+        </tr>
+CNOA;
+            }
+            $n++;
+        }
+    }
+    
+}
+print <<<CNOA
+</table>
+<label>图片:</label>
+<div style="padding: 5px;">
+CNOA;
+  foreach ($plist as $value) {
+print <<<CNOA
+      <div class="picture">
+        <img src="{$value}">
+      </div>
+CNOA;
+  }
+print <<<CNOA
+</div>
+</body>
+</html>
+CNOA;
+?>

@@ -1,0 +1,17 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.adm.car.record");
+CNOA.adm.car.record.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_adm_car", "app/adm/scripts/cnoa.car_manage.js", function(){
+		CNOA_adm_car_record = new CNOA_adm_car_recordClass();
+		Ext.getCmp(CNOA.adm.car.record.parentID).add(CNOA_adm_car_record.mainPanel);
+		Ext.getCmp(CNOA.adm.car.record.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+?>

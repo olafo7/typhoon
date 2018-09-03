@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.communication.sms.sendboxList");
+CNOA.communication.sms.sendboxList.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_communication_sms", "app/communication/scripts/cnoa.sms.js", function(){
+		CNOA_communication_sms_sendboxList = new CNOA_communication_sms_sendboxListClass();
+		Ext.getCmp(CNOA.communication.sms.sendboxList.parentID).add(CNOA_communication_sms_sendboxList.mainPanel);
+		Ext.getCmp(CNOA.communication.sms.sendboxList.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript("./app/communication/scripts/sms_sendboxList.js");
+?>

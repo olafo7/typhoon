@@ -1,0 +1,18 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.odoc.send.list");
+CNOA.odoc.send.list.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_odoc_odoc", "app/odoc/scripts/cnoa.odoc.js", function(){
+		CNOA_odoc_send_list = new CNOA_odoc_send_listClass();
+		Ext.getCmp(CNOA.odoc.send.list.parentID).add(CNOA_odoc_send_list.mainPanel);
+		Ext.getCmp(CNOA.odoc.send.list.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+###echo loadJavascript(array("./app/odoc/scripts/send_list.js"));
+?>

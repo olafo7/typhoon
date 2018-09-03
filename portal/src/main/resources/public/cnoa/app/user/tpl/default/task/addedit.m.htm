@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/font/m/font-glyphs/font-glyphs.css">
+<!-- <link rel="stylesheet" type="text/css" href="resources/css/m/iosOverlay.css"> -->
+<link rel="stylesheet" type="text/css" href="resources/css/m/common.css">
+<link rel="stylesheet" type="text/css" href="app/user/css/m/task/userData.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/jquery/date.js"></script>
+<script src="scripts/jquery/jquery.form.js"></script>
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script src="scripts/jquery/spin.min.js"></script>
+<script src="scripts/jquery/iosOverlay.js"></script> -->
+<script src="scripts/jquery/prettify.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="resources/scripts/m/popwin.js"></script>
+<script src="scripts/jquery/iospopwin.js"></script>
+<script src="scripts/m/timedropper/js/timedropper.js"></script>
+<script src="scripts/jquery/custom.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+        var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/user/scripts/m/task/addedit.js");
+dynamicLoading.css("app/user/css/m/task/task.css");
+</script>
+</head>
+
+<body>
+<div id="header">
+    <span id="pageName">布置任务</span>
+    <span class="glyphicon glyphicon-menu-left btn-back-ico" aria-hidden="true" id="btnBack">返回</span>
+</div>
+<div id="wrapper">
+    <div id="scroller">
+        <div class="container">
+            <div class="addedit_f" id="addedit_f">
+                <table class="table_form" width="100%" border="1">
+                <tr>
+                    <td class="list-group-item-lable">任务标题</td>
+                    <td class="list-group-item-value">
+                        <input type="text" class="form-control input-m" name="title" id="title" placeholder="任务标题">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="list-group-item-lable">任务来源</td>
+                    <td class="list-group-item-value">
+                        <input type="text" class="form-control input-m" name="fromid" id="fromid" placeholder="" readonly>
+                    </td>
+
+                </tr>
+                <tr id="task_child_form" style="display: none;">
+                    <td class="list-group-item-lable task-child-lable"></td>
+                    <td class="list-group-item-value">
+                        <div class="select_h">
+                            <select class="form-control input-m" name="task_child" id="task_child">
+                            </select>
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="list-group-item-lable">评估工时</td>
+                    <td class="list-group-item-value">
+                    <input type="text" class="form-control input-m" name="worktime1" id="worktime1" placeholder="评估工时">
+                    </td>
+                </tr>
+                <tr class="datepick-control">
+                    <td class="date-span list-group-item-lable">布置日期</td>
+                    <td class="list-group-item-value ">
+                        <span class="glyphicon glyphicon-calendar list-group-item-ico"></span>
+                        <input type="text" class="datetimepick-input kbtn" name="stime" id="stime" readonly>
+                    </td>
+                </tr>
+                <tr class="datepick-control">
+                    <td class="date-span list-group-item-lable">结束日期</td>
+                    <td class="list-group-item-value ">
+                        <span class="glyphicon glyphicon-calendar list-group-item-ico"></span>
+                        <input type="text" class="datetimepick-input kbtn" name="etime" id="etime" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="list-group-item-lable">审批人</td>
+                    <td class="list-group-item-value ">
+                        <span class="glyphicon glyphicon-search list-group-item-ico"></span>
+                        <div class="sendee" id="examappUid" data-checktype="false" data-toggle="modal" data-source="examappUid">
+                        <span>请选择任务负责人</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="list-group-item-lable">负责人</td>
+                    <td class="list-group-item-value ">
+                        <span class="glyphicon glyphicon-search list-group-item-ico"></span>
+                        <div class="sendee" id="preside" data-checktype="false" data-toggle="modal" data-source="preside">
+                        <span>请选择任务负责人</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="list-group-item-lable">参与人</td>
+                    <td class="list-group-item-value">
+                        <span class="glyphicon glyphicon-search list-group-item-ico"></span>
+                        <div class="sendee" id="participant" data-checktype="true" data-toggle="modal" data-source="participant"> <!-- style="overflow: hidden;" -->
+                        <span>请选择任务参与人</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="con-span list-group-item-lable">任务内容</td>
+                    <td class="list-group-item-value con-div">
+                        <textarea class="form-control" rows="3" name="content" id="content" placeholder="任务内容"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="list-group-item-lable">添加附件</td>
+                    <td class="list-group-item-value">
+                        <div class="file-up">
+                            <span class="glyphicon glyphicon-paperclip" id="file-up-btn">上传附件</span>
+                            <form id="myUpload" action="m.php?app=user&amp;func=task&amp;action=default&amp;task=fileUpload" method="post" enctype="multipart/form-data" style="opacity: 0;"> 
+                                 <input id="fileupload" type="file" name="Filedata">
+                            </form>
+                            <div class="files"></div> 
+                        </div>
+                    </td> 
+                </tr>
+                <tr>
+                    <td class="list-group-item-lable">奖罚标准</td>
+                    <td class="list-group-item-value">
+                        <input type="text" class="form-control input-m" name="prizepunish" id="prizepunish" placeholder="奖罚标准" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="list-group-item-lable">领导批示</td>
+                    <td class="list-group-item-value">
+                        <input type="text" class="form-control input-m" name="leadersay" id="leadersay" placeholder="领导批示" />
+                    </td>
+                </tr>
+            </table>
+            </div>
+            <div class="form-group" style="margin:15px 0;">
+                <button type="botton" class="btn btn-m btn-primary btn-block" id="btnSave">确认保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="jingle_popup_mask"></div>
+<!--%* 日期控件 *%-->
+<div id="datePlugin"></div>
+<!--* 模态框 *-->
+<div class="modal userDataModal" id="userDataModal" tabindex="-1" role="dialog" data-source="" data-checktype="" data-sid='1'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--*/选择器头部 *-->
+      <div class="modal-header">
+        <span class="glyphicon glyphicon-chevron-left glyphiconLeft" id="sback" data-fid="0" aria-hidden="true"></span>
+        <span>选择人员</span>
+        <span class="glyphicon glyphicon-remove glyphiconRight" id="sClose" aria-hidden="true" data-dismiss="modal" aria-label="Close"></span>
+        <div class="row search">
+          <div class="col-xs-12">
+            <input type="text" class="form-control input-m" id="search" placeholder="搜索">
+          </div>
+        </div>
+      </div>
+      <!--*/用户和部门 *-->
+      <div class="userDataWrapper" id="userDataWrapper">
+        <div class="userDataScroller" id="userDataScroller">
+          <div class="modal-body">
+            <ul class="list-group userDataGroup" id="userDataGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/存放待删除的用户 *-->
+      <div class="userWrapper" id="userWrapper">
+        <div class="userScroller" id="userScroller">
+          <div class="modal-body">
+            <ul class="list-group userGroup" id="userGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/待删除用户区域的操作按钮 *-->
+      <div class="opts-box">
+        <button type="button" class="btn btn-primary btn-sm opts" id="sFinish" aria-hidden="true" data-dismiss="modal" aria-label="Close" disabled>完成</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 任务来源模态框 -->
+<div id="jingle_popup">
+    <div class="actionsheet">
+      <div class="btn_task active" id="task">自定义</div>
+      <div class="btn_task" id="plan">部门任务</div>
+      <div class="btn_task" id="mothertask">母任务</div>
+    </div>
+</div>
+
+<div id="loading_mask" style="display: none;"></div>
+</body>
+</html>

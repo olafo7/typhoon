@@ -1,0 +1,128 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改文档</title>
+<style>
+body{
+	margin:0;padding:0;
+}
+</style>
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js"></script>
+<script type="text/javascript" src="/cnoa/scripts/extjs.3.4.0.js?v=V 3.0.0"></script>
+<script type="text/javascript" src="/cnoa/scripts/cnoa.common.js?v=V 3.0.0"></script>
+
+<script language="JavaScript">
+function doResize(){
+	try{
+		var webObj = document.getElementById("CNOA_WEBOFFICE");
+		webObj.style.height = (parseInt(document.body.clientHeight)-25)+"px";
+	}catch(e){}
+}
+$(window).resize(function() {
+	doResize();
+});
+
+function submit() {
+	var versions = 0;
+<?php
+
+if($GLOBALS['from'] == "other"){
+print <<<CNOA
+	var confirm = window.confirm("需要将此次保存创建新版本吗？");
+	if(confirm){
+		versions = 1;
+		//恢复复制
+		var webObj = document.getElementById("CNOA_WEBOFFICE");
+		webObj.SetSecurity(0x02 + 0x8000);
+	}
+CNOA;
+}
+?>
+
+ 	
+	
+	var baseURI = location.href.substr(0, location.href.indexOf('index.php'));
+	try{
+		var webObj = document.getElementById("CNOA_WEBOFFICE");
+		var returnValue;
+		webObj.HttpInit();
+		webObj.HttpAddPostString("code", "<?=$GLOBALS['code']?>");
+		webObj.HttpAddPostString("from", "<?=$GLOBALS['from']?>");
+		webObj.HttpAddPostString("versions", versions);
+		webObj.HttpAddPostCurrFile("msOffice", "");
+		returnValue = webObj.HttpPost(baseURI + "index.php?action=downFile&task=msofficeeditsubmit&CNOAOASESSID=<?php echo session_id();?>");
+		if("1" == returnValue){
+<?php
+if($GLOBALS['from'] == "other"){
+print <<<CNOA
+			//刷新网络硬盘的列表
+			opener.window.CNOA_user_disk_mgrpub.store.reload();
+CNOA;
+}
+?>
+			
+			alert("已保存");
+		}else{
+			alert(returnValue);
+		}
+	}catch(e){
+		//alert("异常\r\nError:"+e+"\r\nError Code:"+e.number+"\r\nError Des:"+e.description);
+	}
+}
+
+window.onbeforeunload = function(){
+	var baseURI = location.href.substr(0, location.href.indexOf('index.php'));
+	var url = baseURI + "index.php?action=downFile&task=cancelEditing&CNOAOASESSID=<?php echo session_id();?>&code=<?=$GLOBALS['code']?>";
+	$.post(url);
+	//关闭的时候恢复复制
+	var webObj = document.getElementById("CNOA_WEBOFFICE");
+	webObj.SetSecurity(0x04 + 0x8000);
+}
+</script>
+<!-- <script language=javascript event=NotifyCtrlReady for=CNOA_WEBOFFICE>
+var baseURI = location.href.substr(0, location.href.indexOf('index.php'));
+try{
+	var webObj = document.getElementById("CNOA_WEBOFFICE");
+	//webObj.OptionFlag |= 128;
+	webObj.OptionFlag &= 0xff7f;
+	webObj.LoadOriginalFile(baseURI + "<?=$GLOBALS['URL']?>", "<?=$GLOBALS['DOCTYPE']?>");
+	webObj.ShowToolBar = false;
+	webObj.SetTrackRevisions(<?=$GLOBALS['RECORD']?>);
+	webObj.ShowRevisions(<?=$GLOBALS['RECORD']?>);
+	webObj.setCurrUserName("<?=$GLOBALS['TRUENAME']?>");
+	//webObj.SetToolBarButton2("Menu Bar",1,0);//隐藏2003文件菜单
+}catch(e){}
+
+</script> -->
+
+</head>
+
+<body onload="doResize();" scroll="no">
+<div style="height:25px;background:url(resources/images/default/panel/light-hd.gif)"><button onclick="submit();">保存</button>&nbsp;&nbsp;</div>
+<div id="CNOA_WEBOFFICE_CT"></div>
+
+<script type="text/javascript">
+<!--
+	Ext.onReady(function(){
+		$("#CNOA_WEBOFFICE_CT").html(CNOA.webObject.getWebOffice("100%", "100%", ''));
+		
+		var baseURI = location.href.substr(0, location.href.indexOf('index.php'));
+		try{
+			var webObj = document.getElementById("CNOA_WEBOFFICE");
+			//webObj.OptionFlag |= 128;
+			webObj.ShowToolBar = false;
+			setTimeout(function(){
+				webObj.LoadOriginalFile(baseURI + "<?=$GLOBALS['URL']?>", "<?=$GLOBALS['DOCTYPE']?>");
+				webObj.OptionFlag &= 0xff7f;
+				webObj.LoadOriginalFile(baseURI + "<?=$GLOBALS['URL']?>", "<?=$GLOBALS['DOCTYPE']?>");
+				webObj.SetTrackRevisions(<?=$GLOBALS['RECORD']?>);
+				webObj.ShowRevisions(<?=$GLOBALS['RECORD']?>);
+				webObj.setCurrUserName("<?=$GLOBALS['TRUENAME']?>");
+			}, 500)
+			//webObj.SetToolBarButton2("Menu Bar",1,0);//隐藏2003文件菜单
+		}catch(e){}
+	});
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.odoc.files.dananmgr");
+CNOA.odoc.files.dananmgr.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_odoc_odoc", "app/odoc/scripts/cnoa.odoc.js", function(){
+		CNOA_odoc_files_dananmgr = new CNOA_odoc_files_dananmgrClass();
+		Ext.getCmp(CNOA.odoc.files.dananmgr.parentID).add(CNOA_odoc_files_dananmgr.mainPanel);
+		Ext.getCmp(CNOA.odoc.files.dananmgr.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+###echo loadJavascript(array("./app/odoc/scripts/files_dananmgr.js"));
+?>

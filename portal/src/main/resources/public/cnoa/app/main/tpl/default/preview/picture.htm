@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>预览图片</title>
+<meta http-equiv="Content-Style-type" content="text/css" />
+<meta http-equiv="Content-Script-type" content="text/javascript" />
+<link rel="stylesheet" href="/cnoa/scripts/jquery/iviewer/jquery.iviewer.css" type="text/css" media="all" />
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js"></script>
+<script type="text/javascript" src="/cnoa/scripts/jquery/iviewer/jquery.iviewer.js"></script>
+<style>
+body{
+	margin:0;padding:0;
+	overflow: hidden
+}
+.viewer{
+	width: 500px;
+	height: 500px;
+	position: relative;
+	overflow: hidden
+}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	var src = "<?=$GLOBALS['URL']?>";
+
+	function resizeImgCt(){
+		$("#viewer").remove();
+		$('<div id="viewer" class="viewer"></div>').appendTo(document.body);
+		$("#viewer").width($(document).width());
+		$("#viewer").height($(document).height());
+		$("#viewer").iviewer({src: src});
+	}
+
+	$(window).resize(function() {
+		location.reload();
+	});
+	resizeImgCt();
+});
+</script>
+
+</head>
+
+<body>
+
+
+
+
+
+<!-- <div id='ipadtbar'></div> 
+<img src="<?=$GLOBALS['URL']?>" /> -->
+</body>
+</html>

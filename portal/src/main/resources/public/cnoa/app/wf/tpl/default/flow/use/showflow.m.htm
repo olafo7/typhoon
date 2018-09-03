@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="resources/font/m/font-glyphs/font-glyphs.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/scale.css">
+<link rel="stylesheet" type="text/css" href="app/wf/css/m/use/userData.css">
+  <link rel="stylesheet" type="text/css" href="scripts/m/timedropper/css/timedropper.min.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/iscroll5.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script src="scripts/jquery/sweetalert.min.js"></script>
+<script src="scripts/jquery/jquery.form.js"></script>
+<script src="scripts/m/datePicker/WdatePicker.js"></script>
+<script src="resources/scripts/m/scale.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="resources/scripts/m/popwin.js"></script>
+<script src="scripts/jquery/iospopwin.js"></script>
+<script src="scripts/m/timedropper/js/timedropper.js"></script>
+<script>
+var dynamicLoading = {
+  css: function(path){
+	var head = document.getElementsByTagName('head')[0];
+      var link = document.createElement('link');
+      link.href = path+"?rnd="+Math.random();
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      head.appendChild(link);
+  },
+  js: function(path){
+	var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.src = path+"?rnd="+Math.random();
+      head.appendChild(script);
+  }
+}
+dynamicLoading.js("app/wf/scripts/m/flow/use/showflow.js");
+dynamicLoading.css("app/wf/css/m/use/showflow.css");
+dynamicLoading.css("scripts/m/datePicker/skin/default/datepicker.css");
+</script>
+</head>
+
+<body>
+<div id="header">
+  <span>
+    查看工作流
+  </span>
+  <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+  <span class="glyphicon glyphicon-align-justify btn-add-ico" aria-hidden="true" id="btn_actionsheet">
+  </span>
+</div>
+
+<form id="myTableFrom" method="post" enctype="multipart/form-data">
+  <div id="wrapper">
+    <div id="scroller">
+      <ul id="myTabs" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#loadFlowInfo" id="loadFlowInfo" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">流程表单</a>
+        </li>
+        <li class="" role="presentation">
+          <a href="#loadFlowDesignData" id="loadFlowDesignData" role="tab" data-toggle="tab" aria-expanded="true" aria-controls="profile">流程图</a>
+        </li>
+        <li class="" role="presentation">
+          <a href="#getStepList" id="getStepList" role="tab" data-toggle="tab" aria-expanded="true" aria-controls="profile">流程步骤</a>
+        </li>
+        <li class="" role="presentation">
+          <a href="#getEventList" id="getEventList" role="tab" data-toggle="tab" aria-expanded="true" aria-controls="profile">流程事件</a>
+        </li>
+      </ul>
+      <div id="myTabContent">
+        
+      </div>
+    </div>
+  </div>
+
+  <!--/* 模态框 明细表*/-->
+  <div class="modal" id="detailtable" role="dialog">
+    <div class="modal-dialog my-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="glyphicon glyphicon-chevron-left btn-sure" id="btnMXClose"></span>
+          <span class="modalTitle">查看明细表</span>
+          <span class="glyphicon glyphicon-ok btn-all" id="btnMXOk"></span>
+        </div>
+        <div class="detailtable-wrapper" id="detailtable-wrapper">
+          <div class="detailtable-scroller" id="detailtable-scroller">
+            <div class="modal-body" id="detailtableGroup" style="padding:15px 10px;">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="checktable" role="dialog">
+    <div class="modal-dialog my-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="glyphicon glyphicon-chevron-left btn-sure" id="btnCHClose"></span>
+          <span class="modalTitle">查看流程</span>
+          <span class="glyphicon glyphicon-ok btn-all" id="btnCHOk"></span>
+        </div>
+        <div class="checktable-wrapper" id="checktable-wrapper">
+          <div class="checktable-scroller" id="checktable-scroller">
+            <div class="modal-body" id="checktableGroup" style="padding:15px 10px;">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div id="jingle_popup" class="">
+  <div class="row">
+    <div class="col-xs-3">
+      <button class="btn" role="button" id="allowEnd" disabled="disabled">结束</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <button class="btn" role="button" id="allowCallback">召回流程</button>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn" role="button" id="allowCancel">撤销流程</button>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn" role="button" id="allowPingyueyijian">评阅意见</button>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn" role="button" id="allowHuiqianyijian">会签意见</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <button class="btn" role="button" id="allowFenFaFlow">已办分发</button>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn" role="button" data-toggle="modal" data-target="#fenfaList" id="allowFenFa">待办分发</button>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn" role="button" id="allowPrevStep">退回</button>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn" role="button" id="allowEntrust">委托</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <button class="btn" role="button" id="allowAgree">同意</button>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn" id="allowReject">拒绝</button>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn" role="button" id="allowRetain">保留意见</button>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn" role="button" data-toggle="modal" data-target="#fenfaList" id="allowHuiqian">会签</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <button class="btn" role="button" id="allowChildFlow">子流程</button>
+    </div>
+    <div class="col-xs-3">
+       <button class="btn" role="button" id="allowRelateFlow">关联流程</button>
+    </div>
+    <div class="col-xs-3" style="padding-right:0px;padding-left:0px;">
+      <div class="btnUpload btn-success" id="allowAttachAdd"> 
+        <span>添加附件</span> 
+        <input id="fileupload" type="file" name="upload_file"> 
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn" id="jingle_popup_mask_close">
+        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        收起
+      </button>
+    </div>
+  </div>
+</div>
+<div id="jingle_popup_mask"></div>
+
+<div id="loading_mask"></div>
+
+<!--% 图片在线预览 %-->
+<div class="imgzoom_pack">
+  <div class="imgzoom_x"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+  <div class="imgzoom_img">
+    <img src="">
+  </div>
+</div>
+
+<!--*/人员选择器模态框 *-->
+<div class="modal userDataModal" id="userDataModal" tabindex="-1" role="dialog" data-source="" data-checktype="" data-sid='1'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--*/选择器头部 *-->
+      <div class="modal-header">
+        <span class="glyphicon glyphicon-chevron-left glyphiconLeft" id="sback" data-fid="0" aria-hidden="true"></span>
+        <span>选择人员</span>
+        <span class="glyphicon glyphicon-remove glyphiconRight" id="sClose" aria-hidden="true" data-dismiss="modal" aria-label="Close"></span>
+        <div class="row search">
+          <div class="col-xs-12">
+            <input type="text" class="form-control input-m" id="search" placeholder="搜索">
+          </div>
+        </div>
+      </div>
+      <!--*/用户和部门 *-->
+      <div class="userDataWrapper" id="userDataWrapper">
+        <div class="userDataScroller" id="userDataScroller">
+          <div class="modal-body">
+            <ul class="list-group userDataGroup" id="userDataGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/存放待删除的用户 *-->
+      <div class="userWrapper" id="userWrapper">
+        <div class="userScroller" id="userScroller">
+          <div class="modal-body">
+            <ul class="list-group userGroup" id="userGroup">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--*/待删除用户区域的操作按钮 *-->
+      <div class="opts-box">
+        <button type="button" class="btn btn-primary btn-sm opts" id="sFinish" aria-hidden="true" data-dismiss="modal" aria-label="Close" disabled>完成</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--*/岗位、职位选择器模态框 *-->
+<div class="modal stationDataModal selector" id="stationDataModal" tabindex="-1" role="dialog" data-source="" data-checktype="" data-choicetype="">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--*/选择器头部 *-->
+      <div class="modal-header">
+        <span class="glyphicon glyphicon-chevron-left glyphiconLeft" id="stnClose" aria-hidden="true" data-dismiss="modal" aria-label="Close"></span>
+        <span class="choiceName">选择岗位</span>
+        <span class="glyphicon glyphicon glyphicon-ok glyphiconRight" id="stnOk" aria-hidden="true" data-dismiss="modal" aria-label="Close"></span>
+      </div>
+      <!--*/岗位 *-->
+      <div class="stationDataWrapper" id="stationDataWrapper">
+        <div class="stationDataScroller" id="stationDataScroller">
+          <div class="modal-body">
+            <ul class="list-group stationDataGroup" id="stationDataGroup">
+              <li class="list-group-item stationList">
+                <span class="tools pull-left">
+                  <input type="checkbox" class="ipt-hide">
+                  <label class="checkbox"></label>
+                </span>
+                <div class="name-box">
+                  <span class="job">副总经理</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--/* 模态框 分发人员和会签列表*/-->
+<div class="modal" id="fenfaList" tabindex="-1" role="dialog">
+  <div class="modal-dialog my-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="glyphicon glyphicon-chevron-left btn-sure" aria-hidden="true" id="btnFanhui" data-type="" data-dismiss="modal" aria-label="Close"></span>
+        <span class="modalTitle">人员列表</span>
+        <span class="glyphicon glyphicon-plus btn-all" aria-hidden="true" data-toggle="modal" data-target="#userDataModal" data-name="" data-checktype="true" id="btnAdd"></span>
+      </div>
+      <div class="fenfa-wrapper" id="fenfa-wrapper">
+        <div class="fenfa-scroller" id="fenfa-scroller">
+          <div class="modal-body">
+            <ul class="list-group groupType" data-checktype="true">
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--/* 模态框 转下一步-选择步骤及办理人*/-->
+<div class="modal" id="nextStepList" tabindex="-1" role="dialog">
+  <div class="modal-dialog my-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="glyphicon glyphicon-chevron-left btn-sure" aria-hidden="true" id="btnClose" data-type="" data-dismiss="modal" aria-label="Close"></span>
+        <span class="modalTitle">选择步骤及办理人</span>
+        <span class="glyphicon glyphicon-ok btn-all" aria-hidden="true" data-toggle="modal" id="btnMenu" data-name="" data-checktype="true"></span>
+      </div>
+      <div class="fenfa-wrapper" id="nextStep-wrapper">
+        <div class="fenfa-scroller" id="nextStep-scroller">
+          <div class="modal-body" id="nextStepGroup" style="padding:15px 10px;">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--/* 模态框 数据源控件*/-->
+<div class="modal" id="datasource" tabindex="-1" role="dialog">
+  <div class="modal-dialog my-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-xs-2" style="padding-left:0px;">
+          <span class="glyphicon glyphicon-chevron-left btn-sure" id="btnDSClose"></span>
+        </div>
+        <div class="col-xs-8">
+          <div class="input-group">
+            <input type="text" class="form-control dsSearch" id="dsSearch" placeholder="Search">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" id="dsBtnSearch">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+          </div>
+        </div>
+        <div class="col-xs-2" style="padding-right:0px;">
+          <span class="glyphicon glyphicon-ok btn-all" id="btnDSOk"></span>
+        </div>
+      </div>
+      <!-- 数据源数据信息 -->
+      <div class="datasource-wrapper" id="datasource-wrapper">
+        <div class="datasource-scroller" id="datasource-scroller">
+          <div id="pullDown">  
+            <div class="pullDownIcon"></div>  
+            <div class="pullDownLabel">下拉刷新</div>  
+          </div> 
+          <div class="modal-body" id="datasourceGroup" to="" datasource="" style="padding:10px;">
+            
+          </div>
+          <div id="pullUp">  
+            <div class="pullUpIcon"></div>  
+            <div class="pullUpLabel">上拉显示更多...</div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--/* 模态框 进销存货品查询控件*/-->
+<div class="modal" id="jxcGoodsList" role="dialog">
+  <div class="modal-dialog my-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-xs-2" style="padding-left:0px;">
+          <span class="glyphicon glyphicon-chevron-left btn-sure" id="btnJxcGoodsClose"></span>
+        </div>
+        <div class="col-xs-8">
+          <div class="input-group">
+            <input type="text" class="form-control jxcGoodsSearch" id="jxcGoodsSearch" placeholder="Search">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" id="jxcGoodsBtnSearch">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+          </div>
+        </div>
+        <div class="col-xs-2" style="padding-right:0px;">
+          <span class="glyphicon glyphicon-ok btn-all" id="btnJxcGoodsOk"></span>
+        </div>
+      </div>
+      <div class="jxcGoods-wrapper" id="jxcGoods-wrapper">
+        <div class="jxcGoods-scroller" id="jxcGoods-scroller">
+          <div id="jxcPullDown">  
+            <div class="jxcPullDownIcon"></div>  
+            <div class="jxcPullDownLabel">下拉刷新</div>  
+          </div> 
+          <div class="modal-body" id="jxcGoodsGroup" style="padding:10px;">
+            
+          </div>
+          <div id="jxcPullUp">  
+            <div class="jxcPullUpIcon"></div>  
+            <div class="jxcPullUpLabel">上拉显示更多...</div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--/* 模态框 签章列表*/-->
+<div class="modal" id="signature" role="dialog">
+  <div class="modal-dialog my-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="glyphicon glyphicon-chevron-left btn-sure" id="btnSTClose"></span>
+        <span class="modalTitle">签章列表</span>
+        <span class="glyphicon glyphicon-ok btn-all" style="color:#3871B8;text-shadow:none;"></span>
+      </div>
+      <div class="signature-wrapper" id="signature-wrapper">
+        <div class="signature-scroller" id="signature-scroller" to="" width="" height="">
+          <div class="modal-body">
+            <div class="row" id="signatureList">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--/* 模态框 通用弹窗：待办子流程列表*/-->
+<div class="modal" id="otherList" role="dialog">
+  <div class="modal-dialog my-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="glyphicon glyphicon-chevron-left btn-sure" id="btnOTClose"></span>
+        <span class="modalTitle">子流程列表</span>
+        <span class="glyphicon glyphicon-plus btn-all"></span>
+      </div>
+      <div class="other-wrapper" id="other-wrapper">
+        <div class="other-scroller" id="other-scroller">
+          <div class="modal-body">
+            <div class="row" id="otherGroup">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--/*Iscroll5* -->
+<script src="scripts/jquery/iscroll-probe.js"></script>
+<!--/*数据源部分* -->
+<script src="app/wf/scripts/m/flow/use/datasource.fun.js"></script>
+<!--/*进销存部分* -->
+<script src="app/wf/scripts/m/flow/use/jxcGoods.fun.js"></script>
+<!-- UMeditor配置文件 -->
+<link href="../../../../../../../scripts/m/UMeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../../../../../../../scripts/m/UMeditor/umeditor.config.js"></script>
+<!-- UMeditor编辑器源码文件 -->
+<script type="text/javascript" src="../../../../../../../scripts/m/UMeditor/umeditor.min.js"></script>
+</body>
+</html>

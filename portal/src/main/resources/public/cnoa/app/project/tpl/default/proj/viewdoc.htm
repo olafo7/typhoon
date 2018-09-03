@@ -1,0 +1,78 @@
+<?php
+$data = $GLOBALS['project']['proj']['viewdetail']['doc'];
+
+$color = 1;
+
+!is_array($data) && $data = array();
+if(!empty($data)){
+	foreach($data as $v){
+		$doc .= " 
+		
+		<tr>
+	
+	  	<td nowrap  class='TableHeader' colspan='6' style='border-top:2px solid #fff'>目录名称：{$v['title']}</td>
+	
+	  </tr>";
+	  
+	  	!is_array($v['children']) && $v['children'] = array();
+	  	foreach($v['children'] as $v1){
+			if($v1['dl'] == 1){
+				$color_dl = "√";
+			}else{
+				$color_up = "×";
+			}
+			if($v1['up'] == 1){
+				$color_up = "√";
+			}else{
+				$color_up = "×";
+			}
+			if($v1['dt'] == 1){
+				$color_dt = "√";
+			}else{
+				$color_dt = "×";
+			}
+			
+			$doc .= "<tr>
+	
+			  	<td nowrap align='left' width='120' class='TableContent'>{$v1['type']}:</td>
+			
+			     <td class='TableData' width='180' colspan='3'>
+				 	<span >上传{$color_up}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span >下载{$color_dl}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span >删除{$color_dt}</span>
+				 </td>         
+	
+	  		</tr>";
+		}
+	}
+}else{
+	$doc = "没有文件夹";
+}
+
+print <<<CNOA
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="bodycolor" topmargin="5">
+  
+  <table class="TableBlock" width="650" align="center">  
+  
+  	{$doc}
+  
+  </table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

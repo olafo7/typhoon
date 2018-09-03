@@ -1,0 +1,246 @@
+<?php
+$data = $GLOBALS['contract']['viewDetails'];
+$data['attach'] = str_replace(array("openPdfForView"), array("opener.openPdfForView"), $data['attach']);
+print <<<CNOA
+<html>
+<head>
+<title>合同信息 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="scripts/cnoa/viewAttach.js"></script>
+<script type='text/javascript'>	
+	if(!{$data['permit']}){
+		alert('您没有该权限！');
+	}
+	function ajaxDownload(url){
+		try{
+			document.body.removeChild(document.getElementById("cnoa_iframe_download"));
+		}catch(e){}
+
+		var f = document.createElement("iframe");
+			f.id = 'cnoa_iframe_download';
+			f.style.width = "0px";
+			f.style.height = "0px";
+			f.style.display = "none";
+			f.src = url + "&r=" + Math.random();
+			document.body.appendChild(f);
+	}
+	window.onload=function(){
+		window.focus()
+	}
+</script>
+</head>
+
+<body class="bodycolor" topmargin="5">
+
+
+
+<table border="0"  width="760" align="center" cellspacing="0" cellpadding="3" class="small">
+
+  <tr>
+
+    <td class="Big"><span class="big3"> 合同信息</span><br></td>
+
+  </tr>
+
+</table>
+
+<table class="TableBlock" width="760" align="center">
+
+  <tr>
+
+    <td nowrap class="TableHeader " colspan="6"><b>&nbsp;合同基本信息</b></td>
+
+  </tr>
+
+  <tr>
+        
+	<td nowrap align="left" width="120" class="TableContent">合同名称：</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$data['name']}</td>  
+
+  	<td nowrap align="left" width="120" class="TableContent">合同编号：</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$data['number']}</td>  
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">合同类型：</td>
+
+    <td class="TableData" width="180">{$data['type']}</td>  	
+
+    <td nowrap align="left" width="120" class="TableContent">业务人员：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['person']}</td>         
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">所在部门：</td>
+
+    <td class="TableData" width="180" >{$data['deptName']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">合同金额：</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['cmoney']}</td>             
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">合同开始时间：</td>
+
+    <td class="TableData" width="180">{$data['startTime']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">合同结束时间:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['endTime']}</td>       
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">合同签订时间：</td>
+
+    <td class="TableData" width="180">{$data['signTime']}</td>   
+
+  </tr>
+
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">合同双方信息：</td>
+
+  </tr>   
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">甲方单位：</td>
+
+    <td class="TableData" width="180">{$data['a_company']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">乙方单位:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['b_company']}</td>       
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">甲方负责人：</td>
+
+    <td class="TableData" width="180">{$data['a_charge_name']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">乙方负责人:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['b_charge_name']}</td>       
+
+  </tr>
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">甲方联系方式：</td>
+
+    <td class="TableData" width="180">{$data['a_contact']}</td>
+
+    <td nowrap align="left" width="120" class="TableContent">乙方联系方式:</td>
+
+    <td class="TableData" width="180" colspan="3">{$data['b_contact']}</td>       
+
+  </tr>
+
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">合同收款信息：</td>
+
+  </tr>
+
+  
+CNOA;
+  if(empty($data['money']) && empty($data['time'])){
+
+print <<<CNOA
+<tr>
+  <td class="TableData" colspan="6"></td>
+</tr>
+CNOA;
+
+  }else{
+
+    foreach($data['money'] as $k=>$v){
+print <<<CNOA
+    <tr>
+        <td nowrap align="left" width="120" class="TableContent">收款金额（元）</td>
+        <td class="TableData" width="180">{$v}</td>
+        <td nowrap align="left" width="120" class="TableContent">收款时间</td>
+        <td class="TableData" width="180">{$data['time'][$k]}</td>
+    </tr>
+
+CNOA;
+
+    }
+
+ }
+
+print <<<CNOA
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">合同主要内容：</td>
+
+  </tr>   
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$data['mainContent']}</td>               
+
+  </tr>
+
+  <tr>
+    <td nowrap align="left" colspan="6" class="TableHeader">备注：</td>
+
+  </tr>   
+
+  <tr>
+
+    <td class="TableData" colspan="6">{$data['notes']}</td>               
+
+  </tr>                                    
+
+  <tr>
+
+  	<td nowrap  class="TableHeader" colspan="6">附件文档：</td>
+
+  </tr>
+
+  <tr>    
+
+    <td nowrap align="left" class="TableData" colspan="6">{$data['attach']}</td>
+
+  </tr>
+
+  <!-- <tr align="center" class="TableControl">
+
+    <td colspan="6">
+
+      <input type="button" value="关闭" class="BigButton" onClick="window.close();" title="关闭窗口">
+
+    </td>
+
+  </tr>  -->                    
+
+</table>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，如无法查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

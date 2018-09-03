@@ -1,0 +1,12 @@
+<script language="JavaScript">
+    Ext.ns("CNOA.portals.portals.my");
+    CNOA.portals.portals.my.parentID = "docs-CNOA_MENU_PORTALS_MY";
+
+    Ext.onReady(function() {
+        loadScripts("sm_portals_portals", "cnoa/app/portals/scripts/cnoa.portals.js", function(){
+            CNOA_portals_portals_my = new CNOA_portals_portals_myClass();
+            Ext.getCmp(CNOA.portals.portals.my.parentID).add(CNOA_portals_portals_my.mainPanel);
+            Ext.getCmp(CNOA.portals.portals.my.parentID).doLayout();
+        });
+    });
+</script>

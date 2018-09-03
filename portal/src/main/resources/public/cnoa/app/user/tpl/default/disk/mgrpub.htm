@@ -1,0 +1,31 @@
+<?php
+$rand = rand(0, 9999999);
+
+global $CNOA_DB, $CNOA_SESSION;
+$uid = $CNOA_SESSION->get('UID');
+
+//获得查看模式
+$viewMod = $CNOA_DB->db_getfield('viewMod', 'user_disk_user', "WHERE `uid`='{$uid}'");
+if(empty($viewMod)){
+$viewMod = "list";
+}
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.disk.mgrpub");
+CNOA.user.disk.mgrpub.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.user.disk.mgrpub.goDate = "{$GLOBALS['$goDate']}";
+CNOA.user.disk.mgrpub.viewMod = "$viewMod";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_disk", "app/user/scripts/cnoa.disk.js", function(){
+		CNOA_user_disk_mgrpub = new CNOA_user_disk_mgrpubClass();
+		Ext.getCmp(CNOA.user.disk.mgrpub.parentID).add(CNOA_user_disk_mgrpub.mainPanel);
+		Ext.getCmp(CNOA.user.disk.mgrpub.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/disk_mgrpub.js"));
+?>

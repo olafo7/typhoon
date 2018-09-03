@@ -1,0 +1,17 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.communication.message.mgr");
+CNOA.communication.message.mgr.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_communication_message", "app/communication/scripts/cnoa.message.js", function(){
+		CNOA_communication_message_mgr = new CNOA_communication_message_mgrClass();
+		Ext.getCmp(CNOA.communication.message.mgr.parentID).add(CNOA_communication_message_mgr.mainPanel);
+		Ext.getCmp(CNOA.communication.message.mgr.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+
+?>

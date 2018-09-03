@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.meeting.mgr.appointment");
+CNOA.meeting.mgr.appointment.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_user_meeting", "app/meeting/scripts/cnoa.meeting.js", function(){
+		CNOA_meeting_mgr_appointment = new CNOA_meeting_mgr_appointmentClass();
+		Ext.getCmp(CNOA.meeting.mgr.appointment.parentID).add(CNOA_meeting_mgr_appointment.mainPanel);
+		Ext.getCmp(CNOA.meeting.mgr.appointment.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/meeting/scripts/mgr_appointment.js"));
+?>

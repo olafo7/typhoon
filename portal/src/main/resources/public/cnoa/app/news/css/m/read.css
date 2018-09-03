@@ -1,0 +1,290 @@
+body{
+	font-family:"NotoSans CJK","Microsoft YaHei","Proxima Nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+	background-color:white;
+	margin-right:0px !important;
+	overflow:hidden;
+}
+p {
+    margin: -7px 0 10px;
+}
+#header{
+	position:relative;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 52px;
+	line-height: 52px;
+	padding: 0;
+	text-align: center;
+	background-color: #4978BC;
+	color: #fff;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+	font-size: larger;
+}
+#header .btn-home-ico,#header .btn-back-ico{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	font-size: 1.2em;
+	padding: 14px 12px;
+}
+#header .btn-add-ico{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	font-size: 1.2em;
+	padding: 15px 7px;
+}
+#wrapper{
+	position: absolute;
+	z-index: 1;
+	top: 53px;
+	left: 0;
+	width: 100%;
+	height: 42px;
+	overflow: hidden;
+}
+#scroller{
+	width: 2065px;
+	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+/*垂直*/
+#Vwrapper{
+	position:absolute; 
+	z-index:1;
+	top:306px; 
+	bottom:0px; 
+	left:0;
+	width:100%;
+	background:#fff;
+	overflow:auto;
+	border-top: 1px solid #eee;
+}
+#Vscroller {
+	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 100%;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+#pullDown, #pullUp {
+	background:#fafafa;
+	height:50px;
+	line-height:50px;
+	font-weight:bold;
+	font-size:14px;
+	color:#888;
+	border-top: #eee solid 1px;
+}
+#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+	display:block; float:left;
+	width:40px; height:40px;
+	margin-left:30%;
+	background:url(../../../../../../resources/images/m/ico/pull-icon@2x.png) 0 0 no-repeat;
+	-webkit-background-size:40px 80px; background-size:40px 80px;
+	-webkit-transition-property:-webkit-transform;
+	-webkit-transition-duration:250ms;	
+}
+#pullDown .pullDownIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUp .pullUpIcon  {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullDown.flip .pullDownIcon {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullUp.flip .pullUpIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+
+#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+	background-position:0 100%;
+	-webkit-transform:rotate(0deg) translateZ(0);
+	-webkit-transition-duration:0ms;
+
+	-webkit-animation-name:loading;
+	-webkit-animation-duration:2s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes loading {
+	from { -webkit-transform:rotate(0deg) translateZ(0); }
+	to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+
+.stop-label{
+	text-align: center;
+}
+/*内容*/
+.content{
+	width:100%;
+	height: auto;
+}
+.main{
+	clear:both;
+	height:90px;
+	width: 100%;
+	border-bottom: 1px solid #eee;
+}
+.showimg img{
+	width: 80px;
+	height: 80px;
+	margin-left:10px;
+	margin-top:5px;
+	border:3px solid #eee;
+	float:left;
+}
+.showcon{
+    padding-top: 27px;
+	height:90px;
+	width: auto;
+	margin-left: 90px;
+	top:25px;
+}
+.title{
+	text-decoration: none;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-left:10px;
+   	font-family: '微软雅黑';
+	font-size:larger;
+	color:black;
+}
+.time{
+	margin-left:10px;
+   	font-family: '微软雅黑';
+	color:#9F9FA0;
+
+}
+/*轮播图*/
+li{
+	display:inline;
+	margin: 0px 0px 10px 0px;
+}
+ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	border-bottom:#eee 1px solid; 
+}
+.swiper-container {
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top:96px;
+} 
+.swiper-slide img{
+	width:100%;
+	height:200px;
+}
+.swiper-pagination {
+    position: absolute;
+    text-align: right;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    z-index: 10;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    background-color: #B4B5B5;
+    opacity: 0.5;
+}
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: red;
+}
+.swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 100%;
+    background: white;
+    opacity: 1;
+}
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: red !important;
+}
+.swiper-title{
+    position: absolute;
+    top: 180px;
+    z-index: 2;
+    color: white;
+    left: 15px;
+}
+input[type='search']{
+ 	background:#fff; 
+ 	border: 1px solid #eee;
+    padding:5px;
+    border-radius:10px;
+    -webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	width: 90%;
+	outline:none;
+	margin-left: 5%;
+    margin-top: 10px;
+}
+.modal-backdrop.in{
+	opacity: 0 !important;
+}
+.modal-dialog {
+    z-index: 1050;
+    width: auto;
+    padding: 11px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 84px;
+}
+input::-ms-input-placeholder{text-align: center;}
+input::-webkit-input-placeholder{text-align: center;}

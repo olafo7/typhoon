@@ -1,0 +1,24 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.monitor.mgr.email");
+CNOA.monitor.mgr.email.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_monitor_mgr", "app/monitor/scripts/cnoa.monitor.js", function(){
+		CNOA_monitor_mgr_email = new CNOA_monitor_mgr_emailClass();
+
+		Ext.getCmp(CNOA.monitor.mgr.email.parentID).add(CNOA_monitor_mgr_email.mainPanel);
+		Ext.getCmp(CNOA.monitor.mgr.email.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript("./app/communication/scripts/email_mgr.js");
+
+?>

@@ -1,0 +1,21 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.user.attendance.evection");
+CNOA.user.attendance.evection.parentID = "{$GLOBALS['app']['parentid']}";
+//*
+Ext.onReady(function() {
+	loadScripts("sm_user_attendance", "app/user/scripts/cnoa.attendance.js", function(){
+		CNOA_user_attendance_evection = new CNOA_user_attendance_evectionClass();
+	    Ext.getCmp(CNOA.user.attendance.evection.parentID).add(CNOA_user_attendance_evection.mainPanel);
+	    Ext.getCmp(CNOA.user.attendance.evection.parentID).doLayout();
+	});
+});
+//*/
+</script>
+
+
+CNOA;
+#echo loadJavascript(array("./app/user/scripts/attendance_evection.js"));
+?>

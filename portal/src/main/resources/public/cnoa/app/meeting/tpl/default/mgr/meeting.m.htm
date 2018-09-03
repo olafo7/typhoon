@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="app/meeting/css/m/meeting.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/iscroll-probe.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="app/meeting/scripts/m/meeting.js"></script>
+
+</head>
+
+<body>
+<div id="header">
+  <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="viewWfBlack"></span>
+  <span>会议审批</span>
+</div>  
+
+<div class="containers">
+  <div class="alert search-box" role="alert">
+    <input type="search" class="form-control search" placeholder="会议名称" id="iptSearch">
+  </div>
+  <div class="row" id="taskstatus">
+        <div id="taskitem">
+            <ul class="nav">
+              <li><a class="noRadius" data-toggle="tab" id="pending">待审</a></li>
+              <li><a class="noRadius" data-toggle="tab" id="pass">通过</a></li>
+              <li><a class="noRadius" data-toggle="tab" id="npass">不通过</a></li>
+              <li><a class="noRadius" data-toggle="tab" id="cancel">被取消</a></li>
+            </ul>
+        </div>
+    </div>
+  <div id="wrapper">
+    <div id="scroller">
+      <div id="pullDown">  
+        <div class="pullDownIcon"></div>  
+        <div class="pullDownLabel">下拉刷新</div>  
+      </div>
+      <div class="viewWfContainer" id="viewWfContainer"></div>
+      <div id="pullUp">  
+        <div class="pullUpIcon"></div>  
+        <div class="pullUpLabel">上拉加载更多...</div>  
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

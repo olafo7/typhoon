@@ -1,0 +1,435 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="renderer" content="webkit">
+<meta http-equiv="expires" content="0">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+<link rel="stylesheet" type="text/css" href="/cnoa/extjs/3.4.0/resources/css/ext-all.css?v=v 3.0.39">
+<link rel="stylesheet" type="text/css" href="/cnoa/resources/css/cnoa.all.css?v=v 3.0.39">
+<script type="text/javascript" src="/cnoa/scripts/eCharts/echarts.js"></script>
+<script type="text/javascript" src="/cnoa/scripts/extjs.3.4.0.js?v=v 3.0.39"></script>
+<script type="text/javascript" src="/cnoa/file/language/cn.js?v=v 3.0.39"></script>
+<script type="text/javascript" src="/cnoa/scripts/cnoa.common.js?v=v 3.0.39"></script>
+<script type="text/javascript" src="/cnoa/scripts/jquery/1.4.2.min.js?v=v 3.0.39"></script>
+<script type="text/javascript" src="/cnoa/scripts/cnoa.extra.js?v=v 3.0.39"></script>
+<script type="text/javascript" src="/cnoa/app/wf/scripts/form_init.js"></script>
+<script type="text/javascript">
+	var pageset = '<?=$pageset?>';
+</script>
+<style type="text/css" media=print>
+.noprint{display : none;}
+.noprint2{padding-top: 30px !important;}
+</style>
+
+</head>
+<body style="margin:0;">
+	<div style="background-color:#d0def0; height:30px; line-height:30px; position: fixed; width: 100%; z-index: 99;<?php if($hidden) echo 'display: none'?>">
+		<div style="float: left; padding-top: 2px;" class="noprint">
+			<label><input type="checkbox" id="wf_export_all" onclick="JavaScript:allChecked('wf_export_all')">全选</label>
+			<label><input type="checkbox" name="showInfo" id="wf_export_info" onclick="JavaScript:isInfoHiden('wf_export_info')">流程信息</label>
+			<label><input type="checkbox" name="showFrom" checked id="wf_export_form" onclick="JavaScript:isFormHiden('wf_export_form')">流程表单</label>
+			<label><input type="checkbox" name="showStep" id="wf_export_step" onclick="JavaScript:isStepHiden('wf_export_step')">流程步骤</label>
+			<label><input type="checkbox" name="showEvent" id="wf_export_event" onclick="JavaScript:isEventHiden('wf_export_event')">流程事件</label>
+			<label><input type="checkbox" name="showRead" id="wf_export_read" onclick="JavaScript:isReadHiden('wf_export_read')">流程评阅</label>
+			<label><input type="checkbox" name="showRead" id="wf_export_fs" onclick="JavaScript:isFsHiden('wf_export_fs')">附件</label>
+		</div>
+		<div align="right" style="" class="noprint">
+			<input class="noprint" type="button" value="归档到网络硬盘" onclick="JavaScript:filing(<?php echo $flowId;?>,<?php echo $uFlowId;?>,<?php echo $step;?>)"/>
+			<input class="noprint" type="button" value="开始打印" onclick="JavaScript:printf()"/>
+			<select onchange='JavaScript:drop(<?php echo $flowId;?>,<?php echo $uFlowId;?>,<?php echo $step;?>)' id='wf_drop_export'> 
+				<option value='0'>导出为....</option> 
+				<option value="image">导出为图片</option>  
+				<option value="html">导出为网页文件(html)</option>  
+				<option value="word">导出为Word文档</option>  
+				<option value="toDisk">转存到网络硬盘</option>  
+			</select>  
+		</div>
+	</div>
+
+	<div style="padding-left:5px; padding-right:5px; padding-top: 30px;" align='center' id="wf_export_total" class="cnoa-formhtml-layout noprint2"> 
+		<div class="body" id="base_body" style="<?php if($baseBody) {echo 'display:none';} else {echo '';}?>"> 
+			<table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD">
+				<tr>
+					<td height="24" align="right" valign="middle" class="lable">流程编号:&nbsp;</td>
+					<td valign="middle" class="field"><?php echo $data['flowNumber'];?></td>
+					<td height="24" align="right" valign="middle" class="lable">重要等级:&nbsp;</td>
+					<td valign="middle" class="field"><?php echo $data['level'];?></td>
+				</tr>
+				<tr> 
+					<td height="24" align="right" valign="middle" class="lable">流程名称:&nbsp;</td>
+					<td width="35%" valign="middle" class="field"><?php echo $data['flowName'];?></td>
+					<td width="15%" align="right" valign="middle" class="lable">流程状态:&nbsp;</td>
+					<td width="35%" valign="middle" class="field"><?php echo $data['status'];?></td>
+				</tr>
+				<tr>
+					<td height="24" align="right" valign="middle" class="lable">发起人:&nbsp;</td>
+					<td valign="middle" class="field"><?php echo $data['uname'];?></td>
+					<td align="right" valign="middle" class="lable">发起时间:&nbsp;</td>
+					<td valign="middle" class="field"><?php echo $data['posttime'];?></td>
+				</tr>
+				<tr> 
+					<td height="60" align="right" valign="middle" class="lable">申请理由:&nbsp;</td>
+					<td height="60" class="field" colspan="3"><?php echo $data['reason'];?></td>
+				</tr>
+			</table>
+		</div>
+		<br />
+
+		<!--表单信息--> 
+		<div class="body" id="form_body" style="<?php if($formBody) {echo 'display:none';} else {echo '';}?>">
+			<table class="wf_div_cttb" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td class="wf_bd2 wf_l"></td>
+					<td style="padding:0;" class="wf_c wf_form_contentct">
+						<div id="wf_form_content" class="wf_c wf_form_content wf_form_content_deal" signature_position="true"><?php echo $formHtml;?></div>
+					</td>
+					<td class="wf_bd2 wf_r"></td>
+				</tr>
+			</table>
+		</div>
+		<br />
+
+		<!--流程步骤--> 
+		<div class="body" id="step_body" style="<?php if($stepBody) {echo 'display:none';} else {echo '';}?>"> 
+			<table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD">
+				<tr> 
+					<td valign="middle" class="lable">步骤名称</td>
+					<td valign="middle" class="lable">状态</td>
+					<td valign="middle" class="lable">经办人、开始时间</td>
+					<td valign="middle" class="lable">持续时间</td>
+					<td valign="middle" class="lable">办理理由</td>
+				</tr>
+				<?php echo $nstep; ?>
+			</table>
+		</div>
+		<br />
+
+		<!--流程事件--> 
+		<div class="body" id="event_body" style="<?php if($eventBody) {echo 'display:none';} else {echo '';}?>">
+			<table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD">
+				<tr>
+					<td valign="middle" class="lable">类型</td>
+					<td valign="middle" class="lable">步骤</td>
+					<td valign="middle" class="lable">经办人、时间</td>
+					<td valign="middle" class="lable">办理理由</td>
+				</tr>
+				<?php echo $event; ?>
+			</table>
+		</div>
+		<br />
+
+		<!--流程评阅--> 
+		<div class="body" id="read_body" style="<?php if($readBody) {echo 'display:none';} else {echo '';}?>">
+			<table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD">
+				<tr> 
+					<td valign="middle" class="lable">评阅人</td>
+					<td valign="middle" class="lable">所属部门</td>
+					<td valign="middle" class="lable">评阅内容</td>
+					<td valign="middle" class="lable">评阅时间</td>
+				</tr>
+				<?php echo $read; ?>
+			</table>
+		</div>
+		<br>
+		
+		<!--流程附件--> 
+		<div class="body" id="fs_body" style="<?php if($fsBody) {echo 'display:none';} else {echo '';}?>"> 
+			<table width="100%" border="0" cellspacing="1" cellpadding="0" style="background-color:#CDCDCD" id="fs_table">
+				<tr> 
+					<td valign="middle" class="lable">附件名称</td>
+					<td valign="middle" class="lable">上传者</td>
+					<td valign="middle" class="lable">上传时间</td>
+					<td style = "display:none">ID</td>
+				</tr>
+				<?php echo $fs; ?>
+			</table>
+		</div>
+		<br />
+	</div>
+</body>
+</html>
+
+<script language="javascript">
+	setPageSet($("#wf_form_content").get(0), Ext.decode(pageset));
+
+	//显示签章
+	var sealData = $(".wf_form_content input[sealstoredata=true]");
+	if(sealData.length > 0){
+		//加载JS
+		loadJs('app/wf/scripts/signature.electron.js', true, function(){
+			CNOA_wf_signature_electron = new CNOA_signature_electronClass();
+			CNOA_wf_signature_electron.SetSealValue(sealData);
+		});
+	}
+
+	function printf(){
+		if(Ext.isIE){
+			try{
+				WebBrowser.ExecWB(7,1);
+			}catch(e){
+				window.print();
+			}
+		}
+	}
+	function filing(flowId, uFlowId, step){
+		$('#wf_drop_export').attr('value','toDisk');
+		drop(flowId, uFlowId, step);
+	}
+	function allChecked(value){
+		if ($('#' + value).attr('checked')) {
+			$('input:checkbox').each(function() {
+		        $(this).attr('checked', true);
+			});
+			$('#base_body').css('display', '');
+			$('#form_body').css('display', '');
+			$('#base_body').css('display', '');
+			$('#step_body').css('display', '');
+			$('#event_body').css('display', '');
+			$('#read_body').css('display', '');
+			$('#fs_body').css('display', '');
+		} else {
+			$('input:checkbox').each(function() {
+		        $(this).attr('checked', false);
+			});
+			$('#base_body').css('display', 'none');
+			$('#form_body').css('display', 'none');
+			$('#base_body').css('display', 'none');
+			$('#step_body').css('display', 'none');
+			$('#event_body').css('display', 'none');
+			$('#read_body').css('display', 'none');
+			$('#fs_body').css('display', 'none');
+		}
+		
+	}
+
+	function isInfoHiden(value){
+		if ($('#' + value).attr('checked')) {
+			$('#base_body').css('display', '');
+		} else {
+			$('#base_body').css('display', 'none');
+		}
+	}
+
+	function isFormHiden(value){
+		if ($('#' + value).attr('checked')) {
+			$('#form_body').css('display', '');
+		} else {
+			$('#form_body').css('display', 'none');
+		}
+	}
+
+	function isStepHiden(value){
+		if ($('#' + value).attr('checked')) {
+			$('#step_body').css('display', '');
+		} else {
+			$('#step_body').css('display', 'none');
+		}
+	}
+
+	function isEventHiden(value){
+		if ($('#' + value).attr('checked')) {
+			$('#event_body').css('display', '');
+		} else {
+			$('#event_body').css('display', 'none');
+		}
+	}
+
+	function isReadHiden(value){
+		if ($('#' + value).attr('checked')) {
+			$('#read_body').css('display', '');
+		} else {
+			$('#read_body').css('display', 'none');
+		}
+	}
+
+	function isFsHiden(value){
+		if ($('#' + value).attr('checked')) {
+			$('#fs_body').css('display', '');
+		} else {
+			$('#fs_body').css('display', 'none');
+		}
+	}
+
+	function drop(flowId, uFlowId, step){
+		var value = $('#wf_drop_export').val();
+		if (value != 0) {
+			var url = "index.php?app=wf&func=flow&action=use&modul=done&task=exportWord&target="+value+"&uFlowId="+uFlowId+"&flowId="+flowId+"&stepId="+step;
+			var html = $('#wf_export_total'),
+				temp = html.clone();
+				
+
+			temp.children('div').each(function(){
+				var th = $(this);
+
+				if (th.css('display') == 'none') {
+					th.remove();
+				} else {
+					th.find('table').each(function(){
+						$(this).attr('border', "1")
+					})
+				}
+			});
+
+			if (value == 'html' || value == 'word') {
+				var params = {
+					html: temp.attr('outerHTML')
+				}; 
+			} else {
+				var baseBody = 0, formBody = 0, stepBody = 0, eventBody = 0, readBody = 0, fsBody = 0;  
+				if ($('#base_body').css('display') == 'none') {
+					baseBody = 1;
+				}
+				if ($('#form_body').css('display') == 'none') {
+					formBody = 1;
+				}
+				if ($('#step_body').css('display') == 'none') {
+					stepBody = 1;
+				}
+				if ($('#event_body').css('display') == 'none') {
+					eventBody = 1;
+				}
+				if ($('#read_body').css('display') == 'none') {
+					readBody = 1;
+				}
+				if ($('#fs_body').css('display') == 'none') {
+					fsBody = 1;
+				}
+
+				var params = {
+					baseBody: baseBody,
+					formBody: formBody,
+					stepBody: stepBody,
+					eventBody: eventBody,
+					readBody: readBody,
+					fsBody: fsBody
+				}
+			}
+			var myMask = new Ext.LoadMask(Ext.getBody(), {
+				msg: lang('waiting'),
+				removeMask: true 
+			});
+			myMask.show();
+			Ext.Ajax.request({
+				url: url,
+				method: 'POST',
+				params: params,
+				success: function(r){
+					myMask.hide();
+					var result = Ext.decode(r.responseText);
+					var fids = "";
+					var baseUrl = "index.php?app=user&func=disk&action=mgrpub";
+					if(result.success === true){
+						delete(temp);
+						if(value == 'toDisk'){
+							if ($('#wf_export_fs').attr('checked')) {
+								var oTbody=fs_table.children.item(0);
+  								for(var i=1;i<oTbody.children.length;i++)
+  								{
+     								var oTR=oTbody.children.item(i);
+	          						fids+=oTR.children.item(3).innerHTML+",";
+  								}
+  								if(fids){
+  									baseUrl = "index.php?app=user&func=disk&action=mgrpub&special=yes&fids=" + fids;
+  								}
+							}
+							var dt = Ext.decode(result.msg);
+							var mtd = new Ext.MoveToDisk({
+								data: dt.file,
+								name: dt.name,
+								from: 'wfExport'
+							});
+							mtd.hide();
+							mtd.baseUrl = baseUrl;
+							//alert(mtd.baseUrl);
+							mtd.show();
+						}else{
+							ajaxDownload(result.msg);
+						}
+					}else{
+						delete(temp);
+						CNOA.msg.alert(result.msg, function(){});
+					}
+				}
+			})
+		}
+	}
+	
+	function setPageSet(dom, pageset){
+		var pageset = pageset;
+		var page = pageset.pageSize;
+		var width = 794;
+		var height = 1123;
+		//设置纸张大小
+		switch(page){
+			case 'a1page' :
+				if(pageset.pageDir == 'lengthways'){
+					width = 2245;
+					height = 3174;
+				}else{
+					width = 3174;
+					height = 2245;
+				}
+			break;
+			case 'a2page' :
+				if(pageset.pageDir == 'lengthways'){
+					width = 1587;
+					height = 2245;
+				}else{
+					width = 2245;
+					height = 1587;
+				}
+			break;
+			case 'a3page' :
+				if(pageset.pageDir == 'lengthways'){
+					width = 1123;
+					height = 1587;
+				}else{
+					width = 1587;
+					height = 1123;
+				}
+			break;
+			case 'a4page' :
+				if(pageset.pageDir == 'lengthways'){
+					width = 794;
+					height = 1123;
+				}else{
+					width = 1123;
+					height = 794;
+				}
+			break;
+			case 'a5page' :
+				if(pageset.pageDir =='lengthways'){
+					width = 559;
+					height = 794;
+				}else{
+					width = 794;
+					height = 559;
+				}
+			break;
+		}
+		
+		//设置边距大小
+		var up = Math.ceil(pageset.pageUp*3.4);
+		var down = Math.ceil(pageset.pageDown*3.4);
+		var left = Math.ceil(pageset.pageLeft*3.4);
+		var right = Math.ceil(pageset.pageRight*3.4);
+	
+		var padding = up+'px '+right+'px '+down+'px '+left+'px';
+			$(dom).parent().css('padding', padding);
+			$(dom).width(width-left-right);
+	}
+
+	//隐藏控件
+	$("input[type='hidden']").each(function(){
+		var undisplay = $(this).attr("undisplay");
+		if (undisplay) {
+			$("span[oname="+undisplay+"]").css('display','none');
+		}
+	})
+	
+</script>

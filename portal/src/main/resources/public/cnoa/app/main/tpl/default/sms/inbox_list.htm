@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.sms.inboxList");
+CNOA.main.sms.inboxList.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_main_sms", "app/main/scripts/cnoa.sms.js", function(){
+		CNOA_main_sms_inboxList = new CNOA_main_sms_inboxListClass();
+		Ext.getCmp(CNOA.main.sms.inboxList.parentID).add(CNOA_main_sms_inboxList.mainPanel);
+		Ext.getCmp(CNOA.main.sms.inboxList.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript("./app/main/scripts/sms_inboxList.js");
+?>

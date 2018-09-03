@@ -1,0 +1,22 @@
+<?php
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.contract.business.manageIndex");
+CNOA.contract.business.manageIndex.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_contract_business", "app/contract/scripts/cnoa.contract_business.js", function(){
+		CNOA_contract_business_manageIndex = new CNOA_contract_business_manageIndexClass();
+		Ext.getCmp(CNOA.contract.business.manageIndex.parentID).add(CNOA_contract_business_manageIndex.mainPanel);
+		Ext.getCmp(CNOA.contract.business.manageIndex.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/contract/scripts/business_manage.js"));
+?>

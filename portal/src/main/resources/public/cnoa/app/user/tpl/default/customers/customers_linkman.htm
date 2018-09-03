@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.customers.linkman");
+CNOA.user.customers.linkman.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function(){
+	loadScripts("sm_user_customers", "app/user/scripts/cnoa.customers.js", function(){
+		CNOA_user_customers_linkman = new CNOA_user_customers_linkmanClass();
+		Ext.getCmp(CNOA.user.customers.linkman.parentID).add(CNOA_user_customers_linkman.mainPanel);
+		Ext.getCmp(CNOA.user.customers.linkman.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/customers_common.js", "./app/user/scripts/customers_linkman.js"));
+?>

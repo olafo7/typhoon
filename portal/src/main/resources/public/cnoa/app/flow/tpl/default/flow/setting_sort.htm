@@ -1,0 +1,21 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.flow.flow.settingsort");
+CNOA.flow.flow.settingsort.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_flow_flow", "app/flow/scripts/cnoa.flow.js", function(){
+		CNOA_flow_flow_settingsort = new CNOA_flow_flow_settingsortClass();
+		Ext.getCmp(CNOA.flow.flow.settingsort.parentID).add(CNOA_flow_flow_settingsort.mainPanel);
+		Ext.getCmp(CNOA.flow.flow.settingsort.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/flow/scripts/flow_settingsort.js"));
+?>

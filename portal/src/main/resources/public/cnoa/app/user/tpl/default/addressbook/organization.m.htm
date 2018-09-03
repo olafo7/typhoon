@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=1">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="resources/font/m/font-glyphs/font-glyphs.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/scale.css">
+<link rel="stylesheet" type="text/css" href="app/wf/css/m/use/userData.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/iscroll5.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script src="scripts/jquery/sweetalert.min.js"></script>
+<script src="scripts/jquery/jquery.form.js"></script>
+<script src="scripts/m/datePicker/WdatePicker.js"></script>
+<script src="resources/scripts/m/scale.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="resources/scripts/m/popwin.js"></script>
+<script>
+var dynamicLoading = {
+  css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var link = document.createElement('link');
+      link.href = path+"?rnd="+Math.random();
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      head.appendChild(link);
+  },
+  js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.src = path+"?rnd="+Math.random();
+      head.appendChild(script);
+  }
+}
+dynamicLoading.js("app/user/scripts/m/addressbook/organization.js");
+dynamicLoading.css("app/user/css/m/addressbook/organization.css");
+</script>
+</head>
+
+<body>
+<div class="masking"></div>
+<div id="header" data-url="m.php?app=user&func=addressbook&action=default&task=loadPage&from=list&task=getDeptAddressBook">
+   <div class="dropdown clearfix center-block">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        组织架构
+        <span class="glyphicon glyphicon-triangle-bottom"></span>
+      </button>
+      <ul class="dropdown-menu dropdown" id="dropdown" aria-labelledby="dropdownMenu1">
+        <li><a id="organization" href="javascript:void(0);">组织架构</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a id="my" href="javascript:void(0);">我的</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a id="dept" href="javascript:void(0);">内部</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a id="common" href="javascript:void(0);">公共</a></li>
+      </ul>
+    </div>
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" data-fid='0' aria-hidden="true" id="btnBack"></span>
+</div>
+<div class="row" id="f_control">
+    <div class="col-xs-12">
+        <div class="form-group">
+          <input type="search" class="form-control search" placeholder="搜索" id="search">
+        </div>
+    </div>
+</div>
+<div id="wrapper">
+  <div id="scroller">
+    <!--*/人员选择器模态框 *-->
+    <div class="modal userDataModal" id="userDataModal" tabindex="-1" role="dialog" data-source="" data-checktype="" data-sid='1'>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <!--*/选择器头部 *-->
+          <!-- <div class="modal-header">
+            <div class="row search">
+              <div class="col-xs-12">
+                <input type="text" class="form-control input-m" id="search" placeholder="搜索">
+              </div>
+            </div>
+          </div> -->
+          <!--*/用户和部门 *-->
+          <div class="userDataWrapper" id="userDataWrapper">
+            <div class="userDataScroller" id="userDataScroller">
+              <div class="modal-body">
+                <ul class="list-group userDataGroup" id="userDataGroup">
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--*/岗位、职位选择器模态框 *-->
+    <div class="modal stationDataModal selector" id="stationDataModal" tabindex="-1" role="dialog" data-source="" data-checktype="" data-choicetype="">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <!--*/选择器头部 *-->
+          <div class="modal-header">
+            <span class="glyphicon glyphicon-chevron-left glyphiconLeft" id="stnClose" aria-hidden="true" data-dismiss="modal" aria-label="Close"></span>
+            <span class="choiceName">选择岗位</span>
+            <span class="glyphicon glyphicon glyphicon-ok glyphiconRight" id="stnOk" aria-hidden="true" data-dismiss="modal" aria-label="Close"></span>
+          </div>
+          <!--*/岗位 *-->
+          <div class="stationDataWrapper" id="stationDataWrapper">
+            <div class="stationDataScroller" id="stationDataScroller">
+              <div class="modal-body">
+                <ul class="list-group stationDataGroup" id="stationDataGroup">
+                  <li class="list-group-item stationList">
+                    <div class="name-box">
+
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="jingle_popup_mask"></div>
+
+<div id="loading_mask"></div>
+<!-- 用户详情 -->
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu">
+    <div class="face_info">
+        <span class="glyphicon glyphicon-chevron-left btn_back" aria-hidden="true">返回</span>
+        <div class="user_face center-block"><img src="file/common/face/default-face.jpg"></div>
+        <div class="user_common user_name"></div>
+        <div class="user_common user_grouping"></div>
+        <div class="user_common user_personSign"></div>
+        <span class="hide hide_user_id"></span>
+    </div>
+    <ul class="user_info">
+        <li class="about_user_mobile"><a href="javascript:void(0);" class="about_value"></a><span class="about_more">></span></li>
+        <li class="about_user_comphone"><a href="javascript:void(0);" class="about_value"></a><span class="about_more">></span></li>
+        <li class="about_user_email"><a href="javascript:void(0);" class="about_value"></a><span class="about_more">></span></li>
+        <li class="about_user_company"><span class="about_value"></span></li>
+    </ul>
+    <div class="relation">
+        <div class="relat_call"><a href="javascript:void(0);">快速拨号</a></div>
+        <div class="relat_note"><a href="javascript:void(0);">发信息</a></div>
+    </div>
+</nav>
+
+
+<!--/*Iscroll5* -->
+<script src="scripts/jquery/iscroll-probe.js"></script>
+</body>
+</html>

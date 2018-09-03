@@ -1,0 +1,173 @@
+<?php
+$data = $GLOBALS['project']['proj']['viewdetail']['baseInfo'];
+$color = 1;
+$data['attach'] = str_replace(array("openOfficeForView","openPdfForView"), array("top.openOfficeForView","top.openPdfForView"), $data['attach']);
+$data['attach'] = str_replace(array("javascript:ajaxDownload", "openOfficeForView","openPdfForView"), array("javascript:top.ajaxDownload", "top.openOfficeForView","top.openPdfForView"), $data['attach']);
+
+	foreach($data['progress'] as $v){
+	if($color == 2){
+		$class = "style='background-color:#EBEFF9'";
+		$color = 1;
+	}else{
+		$class = "style='background-color:#F0FFF0'";
+		$color = 2;
+	}
+		$baseInfo .= "
+		<tr>
+			<td nowrap align='left' width='120' class='TableContent'>进度：</td>
+
+		    <td nowrap align='left' class='TableData' width='180' colspan='3' {$class}>{$v['progress']}%</td>  
+			
+		</tr>
+		<tr>
+		    <td nowrap align='left' width='120' class='TableContent'>进度日志：</td>
+		
+		    <td class='TableData' width='180' class='TableData' colspan='3' {$class} >{$v['notes']}</td>  
+		</tr>
+		<tr>
+		    <td nowrap align='left' width='120' class='TableContent'>进度批注(审批)：</td>
+		
+		    <td class='TableData' width='180' class='TableData' colspan='3'  {$class}>{$v['endorse']}</td>  
+		</tr>
+		";
+	}
+print <<<CNOA
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="bodycolor" topmargin="5">
+
+<table class="TableBlock" width="650" align="center">
+
+  <tr>
+
+    <td nowrap class="TableHeader" colspan="6"><b>&nbsp;基本信息</b></td>
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">项目名称：</td>
+
+    <td nowrap align="left" class="TableData" width="180">{$data['name']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">项目编号：</td>
+
+    <td class="TableData" width="180">{$data['number']}</td>          
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">计划开始/结束时间：</td>
+
+    <td class="TableData" width="180">{$data['ptime']}</td>  	
+
+    <td nowrap align="left" width="120" class="TableContent">实际开始/结束时间：</td>
+
+    <td class="TableData" width="180" >{$data['ttime']}</td>         
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">项目计划花费天数：</td>
+
+    <td class="TableData" width="180">{$data['pday']}</td>  	
+
+    <td nowrap align="left" width="120" class="TableContent">项目实际花费天数：</td>
+
+    <td class="TableData" width="180" >{$data['tday']}</td>         
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">项目类型：</td>
+
+    <td class="TableData" width="180" >{$data['type']}</td>  
+
+    <td nowrap align="left" width="120" class="TableContent">项目状态：</td>
+
+    <td class="TableData" width="180">{$data['status']}</td>             
+
+  </tr>
+
+  <tr>
+
+  	<td nowrap align="left" width="120" class="TableContent">项目审批人：</td>
+
+    <td class="TableData" width="300" colspan="3">{$data['checkname']}</td>     
+
+  </tr>
+<!--
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">参与部门：</td>
+
+    <td class="TableData" width="300" colspan="3">{$data['deptname']}</td>    
+         
+  </tr>  
+-->
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">项目查看者：</td>
+
+    <td class="TableData" width="300" colspan="3">{$data['viewers']}</td>    
+         
+  </tr>  
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">项目描述：</td>
+
+    <td class="TableData" width="300" colspan="3">{$data['description']}</td>    
+         
+  </tr>  
+
+  <tr>
+
+    <td nowrap align="left" width="120" class="TableContent">项目总结：</td>
+
+    <td class="TableData" width="200" colspan="3">{$data['summary']}</td>    
+         
+  </tr> 
+  
+  <tr>
+  
+    <td nowrap align="left" width="120" class="TableContent">附件：</td>
+
+    <td class="TableData" width="200" colspan="3">{$data['attach']}</td>
+
+  </tr>
+  
+   <tr>
+
+    <td nowrap class="TableHeader" colspan="4"><b>&nbsp;进度日志</b></td>
+
+  </tr>
+	
+	{$baseInfo}
+	
+	</table>
+
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+
+</body>
+
+</html>
+CNOA;
+?>

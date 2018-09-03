@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script>
+var dynamicLoading = {
+    css: function(path){
+		var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.href = path+"?rnd="+Math.random();
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
+    },
+    js: function(path){
+		var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = path+"?rnd="+Math.random();
+        head.appendChild(script);
+    }
+}
+dynamicLoading.js("app/salary/scripts/m/mysalary.js");
+dynamicLoading.css("app/salary/css/m/mysalary.css");
+</script>
+</head>
+
+<body>
+<div id="header">我的薪酬
+<span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+</div>
+<div id="wrapper">
+    <div id="conter">
+        <button type="button" id="salary" class="btn btn-primary title center-block">我的工资</button>
+        <button type="button" id="welfare" class="btn btn-primary title center-block">我的福利</button>
+    </div>
+</div>
+<div class="modal fade" id="check" tabindex="-1" role="dialog" aria-labelledby="checkLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+        <h4 class="modal-title" id="checkLabel">验证密码</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" onsubmit="return false">
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">密码:</label>
+            <input type="password" name="password" id="password" class="form-control" id="recipient-name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="sub" class="btn btn-primary">验证密码</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

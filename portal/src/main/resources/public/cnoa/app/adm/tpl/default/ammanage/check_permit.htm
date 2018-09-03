@@ -1,0 +1,10 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.adm.ammanage.check");
+CNOA.adm.ammanage.check.parentID = "{$GLOBALS['app']['parentid']}";
+
+</script>
+CNOA;
+echo loadJavascript(array("./app/adm/scripts/ammanage_check.js"));
+?>

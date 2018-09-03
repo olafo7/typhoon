@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/sweetalert.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/sweetalert.min.js"></script>
+<!-- 滚动插件 -->
+<!-- <script src="scripts/jquery/iscroll5.js"></script> -->
+<script src="scripts/jquery/iscroll.js"></script>
+<!-- 图片插件 -->
+<script src="resources/scripts/m/scale.js"></script>
+<!-- 在线浏览 -->
+<script src="resources/scripts/m/popwin.js"></script>
+<script src="scripts/jquery/iospopwin.js"></script>
+<script>
+var dynamicLoading = {
+  css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var link = document.createElement('link');
+      link.href = path+"?rnd="+Math.random();
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      head.appendChild(link);
+  },
+  js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.src = path+"?rnd="+Math.random();
+      head.appendChild(script);
+  }
+}
+dynamicLoading.js("app/communication/scripts/m/inbox/checkEmail.js");
+dynamicLoading.css("app/communication/css/m/Inbox/check.css");
+</script>
+<script type="text/javascript">
+  var aa = "<?php echo $GLOBALS['aa']; ?>";
+  $(document).ready(function(){
+    $("#fid").val(aa);
+  })
+</script>
+</head>
+
+<body>
+<div id="header">
+    <span>查看邮件</span>
+    <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack">返回</span>
+    <span class="glyphicon glyphicon-align-justify btn-add-ico" data-toggle="modal" data-target="#menu" aria-hidden="true" id="btnAdd"></span>
+</div>
+<div id="wrapper">
+    <!-- <div id="scroller"> -->
+
+    <ul class="list-group">
+      <li class="list-group-item title"></li>
+      <li class="list-group-item">
+        <span class="opt"><span class="opt1">时间：</span><span class="time1"></span></span><br/>
+        <span class="opt"><span class="opt1">发件人：</span><span class="time"></span></span><br/>
+        <span class="opt"><span class="opt1">收件人：</span><span class="time"></span></span><br/>
+        <span class="opt"><span class="opt1">抄送：</span><span class="time"></span></span>
+
+      </li>
+      <li class="list-group-item cont">
+        
+      </li>
+      <div class="fs">
+        
+      </div>
+      <p style="width:100%;background-color:#ccc;height:1px"></p>
+    </ul>
+  
+    <input type="hidden" value="" id="fid">
+
+    <!-- </div -->
+</div>
+
+<!--% 图片在线预览 %-->
+<div class="imgzoom_pack" style="display:none;">
+  <div class="imgzoom_x"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+  <div class="imgzoom_img">
+    <img src="">
+  </div>
+</div>
+
+<!--菜单模态框-->
+<div class="modal fade" id="menu" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content tt">
+         <div class="modal-body">
+            <span class="menu_ada"><button type="button" class="btn btn-default btn-lg ab reply">回复邮件</button></span><br><br>
+            <span class="menu_ada"><button type="button" class="btn btn-default btn-lg ab forward">转发邮件</button></span><br><br>
+            <span class="menu_ada"><button type="button" class="btn btn-default btn-lg ab move">移动到...</button></span><br><br>
+            <span class="menu_ada"><button type="button" class="btn btn-default btn-lg ab cancel" data-dismiss="modal">取消</button></span>
+         </div>
+      </div>
+</div>
+<!--end 模态框-->
+
+</body>
+
+<!-- <script src="scripts/jquery/iscroll.fun.js"></script> -->
+</html>

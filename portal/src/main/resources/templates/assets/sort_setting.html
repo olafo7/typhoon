@@ -1,0 +1,12 @@
+<script language="JavaScript">
+    Ext.ns("CNOA.assets.base.sortSetting");
+    CNOA.assets.base.sortSetting.parentID = "docs-CNOA_MENU_ASSETS_SORTSETTING";
+
+    Ext.onReady(function() {
+        loadScripts("sm_assets_assets", "cnoa/app/assets/scripts/cnoa.assets.js", function(){
+            CNOA_assets_base_sortSetting = new CNOA_assets_base_sortSettingClass();
+            Ext.getCmp(CNOA.assets.base.sortSetting.parentID).add(CNOA_assets_base_sortSetting.mainPanel);
+            Ext.getCmp(CNOA.assets.base.sortSetting.parentID).doLayout();
+        });
+    });
+</script>

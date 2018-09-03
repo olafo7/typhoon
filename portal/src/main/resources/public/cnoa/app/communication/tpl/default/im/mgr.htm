@@ -1,0 +1,21 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.communication.im.mgr");
+CNOA.communication.im.mgr.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_communication_im", "app/communication/scripts/cnoa.im.js", function(){
+		CNOA_communication_im_mgr = new CNOA_communication_im_mgrClass();
+						
+		Ext.getCmp(CNOA.communication.im.mgr.parentID).add(CNOA_communication_im_mgr.mainPanel);
+		Ext.getCmp(CNOA.communication.im.mgr.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/communication/scripts/im_mgr.js"));
+?>

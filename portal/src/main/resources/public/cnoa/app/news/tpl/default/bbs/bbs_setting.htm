@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.news.bbs.setting");
+CNOA.news.bbs.setting.parentID    = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+    loadScripts("sm_news_news", "app/news/scripts/cnoa.news.js", function(){
+		CNOA_news_bbs_setting = new CNOA_news_bbs_settingClass();		
+		Ext.getCmp(CNOA.news.bbs.setting.parentID).add(CNOA_news_bbs_setting.mainPanel);
+		Ext.getCmp(CNOA.news.bbs.setting.parentID).doLayout();
+    });    
+});
+</script>
+CNOA;
+
+#echo loadJavascript("./app/news/scripts/bbs_setting.js");
+?>

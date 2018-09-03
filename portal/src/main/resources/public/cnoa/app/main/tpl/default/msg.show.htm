@@ -1,0 +1,25 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+<!--
+	Ext.Msg.show({
+		title : '{$lang['msg']['show_title']}',
+		modal : true,
+		msg : '{$content}',
+		width:400,
+		closable : false,
+		wait : true,
+		icon: Ext.MessageBox.WARNING,
+		animEl: 'regbutton',
+		fn : function(){
+
+		}
+	});
+	//Ext.Msg.buttonText.ok = "{$lang['msg']['alert_buttonText_ok']}";
+	//Ext.Msg.alert("{$lang['msg']['alert_title']}", "{$content}");
+//-->
+</script>
+
+CNOA;
+?>

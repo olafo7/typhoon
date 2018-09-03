@@ -1,0 +1,24 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.report.view_otherWf");
+CNOA.report.view_otherWf.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.report.view_otherWf.fromMerge = "{$GLOBALS['report']['fromMerge']}";
+CNOA.report.view_otherWf.search = '{$GLOBALS['report']['search']}';
+CNOA.report.view_otherWf.fromUser = '{$GLOBALS['report']['fromUser']}';
+CNOA.report.view_otherWf.uid = '{$GLOBALS['report']['uid']}';
+
+Ext.onReady(function() {
+	loadScripts("sm_report_wf", "app/report/scripts/cnoa.report.js", function(){
+		CNOA_report_view_otherWf = new CNOA_report_view_otherWfClass();
+		Ext.getCmp(CNOA.report.view_otherWf.parentID).add(CNOA_report_view_otherWf.mainPanel);
+		Ext.getCmp(CNOA.report.view_otherWf.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+##echo loadJavascript(array("./app/report/scripts/view_otherWf.js"));
+?>

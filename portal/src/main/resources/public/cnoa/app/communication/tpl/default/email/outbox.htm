@@ -1,0 +1,24 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.communication.email.index_outbox");
+CNOA.communication.email.index_outbox.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_communication_email", "app/communication/scripts/cnoa.email.js", function(){
+		CNOA_communication_email_index_outbox = new CNOA_communication_email_index_outboxClass();
+		Ext.getCmp(CNOA.communication.email.index_outbox.parentID).add(CNOA_communication_email_index_outbox.mainPanel);
+		Ext.getCmp(CNOA.communication.email.index_outbox.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+##echo loadJavascript(array("./app/communication/scripts/message_index_outbox.js"));
+
+?>

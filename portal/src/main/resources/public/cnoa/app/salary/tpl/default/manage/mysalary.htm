@@ -1,0 +1,101 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.ns("CNOA.salary.manage.mysalary");
+CNOA.salary.manage.mysalary.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_salary_salary", "app/salary/scripts/cnoa.salary.js", function(){
+		Ext.QuickTips.init();
+		Ext.form.Field.prototype.msgTarget = 'side';
+
+		//验证按钮执行方法
+		var loginbtnclick = function() {
+			if(form.getForm().isValid()) {
+				form.getForm().submit({
+					waitMsg: '正在验证',
+					success: function(r,j) {
+						win.destroy();
+						CNOA_salary_manage_mysalary = new CNOA_salary_manage_mysalaryClass();
+						Ext.getCmp(CNOA.salary.manage.mysalary.parentID).add(CNOA_salary_manage_mysalary.mainPanel);
+						Ext.getCmp(CNOA.salary.manage.mysalary.parentID).doLayout();
+					},
+					failure: function(){
+						Ext.Msg.alert("提示","验证密码错误",function(){
+							Ext.getCmp("password").focus('', 100);
+						});
+					}
+				});
+			}
+		}
+		//验证按钮
+		var loginbtn = new Ext.Button({
+			text: '验证',
+			handler: loginbtnclick
+		});
+		//密码
+		var password = new Ext.form.TextField({
+			inputType: 'password',
+			id: 'password',
+			name: 'password',
+			width: 150,
+			allowBlank: false,
+			blankText: '密码不能为空',
+			maxLength: 20,
+			maxLengthText: '密码不能超过20字符',
+			fieldLabel: '密　码',
+			listeners: {
+	            specialkey: function(f,e){
+	                    if (e.getKey() == e.ENTER) {
+	                        loginbtnclick();
+	                    }
+	            }
+	        }
+		});
+		//表单整合
+		var form = new Ext.form.FormPanel({
+			url: 'index.php?app=salary&func=manage&action=mysalary&task=checkPassword',
+			method: 'POST',
+			labelAlign: 'center',
+			labelWidth: 50,
+			border: false,
+			bodyBorder: false,
+			frame: true,
+			cls: 'loginform',
+			buttonAlign: 'center',
+			items: [password],
+			buttons: [loginbtn]
+		});
+		//显示窗体
+		var win = new Ext.Window({
+			title: '验证密码',
+			plain: true,
+			width: 250,
+			autoHeight: true,
+			resizable: false,
+			shadow: true,
+			modal: true,
+			closable: true,
+			animCollapse: true,
+			items: form,
+			listeners: {
+	            "show": function() {
+	                Ext.getCmp("password").focus('', 100); 
+	            },
+	            "close": function(){
+	            	parent.mainPanel.closeTab('CNOA_MENU_SALARY_MANAGE_MYSALARY');
+	            }
+        	}
+		});
+		win.show();
+	});
+});
+</script>
+
+
+CNOA;
+// echo loadJavascript(array("./app/salary/scripts/salary_manage_mysalary.js"));
+
+?>

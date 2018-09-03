@@ -1,0 +1,38 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.use_newfree_flowdesign");
+CNOA.wf.use_newfree_flowdesign.parentID = "{$GLOBALS['app']['parentid']}";
+CNOA.wf.use_newfree_flowdesign.flowType = "{$GLOBALS['app']['flowType']}";
+CNOA.wf.use_newfree_flowdesign.flowId 	= "{$GLOBALS['app']['flowId']}";
+CNOA.wf.use_newfree_flowdesign.uFlowId 	= "{$GLOBALS['app']['uFlowId']}";
+CNOA.wf.use_newfree_flowdesign.tplSort  = "{$GLOBALS['app']['tplSort']}";
+CNOA.wf.use_newfree_flowdesign.havePermit	= "{$GLOBALS['havePermit']}";
+CNOA.wf.use_newfree_flowdesign.action		= "{$GLOBALS['app']['action']}";
+Ext.onReady(function() {
+		loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+			CNOA_wf_use_newfree_flowdesign = new CNOA_wf_use_newfree_flowdesignClass();
+			Ext.getCmp(CNOA.wf.use_newfree_flowdesign.parentID).add(CNOA_wf_use_newfree_flowdesign.mainPanel);
+			Ext.getCmp(CNOA.wf.use_newfree_flowdesign.parentID).doLayout();
+
+			Ext.getCmp(CNOA.wf.use_newfree_flowdesign.parentID).on("destroy", function(){
+				//刷新公文拟稿列表
+				try{
+					CNOA_odoc_send_apply.store.reload();
+				}catch(e){}
+				//刷新公文收文列表
+				try{
+					CNOA_odoc_receive_apply.store.reload();
+				}catch(e){}
+				try{
+					CNOA_wf_use_newfree_flowdesign.editor.destroy();
+				}catch(e){}
+			});
+		});
+	});
+</script>
+CNOA;
+### echo loadJavascript(array("./app/wf/scripts/use_newfree_flowdesign.js"));
+?>

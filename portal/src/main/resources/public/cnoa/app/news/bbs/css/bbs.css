@@ -1,0 +1,498 @@
+body{
+	font-family: "Microsoft Yahei";
+	font-size: 15px;
+}
+a:hover,a:link,a:visited,a:active{
+	text-decoration:none;
+}
+em{
+	color: red;
+	font-style: normal;
+}
+.background{
+	background-color: #F7F7F7;
+}
+.rightDiv{
+	width: 19.5%; 
+	height: 500px; 
+	padding-left: 15px; 
+	padding-right: 15px;
+}
+.leftDiv{
+	width: 80.5%;
+}
+.top{
+	border-top: 5px solid #3677AE;
+	font-size: 15px;
+	line-height: 37px;
+	color: #6075A3;
+	padding-left: 30px;
+	height: 42px;
+	border-bottom: 1px solid #E8E8E8;
+}
+.left{
+	border-left: 1px solid #E8E8E8;
+}
+.listHeight{
+	height: 42px;
+}
+.bottom{
+	border-bottom: 1px solid #E8E8E8;
+}
+img.head{
+	width: 126px;
+	height: 126px;
+	position: relative;
+	left: 50%;
+	margin-left: -63px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	border-radius: 50%;
+}
+p.center{
+	text-align: center;
+	font-size: 30px;
+}
+.white{
+	background-color: #fff;
+}
+
+.marginTop{
+	margin-top: 30px;
+}
+.borderDiv{
+	padding: 15px 40px;
+	height: 112px;
+	width: 50%;
+	float: left;
+}
+.borderDiv img{
+	width: 80px;
+	height: 80px;
+	float: left;
+	margin-right: 20px;
+}
+.borderDiv .title{
+	margin-top: 6px;
+	font-size: 16px;
+	height: 18px;
+}
+.borderDiv .title a{
+	color: #3677AE;
+}
+.borderDiv .info{
+	margin-top: 10px;
+	font-size: 14px;
+	color: #F39700;
+	height: 16px;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+}
+.borderDiv .rt{
+	margin-top: 10px;
+	font-size: 14px;
+	color: #888889;
+	height: 16px;
+}
+.a1,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a9{
+	width: 23px;
+	height: 18px;
+	line-height: 18px;
+	font-size: 12px;
+	margin: 19px 15px 19px 30px;
+	color: #fff;
+	padding-left: 6px;
+	float: left;
+}
+.a1{
+	background-image: url("../images/a1.jpg");
+}
+.a2,.a3{
+	background-image: url("../images/a2.jpg");
+}
+.a4,.a5,.a6,.a7,.a8,.a9{
+	background-image: url("../images/a3.jpg");
+}
+.bbbbbb{
+	height: 56px;
+	line-height: 56px;
+	font-size: 15px;
+	display: block;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+}
+.bbbbbb a{
+	color: #595757;
+}
+.listHeight2{
+	height: 56px;
+}
+span.center{
+	text-align: center;
+	line-height: 42px;
+	height: 42px;
+	font-size: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #595757;
+	display: block;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+}
+span.center a{
+	color: #595757;
+	display: block;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+}
+span.center.red{
+	color: red;
+}
+span.center.aaaa{
+	color: #717071
+}
+span.center.title{
+	color: #9F9FA0;
+}
+.btn{
+	border-radius: 0;
+}
+.btn-lg{
+	font-size: 15px;
+	height: 46px;
+	  line-height: 24px;
+}
+.topic, .list{
+	padding: 20px 10px;
+	border: 1px solid #B4B5B5;
+	background-color: #fff;
+	margin: 2px;
+	margin-bottom: 11px;
+}
+.list{
+	background-color: #FEFEFE;
+	min-height: 900px;
+}
+.topic .nav, .list .nav, .post .nav{
+	height: 46px;
+	line-height: 46px;
+	margin-left: 10px;
+	float: left;
+	color: #717071;
+}
+.nav a{
+	color: #717071;
+}
+.topic .title{
+	font-size: 20px;
+	color: #3677AE;
+	font-weight: bold;
+	border-top: 5px solid #3677AE;
+	border-bottom: 1px solid #B4B5B5;
+	width: 100%;
+	text-align: center;
+	height: 55px;
+	line-height: 50px;
+	margin-top: 20px;
+	margin-bottom: 6px;
+}
+.topicLeft{
+	width: 15%;
+	float: left;
+}
+.topicRight{
+	width: 85%;
+	float: left;
+}
+.topicRight .posttime{
+	height: 42px;
+	line-height: 42px;
+	font-size: 14px;
+	color: #888889;
+	padding-right: 10%;
+}
+.topicRight .posttime .rt{
+	float: right;
+}
+.topicRight .info{
+	border-top: 1px dashed #C9C9CA;
+	border-bottom: 1px dashed #C9C9CA;
+	padding-top: 28px;
+	padding-bottom: 28px;
+	color: #595757;
+	font-size: 15px;
+	min-height: 170px;
+}
+
+.topicRight form input.send, .post form input.send{
+	width: 112px;
+	height: 44px;
+	background-color: #F39700;
+	border: none;
+	float: right;
+	margin-top: 5px;
+	color: #fff;
+}
+.leftButton{
+	height: 46px;
+	float: left;
+	margin-right: 10px;
+	font-size: 15px;
+}
+.reply, .myReply, .post{
+	padding: 20px 10px;
+	border: 1px solid #B4B5B5;
+	background-color: #fff;
+	margin: 2px;
+}
+.post{
+	background-color: #F7F7F7;
+}
+.myReply{
+	min-height: 518px;
+	padding-top: 40px;
+}
+.line{
+	height: 1px;
+	border-bottom: 1px solid #B4B5B5;
+	margin: 20px 0;
+}
+.topicHead{
+	left: 50%;
+	width: 150px;
+	margin-left: -80px;
+	position: relative;
+}
+.topicHead .name{
+	font-size: 18px;
+	color: #EB6000;
+	height: 42px;
+	margin-bottom: 20px;
+}
+.topicHead .userInfo{
+	font-size: 12px;
+	color: #888889;
+	margin-top: 20px;
+}
+.topicHead img{
+	width: 150px;
+	height: 150px;
+}
+.list .listHead{
+	border-top: 5px solid #3677AE;
+	border-bottom: 1px solid #DCDCDD;
+	margin-top: 15px;
+	height: 42px;
+	text-align: center;
+	font-size: 15px;
+	line-height: 37px;
+}
+.list .listInfo{
+	border-bottom: 1px solid #DCDCDD;
+	height: 60px;
+	text-align: center;
+	font-size: 15px;
+	line-height: 60px;
+}
+.list .listInfo div{
+	width: 12%;
+	height: 60px;
+	float: left;
+	font-size: 12px;
+	color: red;
+}
+.list .listInfo div .span1{
+	height: 30px;
+	display: block;
+	line-height: 40px;
+}
+.list .listInfo div .span2{
+	height: 30px;
+	display: block;
+	line-height: 20px;
+}
+.list .type1{
+	width: 40%;
+	float: left;
+	display: block;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+}
+.list .type2{
+	width: 12%;
+	float: left;
+	display: block;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+}
+.list .type3{
+	width: 12%;
+	float: left;
+	display: block;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+  	text-align: left;
+  	padding-left: 10px;
+}
+.list .type3 img{
+	width: 30px;
+	height: 30px;
+}
+.list .listHead .type2{
+	border-left: 1px solid #DCDCDD;
+}
+.page {
+	text-align:center;
+	clear:both;
+	padding-top: 12px;
+}
+.page a {
+	border:1px solid #666;
+	padding:4px 8px;
+	margin:0 2px;
+	color:#3b6ea5;
+	text-decoration:none;
+}
+.page a:hover,.page span.me {
+	color:#fff;
+	border:1px solid #337ab7;
+	background:#337ab7;
+	text-decoration:none;
+}
+.page span.disabled {
+	border:1px solid #ccc;
+	padding:4px 8px;
+	margin:0 2px;
+	color:#ccc;
+}
+.page span.me {
+	padding:4px 8px;
+	margin:0 2px;
+}
+.type1 a{
+	color: #595757 !important;
+}
+.type1 a.c1{
+	color: #E50011 !important;
+}
+.type1 a.c2, a.c3{
+	color: #F39700 !important;
+}
+.red{
+	color: #E50011 !important;
+}
+.yellow{
+	color: #F39700;
+}
+.table{
+	text-align: center;
+	border-top: 5px solid #3677AE;
+	margin-top: 20px;
+}
+.tr1{
+	height: 74px;
+}
+.table .tr1 .td1{
+	width: 113px;
+	line-height: 53px;
+}
+.table .tr1 .td2{
+	padding-top: 20px;
+}
+.table td.td3{
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+div.search{
+	margin-top: 20px;
+	height: 48px;
+	font-size: 15px;
+	line-height: 46px;
+	color: #717071;
+	overflow: hidden;
+}
+div.search .nav{
+	position: absolute;
+	top: 0;
+	left: 30px;
+}
+form input.search{
+	border-radius: 0;
+	width: 530px !important;
+	margin-right: 3px;
+	background-image: url("../images/search.jpg");
+	background-repeat: no-repeat;
+	background-position: 15px 11px;
+	padding-left: 55px;
+	margin-left: 25%;
+}
+form input.submit{
+	width: 77px !important;
+	margin-right: 30px;
+}
+.searchResultTop{
+	padding-bottom: 15px;
+	border-bottom: 1px solid #DCDCDD;
+	margin-bottom: 35px;
+}
+.searchResult{
+	width: 80%;
+	margin-bottom: 35px;
+	margin-left: 20px;
+}
+.searchResult span{
+	display: block;
+	font-size: 14px;
+	margin-top: 6px;
+}
+.searchResult span.span1{
+	font-size: 20px;
+}
+.searchResult span.span2{
+	color: #888889;
+}
+.searchResult span.span3{
+	color: #3E3A39
+}
+.searchHistory{
+	border-left: 1px solid #DCDCDD;
+	padding: 60px;
+	font-size: 18px;
+}
+.searchHistory .link{
+	margin-top: 6px;
+}
+.searchHistory .link a{
+	text-decoration:underline;
+}
+.headButtonL, .headButtonR{
+	border-radius: 4px;
+	width: 80%;
+	max-width: 100px;
+}
+.headButtonL{
+	float: right;
+	margin-right: 10px;
+}
+.headButtonR{
+	margin-left: 10px;
+}
+#clearHistory{
+	color: #9F9FA0;
+	text-decoration:underline;
+}
+.friendLink{
+	padding: 10px 30px;
+	min-height: 80px;
+}
+.friendLink a{
+	color: #B4B5B5;
+	margin-right: 10px;
+}

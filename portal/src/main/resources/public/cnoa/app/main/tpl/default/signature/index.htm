@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.main.signature");
+CNOA.main.signature.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_main_signature", "app/main/scripts/cnoa.signature.js", function(){
+		CNOA_main_signature = new CNOA_main_signatureClass();
+
+		Ext.getCmp(CNOA.main.signature.parentID).add(CNOA_main_signature.mainPanel);
+		Ext.getCmp(CNOA.main.signature.parentID).doLayout();
+	});
+});
+</script>
+CNOA;
+##echo loadJavascript("./app/main/scripts/signature_graph.js");
+##echo loadJavascript("./app/main/scripts/signature_index.js");
+
+?>

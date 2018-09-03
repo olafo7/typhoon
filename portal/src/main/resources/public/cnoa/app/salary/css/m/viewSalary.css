@@ -1,0 +1,220 @@
+body,h1, h2, h3, h4, h5,p,ul,li{
+    font-family:"NotoSans CJK","Microsoft YaHei","Proxima Nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+ul {
+    text-decoration: none; 
+    list-style-type: none;
+}
+
+a,a:hover,a:link,a:visited {
+    list-style-type: none;
+    text-decoration: none; 
+}
+
+/*header content*/
+#header {
+	position: relative;
+	width: 100%;
+	height: 52px;
+	text-align: center;
+	line-height: 52px;
+	background-color: #4A78BB;
+	color: #FFFFFF;
+	z-index: 1;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*wrapper content*/
+#wrapper {
+	position:absolute; 
+    top:52px; 
+    bottom:0px; 
+    left:0;
+    width:100%;
+    overflow:auto;
+}
+
+/*table*/
+table {
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0;
+    width: 100%;    
+}
+
+.bordered {
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px #ccc; 
+    -moz-box-shadow: 0 1px 1px #ccc; 
+    box-shadow: 0 1px 1px #ccc;
+    font-size: 12px;
+}
+
+.bordered tr:hover {
+    background: #fbf8e9;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;     
+}    
+    
+.bordered td, .bordered th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    text-align: center;
+    width: 5%;
+    height: 50px;
+}
+
+.bordered tr {
+    height: 30px !important;
+}
+
+.bordered th {
+    background-color: #dce9f9;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+    background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:    -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:     -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:      -o-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:         linear-gradient(top, #ebf3fc, #dce9f9);
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+    border-top: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+}
+
+.bordered td:first-child, .bordered th:first-child {
+    border-left: none;
+}
+
+.bordered th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+
+.bordered th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+.bordered th:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.bordered tr:last-child td:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+
+.bordered td:last-child {
+    width: 6%;
+}
+
+.opt {
+    display: none;
+}
+
+.opt td {
+    border-left: none;
+}
+
+.enter {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+/**
+ *底部菜单
+**/
+#jingle_popup .btn{
+    width: 100%;
+    padding: 8px 12px;
+    margin-top: 8px;
+}
+#jingle_popup {
+    background-color: #eef3f3;
+    color: #222;
+    -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.6);
+}
+#jingle_popup {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 98;
+    min-height: 50px;
+}
+#jingle_popup_mask,
+#jingle_popup_mask2 {
+    display: none;
+    position: absolute;
+    z-index: 90;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+}
+#jingle_popup_mask,
+#jingle_popup_mask2 {
+    background-color: #222;
+}
+#jingle_popup{
+    bottom:0px;
+    left:0px;
+    right:0px;
+    display:none;
+}
+#jingle_popup_mask,
+#jingle_popup_mask2{
+    opacity:0.3;
+    display:none;
+}
+
+#jingle_popup_mask2 {
+    z-index: 100;
+}
+.actionsheet {
+    display: -webkit-box;
+    display: box;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    padding: 10px;
+}
+.actionsheet > button {
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    margin-top: 8px;
+    display: block;
+    width: 100%;
+}
+
+#btnBack {
+    left: 20px;
+    position: fixed;
+    top: 18px;
+}
+
+
+.jconfirm .jconfirm-box div.content {
+    text-align: center;
+    padding: 30px 15px 30px;
+}

@@ -1,0 +1,23 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.ns("CNOA.jxc.stock.chuku");
+CNOA.jxc.stock.chuku.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_jxc_mgr", "app/jxc/scripts/cnoa.jxc.js", function(){
+		CNOA_jxc_stock_chuku = new CNOA_jxc_stock_chukuClass();
+		Ext.getCmp(CNOA.jxc.stock.chuku.parentID).add(CNOA_jxc_stock_chuku.mainPanel);
+		Ext.getCmp(CNOA.jxc.stock.chuku.parentID).doLayout();
+	});
+});
+</script>
+
+
+CNOA;
+###echo loadJavascript(array("./app/jxc/scripts/jxc_stock_chuku.js"));
+
+?>

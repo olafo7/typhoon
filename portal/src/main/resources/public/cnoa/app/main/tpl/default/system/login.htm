@@ -1,0 +1,20 @@
+<?php
+print <<<CNOA
+
+<script language="javascript">
+Ext.namespace("CNOA.main.system.login");
+CNOA.main.system.login.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_main_system", "app/main/scripts/cnoa.system.js", function(){
+		CNOA_main_system_login = new CNOA_main_system_login_Class();
+		Ext.getCmp(CNOA.main.system.login.parentID).add(CNOA_main_system_login.mainPanel).doLayout();
+		Ext.getCmp(CNOA.main.system.login.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+### echo loadJavascript("./app/main/scripts/system_login.js");
+?>

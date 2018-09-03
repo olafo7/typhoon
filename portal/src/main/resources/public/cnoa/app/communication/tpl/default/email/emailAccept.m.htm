@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<!-- <link rel="stylesheet" type="text/css" href="resources/css/m/iosOverlay.css"> -->
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/sweetalert.min.js"></script>
+<!-- <script src="scripts/jquery/spin.min.js"></script>
+<script src="scripts/jquery/iosOverlay.js"></script> -->
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script>
+var dynamicLoading = {
+  css: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var link = document.createElement('link');
+      link.href = path+"?rnd="+Math.random();
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      head.appendChild(link);
+  },
+  js: function(path){
+    var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.src = path+"?rnd="+Math.random();
+      head.appendChild(script);
+  }
+}
+dynamicLoading.js("app/communication/scripts/m/inbox/acceptEmail.js");
+dynamicLoading.css("app/communication/css/m/Inbox/acceptMail1.css");
+</script>
+<script type="text/javascript">
+</script>
+</head>
+
+<body>
+<div id="header">
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default btn_not_email email">未读邮件</button>
+    <button type="button" class="btn btn-default btn_have_email email">已读邮件</button>
+    <!-- <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#" class="tit">未读邮件</a></li>
+      <li role="presentation"><a href="#" class="tit">已读邮件</a></li>
+    </ul> -->
+  </div>
+  
+  <span class="glyphicon glyphicon-chevron-left btn-back-ico" aria-hidden="true" id="btnBack"></span>
+  <span class="glyphicon glyphicon-plus btn-add-ico" aria-hidden="true" id="btnAdd"></span>
+</div>
+
+<div id="content">
+    <div id="hea-con">
+            <!--图标-->
+            <input type="search" class="input-medium search-query" id="search" placeholder="搜索">
+    </div>
+    <div class="line"></div>
+    <div class="checkall">
+      <input type="checkbox" id="all"><span class="allcss">全选邮件</span>
+    </div>
+    <!--info-->
+    <div id="wrapper">
+      <div id="scroller">
+        <div id="pullDown">
+            <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+        </div>
+
+        <div id="main"> 
+        </div>
+
+      <div id="pullUp">
+          <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+      </div>
+      <div class="stop-label">已加载完成，不要再滚动了...</div>
+    </div>
+</div>
+
+<!--footer-->
+<div id="footer">
+  <div class="check-foo">
+    <input type="checkbox" id="all">
+  </div>
+  <div class="button">
+    <button type="button" class="btn btn-default opt hasread">标为已读</button>
+    <button type="button" class="btn btn-default opt move">移动到...</button>
+    <button type="button" class="btn btn-default opt delete">删除</button>
+  </div>
+</div>
+<div id="loading_mask"></div>
+</body>
+<!--%以下js文件必须在DOM加载完成之后再引用进来-->
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="scripts/jquery/iscroll.fun.js"></script>
+</html>
+  

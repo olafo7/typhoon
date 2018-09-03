@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title><?php echo $GLOBALS['SERVERNAME'];?></title>
+<link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/font/m/font-glyphs/font-glyphs.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jquery-confirm.min.css">
+<link rel="stylesheet" type="text/css" href="app/user/css/m/disk/disk.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/scale.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/m/awesomeLoading.css">
+<link rel="stylesheet" type="text/css" href="resources/css/m/jNotify.jquery.css">
+<script src="scripts/jquery/jquery-2.1.1.min.js"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/jquery/jquery-confirm.min.js"></script>
+<script src="scripts/jquery/jquery.form.js"></script>
+<script src="resources/scripts/m/showLoading.js"></script>
+<script src="resources/scripts/m/jNotify.jquery.js"></script>
+<script src="scripts/jquery/prettify.js"></script>
+<script src="scripts/jquery/custom.js"></script>
+<script src="resources/scripts/m/scale.js"></script>
+<script src="scripts/jquery/iospopwin.js"></script>
+<script src="app/user/scripts/m/disk/disk.js?ran=18"></script>
+</head>
+
+<body>
+<div id="header">
+	<span>我的硬盘</span>
+	<botton type="button" id="btnBack" class="btn btn-primary btn-back-ico" aria-label="Justify">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  </botton>
+	<button type="button" class="btn btn-primary btn-add-ico" id="btn_actionsheet" aria-label="Justify"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
+</div>
+<div class="btn-group btn-group-justified btn-group-nav" role="group" aria-label="Justified button group">
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" id="searchModal" data-toggle="modal" data-target="#searchFlieAndFolder"><span class="fs1" aria-hidden="true" data-icon="U"></span></button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" id="uploadModal" data-toggle="modal" data-target="#upload"><span class="fs1" aria-hidden="true" data-icon="&#xe070;"></span></button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" id="newFolderModal" data-toggle="modal" data-target="#newFolder"><span class="fs1" aria-hidden="true" data-icon="o"></span></button>
+  </div>
+</div>
+<div id="wrapper">
+	<div id="scroller">
+		<div id="pullDown">
+			<span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+		</div>
+		<div class="row diskFile">
+			<div class="col-xs-12" id="diskFileContent">
+        <!--div class="panel">
+          <header class="panel-heading">
+            <span class="title">
+              <span class="icon ico-pdf"></span>
+              <span class="name-box dir-box">
+                <div class="name">img-31acf556abb540dbe2c34394e52da045</div>
+                <div class="info">
+                  <span>52.5KB</span>
+                  <span>2015-07-07 10:35:09</span>
+                </div>
+              </span>
+              <span class="glyphicon glyphicon-collapse-down enter"></span>
+            </span>
+          </header>
+          <div class="panel-body">
+            <botton type="button" class="btn btn-xs btn-info btnBrowse">浏览</botton>
+            <a href="" target="_blank" type="button" class="btn btn-xs btn-success btnDownload">下载</a>
+            <button type="button" class="btn btn-xs btn-danger btnDel">删除</button>
+            <button type="button" class="btn btn-xs btn-default btnRenameModal" data-toggle="modal" data-target="#rename">重命名</button>
+          </div>
+        </div-->
+			</div>
+		</div>
+		<div id="pullUp">
+			<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+		</div>
+	</div>
+</div>
+
+<!--% 图片在线预览 %-->
+<div class="imgzoom_pack">
+  <div class="imgzoom_x"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+  <div class="imgzoom_img">
+    <img src=""/>
+  </div>
+</div>
+
+<!--% 底部菜单 %-->
+<div id="jingle_popup" class="">
+    <div class="actionsheet">
+      <botton class="btn btn-primary btn-popup" id="user_disk" role="button">我的硬盘</botton>
+      <botton class="btn btn-primary btn-popup" id="disk_public" role="button">公共硬盘</botton>
+      <button class="btn btn-danger" id="btn-cancel">取消</button>
+    </div>
+</div>
+<div id="jingle_popup_mask"></div>
+<input type="hidden" id="nowPage" value="0"><!--页面标记,设置当前目录id-->
+<input type="hidden" id="backPage"><!--上一级目录id-->
+<!--模态框新建文件夹-->
+<div class="modal fade" id="newFolder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog my-modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">为新文件夹起个名吧</h5>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-xs-12">
+      			<div class="form-group">
+	    			  <input type="text" id="folderName" class="form-control" placeholder="请输入名称">
+      			</div> 
+      		</div>
+      	</div>
+		  <div class="row">
+	      	<div class="col-xs-6">
+	      		<button type="button" data-dismiss="modal" aria-label="Close" id="btnBuild" class="btn btn-primary btn-m">创建</button>
+	      	</div>
+	        <div class="col-xs-6">
+	       		<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default btn-m">取消</button>
+	        </div>
+	    </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--模态框搜索文件-->
+<div class="modal fade" id="searchFlieAndFolder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog my-modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">查询</h5>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-xs-12">
+      			<div class="form-group">
+	    			<input type="text" id="fileName" class="form-control" placeholder="请输入关键字">
+      			</div>
+      		</div>
+      	</div>
+		<div class="row">
+	      	<div class="col-xs-6">
+	      		<button type="button" data-dismiss="modal" aria-label="Close" id="btnSearch" class="btn btn-primary btn-m">确定</button>
+	      	</div>
+	        <div class="col-xs-6">
+	       		<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default btn-m">取消</button>
+	        </div>
+	    </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--模态框上传文件-->
+<div class="modal fade" id="upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog my-modal-dialog">
+    <div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">上传文件</h5>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="form-group">
+						<input type="file" id="Filedata" name="Filedata" class="form-control default">
+					</div>
+				</div>
+			</div>
+		<div class="row">
+		  	<div class="col-xs-6">
+		  		<button type="button" data-dismiss="modal" aria-label="Close" id="btnUpload" class="btn btn-primary btn-m">确定</button>
+		  	</div>
+		    <div class="col-xs-6">
+		   		<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default btn-m">取消</button>
+		    </div>
+		</div>
+		</div>
+    </div>
+  </div>
+</div>
+<!--模态框重命名-->
+<div class="modal fade" id="rename" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog my-modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">重命名</h5>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-xs-12">
+      			<div class="form-group">
+      				<input type="hidden" id="fid" value="">
+	    			  <input type="text" id="newName" class="form-control" placeholder="新的名字">
+      			</div>
+      		</div>
+      	</div>
+		<div class="row">
+	      	<div class="col-xs-6">
+	      		<button type="button" data-dismiss="modal" aria-label="Close" id="btnRename" class="btn btn-primary btn-m">确定</button>
+	      	</div>
+	        <div class="col-xs-6">
+	       		<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default btn-m">取消</button>
+	        </div>
+	    </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="loading_mask" style="display: none;"></div>
+</body>
+<!--%这两个js文件必须在DOM加载完成之后再引用进来-->
+<script src="scripts/jquery/iscroll.js"></script>
+<script src="scripts/jquery/iscroll.fun.js"></script>
+</html>

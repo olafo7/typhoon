@@ -1,0 +1,19 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.main.exsms.linkman");
+CNOA.main.exsms.linkman.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_main_exsms", "app/main/scripts/cnoa.exsms.js", function(){
+		CNOA_main_exsms_linkman = new CNOA_main_exsms_linkmanClass();
+		Ext.getCmp(CNOA.main.exsms.linkman.parentID).add(CNOA_main_exsms_linkman.mainPanel);
+		Ext.getCmp(CNOA.main.exsms.linkman.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript("./app/main/scripts/exsms_linkman.js");
+?>

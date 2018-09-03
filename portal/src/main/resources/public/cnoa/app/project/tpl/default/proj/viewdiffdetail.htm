@@ -1,0 +1,491 @@
+<?php
+$all = $GLOBALS['project']['proj']['event']['viewdiffdetail'];
+
+if($all['type'] == 1){
+	$before = $all[0];
+	$after  = $all[1];
+	
+	$info = "
+		<tr>
+
+		    <td nowrap class='TableHeader' colspan='6'><b>&nbsp;修改前信息</b></td>
+		
+		  </tr>
+		
+		  <tr>
+		
+		  	<td nowrap align='left' width='120' class='TableContent'>项目名称：</td>
+		
+		    <td nowrap align='left' class='TableData' width='180'>{$before['name']}</td>  
+		
+		    <td nowrap align='left' width='120' class='TableContent'>项目编号：</td>
+		
+		    <td class='TableData' width='180' align='left'>{$before['number']}</td>          
+		
+		  </tr>
+		
+		  <tr>
+		
+		  	<td nowrap align='left' width='120' class='TableContent'>计划开始/结束时间：</td>
+		
+		    <td class='TableData' width='180' align='left'>{$before['ptime']}</td>  	
+		
+		    <td nowrap align='left' width='120' class='TableContent'>实际开始/结束时间：</td>
+		
+		    <td class='TableData' width='180' align='left' >{$before['ttime']}</td>         
+		
+		  </tr>
+		
+		  <tr>
+		
+		  	<td nowrap align='left' width='120' class='TableContent'>项目计划花费天数：</td>
+		
+		    <td class='TableData' width='180' align='left'>{$before['pday']}</td>  	
+		
+		    <td nowrap align='left' width='120' class='TableContent'>项目实际花费天数：</td>
+		
+		    <td class='TableData' width='180'  align='left'>{$before['tday']}</td>         
+		
+		  </tr>
+		
+		  <tr>
+		
+		  	<td nowrap align='left' width='120' class='TableContent'>项目类型：</td>
+		
+		    <td class='TableData' width='180' align='left' >{$before['type']}</td>  
+		
+		    <td nowrap align='left' width='120' class='TableContent'>项目状态：</td>
+		
+		    <td class='TableData' width='180' align='left'>{$before['status']}</td>             
+		
+		  </tr>
+		
+		  <tr>
+		
+		    <td nowrap align='left' width='120' class='TableContent'>参与部门：</td>
+		
+		    <td class='TableData' width='300' colspan='3'>{$before['deptname']}</td>    
+		         
+		  </tr>  
+		
+		  <tr>
+		
+		    <td nowrap align='left' width='120' class='TableContent'>项目查看者：</td>
+		
+		    <td class='TableData' width='300' colspan='3'>{$before['viewers']}</td>    
+		         
+		  </tr>  
+		
+		  <tr>
+		
+		    <td nowrap align='left' width='120' class='TableContent'>项目描述：</td>
+		
+		    <td class='TableData' width='300' colspan='3'>{$before['description']}</td>    
+		         
+		  </tr>  
+		  
+		<tr>
+
+		    <td nowrap class='TableHeader' colspan='6'><b>&nbsp;修改后信息</b></td>
+		
+		  </tr>
+		
+		  <tr>
+		
+		  	<td nowrap align='left' width='120' class='TableContent'>项目名称：</td>
+		
+		    <td nowrap align='left' class='TableData' width='180'>{$after['name']}</td>  
+		
+		    <td nowrap align='left' width='120' class='TableContent'>项目编号：</td>
+		
+		    <td class='TableData' align='left' width='180'>{$after['number']}</td>          
+		
+		  </tr>
+		
+		  <tr>
+		
+		  	<td nowrap align='left' width='120' class='TableContent'>计划开始/结束时间：</td>
+		
+		    <td class='TableData' width='180' align='left'>{$after['ptime']}</td>  	
+		
+		    <td nowrap align='left' width='120' class='TableContent'>实际开始/结束时间：</td>
+		
+		    <td class='TableData' width='180'  align='left'>{$after['ttime']}</td>         
+		
+		  </tr>
+		
+		  <tr>
+		
+		  	<td nowrap align='left' width='120' class='TableContent'>项目计划花费天数：</td>
+		
+		    <td class='TableData' width='180' align='left'>{$after['pday']}</td>  	
+		
+		    <td nowrap align='left' width='120' class='TableContent'>项目实际花费天数：</td>
+		
+		    <td class='TableData' width='180' align='left' >{$after['tday']}</td>         
+		
+		  </tr>
+		
+		  <tr>
+		
+		  	<td nowrap align='left' width='120' class='TableContent'>项目类型：</td>
+		
+		    <td class='TableData' width='180'  align='left'>{$after['type']}</td>  
+		
+		    <td nowrap align='left' width='120' class='TableContent'>项目状态：</td>
+		
+		    <td class='TableData' width='180' align='left'>{$after['status']}</td>             
+		
+		  </tr>
+		
+		  <tr>
+		
+		    <td nowrap align='left' width='120' class='TableContent'>参与部门：</td>
+		
+		    <td class='TableData' width='300' colspan='3'>{$after['deptname']}</td>    
+		         
+		  </tr>  
+		
+		  <tr>
+		
+		    <td nowrap align='left' width='120' class='TableContent'>项目查看者：</td>
+		
+		    <td class='TableData' width='300' colspan='3'>{$after['viewers']}</td>    
+		         
+		  </tr>  
+		
+		  <tr>
+		
+		    <td nowrap align='left' width='120' class='TableContent'>项目描述：</td>
+		
+		    <td class='TableData' width='300' colspan='3'>{$after['description']}</td>    
+		         
+		  </tr> 
+	";
+}
+
+if($all['type'] == 2){
+	$before = $all[0];
+	$after  = $all[1];
+	
+	$info = "";
+	
+	$type   =  "添加项目成员";
+	if(!empty($before)){
+		$info .= "
+		
+			<tr>
+
+	  			  <td nowrap class='TableHeader' colspan='6'><b>修改前项目成员</b></td>
+	
+	  		</tr>
+		
+			<tr>
+				
+				<td class='TableData' width='180'  $class>{$before['sortname']}</td>
+			
+				<td class='TableData' width='180'  $class>{$before['name']}</td>
+			
+			</tr>
+			
+			
+		";
+		$type = "修改后项目成员";
+	}
+	if(!empty($after[0])){
+	
+		$info .= "<tr>
+
+	 			   <td nowrap class='TableHeader' colspan='6'><b>删除项目成员</b></td>
+	
+				  </tr>";
+		foreach($after as $v){
+			$info .= "
+				<tr>
+					
+					<td class='TableData' width='180'  $class>{$v['sortname']}</td>
+				
+					<td class='TableData' width='180'  $class>{$v['name']}</td>
+				
+				</tr>
+			";
+		}
+	}else{
+		$info .= "
+		
+				<tr>
+
+ 			   <td nowrap class='TableHeader' colspan='6'><b>{$type}</b></td>
+
+			  </tr>
+		
+			<tr>
+				
+				<td class='TableData' width='180'  $class>{$after['sortname']}</td>
+			
+				<td class='TableData' width='180'  $class>{$after['name']}</td>
+			
+			</tr>
+		";
+	}
+}
+
+if($all['type'] == 3){
+$before = $all[0][0];
+$after  = $all[1];
+	if(!empty($before)){
+		$info .= "
+		
+		<tr>
+	
+	    <td nowrap class='TableHeader' colspan='6'><b>&nbsp;任务基本信息</b></td>
+	
+	    </tr>
+		
+		<tr>
+	
+	  	<td nowrap align='left' width='120'  class='TableContent'>任务名称：</td>
+	
+	   	<td class='TableData' width='180'  {$class}>{$before['title']}</td>  
+	
+	  	<td nowrap align='left' width='120' class='TableContent'>任务序号：</td>
+	
+	    <td nowrap align='left' class='TableData' {$class} width='180'>{$before['number']}</td>  
+	      
+	  </tr> 
+	  
+	  <tr>
+	
+	    <td nowrap align='left' width='120' class='TableContent'>里程碑：</td>
+	
+	    <td class='TableData' width='180' {$class}>{$before['milepost']}</td>          
+	
+	    <td nowrap align='left' width='120' class='TableContent'>执行人：</td>
+	
+	    <td class='TableData' width='180' {$class}>{$before['execname']}</td>    
+	
+	  </tr>
+	  
+	  <tr>
+	
+	  	<td nowrap align='left' width='120' class='TableContent'>计划开始/结束时间：</td>
+	
+	    <td nowrap align='left' class='TableData' {$class} width='180'>{$before['ptime']}</td>  
+	
+	  	<td nowrap align='left' width='120' class='TableContent'>计划工时（天）：</td>
+	
+	    <td nowrap align='left' class='TableData' {$class} width='180'>{$before['pday']}</td>     
+	
+	  </tr> 
+	  
+	  <tr>
+	
+	  	<td nowrap align='left' width='120' class='TableContent'>前置任务：</td>
+	
+	    <td nowrap align='left' class='TableData' {$class} width='180'>{$before['needtask']}</td>   
+	
+	  	<td nowrap align='left' width='120' class='TableContent'>等级：</td>
+	
+	    <td nowrap align='left' class='TableData' {$class} width='180'>{$before['level']}</td>          
+	
+	  </tr> 
+	 
+	  <tr>
+	
+	    <td nowrap align='left' width='120' class='TableContent'>任务描述：</td>
+	
+	    <td class='TableData' width='180' colspan='3' {$class}>{$before['content']}</td>    
+	         
+	  </tr>  
+	 
+		";
+	}
+		foreach($after as $v){
+		
+			$info .= "
+				
+				<tr>
+			
+			    <td nowrap class='TableHeader' colspan='6'><b>&nbsp;任务基本信息</b></td>
+			
+			    </tr>
+				
+				<tr>
+			
+			  	<td nowrap align='left' width='120'  class='TableContent'>任务名称：</td>
+			
+			   	<td class='TableData' width='180'  {$class}>{$v['title']}</td>
+			
+			  	<td nowrap align='left' width='120' class='TableContent'>任务序号：</td>
+			
+			    <td nowrap align='left' class='TableData' {$class} width='180'>{$v['number']}</td>
+			      
+			  </tr>
+			  
+			  <tr>
+			
+			    <td nowrap align='left' width='120' class='TableContent'>里程碑：</td>
+			
+			    <td class='TableData' width='180' {$class}>{$v['milepost']}</td>
+			
+			    <td nowrap align='left' width='120' class='TableContent'>执行人：</td>
+			
+			    <td class='TableData' width='180' {$class}>{$v['execman']}</td>    
+			
+			  </tr>    
+			  
+			  <tr>
+			
+			  	<td nowrap align='left' width='120' class='TableContent'>计划开始/结束时间：</td>
+			
+			    <td nowrap align='left' class='TableData' {$class} width='180'>{$v['stime']}</td>  
+			
+			  	<td nowrap align='left' width='120' class='TableContent'>计划工时（天）：</td>
+			
+			    <td nowrap align='left' class='TableData' {$class} width='180'>{$v['pday']}</td>     
+			
+			  </tr> 
+			  
+			  <tr>
+			
+			  	<td nowrap align='left' width='120' class='TableContent'>前置任务：</td>
+			
+			    <td nowrap align='left' class='TableData' {$class} width='180'>{$v['needtask']}</td>   
+			
+			  	<td nowrap align='left' width='120' class='TableContent'>等级：</td>
+			
+			    <td nowrap align='left' class='TableData' {$class} width='180'>{$v['level']}</td>          
+			
+			  </tr> 
+			 
+			  <tr>
+			
+			    <td nowrap align='left' width='120' class='TableContent'>任务描述：</td>
+			
+			    <td class='TableData' width='180' colspan='3' {$class}>{$v['content']}</td>    
+			         
+			  </tr>  
+			";
+		}
+}
+
+
+if($all['type'] == 4){
+$before = $all[0][0];
+$after  = $all[1];
+	if(!empty($before)){
+		$info .= "
+		
+		<tr>
+	
+	    <td nowrap class='TableHeader' colspan='6'><b>&nbsp;费用变更信息</b></td>
+	
+	    </tr>
+		
+		<tr>
+	
+	  	<td nowrap align='left' width='120'  class='TableContent'>费用名称：</td>
+	
+	   	<td class='TableData' width='180'  {$class}>{$before['title']}</td>  
+	
+	  	<td nowrap align='left' width='120' class='TableContent'>预算类型：</td>
+	
+	    <td nowrap align='left' class='TableData' {$class} width='180'>{$before['sname']}</td>  
+	      
+	  </tr> 
+	  
+	  <tr>
+	
+	    <td nowrap align='left' width='120' class='TableContent'>计划金额：</td>
+	
+	    <td class='TableData' width='180' {$class}>{$before['r_cost']}</td>          
+	
+	    <td nowrap align='left' width='120' class='TableContent'>实际金额：</td>
+	
+	    <td class='TableData' width='180' {$class}>{$before['t_cost']}</td>    
+	
+	  </tr>
+
+	  <tr>
+	
+	    <td nowrap align='left' width='120' class='TableContent'>费用说明：</td>
+	
+	    <td class='TableData' width='180' colspan='3' {$class}>{$before['costnotes']}</td>    
+	         
+	  </tr>  
+	 
+		";
+	}
+		foreach($after as $v){
+		
+			$info .= "
+				
+				<tr>
+			
+			    <td nowrap class='TableHeader' colspan='6'><b>&nbsp;费用变更信息</b></td>
+			
+			    </tr>
+				
+				<tr>
+			
+			  	<td nowrap align='left' width='120'  class='TableContent'>费用名称：</td>
+			
+			   	<td class='TableData' width='180'  {$class}>{$v['title']}</td>
+			
+			  	<td nowrap align='left' width='120' class='TableContent'>预算类型：</td>
+			
+			    <td nowrap align='left' class='TableData' {$class} width='180'>{$v['sname']}</td>
+			      
+			  </tr>
+			  
+			  <tr>
+			
+			    <td nowrap align='left' width='120' class='TableContent'>计划金额：</td>
+			
+			    <td class='TableData' width='180' {$class}>{$v['r_cost']}</td>
+			
+			    <td nowrap align='left' width='120' class='TableContent'>实际金额：</td>
+			
+			    <td class='TableData' width='180' {$class}>{$v['t_cost']}</td>    
+			
+			  </tr>    
+			 
+			  <tr>
+			
+			    <td nowrap align='left' width='120' class='TableContent'>费用说明：</td>
+			
+			    <td class='TableData' width='180' colspan='3' {$class}>{$v['costnotes']}</td>    
+			         
+			  </tr>  
+			";
+		}
+}
+
+print <<<CNOA
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="resources/css/hr/viewDetails.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="bodycolor" topmargin="5">
+
+<table class="TableBlock" width="650" align="center">		  
+	{$info}
+</table>
+
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+<style>
+body{padding:0;margin:0;}
+#ipadtbar{height:30px; background: -webkit-gradient(linear, left top, left bottom, from(#F5F6F8), to(#DDDDDD));line-height:30px;text-indent:10px;margin-bottom:10px;}
+</style>
+<script type="text/javascript">
+if(navigator.userAgent.match(/iPad|iPhone/i) && window.top!=window.self){
+	document.body.insertAdjacentHTML('afterBegin', "<div id='ipadtbar'>您使用的是iPad/iPhone，查看完整内容请点击：<button onclick='window.open(location.href)'>新窗口中查看</button></div>");
+}
+</script>
+<!-- iPad/iPhone无法滚动问题，弹出新窗口查看 -->
+</body>
+
+</html>
+CNOA;
+?>

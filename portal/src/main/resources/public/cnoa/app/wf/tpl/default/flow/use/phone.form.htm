@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>OA系统工作流界面</title>
+    <link href="scripts/bootstrap/core/css/bootstrap.css" rel="stylesheet"></link>
+    <link href="scripts/bootstrap/core/css/bootstrap-theme.css" rel="stylesheet"></link>
+    <link href="scripts/bootstrap/core/css/style.css" rel="stylesheet"></link>
+	<script src="scripts/jquery/1.10.2.min.js"></script>
+	<script src="scripts/bootstrap/core/js/bootstrap.js"></script>
+	<script src="scripts/bootstrap/core/js/checkbox.js"></script>
+	<!-- <script type="text/javascript" src="http://192.168.1.20:1000/target/target-script-min.js#anonymous"></script> -->
+	<script type="text/javascript">
+	<!--
+		//获取表单数据
+		$(document).ready(function(){
+			$.ajax({
+				type: "GET",
+				//&CNOAOASESSID=3cacq11ssnv5lnuqm4gprsmjn1
+				url: "index.php?app=wf&func=flow&action=use&device=phone&task=loadFlowInfo",
+				dataType: "json",
+				success: function(msg){
+					initForm(msg);
+				}
+			});
+		});
+
+
+		function initForm(msg){
+			//设置表单基本信息
+			$.each(msg.flowInfo, function(id, obj){
+				var item = $("#"+id);
+				item.val(obj.value);
+				if(obj.readOnly){
+					item.attr("readOnly", true).attr("disabled", true);
+				}
+			});
+			//生成表单控件列表
+			$.each(msg.formInfo.items, function(id, obj){
+				var item = [
+					'<div class="form-group">',
+					'<div class="form-label">',
+					'<label>',
+					obj.label,
+					'</label>',
+					'</div>',
+					'<div class="form-input',(obj.must?' must':''),(obj.tag=='select'?' select':''),'">',
+					randerFormItem(obj),
+					'</div>',
+					'</div>'
+				]
+				$("#form").append(item.join(""));
+			});
+			//美化check/radio的样式
+			$(':checkbox').cInit();
+			$(':radio').rInit();
+		}
+
+		function randerFormItem(item){
+			var it;
+			switch (item.tag){
+				//input标签，包括input / radio / checkbox
+				case 'input':
+					//radio标签
+					if(item.xtype == 'radio'){
+						it = (function(){
+							var radio = "";
+							$.each(item.items, function(i, input){
+								radio += '<label class="radio-inline">';
+								radio += '<input name="'+item.name+'" type="radio" value="'+input.value+'" '+(input.checked?'checked':'')+' />'+input.label;
+								radio += '</label>';
+							})
+							return radio;
+						})();
+					//checkbox标签
+					}else if(item.xtype == 'checkbox'){
+						it = (function(){
+							var checkbox = "";
+							$.each(item.items, function(i, input){
+								checkbox += '<label class="checkbox-inline">';
+								checkbox += '<input name="'+input.name+'" type="checkbox" value="'+input.value+'" '+(input.checked?'checked':'')+' />'+input.label;
+								checkbox += '</label>';
+							})
+							return checkbox;
+						})();
+					//textfield
+					}else{
+						it = '<input class="form-control" '+(item.must?'must=true':'')+' value="'+item.value+'" '+(item.readOnly?'readOnly':'')+' />';
+					}
+					break;
+				//textarea标签
+				case 'textarea':
+					it = '<textarea class="form-control" '+(item.must?'must=true':'')+' '+(item.readOnly?'readOnly':'')+'>'+item.value+'</textarea>';
+					break;
+				//select标签，包括单选和多选
+				case 'select':
+					it = '<select class="form-control" '+(item.multiple?'multiple':'')+'> '
+					   + (item.must?'must=true':'')
+					   + ' '+(item.readOnly?'readOnly':'')
+					   + '>'
+					   + (function(){
+						  var ops = "";
+						  $.each(item.items, function(i, opt){
+							  ops += '<option value="'+opt.value+'" '+(opt.selected?'selected':'')+'>'+opt.label+'</option>';
+						  })
+						  return ops;
+					   })()
+					   +'</select>';
+					break;
+			}
+			return it;
+		}
+	//-->
+	</script>
+  </head>
+
+  <body>
+
+
+
+
+	<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header alert-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">对话框标题</h4>
+				</div>
+				<div class="modal-body">
+					对话框内容
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+					<!-- <button type="button" class="btn btn-primary">保存</button> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+    
+	<div class="container theme-showcase">
+		<div class="row">
+			<button type="button" class="btn btn-lg btn-danger" onclick="location.reload();">刷新</button>
+			<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">模式对话框</button>
+			<br /><br />
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						流程信息
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="input-group">
+						<span class="input-group-addon">
+						流程名称
+						</span>
+						<input class="form-control" name="flowName" id="flowName" >
+					</div>
+					<br />
+					<div class="input-group">
+						<span class="input-group-addon">
+						流程编号
+						</span>
+						<input class="form-control" name="flowNumber" id="flowNumber" >
+					</div>
+					<br />
+					<div class="input-group">
+						<span class="input-group-addon">
+						重要等级
+						</span>
+						<input class="form-control" name="level" id="level" >
+					</div>
+					<br />
+					<div class="input-group">
+						<span class="input-group-addon">
+						申请理由
+						</span>
+						<input class="form-control" name="reason" id="reason" >
+					</div>
+					<br />
+					<div class="input-group">
+						<span class="input-group-addon">
+						发 起 人
+						</span>
+						<input class="form-control" name="uname" id="uname" >
+					</div>
+					<br />
+					<div class="input-group">
+						<span class="input-group-addon">
+						发起时间
+						</span>
+						<input class="form-control" name="posttime" id="posttime" >
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="panel panel-info form bottom_none">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						表单内容
+					</h3>
+					<div class="panel-title-notice">
+						<label class="label2">必填:<div class="notice-box must"></div></label>
+						<!-- <label class="label2">可填<div class="notice-box write"></div></label>
+						<label class="label2">只读<div class="notice-box"></div></label> -->
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-body">
+					<form role="form" id="form"></form>
+				</div>
+			</div>
+		</div>
+
+		<!--
+		<div class="row">
+			<div class="panel panel-info form bottom_none">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						表单内容
+					</h3>
+					<div class="panel-title-notice">
+						<label class="label2">必填:<div class="notice-box must"></div></label>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-body">
+					<form role="form">
+						<div class="form-group">
+						    <div class="form-label">
+								<label>
+									单行文本框(可填)
+								</label>
+							</div>
+						    <div class="form-input">
+								<input class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+						    <div class="form-label">
+								<label>
+									单行文本框(必填)
+								</label>
+							</div>
+						    <div class="form-input must">
+								<input class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+						    <div class="form-label">
+								<label>
+									单行文本框(可填)
+								</label>
+							</div>
+						    <div class="form-input">
+								<input class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+						    <div class="form-label">
+								<label>
+									单行文本框(不可填)
+								</label>
+							</div>
+						    <div class="form-input">
+								<input class="form-control" disabled>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-label">
+								<label>
+									只显示文本
+								</label>
+							</div>
+						    <div class="form-input">
+								这里是要显示的文本
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-label">
+							<label>
+								多行文本框
+							</label>
+							</div>
+						    <div class="form-input">
+								<textarea class="form-control" rows="3"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-label">
+								<label>
+									文件浏览
+								</label>
+							</div>
+						    <div class="form-input">
+								<input type="file" >
+								<p class="help-block">
+									这里是一些帮助信息
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-label">
+								<label>
+									下拉选择器(单选)
+								</label>
+							</div>
+						    <div class="form-input select">
+								<select class="form-control">
+								  <option>选项1</option>
+								  <option>选项2</option>
+								  <option>选项3</option>
+								  <option>选项4</option>
+								  <option>选项5</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-label">
+								<label>
+									下拉选择器(多选)
+								</label>
+							</div>
+						    <div class="form-input">
+								<select multiple class="form-control">
+								  <option>选项1</option>
+								  <option>选项2</option>
+								  <option>选项3</option>
+								  <option>选项4</option>
+								  <option>选项5</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-label">
+								<label>
+									复选框组(横排)
+								</label>
+							</div>
+						    <div class="form-input">
+								<label class="checkbox-inline">
+								  <input type="checkbox" value="option1"> 选项1
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" value="option2"> 选项2
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" value="option3"> 选项3
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" value="option4"> 选项4
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" value="option5"> 选项5
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-label">
+								<label>
+									单选框组(横排)
+								</label>
+							</div>
+						    <div class="form-input">
+								<label class="radio-inline">
+								  <input name="radio" type="radio" id="inlineRadio1" value="option1"> 选项1
+								</label>
+								<label class="radio-inline">
+								  <input name="radio" type="radio" id="inlineRadio2" value="option2"> 选项2
+								</label>
+								<label class="radio-inline">
+								  <input name="radio" type="radio" id="inlineRadio3" value="option3"> 选项3
+								</label>
+								<label class="radio-inline">
+								  <input name="radio" type="radio" id="inlineRadio4" value="option4"> 选项4
+								</label>
+								<label class="radio-inline">
+								  <input name="radio" type="radio" id="inlineRadio5" value="option5"> 选项5
+								</label>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		-->
+	</div>	
+  </body>
+</html>

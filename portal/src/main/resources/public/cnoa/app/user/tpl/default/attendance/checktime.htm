@@ -1,0 +1,23 @@
+<?php
+
+print <<<CNOA
+
+<script language="JavaScript">
+
+Ext.ns("CNOA.user.attendance.checktime");
+CNOA.user.attendance.checktime.parentID = "{$GLOBALS['app']['parentid']}";
+//*
+Ext.onReady(function() {
+	loadScripts("sm_user_attendance", "app/user/scripts/cnoa.attendance.js", function(){
+		CNOA_user_attendance_checktime = new CNOA_user_attendance_checktimeClass();
+	    Ext.getCmp(CNOA.user.attendance.checktime.parentID).add(CNOA_user_attendance_checktime.mainPanel);
+	    Ext.getCmp(CNOA.user.attendance.checktime.parentID).doLayout();
+	});
+});
+//*/
+</script>
+
+
+CNOA;
+#echo loadJavascript(array("./app/user/scripts/attendance_checktime.js"));
+?>

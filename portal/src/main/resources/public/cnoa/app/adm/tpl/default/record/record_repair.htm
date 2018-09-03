@@ -1,0 +1,18 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.adm.articles.repairRecordIndex");
+CNOA.adm.articles.repairRecordIndex.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_articles_record", "app/adm/scripts/cnoa.articles_record.js", function(){
+		CNOA_adm_articles_repairRecordIndex = new CNOA_adm_articles_repairRecordIndexClass();
+		Ext.getCmp(CNOA.adm.articles.repairRecordIndex.parentID).add(CNOA_adm_articles_repairRecordIndex.mainPanel);
+		Ext.getCmp(CNOA.adm.articles.repairRecordIndex.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+?>

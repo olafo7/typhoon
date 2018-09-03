@@ -1,0 +1,21 @@
+<?php
+print <<<CNOA
+
+<script language="JavaScript">
+Ext.namespace("CNOA.communication.message.insideFolder");
+CNOA.communication.message.insideFolder.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_communication_message", "app/communication/scripts/cnoa.message.js", function(){
+		CNOA_communication_message_insideFolder = new CNOA_communication_message_insideFolderClass();
+		Ext.getCmp(CNOA.communication.message.insideFolder.parentID).add(CNOA_communication_message_insideFolder.mainPanel);
+		Ext.getCmp(CNOA.communication.message.insideFolder.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/communication/scripts/message_insideFolder.js"));
+?>

@@ -1,0 +1,30 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.namespace("CNOA.wf.set.flow");
+CNOA.wf.set.flow.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_wf_flow", "app/wf/scripts/cnoa.wf.js", function(){
+		CNOA_wf_set_flow = new CNOA_wf_set_flowClass();
+		Ext.getCmp(CNOA.wf.set.flow.parentID).add(CNOA_wf_set_flow.mainPanel);
+		Ext.getCmp(CNOA.wf.set.flow.parentID).doLayout();
+	});
+});
+
+</script>
+
+CNOA;
+/*
+### echo loadJavascript(array(
+	"./app/wf/scripts/set_flow.js",
+	"./app/wf/scripts/set_flow_form.js",
+	"./app/wf/scripts/set_flow_design_step_base.js",
+	"./app/wf/scripts/set_flow_design_step_fields.js",
+	"./app/wf/scripts/set_flow_design_step_user.js",
+	"./app/wf/scripts/set_flow_design_step_condition.js",
+	"./app/wf/scripts/set_flow_design_step.js",
+	"./app/wf/scripts/set_flow_design_main.js"
+));
+*/
+?>

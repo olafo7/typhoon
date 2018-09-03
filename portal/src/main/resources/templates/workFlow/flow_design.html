@@ -1,0 +1,12 @@
+<script language="JavaScript">
+    Ext.namespace("CNOA.wf.set.flow");
+    CNOA.wf.set.flow.parentID = "docs-CNOA_MENU_WF_SET_DESIGN";
+
+    Ext.onReady(function() {
+        loadScripts("sm_wf_flow", "cnoa/app/wf/scripts/cnoa.wf.js", function(){
+            CNOA_wf_set_flow = new CNOA_wf_set_flowClass();
+            Ext.getCmp(CNOA.wf.set.flow.parentID).add(CNOA_wf_set_flow.mainPanel);
+            Ext.getCmp(CNOA.wf.set.flow.parentID).doLayout();
+        });
+    });
+</script>

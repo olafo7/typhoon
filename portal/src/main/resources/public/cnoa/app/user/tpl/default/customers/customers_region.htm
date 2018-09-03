@@ -1,0 +1,17 @@
+<?php
+print <<<CNOA
+<script language="JavaScript">
+Ext.ns("CNOA.user.customers.region");
+CNOA.user.customers.region.parentID = "{$GLOBALS['app']['parentid']}";
+
+Ext.onReady(function() {
+	loadScripts("sm_user_customers", "app/user/scripts/cnoa.customers.js", function(){
+		CNOA_user_customers_region = new CNOA_user_customers_regionClass();
+		Ext.getCmp(CNOA.user.customers.region.parentID).add(CNOA_user_customers_region.mainPanel);
+		Ext.getCmp(CNOA.user.customers.region.parentID).doLayout();
+	});
+});
+
+</script>
+CNOA;
+?>

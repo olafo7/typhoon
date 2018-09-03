@@ -1,0 +1,22 @@
+<?php
+$rand = rand(0, 9999999);
+print <<<CNOA
+
+
+<script language="JavaScript">
+Ext.namespace("CNOA.user.plan.list_dept");
+CNOA.user.plan.list_dept.parentID = "{$GLOBALS['app']['parentid']}";
+
+
+Ext.onReady(function() {
+	loadScripts("sm_user_plan", "app/user/scripts/cnoa.plan.js", function(){
+		CNOA_user_plan_list_dept = new CNOA_user_plan_list_deptClass();
+		Ext.getCmp(CNOA.user.plan.list_dept.parentID).add(CNOA_user_plan_list_dept.mainPanel);
+		Ext.getCmp(CNOA.user.plan.list_dept.parentID).doLayout();
+	});
+});
+</script>
+
+CNOA;
+##echo loadJavascript(array("./app/user/scripts/plan_common.js", "./app/user/scripts/plan_list_dept.js"));
+?>
